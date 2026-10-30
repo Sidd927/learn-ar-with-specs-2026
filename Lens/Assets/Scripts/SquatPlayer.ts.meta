@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/96cdd180-c90f-4794-a848-4b6be073749c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 50dfcb56-483e-40f6-b503-2150ffe9a13a
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 50dfcb56-483e-40f6-b503-2150ffe9a13a
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> b29190ba-0ac6-463b-ab71-2a48110de8ec
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/b29190ba-0ac6-463b-ab71-2a48110de8ec>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 9e460c67-fd6e-4d29-8b26-2c9dd487e54d
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    rig: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - rig: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Squat Player — timeline, steps, pause, and speed"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input AssignableType_1 rig {"hint":"The rig that poses the mannequin"}'

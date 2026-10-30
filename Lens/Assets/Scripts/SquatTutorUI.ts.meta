@@ -1,0 +1,79 @@
+- !<AssetImportMetadata/e936ec41-9652-452e-8275-f3da30897595>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 92fbd86e-bd6e-4496-9a89-c050b84c1d34
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 92fbd86e-bd6e-4496-9a89-c050b84c1d34
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> bcdf88d5-bf4f-4210-9fad-6354a1536f96
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/bcdf88d5-bf4f-4210-9fad-6354a1536f96>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 7301d87b-d3a9-4b26-8f6e-cbb10526b094
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    accentColor: false
+    cardWidth: false
+    introBody: false
+    introTitle: false
+    panelDistance: false
+    panelHeight: false
+    panelWidth: false
+    sideOffset: false
+    subtleColor: false
+    textColor: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - sideOffset: !<float> 34.000000
+      panelHeight: !<float> -26.000000
+      panelDistance: !<float> 0.000000
+      cardWidth: !<float> 28.000000
+      panelWidth: !<float> 25.000000
+      introTitle: Squat Tutor
+      introBody: "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace."
+      accentColor: !<Vec4> {x: 1.000000, y: 0.780000, z: 0.380000, w: 1.000000}
+      textColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+      subtleColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.600000}
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Squat Tutor UI — cue card and controls (UIKit)"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Layout"}'
+    - '// @input float sideOffset = 34 {"hint":"Card / panel centre offset to each side of the mannequin (cm)"}'
+    - '// @input float panelHeight = -26 {"hint":"Height of the card / panel centres relative to eye level at start (cm)"}'
+    - "// @input float panelDistance {\"hint\":\"Distance of the cards / panels from the user's start position (cm)\"}"
+    - '// @input float cardWidth = 28 {"hint":"Cue card width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float panelWidth = 25 {"hint":"Control panel width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Text"}'
+    - '// @input string introTitle = "Squat Tutor" {"hint":"Intro title"}'
+    - '// @input string introBody = "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace." {"hint":"Intro description"}'
+    - '// @input vec4 accentColor = {1,0.78,0.38,1} {"hint":"Accent colour for phase labels", "widget":"color"}'
+    - '// @input vec4 textColor = {1,1,1,1} {"hint":"Primary text colour", "widget":"color"}'
+    - '// @input vec4 subtleColor = {1,1,1,0.6} {"hint":"Secondary text colour", "widget":"color"}'
+    - '// @ui {"widget":"group_end"}'

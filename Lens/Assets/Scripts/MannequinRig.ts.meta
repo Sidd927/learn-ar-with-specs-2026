@@ -1,0 +1,104 @@
+- !<AssetImportMetadata/2b6282ad-8603-4652-a988-188b1c32a434>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 5a48bbad-331c-42d9-a9aa-e9dbbefab3d5
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 5a48bbad-331c-42d9-a9aa-e9dbbefab3d5
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 7c8b8cb5-ff1e-4dd4-8510-9e35d356f2cc
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/7c8b8cb5-ff1e-4dd4-8510-9e35d356f2cc>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 34194834-1d0b-4948-a2f3-a88d8424a638
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    ankleHalfWidth: false
+    ankleHeight: false
+    ankleL: false
+    ankleR: false
+    hipL: false
+    hipOffset: false
+    hipR: false
+    kneeArrowL: false
+    kneeArrowR: false
+    kneeL: false
+    kneeR: false
+    neck: false
+    pelvis: false
+    shinLength: false
+    shoulderL: false
+    shoulderR: false
+    spine: false
+    thighLength: false
+    toeOutDeg: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - pelvis: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      spine: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      neck: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      shoulderL: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      shoulderR: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      hipL: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      hipR: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      kneeL: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      kneeR: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      ankleL: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      ankleR: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      kneeArrowL: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      kneeArrowR: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      thighLength: 15.500000
+      shinLength: 15.500000
+      ankleHeight: 2.600000
+      ankleHalfWidth: 6.500000
+      hipOffset: !<Vec3> {x: 4.500000, y: -1.500000, z: 0.000000}
+      toeOutDeg: !<float> 12.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Mannequin Rig — poses the jointed figure"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input SceneObject pelvis {"hint":"Pelvis joint (child of Mannequin)"}'
+    - '// @input SceneObject spine {"hint":"Spine joint (child of Pelvis)"}'
+    - '// @input SceneObject neck {"hint":"Neck joint (child of Spine)"}'
+    - '// @input SceneObject shoulderL {"hint":"Left and right shoulder joints (children of Spine)"}'
+    - // @input SceneObject shoulderR
+    - '// @input SceneObject hipL {"hint":"Hip joints (children of Pelvis)"}'
+    - // @input SceneObject hipR
+    - '// @input SceneObject kneeL {"hint":"Knee joints (children of the hips)"}'
+    - // @input SceneObject kneeR
+    - '// @input SceneObject ankleL {"hint":"Ankle joints (children of the knees)"}'
+    - // @input SceneObject ankleR
+    - '// @input SceneObject kneeArrowL {"hint":"Knee arrow cues, repositioned to follow the knees"}'
+    - // @input SceneObject kneeArrowR
+    - '// @ui {"widget":"group_start", "label":"Proportions (cm)"}'
+    - '// @input float thighLength = 15.5 {"hint":"Hip joint to knee joint"}'
+    - '// @input float shinLength = 15.5 {"hint":"Knee joint to ankle joint"}'
+    - '// @input float ankleHeight = 2.6 {"hint":"Ankle joint height above the stand"}'
+    - '// @input float ankleHalfWidth = 6.5 {"hint":"Half the distance between the ankles"}'
+    - '// @input vec3 hipOffset = {4.5,-1.5,0} {"hint":"Hip joint offset from the pelvis (x is per side)"}'
+    - '// @input float toeOutDeg = 12 {"hint":"Toe-out angle per foot (degrees); knees bend along this direction"}'
+    - '// @ui {"widget":"group_end"}'

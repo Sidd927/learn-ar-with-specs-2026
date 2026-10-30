@@ -1,0 +1,57 @@
+- !<AssetImportMetadata/8885da89-c69d-4b24-b7a0-ecf98a365774>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> cf4a2026-85b4-4d8c-8301-c48dbb71e585
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> cf4a2026-85b4-4d8c-8301-c48dbb71e585
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> ed403895-d3ec-4546-99d7-aeb5cf70741a
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/ed403895-d3ec-4546-99d7-aeb5cf70741a>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 23910bff-f46c-486e-84d0-f96467678aad
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    cues: false
+    player: false
+    turntable: false
+    ui: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - player: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      ui: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      turntable: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      cues: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Squat Tutor — wiring between UI, player, turntable, and cues"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input AssignableType_1 player {"hint":"Playback state machine"}'
+    - '// @input AssignableType_2 ui {"hint":"Cue card and control panel"}'
+    - '// @input AssignableType_3 turntable {"hint":"Viewing-angle turntable"}'
+    - '// @input AssignableType_4 cues {"hint":"Phase-specific body cues"}'
