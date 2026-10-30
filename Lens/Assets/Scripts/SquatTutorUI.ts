@@ -64,7 +64,7 @@ export class SquatTutorUI extends BaseScriptComponent {
 
   @input
   @hint("Height of the card / panel centres relative to eye level at start (cm)")
-  panelHeight: number = -15
+  panelHeight: number = -26
 
   @input
   @hint("Distance of the cards / panels from the user's start position (cm)")
@@ -132,6 +132,7 @@ export class SquatTutorUI extends BaseScriptComponent {
   private cueText!: Text
   private dots: RenderMeshVisual[] = []
   private buttons: Record<string, Button> = {}
+  private buttonLabels: Record<string, Text> = {}
   private playLabel!: Text
   private slowLabel!: Text
 
@@ -388,6 +389,7 @@ export class SquatTutorUI extends BaseScriptComponent {
     so.createComponent(FlexItem.getTypeName())
     btn.onTriggerUp.add(() => onClick())
     this.buttons[name] = btn
+    this.buttonLabels[name] = t
     return t
   }
 
@@ -399,6 +401,12 @@ export class SquatTutorUI extends BaseScriptComponent {
   private setInactive(name: string, inactive: boolean): void {
     const b = this.buttons[name]
     if (b && this.ready) b.inactive = inactive
+    // UIKit's inactive state blocks input but barely changes the look; dim the label too.
+    const label = this.buttonLabels[name]
+    if (label) {
+      const c = this.textColor
+      label.textFill.color = new vec4(c.x, c.y, c.z, inactive ? 0.3 : c.w)
+    }
   }
 
   private markReady(): void {

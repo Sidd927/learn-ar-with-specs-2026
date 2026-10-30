@@ -1,0 +1,57 @@
+- !<AssetImportMetadata/7136b311-de12-47ff-915b-442717a0deb1>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 92542c79-c5a5-496b-a831-544d2618c76e
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/92542c79-c5a5-496b-a831-544d2618c76e>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 5fa2e85c-b442-441c-a9ac-c9a63b5da60c
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    majorRadius: false
+    majorSegments: false
+    tubeRadius: false
+    tubeSegments: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - majorRadius: !<float> 1.000000
+      tubeRadius: 0.050000
+      majorSegments: !<float> 64.000000
+      tubeSegments: !<float> 10.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"Ring Mesh — thin torus with a custom tube radius"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input float majorRadius = 1 {"hint":"Distance from the centre to the middle of the tube (cm, before object scale)"}'
+    - '// @input float tubeRadius = 0.05 {"hint":"Tube radius (cm, before object scale)"}'
+    - '// @input float majorSegments = 64 {"hint":"Segments around the ring", "widget":"slider", "min":16, "max":128, "step":1}'
+    - '// @input float tubeSegments = 10 {"hint":"Segments around the tube", "widget":"slider", "min":4, "max":24, "step":1}'

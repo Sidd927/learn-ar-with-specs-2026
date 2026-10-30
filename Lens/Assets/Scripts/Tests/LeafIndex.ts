@@ -6,6 +6,7 @@ import {C_SteppingScenario} from "./C_SteppingScenario"
 import {D_PlaybackScenario} from "./D_PlaybackScenario"
 import {E_AnglesScenario} from "./E_AnglesScenario"
 import {F_CuesScenario} from "./F_CuesScenario"
+import {G_EdgeCasesScenario} from "./G_EdgeCasesScenario"
 
 /** Registers the Squat Tutor acceptance scenarios with LEAF. */
 @component
@@ -17,6 +18,7 @@ export class LeafIndex extends BaseScriptComponent {
     {id: "c-stepping", typename: C_SteppingScenario.getTypeName()},
     {id: "d-playback", typename: D_PlaybackScenario.getTypeName()},
     {id: "e-angles", typename: E_AnglesScenario.getTypeName()},
-    {id: "f-cues", typename: F_CuesScenario.getTypeName()}
+    {id: "f-cues", typename: F_CuesScenario.getTypeName()},
+    {id: "g-edge-cases", typename: G_EdgeCasesScenario.getTypeName()}
   ]
 }

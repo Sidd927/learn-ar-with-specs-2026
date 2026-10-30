@@ -333,14 +333,34 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 0.400000, z: 0.000000}
+    Position: {x: 0.000000, y: 0.350000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 34.000000, y: 1.000000, z: 34.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
     - !<own> 3281ad52-8635-4d84-b75a-fb9e3ffa42a4
+    - !<own> 2325789f-dfd7-41f4-8ce3-e732b123dc3e
+- !<ScriptComponent/07b471d1-f081-4eff-9dde-806b59ead147>
+  PrefabRemaps:
+    []
+  Name: RingMesh
+  Enabled: true
+  ScriptAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  ScriptInputsDefault:
+    majorRadius: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      majorRadius: !<float> 1.000000
+      tubeRadius: 0.090000
+      majorSegments: !<float> 48.000000
+      tubeSegments: !<float> 8.000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/0807b523-7732-44c3-823b-276af13e2638>
   PrefabRemaps:
     []
@@ -845,6 +865,25 @@
     - !<own> 83ef588c-5040-4344-b15f-0554c739da0b
   Components:
     []
+- !<ScriptComponent/2325789f-dfd7-41f4-8ce3-e732b123dc3e>
+  PrefabRemaps:
+    []
+  Name: RingMesh
+  Enabled: true
+  ScriptAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  ScriptInputsDefault:
+    tubeSegments: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      majorRadius: 23.600000
+      tubeRadius: 0.550000
+      majorSegments: !<float> 96.000000
+      tubeSegments: !<float> 10.000000
+  ScriptTypes:
+    "":
+      {}
 - !<RenderMeshVisual/23611bfb-b264-4be7-a0b9-d982dd1a71dd>
   PrefabRemaps:
     []
@@ -1041,12 +1080,13 @@
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: -1.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 20.000000, y: 1.400000, z: 15.000000}
+    Scale: {x: 10.500000, y: 1.000000, z: 7.800000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
     - !<own> 00c43635-cf08-4df5-8976-9993936f3e85
+    - !<own> 63582353-e0d5-4199-9f56-c756348b3937
 - !<SceneObject/29d242f0-ed5d-4309-bcb7-a4863b85db4b>
   PrefabRemaps:
     []
@@ -2009,6 +2049,26 @@
   ScriptTypes:
     "":
       {}
+- !<ScriptComponent/63582353-e0d5-4199-9f56-c756348b3937>
+  PrefabRemaps:
+    []
+  Name: RingMesh
+  Enabled: true
+  ScriptAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  ScriptInputsDefault:
+    majorRadius: true
+    majorSegments: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      majorRadius: !<float> 1.000000
+      tubeRadius: 0.060000
+      majorSegments: !<float> 64.000000
+      tubeSegments: !<float> 8.000000
+  ScriptTypes:
+    "":
+      {}
 - !<ScriptComponent/64f27597-c99d-4c59-8a08-05459cc2258d>
   PrefabRemaps:
     []
@@ -2489,6 +2549,25 @@
     - !<own> 3b4f5057-b516-4d3b-9c8d-14c81af2f505
   Components:
     []
+- !<ScriptComponent/7bf9cd1c-5d4e-4e2c-9d4f-d60aea5ba60a>
+  PrefabRemaps:
+    []
+  Name: RingMesh
+  Enabled: true
+  ScriptAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      majorRadius: 19.500000
+      tubeRadius: 0.350000
+      majorSegments: !<float> 96.000000
+      tubeSegments: !<float> 8.000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/7e2075c6-0882-4275-8365-16a03da73298>
   PrefabRemaps:
     []
@@ -2822,6 +2901,25 @@
   BlendNormals: false
   BlendShapes:
     {}
+- !<ScriptComponent/9348a6bf-0b2c-46a1-b07e-1379e532223a>
+  PrefabRemaps:
+    []
+  Name: RingMesh
+  Enabled: true
+  ScriptAsset: !<reference> 1ad5fd41-7229-4d84-bf91-c0f725ec8382
+  ScriptInputsDefault:
+    majorRadius: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      majorRadius: !<float> 1.000000
+      tubeRadius: 0.090000
+      majorSegments: !<float> 48.000000
+      tubeSegments: !<float> 8.000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/934d8ac9-657b-4c4a-ae1b-c45ba960d045>
   PrefabRemaps:
     []
@@ -2897,12 +2995,13 @@
   LocalTransform: !<TransformEntity>
     Position: {x: 6.500000, y: 0.250000, z: 2.400000}
     Rotation: {x: 0.000000, y: 12.000000, z: 0.000000}
-    Scale: {x: 6.400000, y: 0.900000, z: 12.500000}
+    Scale: {x: 3.600000, y: 1.000000, z: 6.400000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
     - !<own> 58c97df3-711a-420f-aa51-332ce5fcc32f
+    - !<own> 07b471d1-f081-4eff-9dde-806b59ead147
 - !<SceneObject/9a55a4e2-d063-489e-a44f-79520a4b06c3>
   PrefabRemaps:
     []
@@ -2941,6 +3040,7 @@
   Enabled: true
   ScriptAsset: !<reference> 92fbd86e-bd6e-4496-9a89-c050b84c1d34
   ScriptInputsDefault:
+    panelHeight: true
     introTitle: true
     introBody: true
     accentColor: true
@@ -2951,7 +3051,7 @@
   ScriptInputs:
     "":
       sideOffset: !<float> 33.000000
-      panelHeight: !<float> -15.000000
+      panelHeight: !<float> -26.000000
       panelDistance: !<float> 155.000000
       cardWidth: !<float> 21.000000
       panelWidth: !<float> 20.000000
@@ -3278,14 +3378,15 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 0.100000, z: 0.000000}
+    Position: {x: 0.000000, y: 0.200000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 40.000000, y: 1.200000, z: 40.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
     - !<own> 78812432-e95f-44d4-b15a-10b452bfbb34
+    - !<own> 7bf9cd1c-5d4e-4e2c-9d4f-d60aea5ba60a
 - !<SceneObject/b463be13-dddb-4b36-a3dd-c344bd3d8ef5>
   PrefabRemaps:
     []
@@ -4172,12 +4273,13 @@
   LocalTransform: !<TransformEntity>
     Position: {x: -6.500000, y: 0.250000, z: 2.400000}
     Rotation: {x: 0.000000, y: -12.000000, z: 0.000000}
-    Scale: {x: 6.400000, y: 0.900000, z: 12.500000}
+    Scale: {x: 3.600000, y: 1.000000, z: 6.400000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
     - !<own> ada6f20c-1c78-40a5-a509-1a0a63c7fe06
+    - !<own> 9348a6bf-0b2c-46a1-b07e-1379e532223a
 - !<SceneObject/e76a5053-8f30-4cda-9cd1-def2036e3255>
   PrefabRemaps:
     []
