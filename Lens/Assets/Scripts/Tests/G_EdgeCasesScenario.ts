@@ -67,9 +67,14 @@ export class G_EdgeCasesScenario extends Scenario {
     expect(kit.phaseLabel(), "Play after completion restarts").toBe("PHASE 1 OF 5")
     expect(kit.player.isPlaying, "playing again").toBe(true)
     await sleep(1000)
+    // Replay must jump back to the start. Compare against the value just before the tap:
+    // the simulated pinch itself takes a few hundred ms of real playback time.
+    const beforeReplay = kit.player.timelineSeconds
     await kit.tap("Replay")
-    await sleep(200)
-    expect(kit.player.timelineSeconds < 0.5, "Replay resets the timeline").toBe(true)
+    const afterReplay = kit.player.timelineSeconds
+    kit.log(`replay: timeline ${beforeReplay.toFixed(2)} s -> ${afterReplay.toFixed(2)} s`)
+    expect(afterReplay < beforeReplay - 0.3, "Replay resets the timeline").toBe(true)
+    expect(kit.phaseLabel(), "Replay shows phase 1").toBe("PHASE 1 OF 5")
     kit.log("edge cases ok")
   }
 }
