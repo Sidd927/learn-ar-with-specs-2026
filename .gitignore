@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+
+# Local agent / machine settings
+.claude/settings.local.json
+Lens/ls-live-instance.json
+Lens/.virtual-scene.json
