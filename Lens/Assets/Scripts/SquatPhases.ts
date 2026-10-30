@@ -49,7 +49,7 @@ export const SQUAT_PHASES: SquatPhase[] = [
     title: "Rising Up",
     cue: "Rise smoothly while keeping your balance.",
     indicator: "knees",
-    pose: {pelvisY: 31.2, pelvisZ: -4.4, torsoLeanDeg: 19, armReachDeg: 32}
+    pose: {pelvisY: 31.2, pelvisZ: -4.4, torsoLeanDeg: 19, armReachDeg: 46}
   },
   {
     title: "Standing Finish",
