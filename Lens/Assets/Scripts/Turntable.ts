@@ -1,5 +1,5 @@
 import Event, {PublicApi} from "SpectaclesInteractionKit.lspkg/Utils/Event"
-import {easeInOut, VIEW_ANGLES} from "./SquatPhases"
+import {easeInOut} from "./SquatPhases"
 
 const DEG = Math.PI / 180
 
@@ -17,7 +17,7 @@ export class Turntable extends BaseScriptComponent {
 
   @input
   @hint("Yaw at start (degrees, 0 = mannequin faces the user)")
-  initialYawDeg: number = VIEW_ANGLES.angled
+  initialYawDeg: number = 35
 
   @input
   @hint("Seconds for an eased turn between presets")

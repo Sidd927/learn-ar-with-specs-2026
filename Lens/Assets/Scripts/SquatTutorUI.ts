@@ -27,7 +27,7 @@ const TYPE_SCALE: Record<TextRole, {size: number; weight: number}> = {
   Body: {size: 39, weight: 500},
   Caption: {size: 38, weight: 500}
 }
-const PANEL_DISTANCE = 140
+const PANEL_DISTANCE = 155
 function roleSize(role: TextRole, distanceCm: number = PANEL_DISTANCE): number {
   return TYPE_SCALE[role].size * FONT_SIZE_SCALE * (distanceCm / 110)
 }
@@ -36,6 +36,8 @@ function applyTextRole(t: Text, role: TextRole, distanceCm: number = PANEL_DISTA
   ;(t as Text & {weight?: number}).weight = TYPE_SCALE[role].weight
 }
 
+// Children get a FlexItem and are picked up by FlexLayout's auto-discovery at start
+// (autoDiscoverItemsOnStart). Calling addItems() before the layout initializes throws.
 const LAYOUT_Z_LIFT = 0.02
 const BUTTON_LABEL_Z = 0.08
 const CONTENT_Z = 0.6
@@ -58,25 +60,25 @@ export class SquatTutorUI extends BaseScriptComponent {
   @ui.group_start("Layout")
   @input
   @hint("Card / panel centre offset to each side of the mannequin (cm)")
-  sideOffset: number = 34
+  sideOffset: number = 33
 
   @input
   @hint("Height of the card / panel centres relative to eye level at start (cm)")
-  panelHeight: number = -26
+  panelHeight: number = -15
 
   @input
   @hint("Distance of the cards / panels from the user's start position (cm)")
-  panelDistance: number = PANEL_DISTANCE
+  panelDistance: number = 155
 
   @input
   @hint("Cue card width (cm)")
   @widget(new SliderWidget(20, 40, 0.5))
-  cardWidth: number = 28
+  cardWidth: number = 21
 
   @input
   @hint("Control panel width (cm)")
   @widget(new SliderWidget(20, 40, 0.5))
-  panelWidth: number = 25
+  panelWidth: number = 20
   @ui.group_end
 
   @ui.group_start("Text")
@@ -179,7 +181,7 @@ export class SquatTutorUI extends BaseScriptComponent {
   }
 
   setPlaying(playing: boolean, complete: boolean): void {
-    if (this.playLabel) this.playLabel.text = playing ? "Pause" : complete ? "Play again" : "Play"
+    if (this.playLabel) this.playLabel.text = playing ? "Pause" : "Play"
   }
 
   setSlow(slow: boolean): void {
@@ -269,7 +271,6 @@ export class SquatTutorUI extends BaseScriptComponent {
     flex.columnGap = 0.9
     flex.height = 1.6
     flex.width = -1
-    const items: FlexItem[] = []
     for (let i = 0; i < PHASE_COUNT; i++) {
       const dot = this.obj(dotRow, "Dot" + (i + 1))
       dot.getTransform().setLocalScale(new vec3(1.1, 1.1, 0.4))
@@ -277,9 +278,8 @@ export class SquatTutorUI extends BaseScriptComponent {
       rmv.mesh = DOT_MESH
       rmv.mainMaterial = i === 0 ? DOT_ON_MAT : DOT_OFF_MAT
       this.dots.push(rmv)
-      items.push(dot.createComponent(FlexItem.getTypeName()) as FlexItem)
+      dot.createComponent(FlexItem.getTypeName())
     }
-    flex.addItems(items)
   }
 
   private buildControlPanel(parent: SceneObject): SceneObject {
@@ -339,7 +339,6 @@ export class SquatTutorUI extends BaseScriptComponent {
     const item = so.createComponent(FlexItem.getTypeName()) as FlexItem
     item.alignSelf = FlexAlignSelf.Stretch
     item.overrideHeight = height
-    this.registerChild(column, item)
     return t
   }
 
@@ -356,7 +355,6 @@ export class SquatTutorUI extends BaseScriptComponent {
     flex.columnGap = 0.7
     flex.height = height
     flex.width = -1
-    this.registerChild(column, item)
     return so
   }
 
@@ -387,16 +385,10 @@ export class SquatTutorUI extends BaseScriptComponent {
     t.verticalOverflow = VerticalOverflow.Overflow
     t.layoutRect = Rect.create(-(width - 0.5) / 2, (width - 0.5) / 2, -1.2, 1.2)
 
-    const item = so.createComponent(FlexItem.getTypeName()) as FlexItem
-    this.registerChild(row, item)
+    so.createComponent(FlexItem.getTypeName())
     btn.onTriggerUp.add(() => onClick())
     this.buttons[name] = btn
     return t
-  }
-
-  private registerChild(parent: SceneObject, item: FlexItem): void {
-    const flex = parent.getComponent(FlexLayout.getTypeName()) as FlexLayout | null
-    if (flex) flex.addItems([item])
   }
 
   private setOn(name: string, on: boolean): void {

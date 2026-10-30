@@ -5,6 +5,8 @@
     - !<own> 0005641c-028d-459a-0000-000000014b4d
     - !<own> f5d74682-203a-4970-81ea-9fa7b88c96bb
     - !<own> 29d242f0-ed5d-4309-bcb7-a4863b85db4b
+    - !<own> b9284ae5-a0bb-4695-9604-12ae24df2921
+    - !<own> 18db87c1-1e0b-46e8-93ba-ee12e550b02f
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       - id: 1
@@ -719,6 +721,21 @@
     []
   Components:
     []
+- !<SceneObject/18db87c1-1e0b-46e8-93ba-ee12e550b02f>
+  PrefabRemaps:
+    []
+  Name: LEAF Plugin Bridge
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 35584610-5b98-4d7b-a9df-800f45b02434
 - !<RenderMeshVisual/1f969daa-5809-4500-b314-98d91ccba131>
   PrefabRemaps:
     []
@@ -1182,6 +1199,22 @@
   BlendNormals: false
   BlendShapes:
     {}
+- !<ScriptComponent/35584610-5b98-4d7b-a9df-800f45b02434>
+  PrefabRemaps:
+    []
+  Name: MessagingBridge
+  Enabled: true
+  ScriptAsset: !<reference> 9aa407db-2872-4afc-a162-cf7faf2a0f29
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/3661a02d-e367-4cf5-af47-407a191f4ce2>
   PrefabRemaps:
     []
@@ -1422,14 +1455,13 @@
   Enabled: true
   ScriptAsset: !<reference> 137756ca-a7f6-495f-9a05-9e80ebc1a301
   ScriptInputsDefault:
-    initialYawDeg: true
     turnSeconds: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       target: !<reference.SceneObject> 7a0e39ba-444c-4ae5-ad7f-82fdc9c30c26
-      initialYawDeg: !<float> 0.000000
+      initialYawDeg: !<float> 35.000000
       turnSeconds: 0.600000
   ScriptTypes:
     "":
@@ -1553,6 +1585,22 @@
     - !<own> 0c580125-cd27-46be-b8cb-d8fd03b50256
   Components:
     []
+- !<ScriptComponent/474d6f21-db06-4a4e-a4c3-02095240a474>
+  PrefabRemaps:
+    []
+  Name: LeafIndex
+  Enabled: true
+  ScriptAsset: !<reference> c28452f1-3627-4b23-bde3-7c5ce3c691b1
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/4b904ba3-8377-409e-89e4-6eb785e066c6>
   PrefabRemaps:
     []
@@ -1560,7 +1608,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: -62.000000, z: -150.000000}
+    Position: {x: 0.000000, y: -42.000000, z: -170.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
@@ -2583,7 +2631,8 @@
   Enabled: true
   ScriptAsset: !<reference> cf4a2026-85b4-4d8c-8301-c48dbb71e585
   ScriptInputsDefault:
-    {}
+    startPhase: true
+    startAngle: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -2592,6 +2641,8 @@
       ui: !<MappingBased.AssignableType_2> 9c50c6cd-d912-4e7b-a062-eaa88a81a443
       turntable: !<MappingBased.AssignableType_3> 43e074f9-6f31-4c08-8bed-1e727a52f64a
       cues: !<MappingBased.AssignableType_4> 465b952e-3a47-400d-9ad5-c4552a61b323
+      startPhase: !<float> -1.000000
+      startAngle: ""
   ScriptTypes:
     "":
       {}
@@ -2890,11 +2941,6 @@
   Enabled: true
   ScriptAsset: !<reference> 92fbd86e-bd6e-4496-9a89-c050b84c1d34
   ScriptInputsDefault:
-    sideOffset: true
-    panelHeight: true
-    panelDistance: true
-    cardWidth: true
-    panelWidth: true
     introTitle: true
     introBody: true
     accentColor: true
@@ -2904,11 +2950,11 @@
     {}
   ScriptInputs:
     "":
-      sideOffset: !<float> 34.000000
-      panelHeight: !<float> -26.000000
-      panelDistance: !<float> 0.000000
-      cardWidth: !<float> 28.000000
-      panelWidth: !<float> 25.000000
+      sideOffset: !<float> 33.000000
+      panelHeight: !<float> -15.000000
+      panelDistance: !<float> 155.000000
+      cardWidth: !<float> 21.000000
+      panelWidth: !<float> 20.000000
       introTitle: Squat Tutor
       introBody: "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace."
       accentColor: !<Vec4> {x: 1.000000, y: 0.780000, z: 0.380000, w: 1.000000}
@@ -3380,6 +3426,21 @@
     []
   Components:
     - !<own> 12e317b1-14cb-46cf-97bc-44461112a5b5
+- !<SceneObject/b9284ae5-a0bb-4695-9604-12ae24df2921>
+  PrefabRemaps:
+    []
+  Name: LeafIndex
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 474d6f21-db06-4a4e-a4c3-02095240a474
 - !<SceneObject/b93dfa60-41bd-4999-ac0f-4b2f1df2bdaf>
   PrefabRemaps:
     []

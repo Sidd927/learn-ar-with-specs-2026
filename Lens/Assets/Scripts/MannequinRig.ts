@@ -189,7 +189,7 @@ export class MannequinRig extends BaseScriptComponent {
 
     if (arrow) {
       const dir = this.toeDirection(side)
-      arrow.getTransform().setLocalPosition(s.knee.add(dir.uniformScale(4.8)).add(new vec3(0, 0.6, 0)))
+      arrow.getTransform().setLocalPosition(s.knee.add(dir.uniformScale(6.2)).add(new vec3(0, 0.6, 0)))
       arrow.getTransform().setLocalRotation(footRot.multiply(quat.angleAxis(90 * DEG, vec3.right())))
     }
   }

@@ -64,11 +64,11 @@
     - '// @ui {"widget":"label", "label":"Squat Tutor UI — cue card and controls (UIKit)"}'
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"Layout"}'
-    - '// @input float sideOffset = 34 {"hint":"Card / panel centre offset to each side of the mannequin (cm)"}'
-    - '// @input float panelHeight = -26 {"hint":"Height of the card / panel centres relative to eye level at start (cm)"}'
-    - "// @input float panelDistance {\"hint\":\"Distance of the cards / panels from the user's start position (cm)\"}"
-    - '// @input float cardWidth = 28 {"hint":"Cue card width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
-    - '// @input float panelWidth = 25 {"hint":"Control panel width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float sideOffset = 33 {"hint":"Card / panel centre offset to each side of the mannequin (cm)"}'
+    - '// @input float panelHeight = -15 {"hint":"Height of the card / panel centres relative to eye level at start (cm)"}'
+    - "// @input float panelDistance = 155 {\"hint\":\"Distance of the cards / panels from the user's start position (cm)\"}"
+    - '// @input float cardWidth = 21 {"hint":"Cue card width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float panelWidth = 20 {"hint":"Control panel width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
     - '// @ui {"widget":"group_end"}'
     - '// @ui {"widget":"group_start", "label":"Text"}'
     - '// @input string introTitle = "Squat Tutor" {"hint":"Intro title"}'

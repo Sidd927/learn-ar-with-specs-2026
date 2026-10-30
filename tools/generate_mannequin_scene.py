@@ -24,7 +24,7 @@ def sph(id,name,parent,center,d,mat):
     if isinstance(d,(int,float)): d=(d,d,d)
     obj(id,name,parent,center,(0,0,0),d,S,mat)
 obj("root","SquatTutor",None)
-obj("stage","Stage","root",(0,-62,-150))
+obj("stage","Stage","root",(0,-42,-170))
 # stand: column + top plate (static)
 obj("stand","Stand","stage")
 obj("col","StandColumn","stand",(0,-46,0),(0,0,0),(14,88,14),CYL,"stand")
@@ -33,7 +33,7 @@ obj("tt","Turntable","stage",(0,0,0),(0,35,0))
 obj("ttring","TurntableRing","tt",(0,0.1,0),(0,0,0),(40,1.2,40),TOR,"joint")
 obj("ttmark","TurntableFrontMark","tt",(0,0.3,19.5),(0,0,0),(1.6,0.6,1.6),S,"joint")
 obj("man","Mannequin","tt")
-PY=34.8
+PY=35.0
 obj("pelvis","Pelvis","man",(0,PY,0))
 sph("pelvism","PelvisMesh","pelvis",(0,0.6,0),(12.5,7.5,8.5),"core")
 # spine / torso

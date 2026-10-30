@@ -31,7 +31,7 @@ export const SQUAT_PHASES: SquatPhase[] = [
     title: "Starting Stance",
     cue: "Stand tall, feet shoulder-width apart.",
     indicator: "feet",
-    pose: {pelvisY: 34.8, pelvisZ: 0.0, torsoLeanDeg: 3, armReachDeg: 4}
+    pose: {pelvisY: 35.0, pelvisZ: 0.0, torsoLeanDeg: 3, armReachDeg: 4}
   },
   {
     title: "Controlled Descent",
@@ -55,7 +55,7 @@ export const SQUAT_PHASES: SquatPhase[] = [
     title: "Standing Finish",
     cue: "Finish tall and balanced.",
     indicator: "finish",
-    pose: {pelvisY: 34.8, pelvisZ: 0.0, torsoLeanDeg: 3, armReachDeg: 4}
+    pose: {pelvisY: 35.0, pelvisZ: 0.0, torsoLeanDeg: 3, armReachDeg: 4}
   }
 ]
 

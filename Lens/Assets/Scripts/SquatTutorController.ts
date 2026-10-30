@@ -28,6 +28,16 @@ export class SquatTutorController extends BaseScriptComponent {
   @hint("Phase-specific body cues")
   cues: CueIndicators
 
+  @ui.group_start("Capture / test hook")
+  @input
+  @hint("-1 = normal launch (intro + Start). 0–4 = open paused on that phase. 5 = autoplay to completion. For screenshots only.")
+  startPhase: number = -1
+
+  @input
+  @hint("Optional starting view for screenshots: front, angled, or side. Empty = default (angled).")
+  startAngle: string = ""
+  @ui.group_end
+
   private angle: ViewAngle = "angled"
 
   onAwake(): void {
@@ -47,6 +57,7 @@ export class SquatTutorController extends BaseScriptComponent {
     this.ui.onReady.add(() => {
       this.ui.setAngle(this.angle)
       this.render(this.player.state)
+      this.applyStartPhase()
     })
   }
 
@@ -57,6 +68,18 @@ export class SquatTutorController extends BaseScriptComponent {
     this.angle = a
     this.turntable.setAngle(VIEW_ANGLES[a])
     this.ui.setAngle(a)
+  }
+
+  /** Capture hook: jump straight to a phase so screenshots don't depend on timing. */
+  private applyStartPhase(): void {
+    if (this.startAngle === "front" || this.startAngle === "angled" || this.startAngle === "side") {
+      this.setAngle(this.startAngle)
+    }
+    if (this.startPhase < 0) return
+    this.player.start()
+    if (this.startPhase >= PHASE_COUNT) return
+    this.player.pause()
+    for (let k = 0; k < this.startPhase; k++) this.player.next()
   }
 
   private render(s: PlayerState): void {
