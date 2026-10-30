@@ -6,7 +6,7 @@
 Camera Object (Camera, DeviceTracking)       Lighting
 SpectaclesInteractionKit                     LeafIndex (test registry)
 SquatTutor
-├── Stage (0, −42, −170)
+├── Stage (0, −42, −170)   [cue rings use RingMesh]
 │   ├── Stand: StandColumn, StandTop
 │   └── Turntable (yaw 35°): TurntableRing, TurntableFrontMark
 │       └── Mannequin [MannequinRig]
@@ -30,10 +30,11 @@ All units are cm. The mannequin faces +Z in its own space. The figure is about 6
 | `MannequinRig.ts` | Applies a pose. Each leg uses analytic two-bone IK from the hip to a fixed ankle, bending toward the toe direction, so feet never slide. Torso lean, neck counter-tilt, and arm reach are joint angles. Positions the knee arrows. Exposes the knee flexion (solver and measured) for tests. |
 | `SquatPlayer.ts` | Deterministic timeline: five 1.5 s holds and four 1.2 s transitions (12.3 s at 1x). Phase k becomes active when the movement into it begins. Covers pause and resume, 0.5x, eased 0.6 s Next/Previous steps that leave playback paused, Replay, completion without auto-restart, and wall-clock timing of uninterrupted runs. |
 | `Turntable.ts` | Eased 0.6 s yaw to 0° / 35° / 90°. Rotates only the turntable, so the joint animation is untouched. |
+| `RingMesh.ts` | Builds a thin torus at runtime with `MeshBuilder` (independent major and tube radius, CCW winding verified) and swaps it onto the object's existing renderer. Used for the foot outlines, hip ring, turntable ring, and completion ring. |
 | `CueIndicators.ts` | Shows exactly one cue group per phase, with a gentle per-child pulse. |
 | `SquatTutorUI.ts` | UIKit UI: intro card and Start (before start), then the cue card and control panel. BackPlate + FlexLayout + Button, text sized by the Specs type scale at 155 cm. Main → UI uses `set*` methods; UI → main uses events. |
 | `SquatTutorController.ts` | Wires UI events to the player and turntable, and renders player state into the UI and cues. Has an optional capture hook (`startPhase`, `startAngle`), off by default. |
-| `Tests/*` | LEAF scenarios A–F, `SquatTestKit` helpers, `LeafIndex` registry. |
+| `Tests/*` | LEAF scenarios A–G (six done criteria plus edge cases), `SquatTestKit` helpers, `LeafIndex` registry. |
 
 ## Data flow
 

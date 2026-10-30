@@ -40,9 +40,11 @@ This is a hypothesis. It has not been validated with users, and no user research
 | Figure scale | About 60 cm tall (about 1:3), not life size | A life-size 175 cm figure only fits the SPECS view at about 3.7 m. |
 | Distance | Figure 170 cm, panels 155 cm | The SPECS 27 preview measured about 32° wide x 36° tall (about 80 x 91 cm at 1.4 m). At 150 cm the feet hit the bottom of the view and the side panels were partly out of view. 170 cm is inside the learner's 1.5–2 m range. |
 | Height | Stand top 42 cm below eye level; standing figure spans about 14° below to 7° above eye level | Keeps the whole figure inside the 36° vertical view from the start position. A floor-level figure would sit far below the view. |
-| Layout | Cue card (left), figure, controls (right), 33 cm either side, 15 cm below eye level | An earlier near panel (70 cm away, 30 cm down) didn't fit vertically. Side-by-side panels fit the narrow view, and the side-view arms just clear the control panel. |
+| Layout | Cue card (left), figure, controls (right), 33 cm either side, 26 cm below eye level | An earlier near panel (70 cm away, 30 cm down) didn't fit vertically. Side-by-side panels fit the narrow view. Panels sit low enough that in Side view the reaching hands pass above the control panel. |
 | Mannequin | Jointed figure authored in the scene (VirtualScene) from rounded primitives, posed by script | The Asset Library has no squat animation. Code-posed joints make stepping, pausing, and speed exact and testable. |
 | Viewing | Walk around (WASD) plus Front / 35° / Side buttons on a turntable | Walking around works in the preview but is keyboard-driven. Buttons are reliable and testable. |
+| Cue geometry | Thin torus rings built at runtime with MeshBuilder | The torus primitive's tube is a fixed third of its diameter, so flattened rings read as wide bands. A generated torus keeps the tube thin at any radius. |
+| Distinct mid-poses | Descent: lower, more lean, arms reaching. Rising: higher, more upright, arms lowering | The two mid-poses were within about 1 cm of each other; now each phase reads differently (knee about 80° vs 55°). |
 | Input | SIK pinch on large buttons only | Works with the mouse in Interactive Preview and with LEAF. |
 | Sensing | None. Never tracks, counts, or assesses the user's body | Out of scope, and the preview can't show it. |
 

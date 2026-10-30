@@ -12,25 +12,24 @@ A resumable log of the implementation. A feature counts as complete only after i
 |---|---|---|---|
 | 1 | Planning brief, verified rules, project files | Done | `bc5faf6` |
 | 2 | Recovery + mannequin scene, materials, scripts wired | Done | `871a2d0` |
-| 3 | Preview fixed; layout fitted to the SPECS view; animation, UI, and controls verified in preview | Done | `c949e25` |
-| 4 | LEAF acceptance suite (6/6 pass) | Done | `042d831` |
-| 5 | Screenshots, README, docs, brief placement update | Done | this commit |
-| 6 | Demo video script, Devpost copy, final polish | Next | — |
+| 3 | Preview fixed; layout fitted to the SPECS view | Done | `c949e25` |
+| 4 | LEAF acceptance suite | Done | `042d831` |
+| 5 | README, screenshots, docs | Done | `96d8df7` |
+| 6 | Visual polish: thin ring cues, hand clearance, distinct mid-poses, disabled states, edge-case test (7/7 pass) | Done | `693f863` |
+| 7 | Refreshed screenshots | Done | `188adfa` |
+| 8 | Demo script, Devpost draft, device checklist, docs refresh | Done | this commit |
+| 9 | Fresh-open test (quit and reopen Lens Studio) | Pending: needs one manual quit | — |
 
-## Verified in the preview (30 Oct 2026)
-- All five phases render and blend; the feet stay planted (LEAF knee checks and screenshots).
-- Start, Play/Pause, Previous, Next, Replay, and Slow: LEAF c-stepping and d-playback.
-- Front / 35° / Side: LEAF e-angles and screenshots.
-- Phase cues: LEAF b-full-demo and f-cues, plus screenshots.
-- Completion message, no auto-restart: LEAF b-full-demo and `07-completion.jpg`.
-- Runtime log: no script errors (only Lens Studio's own depth-format and plugin-state warnings).
+## Fresh-open test
+- **Before:** the project was saved and committed (`188adfa`), and the hook defaults were saved as `startPhase -1`, `startAngle ""`.
+- **Quit attempt:** a scripted standard quit (`tell application "Lens Studio" to quit`) timed out ("AppleEvent timed out"). Lens Studio kept running and responding, which is consistent with a confirmation dialog waiting for a person.
+- **Next:** quit Lens Studio by hand, reopen `Lens/Lens.esproj` in 5.24.1, then verify compile, preview, and LEAF.
 
 ## Known issues and notes
 - Avoid `QueryRuntimeSceneTool`, `PreviewInteractTool`, and `CaptureRuntimeViewTool`. They reinstall `AiPreviewAgentInspect`, which is incompatible with this project.
 - Lens Studio's Agents-Docs plugin deletes `Lens/.agents/` on save. Restore it with `git checkout -- Lens/.agents` before committing.
-- `SquatTutorController.startPhase` / `startAngle` is a capture hook. Keep it at `-1` / empty for normal launch (it's saved that way).
-- Side view at the bottom of the squat: the fingertips reach the control panel's inner edge.
-- Close-and-reopen persistence: the scene is saved and committed. Reopening from a fresh clone hasn't been tried yet.
+- Run LEAF scenarios one at a time.
+- `SquatTutorController.startPhase` / `startAngle` is a capture hook. Keep it at `-1` / empty for normal launch.
 
 ## Next task
-Write `devpost/demo-script.md` (under 3 minutes) and `devpost/submission-copy.md`. Optionally refine the completion ring into a thinner ring.
+Complete the fresh-open test. Then record the demo video using `docs/DEMO_SCRIPT.md`, and submit using `docs/DEVPOST_SUBMISSION.md` (after the owner reviews it).

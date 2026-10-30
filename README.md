@@ -18,32 +18,35 @@ People learning a movement usually re-watch a fixed-angle phone video and still 
 
 | | |
 |---|---|
-| ![Intro](docs/screenshots/01-intro.jpg) | ![Starting stance](docs/screenshots/02-phase1-starting-stance.jpg) |
-| **Intro.** Title, a short explanation, the disclaimer, and one Start button. | **1 · Starting Stance:** "Stand tall, feet shoulder-width apart." Foot outlines highlight. |
+| ![Intro](docs/screenshots/01-hero-intro.jpg) | ![Starting stance](docs/screenshots/02-phase1-starting-stance.jpg) |
+| **Intro.** Title, a short explanation, the disclaimer, and one Start button. | **1 · Starting Stance:** "Stand tall, feet shoulder-width apart." Thin amber outlines mark the feet. |
 | ![Controlled descent](docs/screenshots/03-phase2-controlled-descent.jpg) | ![Bottom position](docs/screenshots/04-phase3-bottom-position.jpg) |
 | **2 · Controlled Descent:** "Lower with control; knees follow your toes." Knee arrows point along the toes. | **3 · Bottom Position:** "Reach a comfortable depth with control." A hip marker shows the hips sitting back. |
 | ![Rising up](docs/screenshots/05-phase4-rising-up.jpg) | ![Standing finish](docs/screenshots/06-phase5-standing-finish.jpg) |
-| **4 · Rising Up:** "Rise smoothly while keeping your balance." | **5 · Standing Finish:** "Finish tall and balanced." The completion ring lights up. |
+| **4 · Rising Up:** "Rise smoothly while keeping your balance." More upright than the descent. | **5 · Standing Finish:** "Finish tall and balanced." A thin completion ring frames the stage. |
 
 **Controls.** These are UIKit buttons, pinched with a hand or clicked in the preview:
 - **Playback:** Start, Play/Pause, Previous, Next, Slow (0.5x), Replay.
 - **View angle:** Front / 35° / Side turns the turntable. Walking around the figure also works.
-- **Stepping:** Previous and Next disable at the ends.
+- **Stepping:** Previous and Next disable (and dim) at the ends.
 - **Completion:** the demo stops on "Demo complete — replay, step through, or follow along." It doesn't restart on its own.
 
 | Front | 35° | Side |
 |---|---|---|
 | ![Front](docs/screenshots/08-view-front.jpg) | ![35 degrees](docs/screenshots/09-view-35-degrees.jpg) | ![Side](docs/screenshots/10-view-side.jpg) |
 
-![Completion](docs/screenshots/07-completion.jpg)
+| Playback controls | Completion |
+|---|---|
+| ![Playback interface](docs/screenshots/07-playback-interface.jpg) | ![Completion](docs/screenshots/11-completion.jpg) |
 
-*All screenshots are captures of the running Lens in the Lens Studio preview (SPECS 27 device, Interactive input), taken from the user's start position.*
+*All screenshots are captures of the running Lens in the Lens Studio preview (SPECS 27 device, Interactive input). See the [screenshot index](docs/screenshots/README.md).*
 
 ## AR design decisions
 - **Scale over life size.** The preview's SPECS view measures about 32° wide by 36° tall. A 175 cm figure only fits at about 3.7 m. A 60 cm figure at 1.7 m keeps head, feet, knees, and hips in view through the whole squat.
 - **One composition.** The cue card (left), figure (centre), and controls (right) sit in a band about 1.55–1.7 m away, so everything is visible from the start position.
 - **One cue at a time.** Each phase shows exactly one body highlight: feet, then knees, then hips, then knees, then a finish ring.
-- **Big, few targets.** Eight buttons in three rows, with toggle states for speed and view angle.
+- **Big, few targets.** Eight buttons in three rows, with toggle states for speed and view angle and dimmed labels when disabled.
+- **Clear of the figure.** The cue card and controls sit low beside the stage, so even in Side view the reaching hands pass above the control panel.
 - **Additive display.** Light materials and light text; nothing depends on black.
 
 Details are in [`docs/RESEARCH_AND_DECISIONS.md`](docs/RESEARCH_AND_DECISIONS.md) and the approved brief in [`Lens/devpost/design-brief.md`](Lens/devpost/design-brief.md).
@@ -66,6 +69,7 @@ flowchart LR
 
 - **Mannequin.** It's a real scene hierarchy of rounded primitives under joint pivots: pelvis, spine, neck, shoulders, elbows, hips, knees, ankles. It was generated with the Lens Studio MCP (`VirtualScene`) from [`tools/generate_mannequin_scene.py`](tools/generate_mannequin_scene.py).
 - **Animation.** Each leg uses analytic two-bone IK to a fixed ankle, bending toward the toes, so the feet stay planted at every frame of every blend. Torso lean, neck, and arm reach are joint angles. Phases blend with an ease-in-out curve: five 1.5 s holds and four 1.2 s transitions make 12.3 s at 1x.
+- **Cues.** Thin rings (feet, hips, completion, turntable) are torus meshes generated at runtime with `MeshBuilder`, so tube thickness is independent of ring size.
 - **UI.** Spectacles UI Kit (`BackPlate`, `FlexLayout`, `Button`) on top of the Spectacles Interaction Kit.
 - **Workflow.** Planning used the Devpost Learn `plan-lens` skill. The build used Claude Code with CLAD skills (scene construction, Lens API, UI Kit, LEAF) through the Lens Studio MCP: VirtualScene, TypeScript compile, logs, preview capture, and LEAF runs.
 
@@ -73,16 +77,17 @@ Script responsibilities and the scene tree are in [`docs/IMPLEMENTATION_NOTES.md
 
 ## Testing
 
-Six LEAF scenarios, one per done criterion, run in the Lens Studio preview. They pinch the real buttons and measure scene state. **All six pass:**
+Seven LEAF scenarios run in the Lens Studio preview: one per done criterion, plus edge cases. They pinch the real buttons and measure scene state. **All seven pass:**
 
 | Scenario | Measured |
 |---|---|
 | Placement | 170 cm away, starts at 35.0°, root moves 0.000 cm while animating |
-| Full demo | Phases 1→5 in order with matching cues; 12.08 s; no auto-restart |
-| Stepping | Knee 64.6° / 123.3° / 71.7° / 5.5° match the targets; ends disabled |
-| Playback | Paused joints frozen; 1x 12.27 s vs 0.5x 24.58 s (ratio 2.00) |
+| Full demo | Phases 1→5 in order with matching cues; 12.03 s; no auto-restart |
+| Stepping | Knee 79.6° / 123.3° / 54.8° / 5.5° match the targets; ends disabled |
+| Playback | Paused joints frozen; 1x 12.30 s vs 0.5x 24.59 s (ratio 2.00) |
 | Angles | 0.0° / 35.0° / 90.0°; figure stays put; playback continues |
 | Cues | Exactly one correct cue per phase |
+| Edge cases | Pause mid-transition, toggle and label sync, Next while playing, Play/Replay after completion |
 
 Full results and the manual checks are in [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md).
 
@@ -91,7 +96,7 @@ Full results and the manual checks are in [`docs/TEST_RESULTS.md`](docs/TEST_RES
 2. Clone the repo and open `Lens/Lens.esproj`.
 3. In the Preview panel, choose device **SPECS 27** and **Interactive** input.
 4. Click **Start**. A mouse click acts as a pinch. Use **WASD** to walk, **Q/E** to go down and up, and right-drag to look around.
-5. To run the tests, open the LEAF panel and run `a-placement` to `f-cues`.
+5. To run the tests, open the LEAF panel and run `a-placement` to `g-edge-cases`, one at a time.
 
 ## Repository layout
 ```
@@ -104,7 +109,11 @@ docs/                      Decisions, implementation notes, test results, build 
 tools/                     Scene generator for the mannequin hierarchy
 ```
 
+## Documents
+- [Demo script (under 3 min)](docs/DEMO_SCRIPT.md) · [Devpost draft](docs/DEVPOST_SUBMISSION.md) · [Device validation checklist](docs/DEVICE_VALIDATION.md)
+- [Test results](docs/TEST_RESULTS.md) · [Implementation notes](docs/IMPLEMENTATION_NOTES.md) · [Research and decisions](docs/RESEARCH_AND_DECISIONS.md) · [Build log](docs/BUILD_PROGRESS.md)
+
 ## Known limitations
-- Fit and comfort were judged in the preview only. Real see-through comfort, hand tracking, and following along are feel unproven.
-- In Side view at the bottom of the squat, the fingertips reach the control panel's inner edge.
-- The completion ring is a broad band rather than a thin ring.
+- Built and verified in the Lens Studio preview only. Comfort, hand tracking, and following along on real SPECS glasses are unverified. See the [device checklist](docs/DEVICE_VALIDATION.md).
+- The figure is a stylised 1:3-scale mannequin, not a life-size human, so it fits the narrow SPECS view.
+- One movement (the bodyweight squat). No tracking, counting, or form assessment, by design.
