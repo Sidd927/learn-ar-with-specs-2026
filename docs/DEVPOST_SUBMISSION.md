@@ -1,20 +1,20 @@
 # Devpost submission draft: Squat Tutor
 
-> Draft only. Nothing has been submitted or published. Fill in the video link after uploading, and check every field against the live Devpost form before submitting.
+> Draft only. Nothing has been submitted or published. Fill in the video link after uploading, and check every field against the live Devpost form before submitting. The field-by-field checklist and compliance table are in [`SUBMISSION_CHECKLIST.md`](SUBMISSION_CHECKLIST.md).
 
 ## Official requirements
 Source: https://learn-specs.devpost.com/rules and /resources. Automated fetches return HTTP 403, so these come from the rules the entrant verified on 30 Oct 2026, recorded in `docs/RESEARCH_AND_DECISIONS.md`. **Re-check the live pages before submitting.**
 
 | Requirement | Status for this project |
 |---|---|
-| A new SPECS AR Lens created during the submission period | Repo history starts 28–30 Oct 2026 (`7b18e08` onwards). |
+| A new SPECS AR Lens created during the submission period | Repo created 28 Oct 2026 (`7b18e08`); all Lens work 30–31 Oct 2026. **Confirm the period's start date on the live rules.** |
 | Planned with the Devpost Learn skill pack (`plan-lens`) | `Lens/devpost/design-brief.md` (status: approved). |
 | Built with CLAD, Lens Studio, and the Lens Studio MCP | Lens Studio 5.24.1, CLAD skills, MCP (VirtualScene, compile, logs, preview capture, LEAF). See README → How it's built. |
 | Installs and runs consistently in its intended Lens Studio preview | 7/7 LEAF scenarios pass in the preview. See `docs/TEST_RESULTS.md`. |
 | Functionality matches the video and description | The description below lists only verified features. Record the video from the same build. |
 | Public repo containing the Lens Studio project | https://github.com/Sidd927/learn-ar-with-specs-2026 (public, verified with `gh`). |
 | Accurate text description | This draft. |
-| Public YouTube demo, under 3 minutes, showing the Lens working (preview recording preferred) | Script in `docs/DEMO_SCRIPT.md` (about 2:40). **To do: record and upload.** |
+| Public YouTube demo, under 3 minutes, showing the Lens working (preview recording preferred) | Guide in `docs/DEMO_RECORDING_GUIDE.md` (about 2:45). **To do: record and upload.** |
 | Deadline | 9 Nov 2026, 5:00 p.m. ET (10 Nov, 3:30 a.m. IST). |
 
 **Judging:** Stage One is pass/fail eligibility. Stage Two weighs four criteria equally: Design, Technical Implementation, Innovation/Idea, and Presentation.
@@ -56,9 +56,9 @@ A cue card beside the figure shows the phase, the instruction, progress dots, an
 - **UI:** Spectacles UI Kit (BackPlate, FlexLayout, Button) on the Spectacles Interaction Kit.
 
 ## Testing
-Seven LEAF scenarios run in the Lens Studio preview. They pinch the real buttons and measure scene state. **All seven pass:**
+Seven LEAF scenarios run in the Lens Studio preview, before and after a full quit-and-reopen of the project. They pinch the real buttons and measure scene state. **All seven pass:**
 - **Placement:** 170 cm away, starts at 35°, root moves 0.000 cm while animating.
-- **Full demo:** phases 1→5 in order with matching cues; about 12.0 s; no auto-restart.
+- **Full demo:** phases 1→5 in order with matching cues; 12.0–12.2 s across runs; no auto-restart.
 - **Stepping:** knee angles match each phase's target; ends disabled.
 - **Playback:** paused joints frozen; slow/normal run-time ratio 2.00.
 - **Angles:** 0° / 35° / 90°; figure stays put; playback continues.
@@ -77,7 +77,7 @@ Seven LEAF scenarios run in the Lens Studio preview. They pinch the real buttons
 
 ## Links
 - Repository: https://github.com/Sidd927/learn-ar-with-specs-2026
-- Video: **[add YouTube link after upload]**
+- Video: **[add YouTube link after upload]**. A Lens Studio preview recording (SPECS 27 device simulation), not footage through glasses.
 
 ## Screenshots to upload
 `docs/screenshots/01-hero-intro.jpg`, `04-phase3-bottom-position.jpg`, `10-view-side.jpg`, `08-view-front.jpg`, `07-playback-interface.jpg`, `11-completion.jpg`

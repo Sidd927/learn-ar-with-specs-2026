@@ -110,7 +110,7 @@ tools/                     Scene generator for the mannequin hierarchy
 ```
 
 ## Documents
-- [Demo script (under 3 min)](docs/DEMO_SCRIPT.md) · [Devpost draft](docs/DEVPOST_SUBMISSION.md) · [Device validation checklist](docs/DEVICE_VALIDATION.md)
+- [Demo recording guide](docs/DEMO_RECORDING_GUIDE.md) · [Demo script (under 3 min)](docs/DEMO_SCRIPT.md) · [Devpost draft](docs/DEVPOST_SUBMISSION.md) · [Submission checklist](docs/SUBMISSION_CHECKLIST.md) · [Device validation checklist](docs/DEVICE_VALIDATION.md)
 - [Test results](docs/TEST_RESULTS.md) · [Implementation notes](docs/IMPLEMENTATION_NOTES.md) · [Research and decisions](docs/RESEARCH_AND_DECISIONS.md) · [Build log](docs/BUILD_PROGRESS.md)
 
 ## Known limitations

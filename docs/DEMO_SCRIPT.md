@@ -1,35 +1,22 @@
 # Squat Tutor demo script (under 3 minutes)
 
-Record the Lens Studio preview: Preview panel, device **SPECS 27**, input **Interactive**. A mouse click is a pinch. Use WASD to move and right-drag to look around.
-Target length: **about 2:40**, leaving a 20-second buffer under the 3:00 limit.
+The full recording guide, covering setup, framing, the checklist, and this script with exact clicks, is in **[DEMO_RECORDING_GUIDE.md](DEMO_RECORDING_GUIDE.md)**. Record from that file. This page is the narration-only version for rehearsing.
 
-## Before recording
-1. Open `Lens/Lens.esproj` in Lens Studio 5.24.1.
-2. In the Inspector, check `SquatTutor > Systems > SquatTutorController`: **Start Phase = -1** and **Start Angle = empty** (normal launch).
-3. Click **Reset** on the Preview panel, then reset the preview camera to the start position.
-4. Start screen recording and frame the Preview panel only.
-5. Make one silent dry run first so you know where each button is.
+Target length: **2:45**. The demo is a Lens Studio preview recording (SPECS 27, Interactive), not footage through glasses.
 
-## Script
+| Time | Action | Say |
+|---|---|---|
+| 0:00–0:20 | Opening screen | "When you learn a movement like a squat, you usually watch a phone video, filmed from one angle. You can't see what the hips and knees are doing from the side, and it's hard to pause at the right moment. Squat Tutor tests whether a 3D demonstration in your own space works better." |
+| 0:20–0:35 | Point at card and figure | "It's a SPECS Lens, shown here in the Lens Studio preview. A jointed mannequin stands on a small stage, scaled so the whole movement fits the glasses' view. Instructions on the left, controls on the right. It demonstrates. It doesn't track or judge you." |
+| 0:35–0:52 | **Start**; full squat plays (about 12 s) | "Start plays the full squat: down, through the bottom, and back up. The card on the left follows each phase, and the ring at the end marks completion." |
+| 0:52–1:00 | **< Prev** ×4 | "Now let's go through it one phase at a time." |
+| 1:00–1:12 | Phase 1 | "Phase one, Starting Stance: stand tall, feet shoulder-width apart. The outlines show where the feet stay for the whole movement." |
+| 1:12–1:24 | **Next >** | "Controlled Descent: lower with control. The arrows show the knees travelling the same way as the toes." |
+| 1:24–1:36 | **Next >** | "Bottom Position: a comfortable depth. The ring marks the hips sitting back, not just down." |
+| 1:36–1:46 | **Next >** | "Rising Up: back through the same path, keeping your balance." |
+| 1:46–1:56 | **Next >** | "And Standing Finish: tall and balanced. Next is greyed out because this is the last phase." |
+| 1:56–2:22 | **< Prev** ×2, **Slow 0.5x**, **Play**, **Pause** after about 4 s, **Play** | "You control the pace. Slow plays at half speed, so the hard part is easy to follow. Pause freezes the pose exactly where you are… and Play carries on." |
+| 2:22–2:42 | **< Prev** ×2, then **Side**, **Front**, **35°** | "This is where the glasses earn their place. From the side you see the hips go back and the shins angle forward. From the front, the knees track out over the toes. And you can always walk around it." |
+| 2:42–2:55 | **Slow 0.5x** (off), **Replay** | "Squat Tutor is a small, focused learning tool: a movement you can see from any angle, at your own pace, with your hands free to follow along. It's demonstration only, with no tracking or scoring. Thanks for watching." |
 
-| Time | On screen | Action | Say |
-|---|---|---|---|
-| **0:00–0:20** | Intro: mannequin on its stand, intro card left, Start button right | Hold still | "When you learn a movement like a squat, you usually watch a phone video, filmed from one angle. You can't see what the hips and knees do from the side, or slow it down where it matters. Squat Tutor is my test of whether a 3D demonstration in your own space works better." |
-| **0:20–0:40** | Same view; read the intro card | Move the cursor across the card, then the stand | "It's a SPECS Lens. A jointed mannequin stands on a small stage about one point seven metres away, at a scale that fits the glasses' view, with instructions on the left and controls on the right. It demonstrates. It doesn't watch or judge you." |
-| **0:40–1:10** | Starting Stance, then the descent begins | Click **Start** | "Start runs the full squat. Phase one, Starting Stance: stand tall, feet shoulder-width apart. Amber outlines mark the feet. They're the base of everything else." |
-| **1:10–1:55** | Phases 2→5 play; cue card updates; dots fill | Let it play. Optionally WASD a little to one side | "Controlled Descent: the arrows show the knees travelling the same way as the toes. Bottom Position: a ring marks the hips sitting back. Rising Up: back through the same path. Standing Finish: tall and balanced, and the ring around the stage marks completion. The feet stay planted the whole time. The legs are solved so the ankles never slide." |
-| **1:55–2:25** | Completion message, then step-through | Click **Prev** twice to reach the Bottom Position, then **Slow 0.5x**, then **Play** | "Now step through it. Prev and Next move one phase at a time and stop at the ends. Slow halves the speed, so the descent is easy to follow. Pause freezes the pose wherever you are." *(Click **Pause** mid-movement.)* |
-| **2:25–2:45** | Turntable turns | Click **Side**, then **Front**, then **35°** | "This is where the glasses earn their place. From the side you see the hips go back and the shins angle forward. From the front, the knees track out over the toes. You can also just walk around it." *(Optional: a few WASD steps.)* |
-| **2:45–3:00** | Return to the 35° view, mannequin in frame | Click **Replay** | "Squat Tutor is a small, focused learning tool: a movement you can see from any angle, at your own pace, with your hands free to follow along. It's demonstration only, with no tracking or scoring. Thanks for watching." |
-
-## Moments to make sure the video catches
-- The intro card and the disclaimer ("Demonstration only — this Lens does not assess your form.").
-- Each of the five phase titles on the cue card while the matching body cue is visible.
-- The completion message, "Demo complete — replay, step through, or follow along."
-- The **Side** view at the Bottom Position: the clearest single frame in the demo.
-- A button visibly changing state: Slow toggling on, the Prev or Next label dimming at the ends.
-
-## Don't say
-- That it tracks, counts, scores, or corrects your squat. It doesn't.
-- That user research showed it works better. It's a hypothesis.
-- That it was tested on SPECS glasses. It was built and verified in the Lens Studio preview.
+Every action above exists in the Lens and was exercised by the LEAF tests (stepping, boundaries, Slow, Pause/Play, angles, Replay). The full demo plays in about 12.3 s at 1x, which is why the phases are narrated while stepping rather than during autoplay.
