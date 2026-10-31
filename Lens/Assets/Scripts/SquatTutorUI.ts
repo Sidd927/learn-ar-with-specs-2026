@@ -6,7 +6,10 @@ import {FlexLayout} from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex
 import {
   FlexAlign, FlexAlignSelf, FlexDirection, FlexJustify
 } from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex/FlexTypes"
-import {COMPLETE_MESSAGE, DISCLAIMER, PHASE_COUNT, SQUAT_FAULTS, SquatFault, VIEW_ANGLES} from "./SquatPhases"
+import {
+  COMPARE_ACTIVE_LABEL, COMPARE_LABEL, COMPARE_NOTE, COMPLETE_MESSAGE, COMPLETE_TITLE, DISCLAIMER,
+  INTRO_BODY, PHASE_COUNT, SQUAT_FAULTS, SquatFault, VIEW_ANGLES
+} from "./SquatPhases"
 
 // ── Typography: the single source of truth for text size + weight ────────────
 // `Component.Text.size` is the em-square height (em cm = size / 43.886), calibrated
@@ -86,9 +89,6 @@ export class SquatTutorUI extends BaseScriptComponent {
   @hint("Intro title")
   introTitle: string = "Squat Tutor"
 
-  @input
-  @hint("Intro description")
-  introBody: string = "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace."
 
   @input
   @hint("Accent colour for phase labels")
@@ -133,6 +133,8 @@ export class SquatTutorUI extends BaseScriptComponent {
   private phaseLabel!: Text
   private titleText!: Text
   private cueText!: Text
+  private compareLabel!: Text
+  private disclaimerText!: Text
   private dots: RenderMeshVisual[] = []
   private buttons: Record<string, Button> = {}
   private buttonLabels: Record<string, Text> = {}
@@ -180,15 +182,17 @@ export class SquatTutorUI extends BaseScriptComponent {
   /** Show a mistake comparison on the cue card (or null to clear the toggle highlights). */
   showFault(fault: SquatFault | null): void {
     for (const f of SQUAT_FAULTS) this.setOn("Fault_" + f.id, fault !== null && f.id === fault.id)
+    this.compareLabel.text = fault ? COMPARE_ACTIVE_LABEL : COMPARE_LABEL
+    this.disclaimerText.text = fault ? COMPARE_NOTE : DISCLAIMER
     if (!fault) return
-    this.phaseLabel.text = fault.view === "front" ? "MISTAKE · FRONT VIEW" : "MISTAKE · SIDE VIEW"
+    this.phaseLabel.text = fault.view === "front" ? "COMPARE · FRONT VIEW" : "COMPARE · SIDE VIEW"
     this.titleText.text = fault.title
     this.cueText.text = `Red: ${fault.mistake}\nWhite: ${fault.target}`
   }
 
   setComplete(): void {
     this.phaseLabel.text = "COMPLETE"
-    this.titleText.text = "Nice work"
+    this.titleText.text = COMPLETE_TITLE
     this.cueText.text = COMPLETE_MESSAGE
     for (const d of this.dots) d.mainMaterial = DOT_ON_MAT
   }
@@ -249,7 +253,7 @@ export class SquatTutorUI extends BaseScriptComponent {
     const {root, column} = this.panel(parent, "IntroCard", this.cardWidth, 0.8, 1.6)
     this.textRow(column, "IntroLabel", "BODYWEIGHT SQUAT", "Caption", 2.0, this.accentColor)
     this.textRow(column, "IntroTitle", this.introTitle, "Headline1", 3.4, this.textColor)
-    this.textRow(column, "IntroBody", this.introBody, "Body", 6.6, this.subtleColor, true)
+    this.textRow(column, "IntroBody", INTRO_BODY, "Body", 6.6, this.subtleColor, true)
     this.textRow(column, "IntroDisclaimer", DISCLAIMER, "Caption", 3.6, this.subtleColor, true)
     return root
   }
@@ -268,13 +272,13 @@ export class SquatTutorUI extends BaseScriptComponent {
     this.titleText = this.textRow(column, "PhaseTitle", "Starting Stance", "Headline2", 3.0, this.textColor)
     this.cueText = this.textRow(column, "PhaseCue", "", "Body", 5.8, this.textColor, true)
     this.buildDots(column)
-    this.textRow(column, "MistakesLabel", "COMPARE A COMMON MISTAKE", "Caption", 1.8, this.subtleColor)
+    this.compareLabel = this.textRow(column, "MistakesLabel", COMPARE_LABEL, "Caption", 1.8, this.subtleColor)
     const faults = this.row(column, 3.6)
     const third = (this.cardWidth - 3.2 - 2 * 0.7) / 3
     for (const f of SQUAT_FAULTS) {
       this.addButton(faults, "Fault_" + f.id, f.button, third, 3.4, "PrimaryNeutral", () => this._onFault.invoke(f.id), true)
     }
-    this.textRow(column, "Disclaimer", DISCLAIMER, "Caption", 3.4, this.subtleColor, true)
+    this.disclaimerText = this.textRow(column, "Disclaimer", DISCLAIMER, "Caption", 3.4, this.subtleColor, true)
     return root
   }
 

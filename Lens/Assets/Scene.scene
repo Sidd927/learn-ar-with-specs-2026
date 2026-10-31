@@ -3587,7 +3587,6 @@
   ScriptInputsDefault:
     panelHeight: true
     introTitle: true
-    introBody: true
     accentColor: true
     textColor: true
     subtleColor: true
@@ -3601,7 +3600,6 @@
       cardWidth: !<float> 21.000000
       panelWidth: !<float> 20.000000
       introTitle: Squat Tutor
-      introBody: "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace."
       accentColor: !<Vec4> {x: 1.000000, y: 0.780000, z: 0.380000, w: 1.000000}
       textColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
       subtleColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.600000}

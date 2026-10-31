@@ -141,7 +141,14 @@ export const TRANSITION_SECONDS = 1.2
 export const STEP_SECONDS = 0.6
 export const SLOW_SPEED = 0.5
 
-export const COMPLETE_MESSAGE = "Demo complete — replay, step through, or follow along."
+export const INTRO_BODY = "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows."
+export const COMPLETE_TITLE = "Squat complete"
+export const COMPLETE_MESSAGE = "Try Knees, Heels or Chest below to compare a common pattern, or Replay."
+/** Comparison row label: idle, and while a comparison is showing. */
+export const COMPARE_LABEL = "COMPARE COMMON PATTERNS"
+export const COMPARE_ACTIVE_LABEL = "PINCH AGAIN TO RETURN"
+/** Shown in place of the disclaimer while a comparison is showing. */
+export const COMPARE_NOTE = "Exaggerated for clarity. This Lens does not assess your form."
 export const DISCLAIMER = "Demonstration only — this Lens does not assess your form."
 
 /** Viewing angles for the turntable (degrees, 0 = facing the user). */

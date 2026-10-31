@@ -30,7 +30,6 @@
   ScriptInputsHidden:
     accentColor: false
     cardWidth: false
-    introBody: false
     introTitle: false
     panelDistance: false
     panelHeight: false
@@ -53,7 +52,6 @@
       cardWidth: !<float> 28.000000
       panelWidth: !<float> 25.000000
       introTitle: Squat Tutor
-      introBody: "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace."
       accentColor: !<Vec4> {x: 1.000000, y: 0.780000, z: 0.380000, w: 1.000000}
       textColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
       subtleColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.600000}
@@ -72,7 +70,6 @@
     - '// @ui {"widget":"group_end"}'
     - '// @ui {"widget":"group_start", "label":"Text"}'
     - '// @input string introTitle = "Squat Tutor" {"hint":"Intro title"}'
-    - '// @input string introBody = "A bodyweight squat in five phases. Walk around the figure or use the view buttons, and step through at your own pace." {"hint":"Intro description"}'
     - '// @input vec4 accentColor = {1,0.78,0.38,1} {"hint":"Accent colour for phase labels", "widget":"color"}'
     - '// @input vec4 textColor = {1,1,1,1} {"hint":"Primary text colour", "widget":"color"}'
     - '// @input vec4 subtleColor = {1,1,1,0.6} {"hint":"Secondary text colour", "widget":"color"}'

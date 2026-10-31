@@ -1,6 +1,7 @@
 import {Scenario} from "Leaf.lspkg/Scenarios/scenario/Scenario"
 import {expect} from "Leaf.lspkg/Utils/common/Expect"
 import {sleep} from "Leaf.lspkg/Utils/common/Utils"
+import {COMPARE_ACTIVE_LABEL, COMPARE_LABEL, COMPARE_NOTE, DISCLAIMER} from "../SquatPhases"
 import {SquatTutorController} from "../SquatTutorController"
 import {SquatTestKit} from "./SquatTestKit"
 
@@ -32,6 +33,9 @@ export class H_MistakeCompareScenario extends Scenario {
     expect(kit.player.isPlaying, "paused for comparison").toBe(false)
     expect(Math.abs(kit.turntableYawDeg()) < 2, "turned to front view").toBe(true)
     expect(kit.phaseTitle(), "title").toBe("Knees caving in")
+    expect(kit.phaseLabel(), "view label").toBe("COMPARE · FRONT VIEW")
+    expect(kit.text("MistakesLabel"), "return hint").toBe(COMPARE_ACTIVE_LABEL)
+    expect(kit.text("Disclaimer"), "exaggeration note").toBe(COMPARE_NOTE)
     const targetKneeX = Math.abs(local("KneeL").x)
     const mistakeKneeX = Math.abs(local("GhostKneeL").x)
     kit.log(`knees: target |x| ${targetKneeX.toFixed(1)} cm, mistake |x| ${mistakeKneeX.toFixed(1)} cm`)
@@ -60,6 +64,8 @@ export class H_MistakeCompareScenario extends Scenario {
     await sleep(300)
     expect(ghost.enabled, "cleared by toggling").toBe(false)
     expect(kit.phaseTitle(), "back to the phase").toBe("Bottom Position")
+    expect(kit.text("MistakesLabel"), "label restored").toBe(COMPARE_LABEL)
+    expect(kit.text("Disclaimer"), "disclaimer restored").toBe(DISCLAIMER)
     await kit.tap("Fault_knees")
     await sleep(300)
     await kit.tap("PlayPause")
