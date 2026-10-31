@@ -1,56 +1,84 @@
 # User validation plan: Squat Tutor: Coach's Eye
 
-**Status: not run.** No user sessions have taken place. Until they do, every value claim is a **hypothesis**.
+## Status: NOT CONDUCTED
+No participant has used the Lens yet, and no results are reported anywhere in this repository. Until sessions happen, every claim about understanding or learning is a **hypothesis**. When sessions are run, record them in the results table at the bottom, including negative findings.
 
-## Hypotheses to test
-| ID | Hypothesis | Why it matters |
+## What we want to find out
+| ID | Question | Why it matters |
 |---|---|---|
-| H1 | After using the Lens, beginners can name what to look for in a squat and *from which angle* (knees from the front; heels and chest from the side) | This is the core teaching claim of Coach's Eye |
-| H2 | Seeing a mistake overlaid on the target, from the checkpoint view, makes the mistake easier to recognise than a single fixed-angle demonstration | The reason the 3D, multi-angle view exists |
-| H3 | First-time users can operate the controls (Start, Prev/Next, Slow, angles, mistakes) without help | Usability; part of the Design criterion |
-| H4 | Text is readable and nothing feels in the way (preview only; repeat on glasses if available) | Comfort and readability |
+| Q1 | Without an explanation, can a first-time viewer say what the Lens teaches within about 30 seconds? | The first-impression goal set for this milestone |
+| Q2 | Can they name the difference between the red and white figures, for each pattern? | The comparison is the core of the product |
+| Q3 | Can they say why the Lens turned to that view? | The reason the experience is spatial |
+| Q4 | What do they remember afterwards? | Whether anything is learnt, even short-term |
+| Q5 | Can they operate it without help? | Design and usability |
 
-## Smallest useful study before 9 Nov (about 2–3 hours total)
-- **Participants:** 5 people who don't coach or train others professionally, ideally including 2 who rarely exercise. Friends and classmates are fine; record that they're a convenience sample.
-- **Setup:** a laptop running the Lens Studio preview (SPECS 27, Interactive), and a 30-second fixed-angle squat video for comparison (any reputable front-facing tutorial).
-- **Ethics:** verbal consent; no recording of faces; notes only; no health data; anyone can stop at any time. State clearly that this is a design study, not fitness advice.
+Known risk to watch: in preview captures, the **heels** comparison reads mostly as "the red legs move" rather than "the heel lifts" (see `BIOMECHANICAL_VALIDATION.md`).
 
-### Session script (about 15 minutes)
-1. **Baseline (2 min):** "When someone squats, what would you look at to tell whether it's going well?" Write down the answer verbatim.
-2. **Comparison order:** half the participants watch the video first and then the Lens; the other half the reverse (counterbalanced).
-3. **Lens tasks (5 min).** Observe; don't help unless they're stuck for more than 30 s:
-   - T1 "Watch the full squat." (success: presses Start)
-   - T2 "Show me the bottom position from the side." (success: reaches phase 3, then Side)
-   - T3 "Find out what 'knees caving in' looks like." (success: presses Knees)
-   - T4 "Make it play slower." (success: Slow)
-4. **Comprehension check (3 min, neutral wording):**
-   - "Describe one thing to check from the front, and one from the side."
-   - Show 3 still images (target, knees in, heels up), shuffled: "Which of these, if any, looks different from the target? How?"
-5. **Neutral comparison questions (3 min):**
-   - "What, if anything, did you learn from the video?"
-   - "What, if anything, did you learn from the 3D version?"
-   - "Was anything confusing or hard to use? What?"
-   - "If you could change one thing, what would it be?"
-   - Avoid "Was the AR version better?" (leading).
+## Participants and setup
+- **About 5 people** who don't coach or train others professionally. Friends and classmates are fine; record that it's a convenience sample.
+- A laptop running the Lens Studio preview: `Lens/Lens.esproj` on branch `feature/coach-eye`, device SPECS 27, Interactive input, preview **Reset** before each person.
+- Capture hook off: `SquatTutorController` with Start Phase −1 and Start Angle / Start Fault empty.
+- **Ethics:** verbal consent; notes only, no audio or video of faces; no health questions; anyone can stop at any time. Say: "This is a test of the design, not of you, and it isn't fitness advice."
 
-### What to record
-| Measure | How |
-|---|---|
-| Task success T1–T4 | yes / no / helped |
-| Time to complete T3 | stopwatch |
-| Comprehension | correct front/side checkpoint named: 0 / 1 / 2 |
-| Mistake recognition | correct identifications out of 2 |
-| Usability issues | verbatim notes, tallied by theme |
+## Protocol (about 10 minutes per person)
+Read the prompts as written. Don't explain the Lens, don't hint at answers, and help only if someone is stuck for more than 30 seconds. Note it if you help.
 
-### How we'll report it
-- Raw counts only (for example, "4 of 5 named a side-view checkpoint after the Lens"). **No percentages or claims of statistical significance with n = 5.**
-- Report negative findings too.
-- If this isn't done before submission, the Devpost text keeps saying "hypothesis, not yet validated".
+| Step | Facilitator does / says | Record |
+|---|---|---|
+| 1. Cold open | Open the Lens to the intro screen. "Here's something we made. Take a look and use it however you like. I won't explain it yet." Wait up to 60 s. | What they do first; time to first pinch; any hesitation |
+| 2. Purpose | "In your own words, what do you think this is designed to teach?" | Verbatim answer |
+| 3. Difference | If they haven't opened a comparison: "There are buttons labelled Knees, Heels and Chest. Try one." Then for each comparison they open: "What, if anything, is different between the two figures?" | Verbatim, per pattern |
+| 4. Viewpoint | "The view changed when you pressed that. Why do you think it turned to this angle?" | Verbatim |
+| 5. Takeaway | Close or reset the Lens. "What, if anything, would you remember from this?" | Verbatim |
+| Wrap-up | "Was anything confusing or hard to use? What would you change?" | Verbatim |
 
-## Device check (only if SPECS glasses become available)
-Use `DEVICE_VALIDATION.md`. Add: is the red-versus-white overlay distinguishable on the additive display (red at 55% alpha may look faint)?
+Avoid leading words: don't say "mistake", "correct", "wrong", "better" or "AR".
 
-## Future validation (after the hackathon)
-- A larger comparison against a high-quality multi-angle video, measuring recognition of mistakes in new, unseen clips.
-- A review by qualified coaches or trainers of the three mistake depictions and wording.
-- Accessibility review: colour choice (red versus white also differs in brightness), text size, one-handed use.
+## Test sheet (copy one per participant)
+
+```
+Participant: P__   Date: ____   Facilitator: ____   Helped? Y/N (when: ____)
+Exercise background (self-described, optional): ____
+
+1. Cold open
+   First action: ________________   Time to first pinch: ___ s
+   Hesitations / confusion: ____________________________________
+
+2. "What is this designed to teach?"
+   Verbatim: __________________________________________________
+   Understood the product?  [ ] yes  [ ] partly  [ ] no
+
+3. "What is different between the two figures?"
+   Knees  verbatim: ______________________  Correct difference? [ ]Y [ ]Partly [ ]N [ ]Not opened
+   Heels  verbatim: ______________________  Correct difference? [ ]Y [ ]Partly [ ]N [ ]Not opened
+   Chest  verbatim: ______________________  Correct difference? [ ]Y [ ]Partly [ ]N [ ]Not opened
+   (Correct = knees closer together than the feet / heel off the floor / torso tipped further forward)
+
+4. "Why did it turn to this angle?"
+   Verbatim: __________________________________________________
+   Linked view to what is visible?  [ ] yes  [ ] partly  [ ] no
+
+5. "What would you remember?"
+   Verbatim: __________________________________________________
+
+Operation:  Start [ ]alone [ ]helped   Compare [ ]alone [ ]helped   Return from compare [ ]alone [ ]helped
+            Angle buttons [ ]used [ ]not used   Slow/Pause [ ]used [ ]not used
+Where they got confused: _____________________________________
+Suggested change: ____________________________________________
+```
+
+## How to report
+- Raw counts only (for example "3 of 5 identified the heel difference"). No percentages or significance claims with n ≈ 5.
+- Quote at least one negative finding if there is one.
+- If sessions don't happen before submission, the Devpost text keeps saying "not yet validated with users".
+
+## Results
+| Participant | Date | Purpose understood | Knees | Heels | Chest | Viewpoint reason | Remembered | Notes |
+|---|---|---|---|---|---|---|---|---|
+| — | — | NOT CONDUCTED | — | — | — | — | — | — |
+
+## Later (beyond the hackathon)
+- Review by a qualified coach or physiotherapist of the three depictions and the wording.
+- If SPECS glasses become available: `DEVICE_VALIDATION.md`, plus whether 55% red is distinguishable from white on the additive display.
+- A larger comparison against a good multi-angle video, using recognition of the patterns in new, unseen clips.
+- Accessibility: red and white also differ in brightness, but test with people with colour-vision differences.
