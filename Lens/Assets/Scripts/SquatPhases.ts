@@ -33,6 +33,8 @@ export interface SquatFault {
   title: string
   /** The checkpoint view a coach uses for this fault; the turntable turns to it. */
   view: FaultView
+  /** Card label naming the view (and, where sources agree, that it is the clearest one). */
+  viewLabel: string
   /** What the translucent "mistake" figure shows. */
   mistake: string
   /** What the solid "target" figure shows. */
@@ -97,6 +99,7 @@ export const SQUAT_FAULTS: SquatFault[] = [
     button: "Knees",
     title: "Knees caving in",
     view: "front",
+    viewLabel: "BEST SEEN FROM THE FRONT",
     mistake: "knees drift inside the toes.",
     target: "knees track over the toes.",
     delta: {kneeInDeg: 18}
@@ -106,6 +109,8 @@ export const SQUAT_FAULTS: SquatFault[] = [
     button: "Heels",
     title: "Heels lifting",
     view: "side",
+    // Trainer checklists differ: some check heel rise from behind, others from the side.
+    viewLabel: "SEEN FROM THE SIDE OR REAR",
     mistake: "heels lift off the floor.",
     target: "whole foot stays planted.",
     delta: {heelLiftCm: 4.0}
@@ -115,6 +120,7 @@ export const SQUAT_FAULTS: SquatFault[] = [
     button: "Chest",
     title: "Chest dropping",
     view: "side",
+    viewLabel: "BEST SEEN FROM THE SIDE",
     mistake: "chest tips far forward.",
     target: "chest up, torso controlled.",
     delta: {extraLeanDeg: 18}

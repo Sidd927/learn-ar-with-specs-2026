@@ -47,7 +47,7 @@ export class H_MistakeCompareScenario extends Scenario {
     await sleep(900)
     expect(Math.abs(kit.turntableYawDeg() - 90) < 2, "turned to side view").toBe(true)
     expect(kit.phaseTitle(), "title").toBe("Heels lifting")
-    expect(kit.phaseLabel(), "view label").toBe("BEST SEEN FROM THE SIDE")
+    expect(kit.phaseLabel(), "view label").toBe("SEEN FROM THE SIDE OR REAR")
     const lift = local("GhostAnkleL").y - local("AnkleL").y
     kit.log(`heels: mistake ankle ${lift.toFixed(1)} cm higher`)
     expect(lift > 3, "mistake heels lifted").toBe(true)
@@ -56,6 +56,7 @@ export class H_MistakeCompareScenario extends Scenario {
     await kit.tap("Fault_chest")
     await sleep(900)
     expect(kit.phaseTitle(), "title").toBe("Chest dropping")
+    expect(kit.phaseLabel(), "view label").toBe("BEST SEEN FROM THE SIDE")
     const forward = local("GhostHead").z - local("Head").z
     kit.log(`chest: mistake head ${forward.toFixed(1)} cm further forward`)
     expect(forward > 3, "mistake chest tips forward").toBe(true)
