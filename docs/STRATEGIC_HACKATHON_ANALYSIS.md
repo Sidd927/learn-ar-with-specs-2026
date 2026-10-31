@@ -153,7 +153,7 @@ Weights: problem significance 20 · innovation 15 · spatial essential 15 · UX 
 | Expected judged score (official four) | ~6.3 | ~7.3 (Innovation 6, Design 8, Technical 8, Presentation 7) | ~6–7.5, high variance |
 
 ### Recommendation: **Path B, transform into "Squat Tutor: Coach's Eye"**
-- It fixes the core weakness: **it gives the 3D, in-space, multi-angle viewing a job.** Each common fault is shown as a translucent "mistake" figure overlaid on the solid "target" figure, and the stage turns to the checkpoint angle where that fault is visible (front for knees caving in; side for heels lifting and chest dropping, matching published trainer checkpoints).
+- It fixes the core weakness: **it gives the 3D, in-space, multi-angle viewing a job.** Each common fault is shown as a translucent "mistake" figure overlaid on the solid "target" figure, and the stage turns to the checkpoint angle where that fault is visible (front for knees caving in; side for heels lifting and chest dropping, matching published trainer checkpoints). **[Correction 31 Oct 2026]** This holds for knees and chest. For heels, NASM-style checklists use the rear view; see section 9.
 - It stays inside the approved plan's subject (bodyweight squat, demonstration-only, no tracking) and needs only a **brief amendment that you approve**.
 - It keeps the verified build on `main` as a fallback at every step.
 - **Why not Path C:** the best new idea (repair coach) relies on a stand-in object in the preview, needs re-planning through `plan-lens` and new content, and has under 50% delivery odds. **Why not first-person fingerspelling:** valuable, but shipping inaccurate signs without Deaf community input would be irresponsible.
@@ -212,7 +212,7 @@ The prototype is built on `feature/coach-eye` (`6c4e379`): 8/8 LEAF pass, 0 runt
 ## 9. Update after approval (31 Oct 2026, end of day)
 The owner approved Path B as the **product direction** (not a merge). Since then:
 - **Comprehension pass.** The intro now says what the Lens teaches; the completion card points to the comparison; each comparison card states the view and why, names the target, and explains how to return.
-- **Audit corrections.**
+- **Corrections from the internal model-geometry check** (agent-run, not an expert review).
   - The chest pattern no longer lowers the arms (an untaught second difference).
   - Heels are labelled "seen from the side or rear", because trainer checklists differ.
   - Numeric model measurements were removed from public-facing text.

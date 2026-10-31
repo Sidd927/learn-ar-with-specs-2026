@@ -10,9 +10,9 @@ The video is built around one moment: **the red pattern over the white target, s
 | **0:00–0:15** | Hold on the opening screen | Intro card, figure on the stage | "Learning a squat from a video usually means one camera angle. But coaches don't watch from one angle. They check the knees from the front and the torso from the side." |
 | **0:15–0:28** | Move the cursor over the intro card | "Watch a squat in five phases. Then compare three common patterns…" | "Coach's Eye is a SPECS Lens, shown here in the Lens Studio preview. It's for beginners who want to know what to look for, and where to look. It's a demonstration: it doesn't track or judge you." |
 | **0:28–0:45** | **Start**; let the full squat play (about 12 s) | Card follows phases 1→5; ends on "Squat complete. Try Knees, Heels or Chest…" | "First, the target movement in five phases: stance, a controlled descent, the bottom, rising, and finishing tall. One short cue and one highlight at a time." |
-| **0:45–1:10** | **Knees** | Stage turns to the front; red knees inside the white knees; card "BEST SEEN FROM THE FRONT / Knees caving in" | "Now the comparison. Knees. The stage turns to the front, because that's where this shows. Red is the common pattern: knees drifting inside the line of the feet. White is the target: knees tracking over the toes." |
-| **1:10–1:30** | **Chest** | Side view; red torso tips forward | "Chest. Now it turns to the side. The red torso tips much further forward. From the front you'd barely notice." |
-| **1:30–1:48** | **Heels** | Side view; red heels raised | "Heels. The red heels come off the floor while the white feet stay flat. Trainers check this from the side or from behind." |
+| **0:45–1:10** | **Knees** | Stage turns to the front; red knees inside the white knees; card "BEST SEEN FROM THE FRONT / Knees caving in" | "Now the comparison. Knees. The stage turns to the front, because that's where this shows most clearly. Red is an exaggerated version of a common pattern: knees drifting inside the line of the feet. White is the reference this demo uses: knees tracking over the toes." |
+| **1:10–1:30** | **Chest** | Side view; red torso tips forward | "Chest. Now it turns to the side. The red torso tips much further forward." |
+| **1:30–1:48** | **Heels** | Side view; red heels raised | "Heels. The red heels come off the floor while the white feet stay flat. The Lens shows it from the side; some trainers check it from behind, and you can walk round to look." |
 | **1:48–2:00** | Point at the card's last lines | "Exaggerated for clarity…", "PINCH AGAIN TO RETURN" | "Each difference is exaggerated so it's easy to see. These are common patterns to compare, not a diagnosis." |
 | **2:00–2:10** | **Heels** again to return; then **35°** | Normal phase card, figure at 35° | "Pinch it again and you're back to the demonstration. You can also just walk around the figure." |
 | **2:10–2:30** | **< Prev** (to Descent), **Slow 0.5x**, **Play**, **Pause** after about 3 s | Half-speed movement, then frozen | "You control the pace: step, slow it to half speed, and pause exactly where you want to look." |
@@ -24,6 +24,6 @@ About 300 words, roughly 2:05 of speech, plus the 12 s autoplay and clicks: abou
 - That it tracks, scores, corrects, or gives feedback on the viewer.
 - That it improves learning, prevents injury, or reveals weakness or mobility problems (unproven, and not what it shows).
 - That it was tested on SPECS glasses or with users.
-- That the white figure is "the correct squat" for everyone.
+- That the white figure is "the correct squat" for everyone. Call it the target or reference this demo uses.
 - Any of the model measurements (3.1 / 7.7 cm and so on). They are software checks on a 1:3 model, not findings.
 - "The knees shoot forward" for heels (geometrically false in this model) or "the arms fall" for chest (no longer depicted).

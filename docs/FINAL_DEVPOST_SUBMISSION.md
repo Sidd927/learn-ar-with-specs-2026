@@ -17,31 +17,34 @@ Phone apps already rotate 3D exercise models and list "common mistakes". What th
 
 ## What it does
 - **A five-phase demonstration.** A jointed figure on a small stage about 1.7 m away squats through Starting Stance, Controlled Descent, Bottom Position, Rising Up and Standing Finish, with one short cue and one body highlight per phase.
-- **Compare common patterns.** Press **Knees**, **Heels** or **Chest**. The figure pauses at the bottom, a translucent red figure showing that pattern appears over the white target, and the stage turns to the revealing view. The card shows:
+- **Compare common patterns.** Press **Knees**, **Heels** or **Chest**. The figure pauses at the bottom, and a translucent red figure appears over the white reference figure showing an exaggerated, illustrative version of that pattern. The stage turns to a view chosen for it: front for knees, side for chest and heels. Heel rise is also commonly checked from behind; the Lens doesn't turn to the rear, but you can walk behind the stage. The card shows:
   - the view, e.g. "Best seen from the front";
   - the pattern name;
   - what the red figure does;
-  - what the white target does.
+  - what the white reference does.
 
   Only the difference is drawn in red, and it is exaggerated for clarity. Pinch the button again to return.
 - **Your pace, your view.** Play/Pause, Prev/Next, Slow 0.5x, Replay, and Front / 35° / Side, or walk around the figure.
-- **Demonstration only.** No camera, body tracking, counting or scoring. The Lens never assesses the user, and the white figure is one reasonable example, not everyone's ideal.
+- **Demonstration only.** No camera, body tracking, counting or scoring. The Lens never assesses the user and makes no diagnostic, clinical or injury-prevention claims. The white figure is this demonstration's reference, not everyone's ideal squat.
 
 ## Why SPECS
-- **The view is the lesson.** Each pattern shows on one axis, so turning the figure in your space, or stepping around it, is how you learn it.
-- **Hands and body free.** You can stand beside the figure and try the movement without holding a phone.
+Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
+- **Head-worn and hands-free.** You look at the figures from where you stand, step to the side or walk behind the stage, and keep your hands free, for example to try the movement beside the figure.
+- **The view matters.** Each pattern shows most clearly from a particular side, so the Lens turns the stage to face you with that view.
+
+We haven't tested whether this helps people learn better than a phone or a video.
 - **Designed for the glasses' view.** We measured the SPECS preview's field of view (about 32° x 36°) and chose a 1:3-scale figure at 1.7 m so the whole body, the card and the controls fit from where you stand.
 
 ## How we built it
 - **Planning.** Devpost Learn `plan-lens` brief. The move to Coach's Eye is recorded as a traceable amendment in `Lens/devpost/design-brief.md`.
 - **Build.** Claude Code with CLAD skills through the Lens Studio MCP: VirtualScene scene construction, TypeScript compile, logs, preview capture and LEAF.
-- **Mannequin.** Jointed primitives with analytic two-bone leg IK, so the feet stay planted. Each pattern is one pose parameter: knee bend direction, heel lift with foot pitch, or extra torso lean.
+- **Mannequin.** Jointed primitives with analytic two-bone leg IK, so the feet stay planted. Each pattern is posed by one primary parameter: knee bend direction, heel lift with foot pitch, or extra torso lean. Other joints can move as a result.
 - **Overlay.** A second rig with identical proportions in a translucent material, inset 4% inside the target, so only the differences render.
 - **UI.** Spectacles UI Kit on the Interaction Kit. Thin ring cues are generated with `MeshBuilder`.
 
 ## Testing and honesty
-- **Eight LEAF scenarios pass in the Lens Studio preview.** They pinch the real buttons and check the scene: placement, the full demo, stepping, pause/slow/replay, view angles, cues, edge cases, and each comparison (right view, right card, red figure different in the intended direction, clean return).
-- **A measurement audit** (`docs/BIOMECHANICAL_VALIDATION.md`) documents what the comparison geometry shows and doesn't. It led us to fix two things:
+- **Eight LEAF scenarios pass in the Lens Studio preview.** They pinch the real buttons and check the scene: placement, the full demo, stepping, pause/slow/replay, view angles, cues, edge cases, and each comparison. The comparison test covers the right view, paused state, exact card text, return hint, exaggeration note, red figure differing in the intended direction, and all five ways back.
+- **An internal model-geometry check** (`docs/BIOMECHANICAL_VALIDATION.md`) confirms the two figures share one coordinate frame and differ only as intended. It is not an expert biomechanical assessment. It led us to fix two things:
   - the chest comparison no longer adds an unrelated arm change;
   - the heels card no longer claims the side is the single best view.
 

@@ -1,5 +1,30 @@
 # Test results
 
+## Extended test H (`1d1bd5a`, 31 Oct 2026, 22:48 IST): 1 run, 1 passed
+Product code is unchanged since `2201d21`; only the test file changed. Test H now checks:
+- **Every pattern (Knees, Heels, Chest):**
+  - red figure shown, paused at the Bottom Position;
+  - turned to its view (± 2°), starting from a different angle each time: knees from 35°, heels from 35°, chest from Front;
+  - exact view label, title, `Red: … / White (target): …` lines, "PINCH AGAIN TO RETURN" and the exaggeration note;
+  - only that toggle on;
+  - red figure differing from the white one in the intended direction.
+- **Controls that keep a comparison open:** Slow, and the 35° and Front angle buttons.
+- **Exits:**
+  - same button: stays on the Bottom Position, paused;
+  - Play: playing;
+  - Prev: phase 2;
+  - Next: phase 4;
+  - Replay: playing from phase 1.
+
+  Each exit must also restore the row label, disclaimer and phase label, with all toggles off.
+
+| Run | Result | Log |
+|---|---|---|
+| 1st attempt (22:46) | **No result.** The scenario never started: no test output, preview left on the intro. The MCP call timed out and LEAF logged "Scenario run cancelled". Treated as an infrastructure hang, not a pass. | — |
+| 2nd attempt (22:48) | **PASS** in about 30 s | knees 7.7 vs 3.1 cm; heels +4.0 cm; chest +3.8 cm; "mistake comparison ok (3 patterns, 5 exits, Slow and angle keep it open)" |
+
+Scenarios a–g were not re-run after this change: no product code or shared test-kit code changed. Their last run is the `2201d21` table below.
+
 ## Final build: `feature/coach-eye` at `2201d21` (31 Oct 2026)
 Lens Studio 5.24.1.26100516 · Preview device SPECS 27 (Interactive) · LEAF 2.0.2 · SpectaclesInteractionKit 2.0.0 · SpectaclesUIKit 2.0.0
 
@@ -16,9 +41,9 @@ Each LEAF scenario pinches the real UIKit buttons through SIK, then reads scene 
 | e-angles | 0 / 35 / 90° ± 2°; root moves < 1 cm; playback continues | 0.0 / 35.0 / 90.0 / 0.0°; root moved 0.000 cm | PASS |
 | f-cues | One cue group per phase | Foot outlines / knee arrows / hip marker / knee arrows / completion ring | PASS |
 | g-edge-cases | Pause mid-transition; label and toggle sync; dimmed ends; Next while playing; Play/Replay after completion | Paused at 2.42 s (mid-transition), frozen; Replay 1.62 s → 0.35 s and phase 1 | PASS |
-| h-mistake-compare | For each of Knees / Heels / Chest: red figure shown at the Bottom Position, paused, stage turned to its view, title and view label, "White (target)" wording, "Pinch again to return" and the exaggeration note; pressing it again or Play hides the figure and restores the label and disclaimer | Knees: front (0°), "BEST SEEN FROM THE FRONT", red knee 3.1 cm vs white 7.7 cm from the midline. Heels: side (90°), "SEEN FROM THE SIDE OR REAR", red ankle +4.0 cm. Chest: "BEST SEEN FROM THE SIDE", red head +3.8 cm forward. Exit by toggle and by Play both OK | PASS |
+| h-mistake-compare (earlier, narrower version) | Knees: red figure shown, Bottom Position, paused, front view, title, view label, "White (target)", return hint, exaggeration note. Heels: side view, title, view label. Chest: title, view label (its 90° turn was **not** asserted, because Heels had already turned the stage). All three: red figure differs in the intended direction. Exits tested: same button (restores label and disclaimer) and Play only. Superseded by the extended test above. | Knees 3.1 vs 7.7 cm; heels +4.0 cm; head +3.8 cm; checked items as listed | PASS |
 
-The h measurements are **model-geometry checks** (1:3-scale mannequin, exaggerated magnitudes), not biomechanical measurements. See `BIOMECHANICAL_VALIDATION.md`.
+The h values are **internal model-geometry checks** (1:3-scale mannequin, exaggerated illustrative differences). They are not biomechanical measurements and don't establish a correct squat. See `BIOMECHANICAL_VALIDATION.md`.
 
 **Runtime log** from 12:00 onwards (this milestone): 0 script errors or exceptions. Infrastructure warnings only: renderer depth-format fallback; the LEAF plugin "Skipping plugin state save"; UIKit's "automatically converted to a toggle" info lines.
 

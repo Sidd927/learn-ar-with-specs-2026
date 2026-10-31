@@ -67,15 +67,21 @@ flowchart LR
 | Body tracking, form assessment | **Out of scope by design**; not used |
 
 ## Testing strategy
-- LEAF a–g regression (placement, demo, stepping, playback, angles, cues, edge cases), plus **h-mistake-compare**. That last one checks the view yaw, card title, view label, target wording, return hint, exaggeration note and both exits. It also confirms that the red joints differ from the white in the intended direction (model geometry on a 1:3 figure; values and caveats in `BIOMECHANICAL_VALIDATION.md`).
+- LEAF a–g regression (placement, demo, stepping, playback, angles, cues, edge cases), plus **h-mistake-compare**. That last one checks, for each pattern:
+  - the view yaw, starting from a different angle each time;
+  - the paused Bottom Position;
+  - the exact card text, return hint, exaggeration note and toggle states;
+  - that the red joints differ from the white in the intended direction (internal model geometry on a 1:3 figure; caveats in `BIOMECHANICAL_VALIDATION.md`).
+
+  It also checks that Slow and the angle buttons keep a comparison open, and all five exits (same button, Play, Prev, Next, Replay).
 - Preview captures for each mistake (`docs/screenshots/13–15`).
 
 ## Technical risks
 | Risk | Mitigation |
 |---|---|
 | Overlay hard to read on the additive display | Inset approach keeps red to the difference only; alpha and colour are tunable in one material |
-| Pattern depictions judged inaccurate or read as assessment | Audit in `BIOMECHANICAL_VALIDATION.md`; one change per pattern (the chest arm change was removed); "common pattern" wording, exaggeration note, per-pattern view label (heels: side or rear); coach review planned, not done |
+| Pattern depictions judged inaccurate or read as assessment | Internal model-geometry check in `BIOMECHANICAL_VALIDATION.md` (not an expert assessment); one change per pattern (the chest arm change was removed); "common pattern" wording, exaggeration note, per-pattern view label (heels: side or rear); coach review planned, not done |
 | Scope creep before the deadline | Feature set frozen to three mistakes; `main` remains the fallback |
 
 ## Implementation sequence (done on the branch)
-1. Fault data and rig support → 2. ghost hierarchy (generator) → 3. controller and UI → 4. visual fixes from captures (inset, magnitudes, copy, arm clearance) → 5. LEAF h → 6. full regression → 7. comprehension pass (intro, completion, view labels, return hint, exaggeration note) → 8. measurement audit fixes (chest arms, heels view label) → 9. final 8/8 regression.
+1. Fault data and rig support → 2. ghost hierarchy (generator) → 3. controller and UI → 4. visual fixes from captures (inset, magnitudes, copy, arm clearance) → 5. LEAF h → 6. full regression → 7. comprehension pass (intro, completion, view labels, return hint, exaggeration note) → 8. fixes from the internal model-geometry check (chest arms, heels view label) → 9. final 8/8 regression → 10. test H extended to every pattern and exit.

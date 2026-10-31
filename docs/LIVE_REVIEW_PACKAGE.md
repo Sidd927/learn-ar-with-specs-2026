@@ -3,7 +3,7 @@
 For the Learn AR with SPECS live judging review (Discord `#devpost-learn-feedback`, tags "Learn AR with SPECS" and "Will It Ship"). The product is **in progress, not finished**; present it that way. Nothing below has been posted.
 
 ## One-sentence pitch
-Coach's Eye puts a squatting figure on a small stage in your room. Press Knees, Heels or Chest, and a translucent red version of a common pattern appears over the white target, while the stage turns to the angle where the difference shows.
+Coach's Eye puts a squatting figure on a small stage in your room. Press Knees, Heels or Chest, and an exaggerated red version of a common movement pattern appears over the white reference figure, while the stage turns to a view chosen to show the difference.
 
 ## The problem
 Most people learn a squat from a video shot from one angle. Coaches don't watch from one angle: knees are checked from the front, torso lean from the side. A single fixed view can hide exactly the difference a beginner needs to see.
@@ -12,8 +12,11 @@ Most people learn a squat from a video shot from one angle. Coaches don't watch 
 A beginner learning the bodyweight squat at home, who wants to know what to look for and where to look. Not athletes, and not anyone looking for a medical or injury assessment.
 
 ## Why AR glasses
-- **The view is the lesson.** Each pattern shows up on one axis. Turning the in-space figure, or stepping around it, is how you see it.
-- **Hands and body free.** You can stand beside the figure and try the movement without holding a phone.
+Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
+- **Head-worn and hands-free.** You look from where you stand, step to the side or walk behind the stage, without holding a phone in your line of sight.
+- **The view matters.** Each pattern shows most clearly from a particular side, so the Lens turns the stage to face you with that view.
+
+We haven't tested whether this helps people learn.
 - **Fits the glasses' view.** We measured the SPECS preview's field of view (about 32° x 36°) and scaled the figure to 1:3 so the whole body, cue card and controls fit from where you stand.
 
 ## What the user does
@@ -33,12 +36,13 @@ Phone apps already rotate 3D exercise models and list common mistakes. Coach's E
 - Jointed 1:3 mannequin with leg IK (feet stay planted); five-phase timeline; Play/Pause, Prev/Next, Slow 0.5x, Replay; Front / 35° / Side turntable.
 - Three comparisons (knees, heels, chest) with automatic viewpoint, pattern card, return hint and "Exaggerated for clarity" note.
 - 8 LEAF scenarios pass in the preview, all run on the final build on 31 Oct 2026.
-- A measurement audit of what the comparison geometry does and does not show (`BIOMECHANICAL_VALIDATION.md`).
+- An internal model-geometry check of the two figures (`BIOMECHANICAL_VALIDATION.md`). It is not an expert biomechanical assessment.
 
 ## Not yet validated
 - **No user testing yet.** A five-person protocol is ready (`USER_VALIDATION_PLAN.md`), results NOT CONDUCTED.
 - **Not run on SPECS hardware.** Comfort, hand tracking, and red-on-additive-display legibility are unverified.
-- **No coach review** of the three depictions.
+- **No coach or expert review** of the three depictions.
+- The design brief's Coach's Eye amendment is a **draft**, and the learner-led `plan-lens` interview is in progress.
 - The **heels** comparison may read as "legs move" more than "heel lifts" (seen in our own captures).
 - The learning benefit is a hypothesis.
 
