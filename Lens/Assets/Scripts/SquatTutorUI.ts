@@ -185,9 +185,9 @@ export class SquatTutorUI extends BaseScriptComponent {
     this.compareLabel.text = fault ? COMPARE_ACTIVE_LABEL : COMPARE_LABEL
     this.disclaimerText.text = fault ? COMPARE_NOTE : DISCLAIMER
     if (!fault) return
-    this.phaseLabel.text = fault.view === "front" ? "COMPARE · FRONT VIEW" : "COMPARE · SIDE VIEW"
+    this.phaseLabel.text = fault.view === "front" ? "BEST SEEN FROM THE FRONT" : "BEST SEEN FROM THE SIDE"
     this.titleText.text = fault.title
-    this.cueText.text = `Red: ${fault.mistake}\nWhite: ${fault.target}`
+    this.cueText.text = `Red: ${fault.mistake}\nWhite (target): ${fault.target}`
   }
 
   setComplete(): void {

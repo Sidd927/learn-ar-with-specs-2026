@@ -33,7 +33,8 @@ export class H_MistakeCompareScenario extends Scenario {
     expect(kit.player.isPlaying, "paused for comparison").toBe(false)
     expect(Math.abs(kit.turntableYawDeg()) < 2, "turned to front view").toBe(true)
     expect(kit.phaseTitle(), "title").toBe("Knees caving in")
-    expect(kit.phaseLabel(), "view label").toBe("COMPARE · FRONT VIEW")
+    expect(kit.phaseLabel(), "view label").toBe("BEST SEEN FROM THE FRONT")
+    expect(kit.cueText().includes("White (target)"), "target named").toBe(true)
     expect(kit.text("MistakesLabel"), "return hint").toBe(COMPARE_ACTIVE_LABEL)
     expect(kit.text("Disclaimer"), "exaggeration note").toBe(COMPARE_NOTE)
     const targetKneeX = Math.abs(local("KneeL").x)
@@ -46,6 +47,7 @@ export class H_MistakeCompareScenario extends Scenario {
     await sleep(900)
     expect(Math.abs(kit.turntableYawDeg() - 90) < 2, "turned to side view").toBe(true)
     expect(kit.phaseTitle(), "title").toBe("Heels lifting")
+    expect(kit.phaseLabel(), "view label").toBe("BEST SEEN FROM THE SIDE")
     const lift = local("GhostAnkleL").y - local("AnkleL").y
     kit.log(`heels: mistake ankle ${lift.toFixed(1)} cm higher`)
     expect(lift > 3, "mistake heels lifted").toBe(true)
