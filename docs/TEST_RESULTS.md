@@ -50,3 +50,12 @@ Comfort over time, see-through readability, real hand-tracking pinch, physical f
 **Test fix.** On its first post-reopen run, g-edge-cases failed at "Replay resets the timeline". It required the timeline to be below 0.5 s, measured about 350 ms after a simulated pinch, while playback was already running again. That threshold was too tight. The assertion now checks that the timeline drops by more than 0.3 s relative to just before Replay and that the label shows phase 1. No product code changed.
 
 Runtime log for the session: 0 script exceptions. Only Lens Studio infrastructure warnings (`adb` without a paired device, depth-format fallback, LEAF panel load order).
+
+## Coach's Eye branch (`feature/coach-eye`, 31 Oct 2026): 8 run, 8 passed
+
+| ID | Measured | Result |
+|---|---|---|
+| h-mistake-compare | Knees: mistake knee 3.1 cm from midline vs target 7.7 cm, front view (0°), title "Knees caving in". Heels: mistake ankle +4.0 cm, side view (90°). Chest: mistake head +3.8 cm forward. Toggling off and Play both hide the mistake figure. | PASS |
+| a–g (regression on the branch) | Placement 170.0 cm / 35.0° / 0.000 cm; full demo 12.08 s; stepping exact; slow ratio 2.01; angles 0/35/90°; one cue per phase; Replay 1.59 → 0.38 s | PASS (7/7) |
+
+Runtime log over the branch runs: 0 script exceptions. Visual checks: `docs/screenshots/13–15` (each mistake in its checkpoint view).

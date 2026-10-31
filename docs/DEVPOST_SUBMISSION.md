@@ -1,3 +1,5 @@
+> **Superseded on branch `feature/coach-eye`** by [`FINAL_DEVPOST_SUBMISSION.md`](FINAL_DEVPOST_SUBMISSION.md) if Coach's Eye is adopted. This file describes the original Squat Tutor on `main`.
+
 # Devpost submission draft: Squat Tutor
 
 > Draft only. Nothing has been submitted or published. Fill in the video link after uploading, and check every field against the live Devpost form before submitting. The field-by-field checklist and compliance table are in [`SUBMISSION_CHECKLIST.md`](SUBMISSION_CHECKLIST.md).

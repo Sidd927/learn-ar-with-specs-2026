@@ -59,3 +59,6 @@ This is a hypothesis. It has not been validated with users, and no user research
 - **LEAF version.** Leaf 4.0.0 declares and imports `InteractionKit` 4.0, the renamed kit. This project uses `SpectaclesInteractionKit` 2.0.0, which Leaf 2.0.2 declares. Leaf 2.0.2 was installed after reading both packages' manifests and imports in an isolated download.
 - **Preview helper package.** `QueryRuntimeSceneTool`, `PreviewInteractTool`, and `CaptureRuntimeViewTool` auto-install `AiPreviewAgentInspect`, which depends on `UIKit`/`InteractionKit` 4.0 and breaks this project's compile. It was moved out of the project (backup kept). Runtime checks use LEAF and preview screenshots instead.
 - **Editor version.** The project file is from Lens Studio 5.24.1. A second, older install (5.23.2) wedged when it opened the project. Use 5.24.1.
+
+## Strategic reassessment (31 Oct 2026)
+The full analysis is in `STRATEGIC_HACKATHON_ANALYSIS.md`. Summary: Squat Tutor's rotate-and-step 3D viewer duplicates existing phone apps (Innovation is weak). The recommended evolution, **Coach's Eye**, overlays three common mistakes on the target and turns to the trainer's checkpoint view. It's prototyped on `feature/coach-eye` (8/8 LEAF) and **pending the owner's approval of the brief amendment** before merging.

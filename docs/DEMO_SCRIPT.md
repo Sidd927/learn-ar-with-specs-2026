@@ -1,3 +1,5 @@
+> **Superseded on branch `feature/coach-eye`** by [`FINAL_DEMO_SCRIPT.md`](FINAL_DEMO_SCRIPT.md) if Coach's Eye is adopted. This file describes the original Squat Tutor on `main`.
+
 # Squat Tutor demo script (under 3 minutes)
 
 The full recording guide, covering setup, framing, the checklist, and this script with exact clicks, is in **[DEMO_RECORDING_GUIDE.md](DEMO_RECORDING_GUIDE.md)**. Record from that file. This page is the narration-only version for rehearsing.

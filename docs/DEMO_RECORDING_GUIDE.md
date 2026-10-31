@@ -1,3 +1,5 @@
+> **Superseded on branch `feature/coach-eye`** by [`FINAL_DEMO_RECORDING_GUIDE.md`](FINAL_DEMO_RECORDING_GUIDE.md) if Coach's Eye is adopted. This file describes the original Squat Tutor on `main`.
+
 # Demo recording guide: Squat Tutor
 
 Everything you need to record the demo, in one place. Target length: **2:45** (limit: under 3:00).

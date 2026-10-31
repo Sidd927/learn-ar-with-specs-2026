@@ -120,3 +120,13 @@ This part is for you, after CLAD finishes.
 5. **Label what you know.** Write "logic proven" next to anything the tests and preview show working, and "feel unproven" next to anything only real glasses could tell you (comfort over time, real hand tracking, real recognition).
 6. **Fix with design notes, not code.** Tell your agent what to change in design terms, for example: "Move the step card 15 cm lower and next to the pan. Make the Next button twice as big. Re-run the tests." If a fix takes under a minute, like nudging a panel, do it yourself in the scene.
 7. **Submit.** Record a video under 3 minutes of your Lens in the preview, public on YouTube. Make your repo public with your Lens Studio project and this `devpost/` folder. Details are on the hackathon site: https://learn-specs.devpost.com/resources
+
+
+## Proposed amendment: Coach's Eye (pending learner approval)
+_Added 31 Oct 2026 on branch `feature/coach-eye` after a strategic review (`docs/STRATEGIC_HACKATHON_ANALYSIS.md`). Not in force until the learner approves it. Approving it is a yes/no decision; alternatively, re-run `plan-lens`._
+
+- **Why:** the original moment ("watch a squat from three angles") duplicates phone 3D viewers. The amendment gives the in-space, multi-angle view a job: seeing *what a common mistake looks like* from *the angle a coach would check it from*.
+- **What is added:** a "Compare a common mistake" row on the cue card with **Knees**, **Heels**, and **Chest**. Pressing one pauses at the Bottom Position, shows a translucent red figure with that mistake over the solid white target, and turns the stage to the checkpoint view (front for knees; side for heels and chest). Only the differences are visible. Pressing it again, or any playback control, returns to the demonstration.
+- **Unchanged:** subject (bodyweight squat), five phases, controls, placement, demonstration-only stance, disclaimer, no tracking or assessment.
+- **Added done criterion 7:** [LEAF] each mistake button shows the mistake figure at the Bottom Position, turns to its checkpoint view (0° or 90°), shows its title, and the mistake differs from the target in the intended way (knees closer to the midline, heels higher, head further forward). Pressing it again or pressing Play hides the figure. (`h-mistake-compare`)
+- **Risk:** showing mistakes could be read as assessment. Mitigated by "common mistake" wording, red/white legend, and the unchanged disclaimer.

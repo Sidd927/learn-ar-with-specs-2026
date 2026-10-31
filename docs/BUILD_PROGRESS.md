@@ -19,7 +19,8 @@ A resumable log of the implementation. A feature counts as complete only after i
 | 7 | Refreshed screenshots | Done | `188adfa` |
 | 8 | Demo script, Devpost draft, device checklist, docs refresh | Done | `48a24bb` |
 | 9 | Fresh-open test (quit and reopen Lens Studio) | **Passed** | `905a938` |
-| 10 | Submission package: recording guide, corrected demo timing, submission checklist and compliance table | Done | this commit |
+| 10 | Submission package: recording guide, corrected demo timing, submission checklist and compliance table | Done | `d1d0473` |
+| 11 | Strategic reassessment + Coach's Eye prototype (mistake comparison), 8/8 LEAF | Done on branch `feature/coach-eye`; **awaiting owner decision to merge** | `6c4e379` + docs |
 
 ## Fresh-open test: passed (31 Oct 2026)
 - **Before:** the owner quit Lens Studio 5.24.1 by hand (saving when prompted). `Scene.scene` and all assets were unchanged against `48a24bb` (only the known `.agents` housekeeping deletion).
@@ -37,4 +38,4 @@ A resumable log of the implementation. A feature counts as complete only after i
 - `SquatTutorController.startPhase` / `startAngle` is a capture hook. Keep it at `-1` / empty for normal launch.
 
 ## Next task
-Owner: verify the live rules, record with `docs/DEMO_RECORDING_GUIDE.md`, upload, and submit using `docs/SUBMISSION_CHECKLIST.md`. The Lens implementation is frozen.
+Owner decision: adopt Coach's Eye (approve the brief amendment, merge `feature/coach-eye`) or keep `main`. Then verify the live rules, record with `FINAL_DEMO_RECORDING_GUIDE.md` (or `DEMO_RECORDING_GUIDE.md` for `main`), and submit. Optional: post to Discord `#devpost-learn-feedback` for the 5 Nov live judging review.

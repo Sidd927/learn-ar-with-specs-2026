@@ -185,3 +185,26 @@ The skill pack is learner-led, and the brief is the plan of record. **The transf
 - [AR assistance systems in industry: review (PMC12222328)](https://pmc.ncbi.nlm.nih.gov/articles/PMC12222328/) · [HMD vs face-to-face assembly training (Springer)](https://link.springer.com/chapter/10.1007/978-3-319-91581-4_35)
 - [Jackson, Meltzoff & Decety 2006 (NeuroImage)](https://www.sciencedirect.com/science/article/abs/pii/S1053811905024754) · [Behavioral advantages of the first-person perspective (PMC4868846)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4868846/)
 - [Immersive training and motor competence meta-analysis (PMC13172324)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13172324/) · [HMDs for medical education review (PMC8299342)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8299342/)
+
+---
+
+## 8. Stage 4: prototype compared with the original (31 Oct, same framework)
+The prototype is built on `feature/coach-eye` (`6c4e379`): 8/8 LEAF pass, 0 runtime exceptions, and previews `docs/screenshots/13–15`.
+
+| Dimension (weight) | Squat Tutor (main) | Coach's Eye (branch) | What changed, with evidence |
+|---|---:|---:|---|
+| Problem significance (20) | 4 | 5 | It now teaches *what wrong looks like and where to look*, which is how trainers check a squat (front versus side) |
+| Innovation (15) | 3 | 6 | Phone apps rotate a 3D model and *list* mistakes. Here the mistake is overlaid on the target and the stage turns to the view that reveals it. We found no example of that combination (not an exhaustive search) |
+| Spatial essential (15) | 4 | 6 | Each mistake is only visible from one direction, so turning the in-space figure, or walking to that side, is the lesson itself. A phone could still do this, which caps the score |
+| UX (15) | 7 | 7 | One extra row; comparison exits on any playback control; tested |
+| Feasibility (10) | 9 | 8 | Built and passing; slightly larger surface |
+| Demo (10) | 6 | 8 | A memorable frame: red knees caving inside white knees |
+| Evidence potential (10) | 5 | 6 | A clear comprehension test exists (`USER_VALIDATION_PLAN.md`) |
+| Responsible (5) | 8 | 7 | Showing mistakes risks being read as assessment; mitigated by wording and the disclaimer |
+| **Weighted** | **5.3** | **6.4** | |
+
+**Result:** the change improves the product on our framework (5.3 → 6.4) and on the official criteria estimate (about 6.3 → about 7.3), at low risk. **It is still a hypothesis-stage learning tool, not a validated one.**
+
+### Decision needed from the owner
+1. **Adopt Coach's Eye?** If yes: approve the brief amendment (or re-run `plan-lens`), then merge `feature/coach-eye` into `main`.
+2. **If not:** `main` stays as submitted. Nothing on `main` changed during this milestone.

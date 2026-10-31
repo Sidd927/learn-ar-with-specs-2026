@@ -1,4 +1,7 @@
-# Submission checklist: Squat Tutor
+# Submission checklist: Squat Tutor (applies to either version)
+
+> **Which version are you submitting?** `main` = Squat Tutor (`DEVPOST_SUBMISSION.md`, `DEMO_RECORDING_GUIDE.md`). `feature/coach-eye` once merged = Squat Tutor: Coach's Eye (`FINAL_DEVPOST_SUBMISSION.md`, `FINAL_DEMO_RECORDING_GUIDE.md`). If Coach's Eye: approve the brief amendment first, because the planning workflow is a Stage 1 requirement.
+> **Live judging review:** Thu 5 Nov, 12:00 p.m. ET. Post in Discord `#devpost-learn-feedback` tagged "Learn AR with SPECS" and "Will It Ship" (from the public hackathon page).
 
 Nothing has been submitted. Work through this list yourself before pressing Submit on Devpost.
 

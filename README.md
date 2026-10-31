@@ -1,16 +1,24 @@
-# Squat Tutor
+# Squat Tutor: Coach's Eye
 
-**A spatial 3D movement tutor for SPECS: a jointed mannequin demonstrates a bodyweight squat in five phases, in your space. You can watch it, step through it, slow it down, and view it from any angle.**
+**See a squat the way a coach does: from the angle where each mistake shows, in your own space, on SPECS.**
 
-Built for the [Learn AR with SPECS](https://learn-specs.devpost.com) hackathon with Lens Studio 5.24.1, CLAD, and the Lens Studio MCP. Everything shown here runs in Lens Studio's preview. No SPECS hardware was used.
+A jointed 3D mannequin demonstrates a bodyweight squat in five phases on a small stage in front of you. Press **Knees**, **Heels**, or **Chest**, and a translucent red figure shows that common mistake over the white target, while the stage turns to the view a coach would check it from.
 
-![Bottom position at 35°](docs/screenshots/04-phase3-bottom-position.jpg)
+Built for the [Learn AR with SPECS](https://learn-specs.devpost.com) hackathon with Lens Studio 5.24.1, CLAD, and the Lens Studio MCP. Everything shown runs in Lens Studio's preview. No SPECS hardware was used.
 
-## Why glasses
+| Knees caving in (front view) | Heels lifting (side view) | Chest dropping (side view) |
+|---|---|---|
+| ![Knees mistake](docs/screenshots/13-mistake-knees-front.jpg) | ![Heels mistake](docs/screenshots/14-mistake-heels-side.jpg) | ![Chest mistake](docs/screenshots/15-mistake-chest-side.jpg) |
 
-People learning a movement usually re-watch a fixed-angle phone video and still can't see what the hips and knees are doing from the angle that matters. Squat Tutor puts a scale demonstration on a stand in front of you, about 1.7 m away, so you can watch from the front, at 35°, or from the side. You can also walk around it. Your hands stay free to follow along.
+*Red = the mistake. White = the target. Only the difference is drawn in red.*
 
-> **Product hypothesis.** This need hasn't been validated with users, and no user research is claimed.
+## The problem, and why glasses
+- **Who:** beginners learning the bodyweight squat at home.
+- **Problem:** most learn from a single-angle video, but the things trainers check are view-dependent. NASM's overhead squat assessment, for example, checks knees moving inward from the **front** and excessive forward lean from the **side**. Heels lifting is also easiest to see side-on.
+- **What already exists:** phone apps rotate 3D exercise models and list common mistakes (see the [strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md)).
+- **What's different:** the mistake is overlaid on the target in your space, and the stage turns to the revealing view. On glasses you can also step around it with your hands free.
+
+> **Product hypothesis.** This need hasn't been validated with users, and no user research is claimed. The study plan is in [`docs/USER_VALIDATION_PLAN.md`](docs/USER_VALIDATION_PLAN.md).
 
 > **Demonstration only.** This Lens does not track, count, or assess your body. It shows general guidance, not individual fitness or medical advice.
 
@@ -30,6 +38,7 @@ People learning a movement usually re-watch a fixed-angle phone video and still 
 - **View angle:** Front / 35° / Side turns the turntable. Walking around the figure also works.
 - **Stepping:** Previous and Next disable (and dim) at the ends.
 - **Completion:** the demo stops on "Demo complete — replay, step through, or follow along." It doesn't restart on its own.
+- **Compare a common mistake:** Knees, Heels, or Chest pauses at the Bottom Position, shows the red mistake figure, and turns to the checkpoint view. Press it again, or any playback control, to return.
 
 | Front | 35° | Side |
 |---|---|---|
@@ -69,6 +78,7 @@ flowchart LR
 
 - **Mannequin.** It's a real scene hierarchy of rounded primitives under joint pivots: pelvis, spine, neck, shoulders, elbows, hips, knees, ankles. It was generated with the Lens Studio MCP (`VirtualScene`) from [`tools/generate_mannequin_scene.py`](tools/generate_mannequin_scene.py).
 - **Animation.** Each leg uses analytic two-bone IK to a fixed ankle, bending toward the toes, so the feet stay planted at every frame of every blend. Torso lean, neck, and arm reach are joint angles. Phases blend with an ease-in-out curve: five 1.5 s holds and four 1.2 s transitions make 12.3 s at 1x.
+- **Mistake overlay.** A second rig in a translucent material, inset 4% inside the target so only differences render. Mistakes are pose parameters in the same leg IK: knee bend direction, heel lift with foot pitch, extra lean.
 - **Cues.** Thin rings (feet, hips, completion, turntable) are torus meshes generated at runtime with `MeshBuilder`, so tube thickness is independent of ring size.
 - **UI.** Spectacles UI Kit (`BackPlate`, `FlexLayout`, `Button`) on top of the Spectacles Interaction Kit.
 - **Workflow.** Planning used the Devpost Learn `plan-lens` skill. The build used Claude Code with CLAD skills (scene construction, Lens API, UI Kit, LEAF) through the Lens Studio MCP: VirtualScene, TypeScript compile, logs, preview capture, and LEAF runs.
@@ -77,7 +87,7 @@ Script responsibilities and the scene tree are in [`docs/IMPLEMENTATION_NOTES.md
 
 ## Testing
 
-Seven LEAF scenarios run in the Lens Studio preview: one per done criterion, plus edge cases. They pinch the real buttons and measure scene state. **All seven pass:**
+Eight LEAF scenarios run in the Lens Studio preview: one per done criterion, plus edge cases and the mistake comparison. They pinch the real buttons and measure scene state. **All eight pass:**
 
 | Scenario | Measured |
 |---|---|
@@ -88,6 +98,7 @@ Seven LEAF scenarios run in the Lens Studio preview: one per done criterion, plu
 | Angles | 0.0° / 35.0° / 90.0°; figure stays put; playback continues |
 | Cues | Exactly one correct cue per phase |
 | Edge cases | Pause mid-transition, toggle and label sync, Next while playing, Play/Replay after completion |
+| Mistake comparison | Mistake knees 3.1 cm vs target 7.7 cm from the midline; heels +4.0 cm; head +3.8 cm forward; correct view, title, and exit |
 
 Full results and the manual checks are in [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md).
 
@@ -96,7 +107,7 @@ Full results and the manual checks are in [`docs/TEST_RESULTS.md`](docs/TEST_RES
 2. Clone the repo and open `Lens/Lens.esproj`.
 3. In the Preview panel, choose device **SPECS 27** and **Interactive** input.
 4. Click **Start**. A mouse click acts as a pinch. Use **WASD** to walk, **Q/E** to go down and up, and right-drag to look around.
-5. To run the tests, open the LEAF panel and run `a-placement` to `g-edge-cases`, one at a time.
+5. To run the tests, open the LEAF panel and run `a-placement` to `h-mistake-compare`, one at a time.
 
 ## Repository layout
 ```
@@ -110,10 +121,11 @@ tools/                     Scene generator for the mannequin hierarchy
 ```
 
 ## Documents
-- [Demo recording guide](docs/DEMO_RECORDING_GUIDE.md) · [Demo script (under 3 min)](docs/DEMO_SCRIPT.md) · [Devpost draft](docs/DEVPOST_SUBMISSION.md) · [Submission checklist](docs/SUBMISSION_CHECKLIST.md) · [Device validation checklist](docs/DEVICE_VALIDATION.md)
+- [Final demo script](docs/FINAL_DEMO_SCRIPT.md) · [Final recording guide](docs/FINAL_DEMO_RECORDING_GUIDE.md) · [Final Devpost draft](docs/FINAL_DEVPOST_SUBMISSION.md) · [Submission checklist](docs/SUBMISSION_CHECKLIST.md) · [Device validation checklist](docs/DEVICE_VALIDATION.md)
+- [Strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md) · [Architecture](docs/RECOMMENDED_PRODUCT_ARCHITECTURE.md) · [User validation plan](docs/USER_VALIDATION_PLAN.md)
 - [Test results](docs/TEST_RESULTS.md) · [Implementation notes](docs/IMPLEMENTATION_NOTES.md) · [Research and decisions](docs/RESEARCH_AND_DECISIONS.md) · [Build log](docs/BUILD_PROGRESS.md)
 
 ## Known limitations
 - Built and verified in the Lens Studio preview only. Comfort, hand tracking, and following along on real SPECS glasses are unverified. See the [device checklist](docs/DEVICE_VALIDATION.md).
 - The figure is a stylised 1:3-scale mannequin, not a life-size human, so it fits the narrow SPECS view.
-- One movement (the bodyweight squat). No tracking, counting, or form assessment, by design.
+- One movement and three common mistakes. No tracking, counting, or form assessment, by design. The mistake depictions are general examples and haven't been reviewed by a coach.
