@@ -1,6 +1,6 @@
 # Final demo recording guide: Squat Tutor: Coach's Eye
 
-Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and narration. Target: **2:45**, limit under 3:00. Applies to `feature/coach-eye` once it's merged; for `main`, use `DEMO_RECORDING_GUIDE.md`.
+Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and narration. Target: **2:45**, limit under 3:00. Applies to `feature/coach-eye` (final build `2201d21` or later), whether recorded from the branch or after a merge; for `main`, use `DEMO_RECORDING_GUIDE.md`.
 
 ## 1. Recording setup
 - Recorder: macOS Cmd+Shift+5 (Record Selected Portion) or OBS. **1080p+ at 30 fps+.** Capture the Preview panel only.
@@ -16,11 +16,11 @@ Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and na
 6. Do one silent dry run, then **Reset** again.
 
 ## 3. Opening screen
-The figure on a round stage turned about 35° with a thin teal ring. On the left, the intro card ("BODYWEIGHT SQUAT / Squat Tutor" and the disclaimer). On the right, "Pinch Start to watch the full squat" and **Start**.
+The figure on a round stage turned about 35° with a thin teal ring. On the left, the intro card ("BODYWEIGHT SQUAT / Squat Tutor", "Watch a squat in five phases. Then compare three common patterns…", and the disclaimer). On the right, "Pinch Start to watch the full squat" and **Start**. It should match `docs/screenshots/01-hero-intro.jpg`.
 
 ## 4–6. Actions, narration, timing
 Follow the table in `FINAL_DEMO_SCRIPT.md` row by row. Button locations:
-- **Cue card (left), bottom row "COMPARE A COMMON MISTAKE":** Knees · Heels · Chest
+- **Cue card (left), row "COMPARE COMMON PATTERNS":** Knees · Heels · Chest. While a comparison is open, the row label reads "PINCH AGAIN TO RETURN".
 - **Control panel (right):** < Prev · Play/Pause · Next > / Slow 0.5x · Replay / Front · 35° · Side
 
 ## 7. Framing
@@ -32,12 +32,13 @@ Follow the table in `FINAL_DEMO_SCRIPT.md` row by row. Button locations:
 1. The opening screen with the disclaimer legible.
 2. The full squat with the cue card updating.
 3. **Knees from the front:** red knees inside the white knees. **This is the hero shot.**
-4. **Heels from the side** and **Chest from the side.**
+4. **Chest from the side**, then **Heels**. Linger a little longer on Heels; its difference is smaller.
+   - The card's "Exaggerated for clarity" line, visible for a moment.
 5. Exiting the comparison, Slow, and Pause.
 6. The angle buttons turning the stage.
 
 ## 9. Closing statement
-> "Squat Tutor: Coach's Eye shows you what to look for and where to look, in your own space, hands free. It's demonstration only, not form assessment, and our learning benefit is still a hypothesis we're testing. Thanks for watching."
+> "Coach's Eye shows you what to look for and where to look, in your own space, hands free. It's a preview demonstration, and whether it helps people learn is still something we're testing. Thanks for watching."
 
 ## 10. Pre-recording checklist
 - [ ] Lens Studio 5.24.1, correct project, all three capture-hook fields reset
@@ -48,7 +49,8 @@ Follow the table in `FINAL_DEMO_SCRIPT.md` row by row. Button locations:
 
 ## After recording
 - [ ] Under 3:00 (aim for 2:50 or less)
-- [ ] All three mistakes, Slow and Pause, and the angle buttons shown
+- [ ] All three comparisons, the return, Slow and Pause, and an angle button shown
+- [ ] No narration claims tracking, assessment, injury prevention, device testing, or user results
 - [ ] Narration clear; no notifications in frame
 - [ ] YouTube description says "Recorded in the Lens Studio preview (SPECS 27 simulation)"
 - [ ] Uploaded as **Public**

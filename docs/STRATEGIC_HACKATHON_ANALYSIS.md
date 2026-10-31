@@ -208,3 +208,21 @@ The prototype is built on `feature/coach-eye` (`6c4e379`): 8/8 LEAF pass, 0 runt
 ### Decision needed from the owner
 1. **Adopt Coach's Eye?** If yes: approve the brief amendment (or re-run `plan-lens`), then merge `feature/coach-eye` into `main`.
 2. **If not:** `main` stays as submitted. Nothing on `main` changed during this milestone.
+
+## 9. Update after approval (31 Oct 2026, end of day)
+The owner approved Path B as the **product direction** (not a merge). Since then:
+- **Comprehension pass.** The intro now says what the Lens teaches; the completion card points to the comparison; each comparison card states the view and why, names the target, and explains how to return.
+- **Audit corrections.**
+  - The chest pattern no longer lowers the arms (an untaught second difference).
+  - Heels are labelled "seen from the side or rear", because trainer checklists differ.
+  - Numeric model measurements were removed from public-facing text.
+- **New weakness found:** the heels comparison reads mostly as "the red legs move", not "the heel lifts".
+
+### Honest re-score (official criteria, 0–10)
+| Criterion | Earlier estimate (section 5) | Now | Why |
+|---|---|---|---|
+| Design | 8 | **7** | Clear flow and responsible copy, but no user evidence yet, preview-only, and one of three comparisons is weak |
+| Technical implementation | 8 | **7.5** | Reliable, 8/8 LEAF, analytic IK and an inset overlay; primitive figure; no device run |
+| Innovation / idea | 6 | **5.5** | Overlay + automatic checkpoint view in space is a real twist, but 3D exercise viewers with "common mistakes" exist |
+| Presentation | 7 | **6.5** | Strong repo and screenshots; the video isn't recorded yet; live review feedback not yet collected |
+| **Mean** | 7.3 | **6.6** | The earlier estimate was optimistic. Running the user test and fixing heels are the largest available gains. |

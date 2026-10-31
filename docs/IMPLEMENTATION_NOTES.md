@@ -33,7 +33,7 @@ All units are cm. The mannequin faces +Z in its own space. The figure is about 6
 | `RingMesh.ts` | Builds a thin torus at runtime with `MeshBuilder` (independent major and tube radius, CCW winding verified) and swaps it onto the object's existing renderer. Used for the foot outlines, hip ring, turntable ring, and completion ring. |
 | `CueIndicators.ts` | Shows exactly one cue group per phase, with a gentle per-child pulse. |
 | `SquatTutorUI.ts` | UIKit UI: intro card and Start (before start), then the cue card and control panel. BackPlate + FlexLayout + Button, text sized by the Specs type scale at 155 cm. Main → UI uses `set*` methods; UI → main uses events. |
-| `SquatTutorController.ts` | Wires UI events to the player and turntable, and renders player state into the UI and cues. Has an optional capture hook (`startPhase`, `startAngle`), off by default. |
+| `SquatTutorController.ts` | Wires UI events to the player and turntable, and renders player state into the UI and cues. Toggles the pattern comparison (red overlay rig, Bottom Position, view turn, card). Has an optional capture hook (`startPhase`, `startAngle`, `startFault`), off by default. |
 | `Tests/*` | LEAF scenarios A–G (six done criteria plus edge cases), `SquatTestKit` helpers, `LeafIndex` registry. |
 
 ## Data flow

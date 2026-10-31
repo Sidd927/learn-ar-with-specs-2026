@@ -4,6 +4,8 @@ status: approved
 
 # Design brief: Squat Tutor
 
+> **Amended 31 Oct 2026:** the product direction has evolved into **Squat Tutor: Coach's Eye**. See *Amendment 1: Coach's Eye* at the end. The original brief below is kept unchanged as planning history.
+
 <!-- Filled in by plan-lens from the learner's interview. Use the learner's words. Mark any value they didn't choose as (default). -->
 
 ## The one spatial moment
@@ -122,11 +124,63 @@ This part is for you, after CLAD finishes.
 7. **Submit.** Record a video under 3 minutes of your Lens in the preview, public on YouTube. Make your repo public with your Lens Studio project and this `devpost/` folder. Details are on the hackathon site: https://learn-specs.devpost.com/resources
 
 
-## Proposed amendment: Coach's Eye (pending learner approval)
-_Added 31 Oct 2026 on branch `feature/coach-eye` after a strategic review (`docs/STRATEGIC_HACKATHON_ANALYSIS.md`). Not in force until the learner approves it. Approving it is a yes/no decision; alternatively, re-run `plan-lens`._
+## Amendment 1: Coach's Eye
 
-- **Why:** the original moment ("watch a squat from three angles") duplicates phone 3D viewers. The amendment gives the in-space, multi-angle view a job: seeing *what a common mistake looks like* from *the angle a coach would check it from*.
-- **What is added:** a "Compare a common mistake" row on the cue card with **Knees**, **Heels**, and **Chest**. Pressing one pauses at the Bottom Position, shows a translucent red figure with that mistake over the solid white target, and turns the stage to the checkpoint view (front for knees; side for heels and chest). Only the differences are visible. Pressing it again, or any playback control, returns to the demonstration.
-- **Unchanged:** subject (bodyweight squat), five phases, controls, placement, demonstration-only stance, disclaimer, no tracking or assessment.
-- **Added done criterion 7:** [LEAF] each mistake button shows the mistake figure at the Bottom Position, turns to its checkpoint view (0° or 90°), shows its title, and the mistake differs from the target in the intended way (knees closer to the midline, heels higher, head further forward). Pressing it again or pressing Play hides the figure. (`h-mistake-compare`)
-- **Risk:** showing mistakes could be read as assessment. Mitigated by "common mistake" wording, red/white legend, and the unchanged disclaimer.
+### Status and traceability
+- **31 Oct 2026, morning.** After the build above was finished and verified (branch `main`, `d1d0473`), a strategic review (`docs/STRATEGIC_HACKATHON_ANALYSIS.md`) found that the original moment duplicates phone 3D exercise viewers. The agent proposed this amendment and prototyped it on branch `feature/coach-eye`.
+- **31 Oct 2026, product direction approved by the learner.** In their words: "I have reviewed the strategic reassessment and approve Coach's Eye as the direction for our Learn AR with SPECS project. We are evolving Squat Tutor into Coach's Eye rather than pursuing a completely unrelated pivot."
+  - The learner also said this is not approval to merge into `main`.
+  - The learner set the standards recorded below: the first-30-second understanding goal, responsible wording, and no unsupported numbers.
+- **Not yet done by the learner:** a read-through sign-off of this amendment's wording. The details below were drafted by the agent from the learner's direction and the audit; the learner hasn't chosen them line by line. **Sign-off is a yes/no:** "Amendment 1 looks good". Alternatively, re-run `plan-lens` to record the change through the interview.
+- The original brief above is kept unchanged as the planning history.
+
+### The one spatial moment (amended)
+The same 1:3 figure on its stage, 1.7 m away. After the five-phase demonstration, the learner presses **Knees**, **Heels** or **Chest**:
+- the figure pauses at the Bottom Position;
+- a translucent red figure showing that common pattern appears over the solid white target;
+- the stage turns to the view where the difference shows: front for knees, side for heels and chest.
+
+The learner sees *what the pattern looks like* next to the target, *from where to look*, without holding anything.
+
+### Why it belongs on glasses (amended)
+The in-space, any-angle view now has a job. Each pattern shows up on one axis, so turning the figure or stepping around it is how you see the difference. A phone can rotate a model, but it doesn't put the two figures in your room at the checkpoint angle while your hands stay free.
+
+### What is added
+- **Cue card row** "COMPARE COMMON PATTERNS" with three toggle buttons: Knees, Heels, Chest.
+- **While comparing, the card shows, top to bottom:**
+  1. the view label ("BEST SEEN FROM THE FRONT", "SEEN FROM THE SIDE OR REAR", "BEST SEEN FROM THE SIDE");
+  2. the pattern name;
+  3. "Red: …" (what differs);
+  4. "White (target): …" (the takeaway);
+  5. the row label "PINCH AGAIN TO RETURN";
+  6. in place of the disclaimer, "Exaggerated for clarity. This Lens does not assess your form."
+- **Copy around it:**
+  - Intro: "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows."
+  - Completion: "Squat complete. Try Knees, Heels or Chest below to compare a common pattern, or Replay."
+- **Exit:** pressing the same button again, or Start, Play, Prev, Next or Replay, returns to the demonstration. Slow and the angle buttons don't exit, so the learner can rotate while comparing.
+- **The red figure:** the same rig and proportions, inset 4% inside the target so only the difference shows. Each pattern changes one thing:
+  - **knees:** knee bend direction turned 18° inward;
+  - **heels:** heel lift with foot pitch;
+  - **chest:** 18° extra torso lean.
+
+  Magnitudes are exaggerated for visibility and audited in `docs/BIOMECHANICAL_VALIDATION.md`.
+
+### Unchanged
+Subject (bodyweight squat), five phases and cues, placement and scale, playback and angle controls, demonstration-only stance, no tracking or assessment.
+
+### Done criterion 7 (added)
+[LEAF] For each of Knees, Heels and Chest, the button:
+- shows the red figure at the Bottom Position, paused;
+- turns the stage to 0° (knees) or 90° (heels, chest);
+- shows the pattern's title and view label, "White (target)", the return hint and the exaggeration note;
+- poses the red figure so it differs from the target in the intended direction: knees closer to the midline, ankle higher, head further forward.
+
+Pressing it again, or Play, hides the red figure and restores the normal label and disclaimer. (`h-mistake-compare`)
+
+[Manual] In each comparison the difference is visible from the start position. **Open:** the heels difference reads weakly in preview captures.
+
+### Risks (added)
+- **Read as assessment.** Showing patterns could be read as judging the viewer. Mitigated by "common pattern" and "compare" wording, the exaggeration note, and the unchanged disclaimer. No numbers or injury claims anywhere.
+- **Depictions are simplified and not coach-reviewed.** Trainer checklists differ on the heel-rise view (side or rear).
+- **Heels comparison legibility.** In preview captures the raised red thigh and shin are more visible than the heel gap.
+- **Unvalidated with users.** Five-person protocol ready (`docs/USER_VALIDATION_PLAN.md`); results not yet collected.
