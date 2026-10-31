@@ -29,8 +29,11 @@
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
     cues: false
+    ghostRig: false
+    ghostRoot: false
     player: false
     startAngle: false
+    startFault: false
     startPhase: false
     turntable: false
     ui: false
@@ -47,8 +50,11 @@
       ui: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
       turntable: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
       cues: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+      ghostRig: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
+      ghostRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       startPhase: !<float> -1.000000
       startAngle: ""
+      startFault: ""
   ScriptTypes:
     -
       {}
@@ -59,7 +65,10 @@
     - '// @input AssignableType_2 ui {"hint":"Cue card and control panel"}'
     - '// @input AssignableType_3 turntable {"hint":"Viewing-angle turntable"}'
     - '// @input AssignableType_4 cues {"hint":"Phase-specific body cues"}'
+    - "// @input AssignableType_5 ghostRig {\"hint\":\"Rig on the translucent 'mistake' figure\"}"
+    - "// @input SceneObject ghostRoot {\"hint\":\"Root of the translucent 'mistake' figure (hidden unless a comparison is shown)\"}"
     - '// @ui {"widget":"group_start", "label":"Capture / test hook"}'
     - '// @input float startPhase = -1 {"hint":"-1 = normal launch (intro + Start). 0–4 = open paused on that phase. 5 = autoplay to completion. For screenshots only."}'
     - '// @input string startAngle {"hint":"Optional starting view for screenshots: front, angled, or side. Empty = default (angled)."}'
+    - '// @input string startFault {"hint":"Optional mistake comparison to open with, for screenshots: knees, heels, or chest. Empty = none."}'
     - '// @ui {"widget":"group_end"}'

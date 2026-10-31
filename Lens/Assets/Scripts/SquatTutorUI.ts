@@ -6,7 +6,7 @@ import {FlexLayout} from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex
 import {
   FlexAlign, FlexAlignSelf, FlexDirection, FlexJustify
 } from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex/FlexTypes"
-import {COMPLETE_MESSAGE, DISCLAIMER, PHASE_COUNT, VIEW_ANGLES} from "./SquatPhases"
+import {COMPLETE_MESSAGE, DISCLAIMER, PHASE_COUNT, SQUAT_FAULTS, SquatFault, VIEW_ANGLES} from "./SquatPhases"
 
 // ── Typography: the single source of truth for text size + weight ────────────
 // `Component.Text.size` is the em-square height (em cm = size / 43.886), calibrated
@@ -114,6 +114,7 @@ export class SquatTutorUI extends BaseScriptComponent {
   private _onSlow = new Event<void>()
   private _onReplay = new Event<void>()
   private _onAngle = new Event<ViewAngle>()
+  private _onFault = new Event<string>()
   get onStart(): PublicApi<void> { return this._onStart.publicApi() }
   get onPrevious(): PublicApi<void> { return this._onPrevious.publicApi() }
   get onPlayPause(): PublicApi<void> { return this._onPlayPause.publicApi() }
@@ -121,6 +122,8 @@ export class SquatTutorUI extends BaseScriptComponent {
   get onSlow(): PublicApi<void> { return this._onSlow.publicApi() }
   get onReplay(): PublicApi<void> { return this._onReplay.publicApi() }
   get onAngle(): PublicApi<ViewAngle> { return this._onAngle.publicApi() }
+  /** Fires with a fault id when a "Common mistakes" button is pressed. */
+  get onFault(): PublicApi<string> { return this._onFault.publicApi() }
 
   // ---- Built elements ----
   private introCard!: SceneObject
@@ -172,6 +175,15 @@ export class SquatTutorUI extends BaseScriptComponent {
     for (let i = 0; i < this.dots.length; i++) {
       this.dots[i].mainMaterial = i <= index ? DOT_ON_MAT : DOT_OFF_MAT
     }
+  }
+
+  /** Show a mistake comparison on the cue card (or null to clear the toggle highlights). */
+  showFault(fault: SquatFault | null): void {
+    for (const f of SQUAT_FAULTS) this.setOn("Fault_" + f.id, fault !== null && f.id === fault.id)
+    if (!fault) return
+    this.phaseLabel.text = fault.view === "front" ? "MISTAKE · FRONT VIEW" : "MISTAKE · SIDE VIEW"
+    this.titleText.text = fault.title
+    this.cueText.text = `Red: ${fault.mistake}\nWhite: ${fault.target}`
   }
 
   setComplete(): void {
@@ -254,8 +266,14 @@ export class SquatTutorUI extends BaseScriptComponent {
     const {root, column} = this.panel(parent, "CueCard", this.cardWidth, 0.6, 1.6)
     this.phaseLabel = this.textRow(column, "PhaseLabel", `PHASE 1 OF ${PHASE_COUNT}`, "Caption", 2.0, this.accentColor)
     this.titleText = this.textRow(column, "PhaseTitle", "Starting Stance", "Headline2", 3.0, this.textColor)
-    this.cueText = this.textRow(column, "PhaseCue", "", "Body", 4.4, this.textColor, true)
+    this.cueText = this.textRow(column, "PhaseCue", "", "Body", 5.8, this.textColor, true)
     this.buildDots(column)
+    this.textRow(column, "MistakesLabel", "COMPARE A COMMON MISTAKE", "Caption", 1.8, this.subtleColor)
+    const faults = this.row(column, 3.6)
+    const third = (this.cardWidth - 3.2 - 2 * 0.7) / 3
+    for (const f of SQUAT_FAULTS) {
+      this.addButton(faults, "Fault_" + f.id, f.button, third, 3.4, "PrimaryNeutral", () => this._onFault.invoke(f.id), true)
+    }
     this.textRow(column, "Disclaimer", DISCLAIMER, "Caption", 3.4, this.subtleColor, true)
     return root
   }

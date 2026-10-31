@@ -61,10 +61,12 @@ export class MannequinRig extends BaseScriptComponent {
   ankleR: SceneObject
 
   @input
-  @hint("Knee arrow cues, repositioned to follow the knees")
+  @allowUndefined
+  @hint("Knee arrow cues, repositioned to follow the knees (optional)")
   kneeArrowL: SceneObject
 
   @input
+  @allowUndefined
   kneeArrowR: SceneObject
 
   @ui.group_start("Proportions (cm)")
@@ -91,6 +93,10 @@ export class MannequinRig extends BaseScriptComponent {
   @input
   @hint("Toe-out angle per foot (degrees); knees bend along this direction")
   toeOutDeg: number = 12
+
+  @input
+  @hint("Ankle-to-ball distance used to pitch the foot when the heel lifts (cm)")
+  heelToBall: number = 5.5
   @ui.group_end
 
   private currentPose: SquatPose | null = null
@@ -156,9 +162,15 @@ export class MannequinRig extends BaseScriptComponent {
     return new vec3(Math.sin(t), 0, Math.cos(t))
   }
 
+  /** Direction the knee bends toward: along the toes, or toward the midline for a knees-in fault. */
+  private kneeDirection(side: number, pose: SquatPose): vec3 {
+    const t = (this.toeOutDeg - (pose.kneeInDeg ?? 0)) * DEG * side
+    return new vec3(Math.sin(t), 0, Math.cos(t))
+  }
+
   private solveLeg(side: number, pose: SquatPose): LegSolution {
     const hip = new vec3(side * this.hipOffset.x, pose.pelvisY + this.hipOffset.y, pose.pelvisZ + this.hipOffset.z)
-    const ankle = new vec3(side * this.ankleHalfWidth, this.ankleHeight, 0)
+    const ankle = new vec3(side * this.ankleHalfWidth, this.ankleHeight + (pose.heelLiftCm ?? 0), 0)
     const reach = this.thighLength + this.shinLength
     const toAnkle = ankle.sub(hip)
     const d = Math.min(Math.max(toAnkle.length, 0.001), reach * 0.999)
@@ -166,7 +178,7 @@ export class MannequinRig extends BaseScriptComponent {
     const a = (this.thighLength * this.thighLength - this.shinLength * this.shinLength + d * d) / (2 * d)
     const h = Math.sqrt(Math.max(this.thighLength * this.thighLength - a * a, 0))
     // Bend direction: forward along the toes, made perpendicular to the hip–ankle line.
-    const hint = this.toeDirection(side)
+    const hint = this.kneeDirection(side, pose)
     let bend = hint.sub(u.uniformScale(hint.dot(u)))
     bend = bend.length > 1e-4 ? bend.normalize() : vec3.forward()
     const knee = hip.add(u.uniformScale(a)).add(bend.uniformScale(h))
@@ -182,7 +194,10 @@ export class MannequinRig extends BaseScriptComponent {
     // Pelvis is unrotated in Mannequin space, so hip local rotation == mannequin-space rotation.
     const thighRot = quat.rotationFromTo(down, s.knee.sub(s.hip).normalize())
     const shinRot = quat.rotationFromTo(down, s.ankle.sub(s.knee).normalize())
+    // A lifted heel pitches the foot about the ball so the toes stay on the stand.
+    const heelPitch = Math.atan2(pose.heelLiftCm ?? 0, this.heelToBall)
     const footRot = quat.angleAxis(this.toeOutDeg * DEG * side, vec3.up())
+      .multiply(quat.angleAxis(heelPitch, vec3.right()))
     hip.getTransform().setLocalRotation(thighRot)
     knee.getTransform().setLocalRotation(thighRot.invert().multiply(shinRot))
     ankle.getTransform().setLocalRotation(shinRot.invert().multiply(footRot))
@@ -190,7 +205,8 @@ export class MannequinRig extends BaseScriptComponent {
     if (arrow) {
       const dir = this.toeDirection(side)
       arrow.getTransform().setLocalPosition(s.knee.add(dir.uniformScale(6.2)).add(new vec3(0, 0.6, 0)))
-      arrow.getTransform().setLocalRotation(footRot.multiply(quat.angleAxis(90 * DEG, vec3.right())))
+      const yaw = quat.angleAxis(this.toeOutDeg * DEG * side, vec3.up())
+      arrow.getTransform().setLocalRotation(yaw.multiply(quat.angleAxis(90 * DEG, vec3.right())))
     }
   }
 }

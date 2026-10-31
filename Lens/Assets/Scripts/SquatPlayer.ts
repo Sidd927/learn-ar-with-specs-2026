@@ -132,6 +132,15 @@ export class SquatPlayer extends BaseScriptComponent {
     this.stepTo_(this.phase - 1)
   }
 
+  /** Step (eased, paused) to a specific phase. Used by the mistake comparison. */
+  goTo(phaseIndex: number): void {
+    if (!this.started) {
+      this.started = true
+    }
+    if (this.playing) this.pause()
+    this.stepTo_(phaseIndex)
+  }
+
   setSlow(slow: boolean): void {
     if (this.slow === slow) return
     this.slow = slow

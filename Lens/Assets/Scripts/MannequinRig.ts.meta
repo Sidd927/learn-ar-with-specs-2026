@@ -32,6 +32,7 @@
     ankleHeight: false
     ankleL: false
     ankleR: false
+    heelToBall: false
     hipL: false
     hipOffset: false
     hipR: false
@@ -75,6 +76,7 @@
       ankleHalfWidth: 6.500000
       hipOffset: !<Vec3> {x: 4.500000, y: -1.500000, z: 0.000000}
       toeOutDeg: !<float> 12.000000
+      heelToBall: 5.500000
   ScriptTypes:
     -
       {}
@@ -92,7 +94,7 @@
     - // @input SceneObject kneeR
     - '// @input SceneObject ankleL {"hint":"Ankle joints (children of the knees)"}'
     - // @input SceneObject ankleR
-    - '// @input SceneObject kneeArrowL {"hint":"Knee arrow cues, repositioned to follow the knees"}'
+    - '// @input SceneObject kneeArrowL {"hint":"Knee arrow cues, repositioned to follow the knees (optional)"}'
     - // @input SceneObject kneeArrowR
     - '// @ui {"widget":"group_start", "label":"Proportions (cm)"}'
     - '// @input float thighLength = 15.5 {"hint":"Hip joint to knee joint"}'
@@ -101,4 +103,5 @@
     - '// @input float ankleHalfWidth = 6.5 {"hint":"Half the distance between the ankles"}'
     - '// @input vec3 hipOffset = {4.5,-1.5,0} {"hint":"Hip joint offset from the pelvis (x is per side)"}'
     - '// @input float toeOutDeg = 12 {"hint":"Toe-out angle per foot (degrees); knees bend along this direction"}'
+    - '// @input float heelToBall = 5.5 {"hint":"Ankle-to-ball distance used to pitch the foot when the heel lifts (cm)"}'
     - '// @ui {"widget":"group_end"}'
