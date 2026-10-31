@@ -117,7 +117,7 @@ export const SQUAT_FAULTS: SquatFault[] = [
     view: "side",
     mistake: "chest tips far forward.",
     target: "chest up, torso controlled.",
-    delta: {extraLeanDeg: 18, armReachDeltaDeg: -30}
+    delta: {extraLeanDeg: 18}
   }
 ]
 
