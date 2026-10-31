@@ -1,10 +1,15 @@
 ---
-status: approved
+status: draft
+original_brief_status: approved (Squat Tutor, 30 Oct 2026, commit bc5faf6)
+amendment_1_status: draft, awaiting learner sign-off
 ---
 
 # Design brief: Squat Tutor
 
-> **Amended 31 Oct 2026:** the product direction has evolved into **Squat Tutor: Coach's Eye**. See *Amendment 1: Coach's Eye* at the end. The original brief below is kept unchanged as planning history.
+> **How to read this file.**
+> - **Current product specification:** *Amendment 1: Coach's Eye*, at the end. Status: **draft**, awaiting learner sign-off.
+> - **Planning history:** everything from "The one spatial moment" to "After the build" is the **original Squat Tutor brief**, marked approved on 30 Oct 2026 (commit `bc5faf6`). Its words are kept. Where it no longer matches what was built, a visible **[Correction 31 Oct 2026]** note follows the original text.
+> - **Front matter:** `status` was changed from `approved` to `draft` on 31 Oct 2026, because the file now contains an unapproved amendment. The original brief's approval is recorded in `original_brief_status`.
 
 <!-- Filled in by plan-lens from the learner's interview. Use the learner's words. Mark any value they didn't choose as (default). -->
 
@@ -41,7 +46,9 @@ A scale mannequin, about 60 cm tall, stands on a stand about 1.7 m in front of y
 - Replay: restarts from Starting Stance and plays the full demonstration.
 - Slow: a toggle between 1x and 0.5x speed.
 - Angle buttons: Front, 45°, Side. Each turns the turntable so the mannequin faces 0°, 35°, or 90° relative to the user's start position (default angles), without moving the stand. Walking around the stand in the preview also works. The buttons are the reliable fallback.
+  **[Correction 31 Oct 2026]** The middle button is labelled **35°** in the build, matching the 35° angle; "45°" was a labelling error in this brief.
 - Targets are big (at least about 6 cm (default)) and highlight when aimed at. Eight buttons on the panel, in three rows: Previous, Play/Pause, Next / Slow, Replay / Front, 45°, Side. The selected angle and Slow show an active state, and Previous/Next dim at the ends.
+  **[Correction 31 Oct 2026]** The built buttons are **3.4 cm tall** (about 5.1–8.1 cm wide); only Start is larger (16.8 × 5.0 cm). That is below the "about 6 cm" default above. The middle angle button reads "35°". Amendment 1 adds three more buttons on the cue card at the same 3.4 cm height.
 - Voice: none.
 
 ## When things show
@@ -56,7 +63,9 @@ A scale mannequin, about 60 cm tall, stands on a stand about 1.7 m in front of y
   (Cue wording shortened by the learner at build time.)
 - Joint indicators (default choices): thin amber foot outlines at Starting Stance, knee arrows pointing along the toes during Controlled Descent and Rising Up, a thin hip-marker ring with a backward arrow at Bottom Position, and a thin mint completion ring around the stage at Standing Finish. They hide when the phase ends.
 - Completion state: after Standing Finish, the cue card changes to "Demo complete — replay, step through, or follow along" (default wording), and Replay highlights.
+  **[Correction 31 Oct 2026]** On `main`, the card shows the label "COMPLETE", the title "Nice work" and that sentence, but **Replay is not highlighted** (never built). Amendment 1 changes the completion title and text.
 - Small footer text on the cue card at all times: "Demonstration only — this Lens does not assess your form." (default wording)
+  **[Correction 31 Oct 2026]** Under Amendment 1, the footer is replaced by "Exaggerated for clarity. This Lens does not assess your form." while a comparison is open.
 - If something needs attention out of view: none. Everything sits in front of the user.
 
 ## Done criteria
@@ -74,6 +83,7 @@ Each one can be checked in Lens Studio's preview. **[LEAF]** parts can be automa
    [LEAF] During playback, Pause leaves the knee joint's rotation unchanged (within 0.5°) across two readings 500 ms apart, and Play makes it change again. Replay shows "Phase 1 of 5" within 0.5 s. With Slow on, the full demonstration takes 1.8–2.2 times as long as at 1x.
 5. **Angle controls.**
    [LEAF] Pressing Front, 45°, and Side sets the turntable to 0°, 35°, and 90° (± 2°), and the mannequin's root position moves by less than 1 cm.
+   **[Correction 31 Oct 2026]** The button tested is labelled "35°" (`Angled`).
    [Manual] The Side view clearly shows hip and knee travel.
 6. **Phase-specific cues.**
    [LEAF] The knee arrows are enabled only in Controlled Descent and Rising Up, the hip marker only in Bottom Position, the foot outlines only in Starting Stance, and the completion ring only in Standing Finish.
@@ -102,6 +112,7 @@ Each one can be checked in Lens Studio's preview. **[LEAF]** parts can be automa
 - The display is additive: black renders as transparent. Don't rely on black or very dark content to be seen; keep text light and readable from where the user stands.
 - Get the basic flow working first, then add detail.
 - Write LEAF scenarios for each [LEAF] part of the done criteria, run them in preview, and report which pass. List the [Manual] parts separately for the learner to check. Make the state testable without changing the design: give the mannequin root, turntable, knee joint, cue card text, joint indicators, and each button clear, stable scene names. Add one IK-interactor scenario on the control panel to check that it's in reach.
+  **[Correction 31 Oct 2026]** **Not built.** No reach scenario exists; the LEAF tests pinch buttons directly through SIK.
 - Don't record, identify, or follow people.
 
 ## After the build: judge it
@@ -124,63 +135,146 @@ This part is for you, after CLAD finishes.
 7. **Submit.** Record a video under 3 minutes of your Lens in the preview, public on YouTube. Make your repo public with your Lens Studio project and this `devpost/` folder. Details are on the hackathon site: https://learn-specs.devpost.com/resources
 
 
-## Amendment 1: Coach's Eye
+## Amendment 1: Coach's Eye (current product specification)
+
+**Status: draft, awaiting learner sign-off.** This section describes what is built on branch `feature/coach-eye` (code as of commit `1d1bd5a`). The agent proposed the design decisions in it. The learner approved the overall direction, but has not yet chosen or signed off these details. The learner's own decisions are being recorded through a `plan-lens` interview (see *Planning interview record* below), and this specification will be revised to match those answers before sign-off.
 
 ### Status and traceability
-- **31 Oct 2026, morning.** After the build above was finished and verified (branch `main`, `d1d0473`), a strategic review (`docs/STRATEGIC_HACKATHON_ANALYSIS.md`) found that the original moment duplicates phone 3D exercise viewers. The agent proposed this amendment and prototyped it on branch `feature/coach-eye`.
-- **31 Oct 2026, product direction approved by the learner.** In their words: "I have reviewed the strategic reassessment and approve Coach's Eye as the direction for our Learn AR with SPECS project. We are evolving Squat Tutor into Coach's Eye rather than pursuing a completely unrelated pivot."
-  - The learner also said this is not approval to merge into `main`.
-  - The learner set the standards recorded below: the first-30-second understanding goal, responsible wording, and no unsupported numbers.
-- **Not yet done by the learner:** a read-through sign-off of this amendment's wording. The details below were drafted by the agent from the learner's direction and the audit; the learner hasn't chosen them line by line. **Sign-off is a yes/no:** "Amendment 1 looks good". Alternatively, re-run `plan-lens` to record the change through the interview.
-- The original brief above is kept unchanged as the planning history.
+- **30 Oct 2026.** Original Squat Tutor brief (above) marked approved (commit `bc5faf6`) and built. Verified build on `main`: `d1d0473`.
+- **31 Oct 2026, morning.** The agent's strategic review (`docs/STRATEGIC_HACKATHON_ANALYSIS.md`) assessed that the original moment overlaps with existing phone 3D exercise viewers. The agent proposed this amendment and prototyped it on branch `feature/coach-eye`.
+- **31 Oct 2026.** The learner approved the product direction. In their words: "I have reviewed the strategic reassessment and approve Coach's Eye as the direction for our Learn AR with SPECS project. We are evolving Squat Tutor into Coach's Eye rather than pursuing a completely unrelated pivot."
+  - The learner said this was not approval to merge into `main`.
+  - The learner set the standards this work must meet: understandable in the first 20–30 seconds, responsible wording, no unsupported numbers.
+- **31 Oct 2026, pre-merge review.**
+  - The learner reviewed the first wording of this amendment and **did not sign it off**.
+  - They asked for the corrections listed in the *Change log* below, and for the change to be recorded through the `plan-lens` interview.
+- **Now:** draft. Sign-off is a yes/no by the learner, after the interview answers have been folded in.
+
+### Planning interview record (plan-lens, Coach's Eye)
+_In progress. The learner's answers will be recorded here in their own words, one per question. Until then, nothing in this section is a learner decision._
 
 ### The one spatial moment (amended)
-The same 1:3 figure on its stage, 1.7 m away. After the five-phase demonstration, the learner presses **Knees**, **Heels** or **Chest**:
+The same 1:3-scale figure (about 60 cm tall) on its stage, 1.7 m away. After the five-phase demonstration, the learner presses **Knees**, **Heels** or **Chest**. Then:
 - the figure pauses at the Bottom Position;
-- a translucent red figure showing that common pattern appears over the solid white target;
-- the stage turns to the view where the difference shows: front for knees, side for heels and chest.
+- a translucent red figure appears over the solid white figure;
+- the stage turns automatically to the view chosen for that pattern:
 
-The learner sees *what the pattern looks like* next to the target, *from where to look*, without holding anything.
+| Pattern | View the Lens turns to | Other useful inspection view | Card label |
+|---|---|---|---|
+| Knees | Front (0°) | — | "BEST SEEN FROM THE FRONT" |
+| Chest | Side (90°) | — | "BEST SEEN FROM THE SIDE" |
+| Heels | Side (90°) | Rear. Some trainer checklists look at heel rise from behind. The Lens does **not** turn to a rear view; a learner can walk behind the stage to look. | "SEEN FROM THE SIDE OR REAR" |
+
+No single view is presented as the only correct one.
+
+- **White figure:** the visual target, or reference, that this demonstration uses. It is not a universal ideal squat.
+- **Red figure:** an exaggerated, illustrative version of a common movement pattern.
+- The Lens never looks at or assesses the learner.
 
 ### Why it belongs on glasses (amended)
-The in-space, any-angle view now has a job. Each pattern shows up on one axis, so turning the figure or stepping around it is how you see the difference. A phone can rotate a model, but it doesn't put the two figures in your room at the checkpoint angle while your hands stay free.
+- Uses: draws in the world, leaves your body free.
 
-### What is added
-- **Cue card row** "COMPARE COMMON PATTERNS" with three toggle buttons: Knees, Heels, Chest.
-- **While comparing, the card shows, top to bottom:**
-  1. the view label ("BEST SEEN FROM THE FRONT", "SEEN FROM THE SIDE OR REAR", "BEST SEEN FROM THE SIDE");
-  2. the pattern name;
-  3. "Red: …" (what differs);
-  4. "White (target): …" (the takeaway);
-  5. the row label "PINCH AGAIN TO RETURN";
-  6. in place of the disclaimer, "Exaggerated for clarity. This Lens does not assess your form."
-- **Copy around it:**
-  - Intro: "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows."
-  - Completion: "Squat complete. Try Knees, Heels or Chest below to compare a common pattern, or Replay."
-- **Exit:** pressing the same button again, or Start, Play, Prev, Next or Replay, returns to the demonstration. Slow and the angle buttons don't exit, so the learner can rotate while comparing.
-- **The red figure:** the same rig and proportions, inset 4% inside the target so only the difference shows. Each pattern changes one thing:
-  - **knees:** knee bend direction turned 18° inward;
-  - **heels:** heel lift with foot pitch;
-  - **chest:** 18° extra torso lean.
+Phone AR can also place 3D figures in a room. What a head-worn display changes is how the learner inspects the comparison:
+- **Head-worn spatial viewing.** The two figures stay on the stage while the learner looks at them from where they stand. Seeing more means moving your head or stepping, not steering a screen.
+- **Hands-free inspection.** There is no device to hold up, so the learner's hands stay free, for example to try the movement beside the figure.
+- **Looking around the comparison.** The learner can step to the side of, or behind, the stage and keep looking, without holding a phone in the line of sight.
+- **Learner, figure and view.** The Lens turns the stage so the chosen view faces the learner's position. From there, the learner's own position sets the angle they see it from.
 
-  Magnitudes are exaggerated for visibility and audited in `docs/BIOMECHANICAL_VALIDATION.md`.
+Whether this helps people learn better than a phone app or a video **has not been tested.**
 
-### Unchanged
-Subject (bodyweight squat), five phases and cues, placement and scale, playback and angle controls, demonstration-only stance, no tracking or assessment.
+### What the learner sees and does
 
-### Done criterion 7 (added)
-[LEAF] For each of Knees, Heels and Chest, the button:
-- shows the red figure at the Bottom Position, paused;
-- turns the stage to 0° (knees) or 90° (heels, chest);
-- shows the pattern's title and view label, "White (target)", the return hint and the exaggeration note;
-- poses the red figure so it differs from the target in the intended direction: knees closer to the midline, ankle higher, head further forward.
+**Before Start (intro card).**
+- Label "BODYWEIGHT SQUAT", title "Squat Tutor".
+- Body: "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows."
+- Disclaimer: "Demonstration only — this Lens does not assess your form."
+- On the right: "Pinch Start to watch the full squat" and **Start**.
 
-Pressing it again, or Play, hides the red figure and restores the normal label and disclaimer. (`h-mistake-compare`)
+**During the demonstration (cue card).**
+- Phase label, title and cue, as in the original brief.
+- Five progress dots.
+- A row labelled "COMPARE COMMON PATTERNS" with three toggle buttons: **Knees**, **Heels**, **Chest**.
+- The disclaimer.
 
-[Manual] In each comparison the difference is visible from the start position. **Open:** the heels difference reads weakly in preview captures.
+**While a comparison is open.** The card shows, top to bottom:
+1. the view label (see the table above);
+2. the pattern title: "Knees caving in", "Heels lifting" or "Chest dropping";
+3. "Red: …" (what the red figure shows);
+4. "White (target): …" (what the white reference shows);
+5. the progress dots;
+6. the row label "PINCH AGAIN TO RETURN", with only the active toggle highlighted;
+7. "Exaggerated for clarity. This Lens does not assess your form.", in place of the disclaimer.
 
-### Risks (added)
-- **Read as assessment.** Showing patterns could be read as judging the viewer. Mitigated by "common pattern" and "compare" wording, the exaggeration note, and the unchanged disclaimer. No numbers or injury claims anywhere.
-- **Depictions are simplified and not coach-reviewed.** Trainer checklists differ on the heel-rise view (side or rear).
-- **Heels comparison legibility.** In preview captures the raised red thigh and shin are more visible than the heel gap.
-- **Unvalidated with users.** Five-person protocol ready (`docs/USER_VALIDATION_PLAN.md`); results not yet collected.
+**Completion card** (separate parts):
+- Label: "COMPLETE".
+- Title: "Squat complete".
+- Body: "Try Knees, Heels or Chest below to compare a common pattern, or Replay."
+
+**Leaving a comparison:**
+- **Closes it:** pressing the same pattern button again, Play, Prev, Next or Replay. Start can't be pressed during a comparison, because the comparison row only appears after Start.
+- **Keeps it open:** Slow and the angle buttons, so the learner can turn the stage while comparing.
+- **Switching:** pressing a different pattern button switches straight to that pattern.
+
+### The red figure
+It uses the same rig and proportions as the white figure, under the same turntable. Its meshes are inset 4%, so where the two figures overlap the red one stays hidden. Each pattern is posed by **one primary parameter** applied to the Bottom Position. The card names that primary difference, but other joints can also move as a consequence:
+- **Knees:** the plane in which the knees bend is turned 18° inward. Hips and feet are unchanged.
+- **Heels:** the heel is raised and the foot pitched. The hips stay where they are, so the legs re-solve: the red thigh and shin also move visibly, and in preview captures they stand out more than the heel gap itself.
+- **Chest:** the torso leans 18° further forward. The head, shoulders and arms move with the torso; the arm angle relative to the room is unchanged.
+
+The magnitudes are deliberately exaggerated so the difference is visible from 1.7 m. `docs/BIOMECHANICAL_VALIDATION.md` holds the agent's **internal model-geometry validation**: coordinate and landmark consistency between the two figures, and the size of each illustrative pose difference in model units. It is not an expert biomechanical assessment. Its values don't establish biomechanical correctness or a universal ideal squat, and they don't appear in public-facing claims.
+
+### Unchanged from the original brief
+- Subject: the bodyweight squat.
+- The five phases, their cues and the one-at-a-time body highlights.
+- Placement, scale and stage.
+- Playback, stepping, Slow and angle controls; the angle button is labelled "35°".
+- Demonstration only: no tracking, counting or assessment of the user.
+
+### Done criteria
+Criteria 1–6 of the original brief still apply, read with the corrections noted above. Criterion 7 is added.
+
+7. **Pattern comparison.**
+   [LEAF] `h-mistake-compare` checks, for **each** of Knees, Heels and Chest, that the button:
+   - shows the red figure;
+   - pauses at the Bottom Position;
+   - turns the stage to that pattern's view (0° or 90°, ± 2°). Each case starts from a **different** angle: knees from 35°, heels from 35°, chest from Front;
+   - shows exactly that pattern's view label, title and `Red: … / White (target): …` lines;
+   - shows "PINCH AGAIN TO RETURN" and the exaggeration note;
+   - highlights only that toggle;
+   - poses the red figure so it differs from the white one in the intended direction: knees closer to the midline, ankle higher, head further forward.
+
+   It also checks that Slow and the angle buttons keep the comparison open. Each of the five exits (same button, Play, Prev, Next, Replay) must:
+   - hide the red figure and restore the row label, disclaimer and phase label;
+   - turn all toggles off;
+   - leave the player in the expected state: still at the Bottom Position and paused (same button), playing (Play), one phase back (Prev), one phase forward (Next), or playing from phase 1 (Replay).
+
+   [Manual] In each comparison, the named difference is visible from the start position. **Open:** the heels difference reads weakly in preview captures.
+
+### Out of scope (amended)
+- Everything in the original "Out of scope".
+- A rear-view button, or any automatic switch between several views for one pattern.
+- Any claim that a pattern is wrong for everyone, causes injury, or reveals weakness or limited mobility.
+- Any diagnosis, clinical use, or numeric biomechanical claim.
+
+### Risks and open questions (added)
+- **Read as assessment.** Showing patterns could be read as judging the viewer. Mitigations:
+  - "Common pattern" and "compare" wording, never "wrong" or "bad form";
+  - the exaggeration note;
+  - the disclaimer.
+- **Depictions are simplified and not coach-reviewed.** Trainer checklists differ on where heel rise is checked (side or rear).
+- **Heels legibility.** The raised red thigh and shin are more visible than the heel gap.
+- **Button size.** All pattern and control buttons are 3.4 cm tall at about 155 cm, below the original brief's "about 6 cm" default. They are untested for comfort with real hand tracking.
+- **No user validation.** A protocol and an observation sheet are ready (`docs/USER_VALIDATION_PLAN.md`, `docs/USER_TEST_OBSERVATION_SHEET.md`). Results: NOT CONDUCTED.
+- **Preview only.** Comfort, hand tracking, and whether 55% red reads clearly on an additive display are untested on SPECS hardware.
+
+### Change log for Amendment 1
+**31 Oct 2026, after the learner's pre-merge review:**
+- **"Why it belongs on glasses"** rewritten. It no longer claims a phone can't place figures in a room. It now rests on head-worn, hands-free inspection and makes no claim about learning gains.
+- **Heels view made explicit:** the Lens turns to the side; rear is another possible inspection view; the Lens does not switch to both.
+- **"Each pattern changes one thing"** replaced by "one primary parameter", noting that other joints can move.
+- **"Audited"** replaced by "internal model-geometry validation", explicitly not an expert biomechanical assessment.
+- **Done criterion 7** rewritten to match the extended test H, which now covers every pattern and every exit and was run and passed on 31 Oct 2026.
+- **"Strategic review found"** changed to "assessed".
+- **Front matter** status set to `draft`; the original brief's approval is kept in `original_brief_status`.
+- **Completion card** title and body separated.
+- **Visible correction notes** added to the original brief: "35°" label, button sizes, Replay not highlighted, footer swap during comparisons, reach test not built.
