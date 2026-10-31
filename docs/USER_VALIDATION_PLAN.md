@@ -3,6 +3,8 @@
 ## Status: NOT CONDUCTED
 No participant has used the Lens yet, and no results are reported anywhere in this repository. Until sessions happen, every claim about understanding or learning is a **hypothesis**. When sessions are run, record them in the results table at the bottom, including negative findings.
 
+> **To run a session, use the one-page [`USER_TEST_OBSERVATION_SHEET.md`](USER_TEST_OBSERVATION_SHEET.md).** It has the exact script, fallback prompts, per-participant sheet and summary table. This file holds the background and rationale.
+
 ## What we want to find out
 | ID | Question | Why it matters |
 |---|---|---|
