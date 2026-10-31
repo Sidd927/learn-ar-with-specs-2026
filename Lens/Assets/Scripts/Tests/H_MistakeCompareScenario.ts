@@ -1,14 +1,20 @@
 import {Scenario} from "Leaf.lspkg/Scenarios/scenario/Scenario"
 import {expect} from "Leaf.lspkg/Utils/common/Expect"
 import {sleep} from "Leaf.lspkg/Utils/common/Utils"
-import {COMPARE_ACTIVE_LABEL, COMPARE_LABEL, COMPARE_NOTE, DISCLAIMER} from "../SquatPhases"
+import {
+  COMPARE_ACTIVE_LABEL, COMPARE_LABEL, COMPARE_NOTE, DISCLAIMER, FAULT_PHASE_INDEX,
+  SQUAT_FAULTS, SQUAT_PHASES, SquatFault, VIEW_ANGLES
+} from "../SquatPhases"
 import {SquatTutorController} from "../SquatTutorController"
 import {SquatTestKit} from "./SquatTestKit"
 
 /**
- * Coach's Eye: each common-mistake button shows the translucent mistake figure over the
- * target at the Bottom Position, turns the stage to the checkpoint view, and explains it;
- * pressing it again (or any playback control) returns to the normal demonstration.
+ * Coach's Eye (done criterion 7). For each of Knees, Heels and Chest: the red pattern figure
+ * appears at the Bottom Position, paused; the stage turns to that pattern's view from a
+ * different starting angle; the card shows the view label, title, red and target lines,
+ * return hint and exaggeration note; only that toggle is on; and the red figure differs from
+ * the white one in the intended direction. Slow and the angle buttons keep the comparison open.
+ * Every reachable exit (same button, Play, Prev, Next, Replay) closes it and restores the card.
  */
 @component
 export class H_MistakeCompareScenario extends Scenario {
@@ -20,61 +26,126 @@ export class H_MistakeCompareScenario extends Scenario {
     const world = (name: string) => SquatTestKit.mustFind(name).getTransform().getWorldPosition()
     const turntableInv = () => SquatTestKit.mustFind("Turntable").getTransform().getInvertedWorldTransform()
     const local = (name: string) => turntableInv().multiplyPoint(world(name))
+    const fault = (id: string): SquatFault => SQUAT_FAULTS.find((f) => f.id === id) as SquatFault
+    const yawNear = (deg: number) => Math.abs(kit.turntableYawDeg() - deg) < 2
 
-    expect(ghost.enabled, "mistake figure hidden at launch").toBe(false)
+    const expectOpen = (f: SquatFault) => {
+      const p = `${f.id}: `
+      expect(ghost.enabled, p + "red figure shown").toBe(true)
+      expect(controller.activeFaultId, p + "active comparison").toBe(f.id)
+      expect(kit.player.phaseIndex, p + "at the Bottom Position").toBe(FAULT_PHASE_INDEX)
+      expect(kit.player.isPlaying, p + "paused").toBe(false)
+      expect(yawNear(VIEW_ANGLES[f.view]), p + `turned to ${f.view} view`).toBe(true)
+      expect(kit.phaseLabel(), p + "view label").toBe(f.viewLabel)
+      expect(kit.phaseTitle(), p + "title").toBe(f.title)
+      expect(kit.cueText(), p + "red and target lines").toBe(`Red: ${f.mistake}\nWhite (target): ${f.target}`)
+      expect(kit.text("MistakesLabel"), p + "return hint").toBe(COMPARE_ACTIVE_LABEL)
+      expect(kit.text("Disclaimer"), p + "exaggeration note").toBe(COMPARE_NOTE)
+      for (const g of SQUAT_FAULTS) {
+        expect(kit.ui.getButton("Fault_" + g.id).isOn, p + `toggle ${g.id}`).toBe(g.id === f.id)
+      }
+    }
+
+    const expectClosed = (via: string) => {
+      const p = `exit by ${via}: `
+      expect(ghost.enabled, p + "red figure hidden").toBe(false)
+      expect(controller.activeFaultId, p + "no active comparison").toBe("")
+      expect(kit.text("MistakesLabel"), p + "row label restored").toBe(COMPARE_LABEL)
+      expect(kit.text("Disclaimer"), p + "disclaimer restored").toBe(DISCLAIMER)
+      expect(kit.phaseLabel().startsWith("PHASE "), p + "phase label restored").toBe(true)
+      for (const g of SQUAT_FAULTS) {
+        expect(kit.ui.getButton("Fault_" + g.id).isOn, p + `toggle ${g.id} off`).toBe(false)
+      }
+    }
+
+    expect(ghost.enabled, "red figure hidden at launch").toBe(false)
     await kit.tap("Start")
     await sleep(500)
 
-    // Knees caving in: front view, mistake knees closer to the midline than the target's.
+    // Knees: from the default 35° view to the front.
     await kit.tap("Fault_knees")
     await sleep(900)
-    expect(ghost.enabled, "mistake figure shown").toBe(true)
-    expect(kit.player.phaseIndex, "moved to Bottom Position").toBe(2)
-    expect(kit.player.isPlaying, "paused for comparison").toBe(false)
-    expect(Math.abs(kit.turntableYawDeg()) < 2, "turned to front view").toBe(true)
-    expect(kit.phaseTitle(), "title").toBe("Knees caving in")
-    expect(kit.phaseLabel(), "view label").toBe("BEST SEEN FROM THE FRONT")
-    expect(kit.cueText().includes("White (target)"), "target named").toBe(true)
-    expect(kit.text("MistakesLabel"), "return hint").toBe(COMPARE_ACTIVE_LABEL)
-    expect(kit.text("Disclaimer"), "exaggeration note").toBe(COMPARE_NOTE)
+    expectOpen(fault("knees"))
     const targetKneeX = Math.abs(local("KneeL").x)
-    const mistakeKneeX = Math.abs(local("GhostKneeL").x)
-    kit.log(`knees: target |x| ${targetKneeX.toFixed(1)} cm, mistake |x| ${mistakeKneeX.toFixed(1)} cm`)
-    expect(mistakeKneeX < targetKneeX - 2, "mistake knees drift inward").toBe(true)
+    const redKneeX = Math.abs(local("GhostKneeL").x)
+    kit.log(`knees: target |x| ${targetKneeX.toFixed(1)} cm, mistake |x| ${redKneeX.toFixed(1)} cm`)
+    expect(redKneeX < targetKneeX - 2, "knees: red knees closer to the midline").toBe(true)
 
-    // Heels lifting: side view, mistake ankle higher than the target's.
+    // Slow and the angle buttons don't close the comparison.
+    await kit.tap("Slow")
+    await sleep(300)
+    expect(kit.player.isSlow, "Slow on while comparing").toBe(true)
+    expect(controller.activeFaultId, "Slow keeps the comparison").toBe("knees")
+    await kit.tap("Slow")
+    await sleep(300)
+    expect(kit.player.isSlow, "Slow off again").toBe(false)
+    await kit.tap("Angled")
+    await sleep(900)
+    expect(yawNear(VIEW_ANGLES.angled), "35° button turns the stage while comparing").toBe(true)
+    expect(controller.activeFaultId, "angle button keeps the comparison").toBe("knees")
+    expect(ghost.enabled, "red figure still shown after angle change").toBe(true)
+
+    // Heels: from 35° to the side.
     await kit.tap("Fault_heels")
     await sleep(900)
-    expect(Math.abs(kit.turntableYawDeg() - 90) < 2, "turned to side view").toBe(true)
-    expect(kit.phaseTitle(), "title").toBe("Heels lifting")
-    expect(kit.phaseLabel(), "view label").toBe("SEEN FROM THE SIDE OR REAR")
+    expectOpen(fault("heels"))
     const lift = local("GhostAnkleL").y - local("AnkleL").y
     kit.log(`heels: mistake ankle ${lift.toFixed(1)} cm higher`)
-    expect(lift > 3, "mistake heels lifted").toBe(true)
+    expect(lift > 3, "heels: red ankle higher").toBe(true)
 
-    // Chest dropping: side view, mistake head further forward than the target's.
+    // Chest: from the front to the side.
+    await kit.tap("Front")
+    await sleep(900)
+    expect(yawNear(VIEW_ANGLES.front), "Front button turns the stage while comparing").toBe(true)
     await kit.tap("Fault_chest")
     await sleep(900)
-    expect(kit.phaseTitle(), "title").toBe("Chest dropping")
-    expect(kit.phaseLabel(), "view label").toBe("BEST SEEN FROM THE SIDE")
+    expectOpen(fault("chest"))
     const forward = local("GhostHead").z - local("Head").z
     kit.log(`chest: mistake head ${forward.toFixed(1)} cm further forward`)
-    expect(forward > 3, "mistake chest tips forward").toBe(true)
-    expect(controller.activeFaultId, "active fault").toBe("chest")
+    expect(forward > 3, "chest: red head further forward").toBe(true)
 
-    // Same button again clears; a playback control also clears.
+    // Exit 1: the same button again stays paused on the Bottom Position.
     await kit.tap("Fault_chest")
     await sleep(300)
-    expect(ghost.enabled, "cleared by toggling").toBe(false)
-    expect(kit.phaseTitle(), "back to the phase").toBe("Bottom Position")
-    expect(kit.text("MistakesLabel"), "label restored").toBe(COMPARE_LABEL)
-    expect(kit.text("Disclaimer"), "disclaimer restored").toBe(DISCLAIMER)
+    expectClosed("same button")
+    expect(kit.phaseTitle(), "same button: back to the phase").toBe(SQUAT_PHASES[FAULT_PHASE_INDEX].title)
+    expect(kit.player.isPlaying, "same button: still paused").toBe(false)
+
+    // Exit 2: Play.
     await kit.tap("Fault_knees")
-    await sleep(300)
+    await sleep(900)
     await kit.tap("PlayPause")
     await sleep(300)
-    expect(ghost.enabled, "cleared by Play").toBe(false)
-    expect(kit.player.isPlaying, "playing again").toBe(true)
-    kit.log("mistake comparison ok")
+    expectClosed("Play")
+    expect(kit.player.isPlaying, "Play: playing again").toBe(true)
+
+    // Exit 3: Prev steps back one phase from the Bottom Position.
+    await kit.tap("Fault_knees")
+    await sleep(900)
+    await kit.tap("Previous")
+    await sleep(900)
+    expectClosed("Prev")
+    expect(kit.player.phaseIndex, "Prev: one phase back").toBe(FAULT_PHASE_INDEX - 1)
+    expect(kit.phaseTitle(), "Prev: phase title").toBe(SQUAT_PHASES[FAULT_PHASE_INDEX - 1].title)
+
+    // Exit 4: Next steps forward one phase from the Bottom Position.
+    await kit.tap("Fault_knees")
+    await sleep(900)
+    await kit.tap("Next")
+    await sleep(900)
+    expectClosed("Next")
+    expect(kit.player.phaseIndex, "Next: one phase forward").toBe(FAULT_PHASE_INDEX + 1)
+    expect(kit.phaseTitle(), "Next: phase title").toBe(SQUAT_PHASES[FAULT_PHASE_INDEX + 1].title)
+
+    // Exit 5: Replay restarts from phase 1 and plays.
+    await kit.tap("Fault_knees")
+    await sleep(900)
+    await kit.tap("Replay")
+    await sleep(300)
+    expectClosed("Replay")
+    expect(kit.player.isPlaying, "Replay: playing").toBe(true)
+    expect(kit.player.phaseIndex, "Replay: phase 1").toBe(0)
+
+    kit.log("mistake comparison ok (3 patterns, 5 exits, Slow and angle keep it open)")
   }
 }
