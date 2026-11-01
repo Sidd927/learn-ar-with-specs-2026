@@ -1,6 +1,6 @@
 # Implementation notes
 
-Current build: Coach's Eye on `feature/coach-eye`, which developed from the original Squat Tutor. Internal names such as `SquatTutor` and `SquatTutorUI` keep the original project name.
+Current build: Coach's Eye on `feature/coach-eye` (`83e71bc`, 1 Nov 2026), which developed from the original Squat Tutor. Internal names such as `SquatTutor` and `SquatTutorUI` keep the original project name.
 
 ## Scene structure (`Lens/Assets/Scene.scene`)
 
@@ -36,8 +36,8 @@ All units are cm. The mannequin faces +Z in its own space. The figure is about 6
 | `Turntable.ts` | Eased 0.6 s yaw to 0° / 35° / 90°. Rotates only the turntable, so the joint animation is untouched. |
 | `RingMesh.ts` | Builds a thin torus at runtime with `MeshBuilder` (independent major and tube radius, CCW winding verified) and swaps it onto the object's existing renderer. Used for the foot outlines, hip ring, turntable ring, and completion ring. |
 | `CueIndicators.ts` | Shows exactly one cue group per phase, with a gentle per-child pulse. |
-| `SquatTutorUI.ts` | UIKit UI: intro card and Start (before start), then the cue card and control panel. BackPlate + FlexLayout + Button, text sized by the Specs type scale at 155 cm. The cue card has a "COMPARE COMMON PATTERNS" row (Knees / Heels / Chest) and a comparison card mode. Button sizes and spacing are audited in `UI_LAYOUT_AUDIT.md`. Main → UI uses `set*` methods; UI → main uses events. |
-| `SquatTutorController.ts` | Wires UI events to the player and turntable, and renders player state into the UI and cues. Toggles the pattern comparison (red overlay rig, Bottom Position, view turn, card). Has an optional capture hook (`startPhase`, `startAngle`, `startFault`), off by default. |
+| `SquatTutorUI.ts` | UIKit UI: intro card and Start (before start), then the cue card and control panel. BackPlate + FlexLayout + Button, text sized by the Specs type scale for a 155 cm reference (`PANEL_DISTANCE`; the panels now sit at 150 cm, so text is about 3% larger in angle). Left panels at `panelHeight`, right panels at `rightPanelHeight`. Buttons use `BUTTON_H` 5.8 cm and `BUTTON_GAP` 2.9 cm, with a `ROW_SPACER` between the first two control rows; sizes and spacing are audited in `UI_LAYOUT_AUDIT.md`. The cue card has a "COMPARE COMMON PATTERNS" row (Knees / Heels / Chest) and a comparison card mode. Main → UI uses `set*` methods; UI → main uses events. |
+| `SquatTutorController.ts` | Wires UI events to the player and turntable, and renders player state into the UI and cues. Toggles the pattern comparison (red overlay rig, Bottom Position, view turn, card, body cue). During Heels it swaps the red thigh, knee and shin meshes to a faint clone of the red material (alpha 0.16) and restores them on exit (`heelsLegsFaded` for tests). Has an optional capture hook (`startPhase`, `startAngle`, `startFault`), off by default. |
 | `Tests/*` | LEAF scenarios A–H (done criteria 1–6, edge cases, and H for the pattern comparison, criterion 7), `SquatTestKit` helpers, `LeafIndex` registry. |
 
 ## Data flow
@@ -63,6 +63,9 @@ flowchart LR
 - **Leaf 4.0.0 targets the renamed `InteractionKit` 4.0.** This project uses `SpectaclesInteractionKit` 2.0.0, so LEAF 2.0.2 is the matching release.
 - **The preview helpers behind `QueryRuntimeSceneTool`, `PreviewInteractTool`, and `CaptureRuntimeViewTool` install `AiPreviewAgentInspect`.** That package needs `UIKit` and `InteractionKit` 4.0 and breaks this project's compile. Don't use those tools here.
 - **Lens Studio 5.24's Agents-Docs plugin deletes `Lens/.agents/` on save.** It's tracked in Git and restored before commits.
+- **Saved scene inputs override TypeScript defaults.** `introTitle` and the layout inputs had to be changed in both places (code defaults and `Scene.scene`). Lens Studio sometimes writes floats without the `!<float>` tag (for example `cardWidth: 26.400000`).
+- **UIKit flex rows shrink buttons that don't fit.** `FlexItem` has `flexShrink` 1 and the layout writes the allocated size back to each button, so each row's widths plus gaps must equal its inner width exactly; the layout formulas are built that way.
+- **SIK's log prints "SIK Version : 0.18.0"** from an internal version file, while Lens Studio's package list reports SpectaclesInteractionKit 2.0.0. The documents use the package-list version.
 
 ## Running
 1. Open `Lens/Lens.esproj` in Lens Studio 5.24.1.

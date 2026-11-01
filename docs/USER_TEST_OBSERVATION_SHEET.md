@@ -3,9 +3,9 @@
 **Status: NOT CONDUCTED.** Fill this in only from real sessions. Full background is in `USER_VALIDATION_PLAN.md`.
 
 ## Before each person (1 minute)
-- [ ] Lens Studio 5.24.1, `Lens/Lens.esproj`, branch `feature/coach-eye`
+- [ ] Lens Studio 5.24.1, `Lens/Lens.esproj`, branch `feature/coach-eye`, build `83e71bc` or later (write the commit here: ______)
 - [ ] Preview: SPECS 27, Interactive. Click **Reset** and don't move the camera.
-- [ ] The intro card and **Start** are showing.
+- [ ] The intro card ("SPATIAL SQUAT COMPARISON / Coach's Eye") and **Start** are showing. Capture hook off (Start Phase −1, Start Angle and Start Fault empty).
 - [ ] Say: *"This is a test of the design, not of you. It isn't fitness advice. I'll take notes but won't record you. You can stop at any time. Is that OK?"*
 
 ## Script: read exactly, in this order
@@ -27,7 +27,7 @@ Don't explain, hint, point, or use the words *mistake, correct, wrong, better, A
 - **Chest:** the red body leans or tips further forward, or the chest is lower.
 - **Heels:** the red heels are off the floor, or up on the toes.
 
-Use **Partly** for an answer about the right body area with the wrong change (for heels, for example "the red legs move").
+Use **Partly** for an answer about the right body area with the wrong change (for heels, for example "the red legs move" or "the red legs are see-through"; the red legs fade during Heels by design).
 
 ---
 
@@ -73,4 +73,4 @@ These are formative prototype decision criteria, not statistical validation or p
 
 **Heels rule, agreed before testing.** If 2 or more people answer Partly or No on **Heels**, bring the results to the learner for a design decision (improve its clarity, or remove it) before recording the video. Don't change Heels before then.
 
-Report raw counts and actual observations, including the unsuccessful ones. Never describe the results as evidence that the product improves learning.
+Report raw counts and actual observations, including the unsuccessful ones. Never describe the results as evidence that the product improves learning. File the sheets and summary in `docs/evidence/user-test/`.

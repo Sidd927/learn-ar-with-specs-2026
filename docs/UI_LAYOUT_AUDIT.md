@@ -1,11 +1,12 @@
 # UI layout audit: button size and spacing (Coach's Eye)
 
-**Status:** documentation only, 1 Nov 2026.
-- **What it is:** a static analysis of the saved scene, the layout code and the committed preview screenshots.
-- **What was not done:** no runtime preview measurement and no physical SPECS validation. The Lens was not changed.
-- **The proposed layout below is not approved, not implemented and not preview-validated.**
+**Status (1 Nov 2026): implemented in build `83e71bc` on `feature/coach-eye`.**
+- **Authorization:** the learner's master build brief asked for "the best practical button layout", balancing targetability, stage visibility, text readability, composition and reliability, verified against the actual colliders and with several options investigated.
+- **Evidence:** geometry derived from the saved scene and layout code (A), checked against the final preview captures in `docs/screenshots/` (B). LEAF a–h passed on this build.
+- **Not done:** no physical SPECS test; real hand-ray pinch comfort and accuracy are untested (C).
+- **History:** sections 3 and 4 keep the pre-build audit (build `2201d21`) and the original proposal for comparison. The pre-build version of this file and its v1 script are at commit `65912d8`.
 
-Everything here can be reproduced from the repository with the script in the appendix (run from the repository root).
+Everything in section 5 can be reproduced from the repository with the script in the appendix (run from the repository root).
 
 ## 1. Snap's guidance: published wording and our interpretation
 
@@ -39,18 +40,20 @@ Everything here can be reproduced from the repository with the script in the app
 
 **Eye:** the camera origin (0, 0, 0), with identity rotation (`Lens/Assets/Scene.scene`, `Camera Object`, line 26). In the SPECS preview the device simulation sets the field of view; the saved camera `Fov: 63.54` (line 50) is not what the preview shows.
 
-**Saved inputs:** the `SquatTutorUI` script inputs at `Scene.scene` lines 3597–3601: `sideOffset 33`, `panelHeight −26`, `panelDistance 155`, `cardWidth 21`, `panelWidth 20`. `SquatTutor` (line 1211) and its child `SquatTutorUI` (line 4631) are at the origin with identity transforms.
+**Saved inputs (build `83e71bc`):** the `SquatTutorUI` script inputs at `Scene.scene` lines 3595–3600: `sideOffset 29`, `panelHeight −22` (left panels), `rightPanelHeight −31` (right panels), `panelDistance 150`, `cardWidth 26.4`, `panelWidth 25.6`. `SquatTutor` and its child `SquatTutorUI` are at the origin with identity transforms. (Pre-build values: `sideOffset 33`, `panelHeight −26` on both sides, `panelDistance 155`, `cardWidth 21`, `panelWidth 20`.)
 
 **Layout code (`Lens/Assets/Scripts/SquatTutorUI.ts`):**
 
 | Lines | What it does |
 |---|---|
-| 222–229 (`slot`) | Each panel slot sits at (side·sideOffset, panelHeight, −panelDistance), turned about Y by atan2(sideOffset, panelDistance)·(−side) to face the start position |
-| 231–250 (`panel`) | Column FlexLayout with padding and a single `rowGap` |
-| 252–330 | The four panels: intro card, Start panel, cue card, control panel |
-| 368–382 (`row`) | Row FlexLayout, SpaceBetween, `columnGap 0.7`, centred vertically |
-| 385–416 (`addButton`) | `btn.size = (width, height, 1)` |
-| 44, 46, 370 | Content offset 0.6 cm plus a 0.02 cm lift on rows |
+| 51–54 | `BUTTON_H 5.8`, `BUTTON_GAP 2.9`, `ROW_SPACER 1.6` |
+| 234–242 (`slot`) | Each panel slot sits at (side·sideOffset, height, −panelDistance), where height is `panelHeight` on the left and `rightPanelHeight` on the right, turned about Y by atan2(sideOffset, panelDistance)·(−side) to face the start position |
+| 244–263 (`panel`) | Column FlexLayout with padding and a single `rowGap` |
+| 265–345 | The four panels: intro card, Start panel, cue card, control panel (no "PLAYBACK" caption; a spacer between the first two rows) |
+| 383–398 (`row`) | Row FlexLayout, SpaceBetween, `columnGap = BUTTON_GAP`, centred vertically |
+| 400–406 (`spacer`) | Empty fixed-height FlexItem |
+| 408–420 (`addButton`) | `btn.size = (width, height, 1)` |
+| 44, 46, `row` | Content offset 0.6 cm plus a 0.02 cm lift on rows |
 
 **UIKit behaviour** (`Lens/Packages/SpectaclesUIKit.lspkg`, a zip; paths inside it start with `Package/Assets/Scripts/`; byte-identical to the extracted copy in the git-ignored `Lens/Cache`):
 
@@ -69,7 +72,7 @@ Everything here can be reproduced from the repository with the script in the app
 - Angular size or gap between points P and Q: θ = arccos(P·Q / (|P||Q|)). Widths are the minimum over the top, middle and bottom lines of the collider; heights the minimum over its left, centre and right lines.
 - Straight-line distance = |P|; Z depth = −P.z.
 
-## 3. Current build (derived from code and scene; not measured at runtime)
+## 3. Pre-build layout (historical, build `2201d21`; derived from code and scene)
 
 | Control | Collider (w × h cm) | Straight-line / Z (cm) | Angular w × h |
 |---|---|---|---|
@@ -79,108 +82,76 @@ Everything here can be reproduced from the repository with the script in the app
 | Knees, Heels, Chest | 5.47 × 3.40 | 161.2–161.3 / 153.1–155.7 | 1.94° × 1.18° |
 | Start | 16.80 × 5.00 | 160.2 / 154.4 | 5.98° × 1.76° |
 
-**Spacing (edge to edge):**
-- Every horizontal gap is 0.70 cm = 0.249–0.252° (centre to centre 2.17–3.28°).
-- Vertical: Previous → Slow 0.90 cm = 0.319°; Slow → Front 3.40 cm = 1.192°.
+- **Spacing (edge to edge):** every horizontal gap 0.70 cm = 0.249–0.252°; vertical Previous → Slow 0.90 cm = 0.319°, Slow → Front 3.40 cm = 1.192°.
+- **Summary:** under our conservative interpretation these controls did **not** meet 2° in height (about 1.2°) or 1° spacing (about 0.25°).
+- **Text fit:** the approved intro sentence wrapped to five lines on the 21 cm card and nearly touched the disclaimer (capture: `docs/evidence/ui-fit/intro-old-21cm-card.jpg`).
 
-**Far-field range:** by Z depth (153–156 cm), every control is inside Snap's stated 60–160 cm range. By straight-line distance, the lower rows are 0.2–1.3 cm beyond 160 cm.
+## 4. Options considered
 
-**Summary:** under our conservative interpretation the current controls **do not** meet 2° in height (about 1.2°; Start 1.76°). The 5.40–5.47 cm buttons are just under 2° wide, and the gaps (about 0.25°) are well below 1°.
+| # | Option | Outcome |
+|---|---|---|
+| 1 | Keep the pre-build layout | Rejected: about 1.2° tall with 0.25° gaps; intro sentence overflowed |
+| 2 | The audit proposal: 5.8 cm buttons, 2.9 cm gaps, card 26.4 cm, panel 25.6 cm, distance 150, side offset 29, **left −25 cm, right −32 cm, "PLAYBACK" caption kept** (control panel 28.5 cm tall) | Implemented first and captured. Targets and text fit were fine, but the control panel (el −16.79° to −6.60°) and card (bottom −14.65°) sat over the stage plate and ring sides, and the bottom row was about 15° below eye level |
+| 3 | **Refinement (chosen):** as option 2, but **"PLAYBACK" caption removed** (the five playback buttons label themselves; "VIEW ANGLE" kept because Front/35°/Side need context), **left −22 cm, right −31 cm** | Implemented in `83e71bc`. Control panel 26.0 cm tall, el −16.01° to −6.70°: its top stays below the side-view red hands; the card's bottom (−13.60°) is just above the ring sides |
+| 4 | Smaller targets, for example 5.2 cm (exactly 2° at 150 cm) | Not chosen: no margin for off-axis foreshortening, which already brings the bottom row to 2.04° with 5.8 cm |
 
-## 4. Agent's proposed layout (not approved, not implemented, not preview-validated)
+Other trade-offs considered for option 3:
+- **Raising the right panel further** (−30 cm, top −6.33°) would leave the red hands about 0.4° clearance; −31 keeps about 0.77°.
+- **Hand clearance vs stage overlap:** the right panel can't go higher without meeting the side-view hands, so it still hides about 0.4° of the turntable ring's right edge. The figures are never covered.
+- **Text size:** unchanged. Text roles still scale from a 155 cm reference, so at 150 cm text is about 3% larger in angle than before.
 
-**Parameters:**
-- `panelDistance` 150; `sideOffset` 29;
-- right panels at −32 cm and left panels at −25 cm (one `panelHeight` input serves both sides today, so this needs a code change);
-- button rows 5.8 cm tall with 5.8 cm buttons; `columnGap` 2.9 cm;
-- a 1.6 cm spacer between the first two control rows (the panel's single `rowGap` stays 0.7 cm), which gives a 3.0 cm gap: 0.7 + 1.6 + 0.7;
-- `panelWidth` 25.6; `cardWidth` 26.4; Start 22.4 × 5.8 cm.
+## 5. Implemented layout (build `83e71bc`)
 
-**A. Derived from code and geometry:**
+**Parameters:** `panelDistance` 150; `sideOffset` 29; `panelHeight` −22 (intro card, cue card); `rightPanelHeight` −31 (Start panel, control panel); `cardWidth` 26.4; `panelWidth` 25.6; buttons 5.8 cm tall; `columnGap` 2.9 cm; a 1.6 cm spacer between the first two control rows (0.7 + 1.6 + 0.7 = 3.0 cm gap); Start 22.4 × 5.8 cm.
+
+**A. Derived from code and saved scene (script, Part A):**
 
 | Control | Collider (w × h cm) | Straight-line / Z (cm) | Angular w × h |
 |---|---|---|---|
-| Previous, Play/Pause, Next | 5.80 × 5.80 | 154.1–154.3 / 147.7–151.0 | 2.14–2.15° × 2.12–2.13° |
-| Slow, Replay | 10.15 × 5.80 | 155.9 / 148.2–150.6 | 3.71° × 2.08° |
-| Front, 35°, Side | 5.80 × 5.80 | 157.9–158.1 / 147.7–151.0 | 2.09° × 2.02–2.03° |
-| Knees, Heels, Chest | 5.80 × 5.80 | 155.4–155.6 / 147.7–151.0 | 2.12–2.13° × 2.09° |
-| Start | 22.40 × 5.80 | 155.8 / 149.4 | 8.19° × 2.08° |
+| Previous, Play/Pause, Next | 5.80 × 5.80 | 153.8–154.0 / 147.7–151.0 | 2.15° × 2.13–2.14° |
+| Slow, Replay | 10.15 × 5.80 | 155.4 / 148.2–150.6 | 3.72° × 2.09° |
+| Front, 35°, Side | 5.80 × 5.80 | 157.3–157.5 / 147.7–151.0 | 2.10° × 2.04° |
+| Knees, Heels, Chest | 5.80 × 5.80 | 154.8–155.1 / 147.7–151.0 | 2.13–2.14° × 2.10–2.11° |
+| Start | 22.40 × 5.80 | 155.6 / 149.4 | 8.20° × 2.08° |
 
-- **Spacing:** horizontal gaps 2.90 cm = 1.052–1.077° (centre to centre 3.15–4.80°); vertical gaps 3.00 cm = 1.089° (Previous → Slow) and 3.20 cm = 1.134° (Slow → Front).
-- **Fit:** every row's widths plus gaps equal its inner width exactly (asserted by the script).
-- **Panel extents (corners, at the panel plane):**
+- **Spacing (edge to edge):** horizontal 2.90 cm = 1.055–1.080° (centre to centre 3.17–4.81°); vertical 3.00 cm = 1.095° (Previous → Slow) and 3.20 cm = 1.142° (Slow → Front).
+- **Far-field range:** Z depth 147.7–151.0 cm, inside Snap's 60–160 cm; straight-line 153.8–157.5 cm, also under 160.
+- **Fit:** every row's widths plus gaps equal its inner width exactly (asserted by the script), so UIKit's flex shrink leaves the sizes alone.
+- **Result:** every collider is at least 2.04° in both dimensions and every gap at least 1.055°, meeting our conservative 2°/1° reading. Margins are small on the bottom row (2.04°).
+- **Panel extents (corners, panel plane):**
 
   | Panel | Size | Azimuth | Elevation |
   |---|---|---|---|
-  | Control panel | 25.6 × 28.5 cm | +6.15° to +15.73° | −16.79° to −6.60° |
-  | Cue card | 26.4 × 30.2 cm | −15.88° to −6.00° | −14.65° to −3.69° |
-  | Start panel | 25.6 × 12.2 cm | +6.15° to +15.73° | −13.96° to −9.59° |
-  | Intro card | 26.4 × 21.2 cm | −15.88° to −6.00° | −13.07° to −5.36° |
-- **Stage overlap:** the panels' lower inner corners would hide the sides of:
-  - the turntable ring (radius 19.5 cm, `Scene.scene` line 2933; sides at ±6.54°) by 0.39–0.54°;
-  - the stand top (44 cm wide, line 1228; ±7.37°) by 1.22–1.37°;
-  - the completion ring (radius 23.6 cm, line 998; ±7.90° unpulsed) by 1.75–1.90°.
+  | Control panel | 25.6 × 26.0 cm | +6.15° to +15.73° | −16.01° to −6.70° |
+  | Cue card | 26.4 × 30.2 cm | −15.88° to −6.00° | −13.60° to −2.58° |
+  | Start panel | 25.6 × 12.2 cm | +6.15° to +15.73° | −13.60° to −9.23° |
+  | Intro card | 26.4 × 21.2 cm | −15.88° to −6.00° | −12.00° to −4.25° |
+- **Stage features (side points):** the card's bottom edge is 0.04–0.17° above the side points of the turntable ring (radius 19.5 cm), stand top (22 cm) and completion ring (23.6 cm, unpulsed). The control panel hides those right-hand side points over 0.39°, 1.22° and 1.75° of azimuth.
 
-  Today's panels already touch the completion ring at its pulse peak (captured at ±8.71°).
+**B. Measured in the final preview captures** (`docs/screenshots/`, 1399 × 1590, script Part B). The pinhole model fitted on 31 Oct (fx 2402, fy 2395, centre 699.9, 797.2) is reused, since the preview camera and window size are unchanged. It is re-checked here: predicted panel edges in `10-view-side.jpg` match measured edges within 0.8–1.7 px for three edges; the control panel's right edge differs by 8 px (about 0.2°). The cause was not investigated, so treat right-panel positions as about ±0.2°.
+- **Red Chest pattern hands** (`15`): lowest point **0.77°** above the control panel's top edge. The white figure clears it by 2.04–2.21° (`10`, `14`, `15`).
+- **Hip marker:** clears the card's inner edge by 0.42° in the side view (`10`) and 1.15° in the 35° view (`04`).
+- **Text fit (visual check of captures):** intro label one line; intro sentence four lines with space above the disclaimer (`01`); comparison cards (label, title, two lines, return hint, note) fit (`13`–`15`); completion text two lines (`11`).
+- **Stage:** in every capture the panels cover parts of the stand's plate rim and, on the right, the edge of the ring; the completion ring's pulse passes behind both panels' lower inner corners (`06`, `11`). By visual inspection, no part of the white figure, red figure or body cues is hidden by a panel in `01`–`15`.
 
-**B. Estimated from screenshot calibration** (`docs/screenshots/*.jpg`, 1399 × 1590):
-- **Method:** in `10-view-side.jpg`, the current backplate edges were measured automatically as the strongest 6-pixel brightness steps in empty padding bands. A pinhole model (pixel = centre + focal × tangent) was fitted to those edges against the geometry in section 3.
-- **Fit:** fx 2402, fy 2395 (square pixels), centre (699.9, 797.2), residuals 1.6 px or less (about 0.04°). Features were found by colour thresholds, so treat feature positions as about ±0.2°.
-- **Preview view:** about −16.25° to +16.23° azimuth and −18.32° to +18.41° elevation. The proposed panels' outer edges sit 0.37° (card) and 0.50° (control panel) inside the view edge, and the control panel's bottom about 1.5° above the bottom edge.
-- **Figure clearance (side view):**
-  - the red chest-pattern figure's lowest point over the proposed control panel is **0.68°** above its top edge;
-  - the white figure's is 1.95–2.12°;
-  - no white or red figure pixels fall inside the proposed panels in screenshots 09, 10 and 12–15.
-- **Hip-marker ring (side view):** its left-most point (−5.59°) is **0.42°** outside the proposed card's inner edge.
-- **Caption widths:** measured captions of the same style run 0.69–0.82 cm per character.
-  - **Intro label:** "SPATIAL SQUAT COMPARISON" (24 characters) is therefore about 16.6–19.7 cm wide. It fits the proposed 26.4 cm card; on the current 21 cm card it is **uncertain**.
-- **Proposed intro sentence:** "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." (140 characters). The current intro body is 117 characters in 4 lines with a 1.54 cm line pitch.
-  - On today's card (about 30 characters per line) it would likely wrap to **5 lines, about 7.7 cm**, overflowing the 6.6 cm `IntroBody` row (`SquatTutorUI.ts` line 256).
-  - On the proposed 26.4 cm card it wraps to 4 lines.
-  - This is a character-count estimate for a proportional font.
-
-**C. Not established from the available evidence:**
-- that the runtime layout matches this static model (no runtime measurement was made);
-- that `Component.Canvas` on each slot applies no scaling;
-- how much targeting tolerance SIK's hand ray adds;
-- figure poses and views not in the committed screenshots (for example Chest at 35°, or Descent from the side);
+**C. Not established:**
 - real SPECS optics, eye position and field of view;
-- glyph widths of new copy;
-- whether Snap intends our per-axis and edge-to-edge interpretation.
+- SIK hand-ray targeting tolerance and pinch comfort on the device;
+- whether Snap intends our per-axis and edge-to-edge reading;
+- views not captured (for example Chest at 35°).
 
-## 5. Why the proposal is not approved
+## 6. Validation done and remaining
 
-**Tight margins:**
-- the red arm clears the control panel by only 0.68°;
-- the card's outer edge is 0.37° inside the view edge;
-- the hip-marker ring clears the card by 0.42°.
+Done (1 Nov 2026, Lens Studio 5.24.1 preview, same session):
+1. Implemented and recompiled; no compile errors; no Lens runtime errors in the refresh log.
+2. Captured all 15 screens from the start position (`docs/screenshots/README.md`).
+3. Re-measured edges, clearances and text fit (section 5B).
+4. Ran all 8 LEAF scenarios one at a time: all passed.
 
-**Ring overlaps:** the panels' corners would hide the sides of the turntable ring and stand top, and more of the completion ring.
+Remaining (external gates, not done): fresh-open check of the branch; a SPECS device test of pinch accuracy and comfort on every button row (`docs/DEVICE_VALIDATION.md`); the 3–5 person user test.
 
-**Code changes needed:**
-- per-side panel heights;
-- a spacer row;
-- new column-gap and width formulas;
-- new values for `panelDistance`, `sideOffset`, `cardWidth` and `panelWidth` in both the code and the saved scene.
-
-**Unverified so far:** none of it has been checked in the preview or on a device. The decision is the owner's.
-
-**If approved, the preview-validation plan:**
-1. Implement on the branch and recompile.
-2. Capture from the start position:
-   - the intro and the five phases;
-   - each comparison in its automatic view;
-   - the Side view at the Bottom Position and with Chest open;
-   - the 35° view;
-   - the completion card.
-3. Re-measure edges, clearances, ring overlap and text fit with the method in section 4B.
-4. Re-run all 8 LEAF scenarios one at a time.
-5. Report any shortfall before going further.
-
-Pinch comfort still needs SPECS hardware.
-
-## Appendix: reproduction script
-Save as `ui_layout_audit.py` and run `python3 ui_layout_audit.py` from the repository root. Part B needs `numpy` and `Pillow`.
+## Appendix: reproduction script (v2)
+Save as `ui_layout_audit.py` and run `python3 ui_layout_audit.py` from the repository root. Part B needs `numpy` and `Pillow`. The v1 script (pre-build calibration against the 31 Oct screenshots) is in this file at commit `65912d8`; those screenshots are in `docs/screenshots/archive-2026-10-31/`.
 
 ```python
 """Coach's Eye UI layout audit (read-only). Run from the repository root:  python3 ui_layout_audit.py
@@ -191,18 +162,21 @@ import math, re
 
 # ---------- Part A: geometry from saved scene values + layout code ----------
 scene = open("Lens/Assets/Scene.scene").read()
-def saved(name):  # SquatTutorUI script inputs, Scene.scene lines 3597-3601
-    return float(re.search(rf"\n\s+{name}: !<float> (-?[0-9.]+)", scene).group(1))
+def saved(name):  # SquatTutorUI script inputs in Scene.scene (Lens Studio may omit the !<float> tag)
+    return float(re.search(rf"\n\s+{name}: (?:!<float> )?(-?[0-9.]+)", scene).group(1))
+# Pre-build layout (commit 65912d8, before this build): kept for comparison only.
+OLD = dict(sideOffset=33.0, panelDistance=155.0, cyL=-26.0, cyR=-26.0, cardWidth=21.0, panelWidth=20.0,
+           rowH=3.6, btnH=3.4, colGap=0.7, spacer=0.0, startRowH=5.6, startH=5.0, playbackLabel=True)
+# Implemented layout: saved scene inputs + SquatTutorUI.ts constants (BUTTON_H 5.8, BUTTON_GAP 2.9, ROW_SPACER 1.6;
+# no PLAYBACK caption; separate left/right panel heights).
 CUR = dict(sideOffset=saved("sideOffset"), panelDistance=saved("panelDistance"),
-           cyL=saved("panelHeight"), cyR=saved("panelHeight"),
+           cyL=saved("panelHeight"), cyR=saved("rightPanelHeight"),
            cardWidth=saved("cardWidth"), panelWidth=saved("panelWidth"),
-           rowH=3.6, btnH=3.4, colGap=0.7, spacer=0.0, startRowH=5.6, startH=5.0)   # SquatTutorUI.ts 261-330, 368-382
-PROP = dict(sideOffset=29.0, panelDistance=150.0, cyL=-25.0, cyR=-32.0, cardWidth=26.4, panelWidth=25.6,
-            rowH=5.8, btnH=5.8, colGap=2.9, spacer=1.6, startRowH=5.8, startH=5.8)    # agent proposal (not approved)
-Z_OFF = 0.6 + 0.02   # CONTENT_Z (line 46) + LAYOUT_Z_LIFT on rows (line 44, applied at line 370)
+           rowH=5.8, btnH=5.8, colGap=2.9, spacer=1.6, startRowH=5.8, startH=5.8, playbackLabel=False)
+Z_OFF = 0.6 + 0.02   # CONTENT_Z + LAYOUT_Z_LIFT on rows (SquatTutorUI.ts lines 44-46, row())
 
 def rot_y(p, a): c, s = math.cos(a), math.sin(a); x, y, z = p; return (c*x + s*z, y, -s*x + c*z)
-def world(P, side, cy, lx, ly, lz):   # slot(): position (side*so, cy, -D), yaw = atan2(so, D) * -side (lines 222-229)
+def world(P, side, cy, lx, ly, lz):   # slot(): position (side*so, cy, -D), yaw = atan2(so, D) * -side (SquatTutorUI.ts 234-242)
     so, D = P["sideOffset"], P["panelDistance"]
     q = rot_y((lx, ly, lz), math.atan2(so, D) * -side); return (side*so + q[0], cy + q[1], -D + q[2])
 def ang(p, q):   # angle between two points as seen from the camera origin (0,0,0)
@@ -220,21 +194,21 @@ def row_x(inner, widths, gap):   # flexShrink=1/flexGrow=0 (FlexItem.ts 65/70): 
     return out
 def layout(P):
     ctrl, rects = [], []
-    inner = P["panelWidth"] - 2.4                                  # control panel padding 1.2 (line 309)
-    items = [("PlaybackLabel", 1.8), ("r1", P["rowH"])] + ([("spacer", P["spacer"])] if P["spacer"] else []) \
+    inner = P["panelWidth"] - 2.4                                  # control panel padding 1.2 (buildControlPanel)
+    items = ([("PlaybackLabel", 1.8)] if P["playbackLabel"] else []) + [("r1", P["rowH"])] + ([("spacer", P["spacer"])] if P["spacer"] else []) \
             + [("r2", P["rowH"]), ("ViewLabel", 1.8), ("r3", P["rowH"])]
     H, yc = column(1.2, 0.7, items); rects.append(("ControlPanel", 1, P["cyR"], P["panelWidth"], H))
     G, B = P["colGap"], P["btnH"]; third = (inner - 2*G)/3; half = (inner - G)/2
     for r, names, w in (("r1", ["Previous", "PlayPause", "Next"], third), ("r2", ["Slow", "Replay"], half),
                         ("r3", ["Front", "Angled", "Side"], third)):
         for n, x in zip(names, row_x(inner, [w]*len(names), G)): ctrl.append((n, 1, P["cyR"], x, yc[r], w, B, r))
-    cinner = P["cardWidth"] - 3.2                                   # cue card padding 1.6, rowGap 0.6 (line 270)
+    cinner = P["cardWidth"] - 3.2                                   # cue card padding 1.6, rowGap 0.6 (buildCueCard)
     CH, cy = column(1.6, 0.6, [("PhaseLabel", 2.0), ("PhaseTitle", 3.0), ("PhaseCue", 5.8), ("ProgressDots", 1.6),
                                ("MistakesLabel", 1.8), ("faults", P["rowH"]), ("Disclaimer", 3.4)])
     rects.append(("CueCard", -1, P["cyL"], P["cardWidth"], CH)); ft = (cinner - 2*G)/3
     for n, x in zip(["Fault_knees", "Fault_heels", "Fault_chest"], row_x(cinner, [ft]*3, G)):
         ctrl.append((n, -1, P["cyL"], x, cy["faults"], ft, B, "faults"))
-    SH, sy = column(1.6, 0.8, [("StartHint", 2.4), ("row", P["startRowH"])])   # lines 261-267
+    SH, sy = column(1.6, 0.8, [("StartHint", 2.4), ("row", P["startRowH"])])   # buildStartPanel
     rects.append(("StartPanel", 1, P["cyR"], P["panelWidth"], SH))
     ctrl.append(("Start", 1, P["cyR"], 0.0, sy["row"], P["panelWidth"] - 3.2, P["startH"], "start"))
     IH, _ = column(1.6, 0.8, [("IntroLabel", 2.0), ("IntroTitle", 3.4), ("IntroBody", 6.6), ("IntroDisclaimer", 3.6)])
@@ -273,77 +247,140 @@ def ring_sides():
     return [(n, math.degrees(math.atan2(r, 170)), math.degrees(math.atan2(-42 + dy, math.hypot(r, 170)))) for n, r, dy in RINGS]
 
 if __name__ == "__main__":
-    print("saved inputs:", {k: CUR[k] for k in ("sideOffset", "panelDistance", "cyL", "cardWidth", "panelWidth")})
-    report(CUR, "CURRENT (saved scene + code)")
-    _, rects = report(PROP, "PROPOSED (agent proposal; not approved, not implemented)")
-    print("\nring side points (az, el) vs proposed inner edges:")
-    inner = {n: azel(world(PROP, s, c, (w/2 if s < 0 else -w/2), -h/2, 0.0))[0] for n, s, c, w, h in rects}
+    print("saved inputs:", {k: CUR[k] for k in ("sideOffset", "panelDistance", "cyL", "cyR", "cardWidth", "panelWidth")})
+    report(OLD, "PRE-BUILD (commit 65912d8; for comparison)")
+    _, rects = report(CUR, "IMPLEMENTED (saved scene + code)")
+    print("\nring side points (az, el) vs implemented inner edges:")
+    inner = {n: azel(world(CUR, s, c, (w/2 if s < 0 else -w/2), -h/2, 0.0))[0] for n, s, c, w, h in rects}
+    bottom = {n: min(azel(world(CUR, s, c, lx, -h/2, 0.0))[1] for lx in (-w/2, w/2)) for n, s, c, w, h in rects}
     for n, a, e in ring_sides():
-        print(f"  {n:28s} az +/-{a:.2f}, el {e:+.2f} -> covered by card {abs(-a - inner['CueCard']):.2f} deg, "
-              f"control panel {a - inner['ControlPanel']:.2f} deg")
+        for pn, ov in (("card", abs(-a - inner["CueCard"])), ("control panel", a - inner["ControlPanel"])):
+            key = "CueCard" if pn == "card" else "ControlPanel"
+            if bottom[key] < e: print(f"  {n:28s} az +/-{a:.2f}, el {e:+.2f} -> hidden by the {pn} over {ov:.2f} deg of azimuth")
+            else: print(f"  {n:28s} az +/-{a:.2f}, el {e:+.2f} -> clear of the {pn} (its bottom is {bottom[key] - e:.2f} deg above)")
 
-    # ---------- Part B: screenshot calibration (numpy + Pillow) ----------
+    # ---------- Part B: check against the final screenshots (numpy + Pillow) ----------
     try:
         import numpy as np
         from PIL import Image
     except ImportError:
         raise SystemExit("Part B skipped: install numpy and Pillow")
-    def img(n): return np.asarray(Image.open(f"docs/screenshots/{n}").convert("RGB")).astype(int)
-    g = img("10-view-side.jpg").mean(axis=2)
-    def step(p, off, sign):   # strongest 6-px brightness step (+ rising, - falling)
-        best = max(((sign*(p[i:i+6].mean() - p[i-6:i].mean()), i + off) for i in range(6, len(p) - 6)))
-        return best[1] + 0.5
-    # current panel backplate edges (pixels), measured in empty padding bands
-    px = {"ctrl_L": step(g[1056:1064, 1000:1399].mean(0), 1000, +1), "ctrl_R": step(g[1056:1064, 1000:1399].mean(0), 1000, -1),
-          "card_L": step(g[990:996, 0:520].mean(0), 0, +1), "card_R": step(g[990:996, 0:520].mean(0), 0, -1),
-          "ctrl_T": step(g[950:1450, 1360:1366].mean(1), 950, +1), "ctrl_B": step(g[950:1450, 1360:1366].mean(1), 950, -1),
-          "card_T": step(g[900:1500, 28:34].mean(1), 900, +1), "card_B": step(g[900:1500, 28:34].mean(1), 900, -1)}
-    print("\nmeasured backplate edges (px):", {k: round(v, 1) for k, v in px.items()})
-    uv = lambda p: (p[0] / -p[2], p[1] / -p[2]); P = CUR; Wp = lambda s, lx, ly: world(P, s, -26, lx, ly, 0.0)
-    xs = [(uv(Wp(1, -10, 9.3))[0], px["ctrl_L"]), (uv(Wp(1, 10, 9.3))[0], px["ctrl_R"]),
-          (uv(Wp(-1, -10.5, 13.6))[0], px["card_L"]), (uv(Wp(-1, 10.5, 13.6))[0], px["card_R"])]
-    ys = [(uv(Wp(1, 9.5, 9.8))[1], px["ctrl_T"]), (uv(Wp(1, 9.5, -9.8))[1], px["ctrl_B"]),
-          (uv(Wp(-1, -10, 14))[1], px["card_T"]), (uv(Wp(-1, -10, -14))[1], px["card_B"])]
-    fx, cx = np.linalg.lstsq(np.array([[u, 1] for u, _ in xs]), np.array([p for _, p in xs]), rcond=None)[0]
-    fy, cy = np.linalg.lstsq(np.array([[-v, 1] for v, _ in ys]), np.array([p for _, p in ys]), rcond=None)[0]
-    print(f"pinhole fit: fx {fx:.0f} cx {cx:.1f} fy {fy:.0f} cy {cy:.1f}; residuals x "
-          f"{[round(fx*u+cx-p,1) for u,p in xs]} y {[round(-fy*v+cy-p,1) for v,p in ys]}")
-    to_ang = lambda x, y: (math.degrees(math.atan((x - cx) / fx)), -math.degrees(math.atan((y - cy) / fy)))
+    # Preview pinhole model fitted on 31 Oct from the pre-build set (docs/screenshots/archive-2026-10-31, script v1):
+    # same preview camera and window size, so it is reused here and re-checked by the residuals below.
+    fx, fy, cx, cy = 2402.0, 2395.0, 699.9, 797.2
     to_px = lambda a, e: (cx + fx*math.tan(math.radians(a)), cy - fy*math.tan(math.radians(e)))
-    W_, H_ = 1399, 1590
-    print(f"preview view: az {to_ang(0,0)[0]:+.2f}..{to_ang(W_,0)[0]:+.2f}, el {to_ang(0,H_)[1]:+.2f}..{to_ang(0,0)[1]:+.2f}")
-    # proposed control panel top edge in pixels (inner-top to outer-top corner)
+    to_ang = lambda x, y: (math.degrees(math.atan((x - cx) / fx)), -math.degrees(math.atan((y - cy) / fy)))
+    def img(n): return np.asarray(Image.open(f"docs/screenshots/{n}").convert("RGB")).astype(int)
+    def step(p, off, sign):   # strongest 6-px brightness step (+ rising, - falling)
+        return max(((sign*(p[i:i+6].mean() - p[i-6:i].mean()), i + off) for i in range(6, len(p) - 6)))[1] + 0.5
     r = {n: (s, c, w, h) for n, s, c, w, h in rects}
-    def corner(n, lx_sign, ly_sign):
-        s, c, w, h = r[n]; return to_px(*azel(world(PROP, s, c, lx_sign*w/2, ly_sign*h/2, 0.0)))
-    (x1, y1), (x2, y2) = corner("ControlPanel", -1, 1), corner("ControlPanel", 1, 1)
+    def corner(n, lx, ly):   # lx, ly in -1..1 of the backplate
+        s, c, w, h = r[n]; return to_px(*azel(world(CUR, s, c, lx*w/2, ly*h/2, 0.0)))
+    g = img("10-view-side.jpg").mean(axis=2)
+    # edges measured in empty padding bands of the final side-view shot
+    ctl_y = int(corner("ControlPanel", 0, 1)[1] + 8); card_y = int(corner("CueCard", 0, 1)[1] + 8)
+    meas = {"ControlPanel L": step(g[ctl_y:ctl_y+6, 900:1399].mean(0), 900, +1),
+            "ControlPanel R": step(g[ctl_y:ctl_y+6, 900:1399].mean(0), 900, -1),
+            "CueCard L": step(g[card_y:card_y+6, 0:520].mean(0), 0, +1),
+            "CueCard R": step(g[card_y:card_y+6, 0:520].mean(0), 0, -1)}
+    pred = {"ControlPanel L": corner("ControlPanel", -1, 0.8)[0], "ControlPanel R": corner("ControlPanel", 1, 0.8)[0],
+            "CueCard L": corner("CueCard", -1, 0.8)[0], "CueCard R": corner("CueCard", 1, 0.8)[0]}
+    print("\nbackplate edges in 10-view-side.jpg (px): " + ", ".join(
+        f"{k} measured {meas[k]:.1f} / predicted {pred[k]:.1f}" for k in meas))
     pxdeg = fy * math.pi / 180
-    for shot in ("15-mistake-chest-side.jpg", "10-view-side.jpg"):
+    (x1, y1), (x2, y2) = corner("ControlPanel", -1, 1), corner("ControlPanel", 1, 1)
+    for shot in ("15-mistake-chest-side.jpg", "10-view-side.jpg", "14-mistake-heels-side.jpg"):
         im = img(shot); R, G, Bc = im[..., 0], im[..., 1], im[..., 2]; mx, mn = im.max(2), im.min(2)
         for lbl, m in (("red figure", (R - G > 50) & (R - Bc > 50) & (R > 150)), ("white figure", (mx > 150) & (mx - mn < 35))):
-            m = m.copy(); m[:, :353] = False; m[:, 1055:] = False; m[1100:, :] = False
+            m = m.copy(); m[:, :353] = False; m[:, 1080:] = False; m[int(min(y1, y2)) + 5:, :] = False
             yy, xx = np.nonzero(m); sel = (xx >= x1) & (xx <= x2)
             if sel.any():
                 top = y1 + (xx[sel] - x1) * (y2 - y1) / (x2 - x1); d = ((top - yy[sel]) / pxdeg).min()
-                print(f"{shot}: {lbl} lowest point over proposed control panel = {d:.2f} deg above its top edge")
-    im = img("10-view-side.jpg"); R, G, Bc = im[..., 0], im[..., 1], im[..., 2]
-    yel = (R > 200) & (G > 140) & (Bc < 120); yel[:, :360] = False; yel[:, 700:] = False
-    yy, xx = np.nonzero(yel); i = np.argmin(xx); a, e = to_ang(xx[i], yy[i])
-    s, c, w, h = r["CueCard"]
-    edge = min((abs(azel(world(PROP, s, c, w/2, ly, 0.0))[1] - e), azel(world(PROP, s, c, w/2, ly, 0.0))[0])
-               for ly in np.linspace(-h/2, h/2, 301))[1]
-    print(f"hip-marker ring left-most az {a:+.2f} el {e:+.2f}; proposed card inner edge az {edge:+.2f} -> clearance {a-edge:.2f} deg")
-    im = img("11-completion.jpg"); R, G, Bc = im[..., 0], im[..., 1], im[..., 2]
-    mint = (G > 200) & (R < 190) & (Bc > 140) & (G - R > 40); yy, xx = np.nonzero(mint)
-    print(f"completion ring as captured (pulse phase unknown): az {to_ang(xx.min(),0)[0]:+.2f}..{to_ang(xx.max(),0)[0]:+.2f}")
-    def caption_cm(shot, y0, y1, accent):   # text width on the 21 cm card (current card spans card_L..card_R px)
+                print(f"{shot}: {lbl} lowest point over the control panel = {d:.2f} deg above its top edge")
+    for shot in ("10-view-side.jpg", "04-phase3-bottom-position.jpg"):
         im = img(shot); R, G, Bc = im[..., 0], im[..., 1], im[..., 2]
-        m = ((R > 200) & (G > 140) & (Bc < 150)) if accent else (im.mean(2) > 150)
-        cols = np.where(m[y0:y1, 20:352].any(0))[0]; return (cols.max() - cols.min() + 1) * 21 / (px["card_R"] - px["card_L"])
-    for txt, shot, y0, y1, acc in (("COMPARE COMMON PATTERNS", "02-phase1-starting-stance.jpg", 1238, 1262, False),
-                                   ("BEST SEEN FROM THE FRONT", "13-mistake-knees-front.jpg", 1010, 1035, True),
-                                   ("SEEN FROM THE SIDE OR REAR", "14-mistake-heels-side.jpg", 1010, 1035, True),
-                                   ("BEST SEEN FROM THE SIDE", "15-mistake-chest-side.jpg", 1010, 1035, True),
-                                   ("PINCH AGAIN TO RETURN", "13-mistake-knees-front.jpg", 1238, 1262, False)):
-        w = caption_cm(shot, y0, y1, acc); print(f"caption '{txt}' ({len(txt)} chars): {w:.2f} cm = {w/len(txt):.2f} cm/char")
+        yel = (R > 200) & (G > 140) & (Bc < 120); yel[:, :400] = False; yel[:, 700:] = False; yel[:1050, :] = False; yel[1200:, :] = False
+        yy, xx = np.nonzero(yel); i = np.argmin(xx); a, e = to_ang(xx[i], yy[i])
+        s, c, w, h = r["CueCard"]
+        edge = min((abs(azel(world(CUR, s, c, w/2, ly, 0.0))[1] - e), azel(world(CUR, s, c, w/2, ly, 0.0))[0])
+                   for ly in np.linspace(-h/2, h/2, 301))[1]
+        print(f"{shot}: hip-marker ring left-most az {a:+.2f} el {e:+.2f}; card inner edge az {edge:+.2f} -> clearance {a-edge:.2f} deg")
+```
+
+Output on build `83e71bc`:
+
+```text
+saved inputs: {'sideOffset': 29.0, 'panelDistance': 150.0, 'cyL': -22.0, 'cyR': -31.0, 'cardWidth': 26.4, 'panelWidth': 25.6}
+
+== PRE-BUILD (commit 65912d8; for comparison)
+control          w x h cm        centre x,y,z (cm)   eucl      Z  ang w  ang h
+Previous      5.40 x 3.40 ( 26.90,-21.70,-155.66)  159.5  155.7   1.94   1.21
+PlayPause     5.40 x 3.40 ( 32.87,-21.70,-154.39)  159.3  154.4   1.94   1.21
+Next          5.40 x 3.40 ( 38.84,-21.70,-153.12)  159.5  153.1   1.94   1.21
+Slow          8.45 x 3.40 ( 28.40,-26.00,-155.35)  160.0  155.3   3.02   1.20
+Replay        8.45 x 3.40 ( 37.35,-26.00,-153.44)  160.0  153.4   3.02   1.20
+Front         5.40 x 3.40 ( 26.90,-32.80,-155.66)  161.3  155.7   1.91   1.18
+Angled        5.40 x 3.40 ( 32.87,-32.80,-154.39)  161.2  154.4   1.91   1.18
+Side          5.40 x 3.40 ( 38.84,-32.80,-153.12)  161.3  153.1   1.91   1.18
+Fault_knees   5.47 x 3.40 (-38.90,-32.60,-153.11)  161.3  153.1   1.94   1.18
+Fault_heels   5.47 x 3.40 (-32.87,-32.60,-154.39)  161.2  154.4   1.94   1.18
+Fault_chest   5.47 x 3.40 (-26.84,-32.60,-155.68)  161.3  155.7   1.94   1.18
+Start        16.80 x 5.00 ( 32.87,-27.60,-154.39)  160.2  154.4   5.98   1.76
+  gap Previous|PlayPause: 0.70 cm = 0.252 deg (centre-centre 2.19 deg)
+  gap PlayPause|Next: 0.70 cm = 0.252 deg (centre-centre 2.19 deg)
+  gap Slow|Replay: 0.70 cm = 0.251 deg (centre-centre 3.28 deg)
+  gap Front|Angled: 0.70 cm = 0.249 deg (centre-centre 2.17 deg)
+  gap Angled|Side: 0.70 cm = 0.249 deg (centre-centre 2.17 deg)
+  gap Fault_knees|Fault_heels: 0.70 cm = 0.249 deg (centre-centre 2.19 deg)
+  gap Fault_heels|Fault_chest: 0.70 cm = 0.249 deg (centre-centre 2.19 deg)
+  vertical gap Previous->Slow: 0.90 cm = 0.319 deg
+  vertical gap Slow->Front: 3.40 cm = 1.192 deg
+  ControlPanel  20.0 x  19.6 cm  az  +8.41..+15.63  el -12.71.. -5.83
+  CueCard       21.0 x  28.0 cm  az -15.81.. -8.23  el -14.14.. -4.32
+  StartPanel    20.0 x  12.0 cm  az  +8.41..+15.63  el -11.39.. -7.18
+  IntroCard     21.0 x  21.2 cm  az -15.81.. -8.23  el -12.98.. -5.54
+
+== IMPLEMENTED (saved scene + code)
+control          w x h cm        centre x,y,z (cm)   eucl      Z  ang w  ang h
+Previous      5.80 x 5.80 ( 20.34,-22.10,-151.04)  154.0  151.0   2.15   2.13
+PlayPause     5.80 x 5.80 ( 28.88,-22.10,-149.39)  153.8  149.4   2.15   2.14
+Next          5.80 x 5.80 ( 37.42,-22.10,-147.74)  154.0  147.7   2.15   2.13
+Slow         10.15 x 5.80 ( 22.48,-30.90,-150.63)  155.4  150.6   3.72   2.09
+Replay       10.15 x 5.80 ( 35.29,-30.90,-148.15)  155.4  148.2   3.72   2.09
+Front         5.80 x 5.80 ( 20.34,-39.90,-151.04)  157.5  151.0   2.10   2.04
+Angled        5.80 x 5.80 ( 28.88,-39.90,-149.39)  157.3  149.4   2.10   2.04
+Side          5.80 x 5.80 ( 37.42,-39.90,-147.74)  157.5  147.7   2.10   2.04
+Fault_knees   5.80 x 5.80 (-37.42,-28.60,-147.74)  155.1  147.7   2.13   2.10
+Fault_heels   5.80 x 5.80 (-28.88,-28.60,-149.39)  154.8  149.4   2.14   2.11
+Fault_chest   5.80 x 5.80 (-20.34,-28.60,-151.04)  155.1  151.0   2.13   2.10
+Start        22.40 x 5.80 ( 28.88,-32.60,-149.39)  155.6  149.4   8.20   2.08
+  gap Previous|PlayPause: 2.90 cm = 1.080 deg (centre-centre 3.24 deg)
+  gap PlayPause|Next: 2.90 cm = 1.080 deg (centre-centre 3.24 deg)
+  gap Slow|Replay: 2.90 cm = 1.070 deg (centre-centre 4.81 deg)
+  gap Front|Angled: 2.90 cm = 1.055 deg (centre-centre 3.17 deg)
+  gap Angled|Side: 2.90 cm = 1.055 deg (centre-centre 3.17 deg)
+  gap Fault_knees|Fault_heels: 2.90 cm = 1.072 deg (centre-centre 3.22 deg)
+  gap Fault_heels|Fault_chest: 2.90 cm = 1.072 deg (centre-centre 3.22 deg)
+  vertical gap Previous->Slow: 3.00 cm = 1.095 deg
+  vertical gap Slow->Front: 3.20 cm = 1.142 deg
+  ControlPanel  25.6 x  26.0 cm  az  +6.15..+15.73  el -16.01.. -6.70
+  CueCard       26.4 x  30.2 cm  az -15.88.. -6.00  el -13.60.. -2.58
+  StartPanel    25.6 x  12.2 cm  az  +6.15..+15.73  el -13.60.. -9.23
+  IntroCard     26.4 x  21.2 cm  az -15.88.. -6.00  el -12.00.. -4.25
+
+ring side points (az, el) vs implemented inner edges:
+  turntable ring               az +/-6.54, el -13.73 -> clear of the card (its bottom is 0.13 deg above)
+  turntable ring               az +/-6.54, el -13.73 -> hidden by the control panel over 0.39 deg of azimuth
+  stand top edge               az +/-7.37, el -13.77 -> clear of the card (its bottom is 0.17 deg above)
+  stand top edge               az +/-7.37, el -13.77 -> hidden by the control panel over 1.22 deg of azimuth
+  completion ring (unpulsed)   az +/-7.90, el -13.64 -> clear of the card (its bottom is 0.04 deg above)
+  completion ring (unpulsed)   az +/-7.90, el -13.64 -> hidden by the control panel over 1.75 deg of azimuth
+
+backplate edges in 10-view-side.jpg (px): ControlPanel L measured 960.5 / predicted 958.8, ControlPanel R measured 1368.5 / predicted 1376.5, CueCard L measured 17.5 / predicted 16.6, CueCard R measured 446.5 / predicted 447.3
+15-mistake-chest-side.jpg: red figure lowest point over the control panel = 0.77 deg above its top edge
+15-mistake-chest-side.jpg: white figure lowest point over the control panel = 2.04 deg above its top edge
+10-view-side.jpg: white figure lowest point over the control panel = 2.21 deg above its top edge
+14-mistake-heels-side.jpg: white figure lowest point over the control panel = 2.21 deg above its top edge
+10-view-side.jpg: hip-marker ring left-most az -5.59 el -8.29; card inner edge az -6.00 -> clearance 0.42 deg
+04-phase3-bottom-position.jpg: hip-marker ring left-most az -4.85 el -8.08; card inner edge az -6.00 -> clearance 1.15 deg
 ```

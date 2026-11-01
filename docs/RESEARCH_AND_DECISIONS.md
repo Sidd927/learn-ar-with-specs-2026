@@ -47,7 +47,7 @@ This is a hypothesis. It has not been validated with users, and no user research
 | Viewing | Walk around (WASD) plus Front / 35° / Side buttons on a turntable | Walking around works in the preview but is keyboard-driven. Buttons are reliable and testable. |
 | Cue geometry | Thin torus rings built at runtime with MeshBuilder | The torus primitive's tube is a fixed third of its diameter, so flattened rings read as wide bands. A generated torus keeps the tube thin at any radius. |
 | Distinct mid-poses | Descent: lower, more lean, arms reaching. Rising: higher, more upright, arms lowering | The two mid-poses were within about 1 cm of each other; now each phase reads differently (knee about 80° vs 55°). |
-| Input | SIK pinch on large buttons only | Works with the mouse in Interactive Preview and with LEAF. **[Note 1 Nov 2026]** "Large" was the intent; the built buttons are 3.4 cm (about 1.2°), below our conservative 2°/1° reading of Snap's guidance. See `UI_LAYOUT_AUDIT.md`. |
+| Input | SIK pinch on large buttons only | Works with the mouse in Interactive Preview and with LEAF. **[Note 1 Nov 2026]** "Large" was the intent; the first build's buttons were 3.4 cm (about 1.2°), below our conservative 2°/1° reading of Snap's guidance. Since `83e71bc` they are 5.8 cm with 2.9 cm gaps (about 2.0–2.2°, gaps about 1.06°). See `UI_LAYOUT_AUDIT.md`. |
 | Sensing | None. Never tracks, counts, or assesses the user's body | Out of scope, and the preview can't show it. **[Note 1 Nov 2026]** More precisely: hand input (standard pinch) operates the buttons; there is no camera-based body or pose tracking. |
 
 ## Preview assumptions
@@ -63,6 +63,6 @@ This is a hypothesis. It has not been validated with users, and no user research
 - **Editor version.** The project file is from Lens Studio 5.24.1. A second, older install (5.23.2) wedged when it opened the project. Use 5.24.1.
 
 ## Strategic reassessment (31 Oct 2026; historical summary)
-> **Status at 1 Nov 2026:** the owner approved the Coach's Eye direction, and the learner-led `plan-lens` interview is recorded in Amendment 1, which awaits the owner's sign-off. Not merged. Current wording replaces "mistake", "target" and "checkpoint" with "illustrative pattern", "reference" and "a view chosen to show the difference".
+> **Status at 1 Nov 2026:** the owner approved the Coach's Eye direction (31 Oct) and Amendment 1 as product direction (1 Nov, after the learner-led `plan-lens` interview); build `83e71bc` implements it. Not merged. Current wording replaces "mistake", "target" and "checkpoint" with "illustrative pattern", "reference" and "a view chosen to show the difference".
 
-The full analysis is in `STRATEGIC_HACKATHON_ANALYSIS.md`. Summary: Squat Tutor's rotate-and-step 3D viewer duplicates existing phone apps (Innovation is weak). The recommended evolution, **Coach's Eye**, overlays three common mistakes on the target and turns to the trainer's checkpoint view. It's prototyped on `feature/coach-eye` (8/8 LEAF) and **pending the owner's approval of the brief amendment** before merging.
+The full analysis is in `STRATEGIC_HACKATHON_ANALYSIS.md`. Summary: Squat Tutor's rotate-and-step 3D viewer duplicates existing phone apps (Innovation is weak). The recommended evolution, **Coach's Eye**, overlays three common mistakes on the target and turns to the trainer's checkpoint view. It was prototyped on `feature/coach-eye` (8/8 LEAF). *(Historical summary: the amendment has since been approved as product direction; merging is still the owner's decision.)*

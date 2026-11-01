@@ -2,7 +2,7 @@
 
 *A spatial squat comparison experience for SPECS.*
 
-**See what a common squat pattern looks like next to a reference, from the angle where the difference shows. In your own space, on SPECS.**
+**See a common squat pattern next to a reference figure, from a view chosen to show the difference, in your own space. Built for SPECS.**
 
 Coach's Eye developed from our original Learn AR with SPECS project, **Squat Tutor** (a five-phase squat demonstration, kept on `main` as the verified fallback). Internal code names such as `SquatTutorUI` keep the original name.
 
@@ -39,9 +39,9 @@ Phone AR can also place 3D figures in a room. What glasses change is how you ins
 | | |
 |---|---|
 | ![Intro](docs/screenshots/01-hero-intro.jpg) | ![Bottom position](docs/screenshots/04-phase3-bottom-position.jpg) |
-| **1. Open.** The intro says what you'll do: watch a squat in five phases, then compare three common patterns, each from the angle where it shows. Press **Start**. | **2. Watch.** About 12 s through five phases, each with one short cue and one body highlight (feet, knees, hips, knees, finish ring). |
+| **1. Open.** The intro card (SPATIAL SQUAT COMPARISON / Coach's Eye) says: "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." Press **Start**. | **2. Watch.** About 12 s through five phases, each with one short cue and one body highlight (feet, knees, hips, knees, finish ring). |
 | ![Knees comparison](docs/screenshots/13-mistake-knees-front.jpg) | ![Completion](docs/screenshots/11-completion.jpg) |
-| **3. Compare.** **Knees**, **Heels** or **Chest** pauses at the bottom, shows the red pattern, and turns the stage. The card reads, top to bottom: the view label, the pattern name, a "Red: …" line, a line saying what the white reference figure shows, then "Pinch again to return". | **4. Finish.** The demo stops on "Squat complete. Try Knees, Heels or Chest below to compare a common pattern, or Replay." It doesn't restart on its own. |
+| **3. Compare.** **Knees**, **Heels** or **Chest** pauses at the bottom, shows the red pattern, and turns the stage. The card reads, top to bottom: the view label ("VIEW: FRONT" or "VIEW: SIDE"), the pattern name, a "Red: …" line, a "White (reference): …" line, then "Pinch again to return". | **4. Finish.** The demo stops on "Squat complete. Try Knees, Heels or Chest below to compare a common pattern, or Replay." It doesn't restart on its own. |
 
 **Controls** (UIKit buttons, pinched with a hand or clicked in the preview):
 - **Playback:** Start, Play/Pause, Prev, Next, Slow 0.5x, Replay. Prev and Next dim at the ends.
@@ -61,9 +61,9 @@ Phone AR can also place 3D figures in a room. What glasses change is how you ins
 ## The three patterns
 | Pattern | View the Lens turns to | What you should see | Notes |
 |---|---|---|---|
-| Knees caving in | Front | Red knees closer together than the feet; white knees over the feet | The difference is sideways, so it faces you in the front view |
-| Heels lifting | Side, automatically. You can also walk behind the stage to look from the rear; the Lens doesn't turn there. The card currently says "Seen from the side or rear" | A gap under the red heel; the red foot tilts | The legs also re-solve, so the red thigh and shin move too. Our own captures show this is the least clear comparison |
-| Chest dropping | Side | Red torso and head tipped further forward | More lean isn't always wrong; it depends on body proportions and depth |
+| Knees caving in | Front ("VIEW: FRONT") | Red knees closer together than the feet; white knees over the feet | The difference is sideways, so it faces you in the front view |
+| Heels lifting | Side ("VIEW: SIDE"). You can also walk behind the stage to look from the rear; the Lens doesn't turn there | The red heel raised and the red foot tilted, beside the flat white foot | The legs also re-solve, so the red thighs and shins are faded during Heels to keep attention on the heel. Still the least clear of the three in our own captures; the user test decides whether it stays |
+| Chest dropping | Side ("VIEW: SIDE") | Red torso and head tipped further forward | More lean isn't always wrong; it depends on body proportions and depth |
 
 How each pattern is posed is documented in [`docs/BIOMECHANICAL_VALIDATION.md`](docs/BIOMECHANICAL_VALIDATION.md). That is an internal model-geometry check of our own mannequin, not an expert biomechanical assessment, and its values don't establish a correct or ideal squat.
 
@@ -97,15 +97,16 @@ Details: [`docs/RECOMMENDED_PRODUCT_ARCHITECTURE.md`](docs/RECOMMENDED_PRODUCT_A
 Lens Studio 5.24.1 · SPECS (SPECS 27 preview) · TypeScript · Spectacles Interaction Kit 2.0 · Spectacles UI Kit 2.0 · LEAF 2.0.2 · CLAD · Lens Studio MCP · Claude Code
 
 ## Testing
-Eight LEAF scenarios run in the Lens Studio preview. They pinch the real buttons and read scene state. **All eight pass on the final build** (31 Oct 2026): placement, the full five-phase demo, stepping, pause/slow/replay, viewing angles, one cue per phase, interaction edge cases, and the pattern comparison. The last one checks, for each pattern:
+Eight LEAF scenarios run in the Lens Studio preview. They pinch the real buttons and read scene state. **All eight pass on build `83e71bc`**, each run on its own (1 Nov 2026): placement, the full five-phase demo, stepping, pause/slow/replay, viewing angles, one cue per phase, interaction edge cases, and the pattern comparison. The last one checks, for each pattern:
 - the red figure appears at the bottom position, paused;
 - the stage turns to that pattern's view, starting from a different angle each time;
 - the card shows the exact view label, title, red and reference lines, return hint and exaggeration note, with only that toggle on;
-- the red figure differs from the white in the intended direction.
+- the red figure differs from the white in the intended direction;
+- only that pattern's body cue shows, and the red legs fade only for Heels.
 
 It also checks that Slow and the angle buttons keep a comparison open, and that each of the five exits (same button, Play, Prev, Next, Replay) restores the normal card.
 
-Measured values and manual checks: [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md).
+Passing LEAF shows the preview behaves as specified. It is not a user test or a device test. Measured values and manual checks: [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md).
 
 ## Run it
 1. Install **Lens Studio 5.24.1**.
@@ -129,18 +130,14 @@ tools/                     Scene generators for the mannequin and the overlay fi
 - **Preview only.** Comfort, hand tracking and the legibility of red on an additive display are unverified on SPECS hardware ([device checklist](docs/DEVICE_VALIDATION.md)).
 - **Not user-tested yet.** The learning benefit is a hypothesis.
 - **Not coach-reviewed.** The three depictions are general, simplified, 1:3-scale and deliberately exaggerated. The heels comparison is the least clear.
-- **Small buttons.** Our current controls are approximately 1.2° tall (3.4 cm at about 1.6 m). Snap's guidance specifies a 2° angular size for targetable elements and at least 1° spacing, but doesn't define the size for each axis separately or say how spacing is measured. We therefore use 2° in both dimensions and 1° edge to edge as a conservative design target; the current gaps are about 0.25° edge to edge. Enlarging them is a deferred decision (see the [UI layout audit](docs/UI_LAYOUT_AUDIT.md)), and comfort with real hand tracking is untested.
+- **Button size is checked by geometry, not on a device.** Snap's guidance asks for targetable elements of at least 2° angular size, spaced at least 1° apart, without saying how either applies per axis. We use 2° in both dimensions and 1° edge to edge as a conservative target. Every button is now 5.8 cm tall at about 1.5 m: about 2.04–2.15° tall, 2.10–3.72° wide, with gaps of 1.06–1.08° ([UI layout audit](docs/UI_LAYOUT_AUDIT.md)). Pinch accuracy and comfort with real hand tracking are untested.
 - **No body tracking or assessment.** By design, the Lens uses hand input only to press its buttons. It has no camera-based body or pose tracking, and it never counts, evaluates or assesses the learner's movement. It doesn't diagnose, correct, or claim to prevent injury.
 - **One movement, three patterns.** The bodyweight squat only; the three patterns are illustrative choices for this prototype, not an exhaustive or validated list. Applying the approach to other movements is only a future possibility; nothing beyond the squat is built.
 
 ## Project status
-- **On-screen copy:** the Lens intro still reads "BODYWEIGHT SQUAT / Squat Tutor", and the comparison card says "White (target)".
-  - **Approved in principle, not implemented:** "SPATIAL SQUAT COMPARISON / Coach's Eye" and "White (reference)"; screenshots show the current Lens.
-  - **Proposed, awaiting approval:** a new intro sentence.
-  - **Undecided:** the view labels, and whether to implement the proposed button layout ([UI layout audit](docs/UI_LAYOUT_AUDIT.md)). The current buttons do not meet our conservative 2°/1° target.
-- **Branch `feature/coach-eye`:** Coach's Eye, the candidate for submission. The learner-led `plan-lens` interview is complete (1 Nov 2026), and the revised design-brief amendment awaits the learner's sign-off. Not merged; the merge waits for the owner's approval.
+- **Branch `feature/coach-eye`, build `83e71bc`:** Coach's Eye, the candidate for submission. The learner approved the design-brief amendment as product direction on 1 Nov 2026; the approved copy, view labels, larger buttons and Heels presentation are implemented, LEAF a–h pass, and the screenshots are from this build. Not merged; merging waits for the owner.
 - **Branch `main` (`d1d0473`):** the verified fallback, without comparisons.
-- **Next:** five-person understanding test, live review on 5 Nov, then the demo video.
+- **Not done yet (external gates):** a fresh-open check of the branch, the 3–5 person user test (including the Heels decision rule), SPECS device testing, the 5 Nov live review, the demo video, confirmation of the official rules, and the owner's submission. Checklists: [`docs/SUBMISSION_CHECKLIST.md`](docs/SUBMISSION_CHECKLIST.md) and [`docs/evidence/`](docs/evidence/README.md).
 
 ## Documents
 - **Product and validation:** [Model-geometry validation](docs/BIOMECHANICAL_VALIDATION.md) · [UI layout audit](docs/UI_LAYOUT_AUDIT.md) · [User validation plan](docs/USER_VALIDATION_PLAN.md) · [Live review package](docs/LIVE_REVIEW_PACKAGE.md) · [Strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md) · [Architecture](docs/RECOMMENDED_PRODUCT_ARCHITECTURE.md)

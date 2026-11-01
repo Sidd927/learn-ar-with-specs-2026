@@ -14,11 +14,11 @@ No participant has used the Lens yet, and no results are reported anywhere in th
 | Q4 | What do they remember afterwards? | Whether anything is learnt, even short-term |
 | Q5 | Can they operate it without help? | Design and usability |
 
-Known risk to watch: in preview captures, the **heels** comparison reads mostly as "the red legs move" rather than "the heel lifts" (see `BIOMECHANICAL_VALIDATION.md`).
+Known risk to watch: **Heels** is the weakest comparison. Before `83e71bc` the moving red legs dominated the preview captures; the red legs now fade during Heels so the raised heel stands out, but whether people read it as "the heel lifts" is exactly what this test checks (Heels rule below).
 
 ## Participants and setup
-- **About 5 people** who don't coach or train others professionally. Friends and classmates are fine; record that it's a convenience sample.
-- A laptop running the Lens Studio preview: `Lens/Lens.esproj` on branch `feature/coach-eye`, device SPECS 27, Interactive input, preview **Reset** before each person.
+- **3–5 people** (aim for 5) who don't coach or train others professionally. Friends and classmates are fine; record that it's a convenience sample.
+- A laptop running the Lens Studio preview: `Lens/Lens.esproj` on branch `feature/coach-eye` (build `83e71bc` or later; note the commit on each sheet), device SPECS 27, Interactive input, preview **Reset** before each person.
 - Capture hook off: `SquatTutorController` with Start Phase −1 and Start Angle / Start Fault empty.
 - **Ethics:** verbal consent; notes only, no audio or video of faces; no health questions; anyone can stop at any time. Say: "This is a test of the design, not of you, and it isn't fitness advice."
 
@@ -79,10 +79,13 @@ Suggested change: ____________________________________________
 
 These are formative prototype decision criteria, not statistical validation or proof of learning. If any threshold is missed, bring the results to the learner before recording the video.
 
+**Heels rule (agreed before testing):** if 2 or more participants misinterpret Heels (Partly or No), bring the results to the learner for a design decision (improve its clarity, or remove it and keep two comparisons) before recording the video. Heels isn't changed before then.
+
 Also:
 - Raw counts only (for example "3 of 5 identified the heel difference"). No percentages or significance claims with n ≈ 5.
 - Quote at least one negative finding if there is one.
 - If sessions don't happen before submission, the Devpost text keeps saying "not yet validated with users".
+- File the completed sheets (no names; P1–P5) and the summary in `docs/evidence/user-test/`.
 
 ## Results
 | Participant | Date | Purpose understood | Knees | Heels | Chest | Viewpoint reason | Remembered | Notes |

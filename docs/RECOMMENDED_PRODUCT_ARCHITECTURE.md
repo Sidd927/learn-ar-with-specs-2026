@@ -2,7 +2,7 @@
 
 *A spatial squat comparison experience. It developed from the original Squat Tutor project; internal code names keep the original name.*
 
-Branch: `feature/coach-eye` (product code `2201d21`; extended test H at `1d1bd5a`; 8/8 LEAF pass). Product direction approved by the owner on 31 Oct 2026; design-brief Amendment 1 awaits sign-off; not merged. Fallback: `main` (`d1d0473`). Platform: Lens Studio 5.24.1, SPECS preview, SpectaclesInteractionKit 2.0, SpectaclesUIKit 2.0, LEAF 2.0.2.
+Branch: `feature/coach-eye` (build `83e71bc`, 1 Nov 2026; 8/8 LEAF pass, each run individually). Product direction approved by the owner on 31 Oct 2026; design-brief Amendment 1 approved as product direction on 1 Nov 2026; not merged. Fallback: `main` (`d1d0473`). Platform: Lens Studio 5.24.1, SPECS preview, SpectaclesInteractionKit 2.0, SpectaclesUIKit 2.0, LEAF 2.0.2.
 
 ## Scene hierarchy
 ```
@@ -28,7 +28,7 @@ LeafIndex [LeafIndex]                            8 LEAF scenarios
 | `Turntable.ts` | Eased yaw presets | Implemented (unchanged) |
 | `CueIndicators.ts` | One pulsing body cue at a time | Implemented (unchanged) |
 | `RingMesh.ts` | Thin runtime torus for the ring cues | Implemented (unchanged) |
-| `SquatTutorUI.ts` | UIKit panels; **"Compare common patterns" row**; `showFault()` card mode (view label, title, red and white-reference lines; the on-screen text is currently "White (target)", with the approved "White (reference)" not yet implemented; "Pinch again to return", exaggeration note), restored on exit | Implemented |
+| `SquatTutorUI.ts` | UIKit panels; **"Compare common patterns" row**; `showFault()` card mode (view label "VIEW: FRONT" or "VIEW: SIDE", title, "Red: …" and "White (reference): …" lines, "Pinch again to return", exaggeration note), restored on exit; 5.8 cm buttons with per-side panel heights (`UI_LAYOUT_AUDIT.md`) | Implemented |
 | `SquatTutorController.ts` | Wiring; **fault toggle** (shows the ghost, goes to the Bottom Position, turns to the checkpoint view, highlights the relevant body cue); any playback control exits the comparison | Implemented |
 
 ## Data flow

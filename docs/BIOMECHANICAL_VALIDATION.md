@@ -6,7 +6,7 @@
 >
 > **What it is not:** an expert biomechanical assessment, or a review by a coach or clinician. The values below **do not establish biomechanical correctness, a correct or ideal squat for anyone, or that any pattern is harmful.** The file name is kept for link stability.
 
-Checked on 31 Oct 2026 on branch `feature/coach-eye` (product code as of `2201d21`, unchanged since). Sources checked: the code (`SquatPhases.ts`, `MannequinRig.ts`, `Tests/H_MistakeCompareScenario.ts`), the saved scene, an independent Python recomputation of the leg IK, and the LEAF logs.
+Checked on 31 Oct 2026 on branch `feature/coach-eye` (product code as of `2201d21`). **1 Nov 2026 (`83e71bc`):** the poses and pattern parameters are unchanged (LEAF h measures the same 3.1 / 7.7, 4.0 and 3.8 cm). Only presentation changed: the card copy (neutral view labels, "White (reference)"), the red legs fading during Heels, and no hip marker during Chest. Sources checked: the code (`SquatPhases.ts`, `MannequinRig.ts`, `Tests/H_MistakeCompareScenario.ts`), the saved scene, an independent Python recomputation of the leg IK, and the LEAF logs.
 
 ## What the numbers are, and what they are not
 The three values (knees 3.1 vs 7.7 cm, heels 4.0 cm, head 3.8 cm) are **internal model-geometry checks**. They confirm that the red figure differs from the white figure in the direction the card describes, in model units.
@@ -54,9 +54,9 @@ They are **not** measurements of people, not thresholds for good or bad form, an
 | **Landmark** | `AnkleL` / `GhostAnkleL` pivot height (y). |
 | **Illustrative difference (model cm)** | Pattern ankle +4.0 cm (equal to the input; this confirms the code, nothing more). Side effect: the red knee rises about 4.4 cm and moves about 0.4 cm back, and the shin is about 2° more upright. |
 | **What the learner should observe** | A gap under the red heel; the red foot is tilted. |
-| **View** | **Automatic view: side.** Another potentially useful inspection view is the **rear**: secondary summaries of NASM-style assessments list "heels rise" under the posterior view, and another guide checks it from the side (see Sources). The card says "Seen from the side or rear". The Lens does not turn to the rear; a learner can walk behind the stage. Neither view is presented as the only correct one. |
+| **View** | **Automatic view: side.** Another potentially useful inspection view is the **rear**: secondary summaries of NASM-style assessments list "heels rise" under the posterior view, and another guide checks it from the side (see Sources). The card now says "VIEW: SIDE" (until 1 Nov 2026 it said "Seen from the side or rear"). The Lens does not turn to the rear; a learner can walk behind the stage. Neither view is presented as the only correct one. |
 | **Notes (non-expert)** | 4 cm at 1:3 scale is about 12 cm on a person, close to standing on the toes. This is **strongly exaggerated** and disclosed on the card ("Exaggerated for clarity"). |
-| **Limitations** | **This is the weakest comparison.** Preview captures show the most visible red is the raised thigh and shin, not the heel gap, which is small at this scale. The earlier demo line "the knees shoot forward" was **wrong** (the knee moves 0.4 cm back) and has been removed. Needs user testing and possibly a clearer depiction (see `USER_VALIDATION_PLAN.md`). |
+| **Limitations** | **This is the weakest comparison.** In the 31 Oct preview captures the most visible red was the raised thigh and shin, not the heel gap, which is small at this scale. Since 1 Nov the red thighs, knees and shins fade during Heels (presentation only), so the tilted red foot and raised heel are the clearest red shapes (`docs/screenshots/14-mistake-heels-side.jpg`). The earlier demo line "the knees shoot forward" was **wrong** (the knee moves 0.4 cm back) and has been removed. Needs user testing and possibly a clearer depiction (see `USER_VALIDATION_PLAN.md`). |
 
 ### Pattern 3: Chest dropping
 

@@ -1,9 +1,60 @@
 # Test results
 
-## Extended test H (`1d1bd5a`, 31 Oct 2026, 22:48 IST): 1 run, 1 passed
+## Current build: `feature/coach-eye` at `83e71bc` (1 Nov 2026)
+Lens Studio 5.24.1.26100516 · Preview device SPECS 27 (Interactive) · LEAF 2.0.2 · SpectaclesInteractionKit 2.0.0 · SpectaclesUIKit 2.0.0 (versions as listed by Lens Studio's package list; SIK's own log line prints an internal "0.18.0")
+
+**What changed since `2201d21`/`1d1bd5a`:** approved copy (intro label, title, sentence, "White (reference)", neutral view labels); 5.8 cm buttons with 2.9 cm gaps and per-side panel heights; Heels fades the red legs; Chest no longer shows the hip marker; test H extended for those last two.
+
+**Same session, not a fresh open.** These runs were in the Lens Studio session that made the changes (open since 31 Oct). The fresh quit-and-reopen check on this branch is still to do (`docs/evidence/fresh-open/`).
+
+### Compile and runtime log
+- `RecompileTypeScriptTool`: succeeded (after the last code change and again before the LEAF runs).
+- `RunAndCollectLogsTool` (refresh): Lens started (first activity after 114 ms); prints: SIK version line only; **0 Lens script errors or exceptions**. Warnings were Lens Studio infrastructure: the LEAF plugin's "Skipping plugin state save" and network "Host requires authentication".
+- During the LEAF runs the only `E` lines were Lens Studio analytics ("Failed to send event, error: Host requires authentication"), not Lens code.
+
+### Automated (LEAF): 8 run, 8 passed, 0 failed, 0 skipped
+Each scenario was started separately through the Lens Studio MCP (`run_leaf_scenario`, preview target) and finished with status `succeeded` and a `PASSED` line in the log. Values are from the `[SquatTutorTest]` lines of this run (22:50–22:54 local time).
+
+| ID | Checks | Measured on `83e71bc` | Result |
+|---|---|---|---|
+| a-placement | 150–200 cm away, yaw 35° ± 2°, Start enabled, root still while animating | Root (0, −42, −170), 170.0 cm; yaw 35.0°; root moved 0.000 cm | PASS |
+| b-full-demo | Phases 1→5 with matching title, cue and body cue; 10–15 s; no auto-restart | Phases 1-2-3-4-5; completed in 12.05 s | PASS |
+| c-stepping | One phase per press; knee within 2° of target; ends disabled | Knee 79.6 / 123.3 / 54.8 / 5.5° = targets, both directions | PASS |
+| d-playback | Paused joints frozen; resume; Replay → phase 1; Slow ratio 1.8–2.2 | Paused knee 79.22° → 79.22°; 1x 12.25 s vs 0.5x 24.59 s, ratio 2.01 | PASS |
+| e-angles | 0 / 35 / 90° ± 2°; root moves < 1 cm | 0.0 / 35.0 / 90.0 / 0.0°; root moved 0.000 cm | PASS |
+| f-cues | One cue group per phase | Foot outlines / knee arrows / hip marker / knee arrows / completion ring | PASS |
+| g-edge-cases | Pause mid-transition; label and toggle sync; dimmed ends; Next while playing; Play/Replay after completion | Paused at 2.31 s, frozen; Replay 1.61 s → 0.35 s and phase 1 | PASS |
+| h-mistake-compare | Per pattern: red figure, Bottom Position, paused, automatic view (± 2°) from a different start angle, exact `VIEW: FRONT`/`VIEW: SIDE` label, title, `Red: … / White (reference): …`, return hint, note, single toggle, intended direction, **body cue (knee markers / foot outlines / none for Chest) and leg fade only for Heels**; Slow and angle buttons keep it open; five exits restore the card and clear the fade | Knees red 3.1 vs white 7.7 cm from the midline; heels red ankle +4.0 cm; chest red head +3.8 cm forward; "mistake comparison ok (3 patterns, 5 exits, Slow and angle keep it open)" | PASS |
+
+The h values are internal model-geometry checks of the 1:3 mannequin, not biomechanical measurements. Passing LEAF shows the preview behaves as specified. It is **not** a user test, a device test or an expert review.
+
+### Manual checks (final captures `docs/screenshots/01`–`15`, 1 Nov 2026)
+
+| Check | Result | Evidence |
+|---|---|---|
+| Intro label, title and approved sentence fit the card | Pass: label one line, sentence four lines, space above the disclaimer (on the old 21 cm card it was five lines; `docs/evidence/ui-fit/`) | `01` |
+| Head, feet, cards and controls visible from the start position | Pass | `01`–`06`, `11` |
+| Comparison cards: `VIEW: FRONT`/`VIEW: SIDE`, title, `Red:` / `White (reference):` lines, return hint and note fit | Pass | `13`–`15` |
+| Knees: red knees inside the white knees, knee markers shown | Pass, clear | `13` |
+| Chest: red torso and head further forward; no hip marker | Pass | `15` |
+| Heels: raised red heel beside the flat white foot | **Improved, still the weakest.** Red legs are faint, red feet solid; the tilted red foot and lifted heel are the clearest red shapes, but small at this scale. Decided by the user-test Heels rule, not here. | `14` |
+| Red Chest hands clear of the control panel | Pass, about 0.77° above its top edge (`UI_LAYOUT_AUDIT.md` 5B) | `15` |
+| Buttons readable and laid out as designed | Pass | `07`, `02` |
+| Completion card points to the comparison; Next dimmed | Pass | `11` |
+| Panels vs stage | Minor, cosmetic: panels cover parts of the plate rim and, on the right, the ring edge; the pulsing completion ring passes behind both panels' lower inner corners. No figure or cue is hidden. | `06`, `10`, `11` |
+
+### Not tested
+- **Fresh quit-and-reopen** on this branch (needs the owner to quit Lens Studio; checklist in `docs/evidence/fresh-open/`).
+- **SPECS hardware:** pinch accuracy on the new button rows, comfort, see-through readability (especially the 55% red and the faded Heels legs). See `DEVICE_VALIDATION.md`.
+- **Users:** NOT CONDUCTED (`USER_VALIDATION_PLAN.md`).
+- **Expert review:** none.
+
+## History (earlier builds)
+
+### Extended test H (`1d1bd5a`, 31 Oct 2026, 22:48 IST): 1 run, 1 passed
 Product code is unchanged since `2201d21`; only the test file changed.
 
-> **Terminology note (1 Nov 2026).** The documentation now calls the white figure the "reference" and the product "Coach's Eye". The strings below are quoted exactly as the current Lens shows them and as test H asserts them (for example `White (target)` and "…compare three common patterns with the target…"). The approved replacement copy is not implemented. When it is, test H's expected string and these quotes will change, and all 8 scenarios must be re-run. Test H now checks:
+> **Historical strings.** This block and the ones below quote the Lens as it was before `83e71bc` (for example `White (target)` and "…compare three common patterns with the target…"). That copy has since been replaced; see the current results above. At that time test H checked:
 - **Every pattern (Knees, Heels, Chest):**
   - red figure shown, paused at the Bottom Position;
   - turned to its view (± 2°), starting from a different angle each time: knees from 35°, heels from 35°, chest from Front;
@@ -27,12 +78,12 @@ Product code is unchanged since `2201d21`; only the test file changed.
 
 Scenarios a–g were not re-run after this change: no product code or shared test-kit code changed. Their last run is the `2201d21` table below.
 
-## Final build: `feature/coach-eye` at `2201d21` (31 Oct 2026)
+### Earlier build: `feature/coach-eye` at `2201d21` (31 Oct 2026)
 Lens Studio 5.24.1.26100516 · Preview device SPECS 27 (Interactive) · LEAF 2.0.2 · SpectaclesInteractionKit 2.0.0 · SpectaclesUIKit 2.0.0
 
 Each LEAF scenario pinches the real UIKit buttons through SIK, then reads scene state: UI text, joint transforms, turntable rotation, cue visibility, toggle state, and wall-clock time. Values are copied from the `[SquatTutorTest]` lines of the Lens Studio log for this run. Scenarios ran one at a time, in the order a → h; LEAF resets the Lens before each.
 
-### Automated (LEAF): 8 run, 8 passed, 0 failed, 0 skipped
+#### Automated (LEAF): 8 run, 8 passed, 0 failed, 0 skipped
 
 | ID | Checks | Measured on the final build | Result |
 |---|---|---|---|
@@ -51,7 +102,7 @@ The h values are **internal model-geometry checks** (1:3-scale mannequin, exagge
 
 **Compile:** `RecompileTypeScriptTool` succeeded after every change in this milestone.
 
-### Manual checks (preview captures from this build, 31 Oct 2026)
+#### Manual checks (preview captures from that build, 31 Oct 2026; images now in `docs/screenshots/archive-2026-10-31/`)
 
 | Check | Result | Evidence |
 |---|---|---|
@@ -67,13 +118,13 @@ The h values are **internal model-geometry checks** (1:3-scale mannequin, exagge
 | Completion ring vs cue card | Minor: at the pulse peak the ring's left edge touches the cue card's edge. Cosmetic. | `06`, `11` |
 | `07-playback-interface.jpg` | Not recaptured. It's a close-up of the control panel, which is unchanged since the `main` build. | `07` |
 
-### Not tested
+#### Not tested (at that time)
 - **Fresh quit-and-reopen on the branch.** It needs the owner to quit Lens Studio; it was last done on `main` (`905a938`).
 - **SPECS hardware:** comfort, see-through readability (especially 55% red), real hand-tracking pinch, following along. See `DEVICE_VALIDATION.md`.
 - **Users:** NOT CONDUCTED (`USER_VALIDATION_PLAN.md`).
 - **Walking around with WASD by a person:** only measured programmatically (root 0.000 cm).
 
-## History
+### Older history
 
 Earlier runs, kept for traceability. The first block is the `main` build (`d1d0473`, fallback). The last block is the first Coach's Eye prototype (`6c4e379`/`725b6a2`), before this milestone's copy and pose changes.
 
@@ -81,7 +132,7 @@ Main build run: 31 Oct 2026 · Lens Studio 5.24.1.26100516 · Preview device SPE
 
 Automated checks run in the Lens Studio preview through LEAF. Each scenario pinches the real UIKit buttons through SIK, then measures scene state: UI text and label colour, joint transforms, turntable rotation, cue visibility, toggle state, and wall-clock time. Values are copied from the Lens Studio log (`[SquatTutorTest]` lines) from the run after the final visual changes. Scenarios run one at a time; LEAF resets the Lens before each.
 
-### Automated (LEAF): 7 run, 7 passed, 0 failed, 0 skipped
+#### Automated (LEAF): 7 run, 7 passed, 0 failed, 0 skipped
 
 | ID | Criterion | Expected | Measured | Result |
 |---|---|---|---|---|
@@ -95,7 +146,7 @@ Automated checks run in the Lens Studio preview through LEAF. Each scenario pinc
 
 To re-run, open the LEAF panel (or use `open_leaf_panel` / `run_leaf_scenario` through the Lens Studio MCP) and run each id one at a time. Running scenarios in parallel aborts the earlier one.
 
-### Manual checks (preview screenshots, 31 Oct 2026)
+#### Manual checks (preview screenshots, 31 Oct 2026)
 
 | Check | Result | Evidence |
 |---|---|---|
@@ -109,10 +160,10 @@ To re-run, open the LEAF panel (or use `open_leaf_panel` / `run_leaf_scenario` t
 | Text readable; nothing dark disappearing | Pass at full capture size. Thin glyphs can look dropped in downscaled images. | `07-playback-interface.jpg` |
 | WASD walk-around keeps the figure fixed | Measured (root moved 0.000 cm) and the camera moved programmatically. Not tried by a person at the keyboard. | — |
 
-### Not tested (requires SPECS hardware)
+#### Not tested (requires SPECS hardware)
 Comfort over time, see-through readability, real hand-tracking pinch, physical follow-along. See `DEVICE_VALIDATION.md`.
 
-### Fresh-open regression (after quitting and reopening Lens Studio 5.24.1, 31 Oct 2026): 7 run, 7 passed
+#### Fresh-open regression (after quitting and reopening Lens Studio 5.24.1, 31 Oct 2026): 7 run, 7 passed
 
 | ID | Measured after reopening | Result |
 |---|---|---|
@@ -128,7 +179,7 @@ Comfort over time, see-through readability, real hand-tracking pinch, physical f
 
 Runtime log for the session: 0 script exceptions. Only Lens Studio infrastructure warnings (`adb` without a paired device, depth-format fallback, LEAF panel load order).
 
-### Coach's Eye branch (`feature/coach-eye`, 31 Oct 2026): 8 run, 8 passed
+#### Coach's Eye branch (`feature/coach-eye`, 31 Oct 2026): 8 run, 8 passed
 
 | ID | Measured | Result |
 |---|---|---|

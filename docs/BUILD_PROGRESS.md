@@ -23,24 +23,17 @@ A resumable log of the implementation. A feature counts as complete only after i
 | 11 | Strategic reassessment + Coach's Eye prototype (mistake comparison), 8/8 LEAF | Done on branch `feature/coach-eye` | `6c4e379`, `725b6a2` |
 | 12 | Coach's Eye direction approved by the owner (31 Oct). Comprehension pass, internal model-geometry check and fixes, validation plan, live review package, docs. Final build 8/8 LEAF | Done on `feature/coach-eye` | `0029122`, `643a8bb`, `78381e9`, `2201d21` + docs |
 | 13 | Pre-merge review: brief corrected (Amendment 1 rewritten as a draft, visible corrections in the original), test H extended to every pattern and exit (pass), wording aligned; learner-led `plan-lens` interview (Q1–Q9) completed 1 Nov 2026 and recorded in Amendment 1 | Done (committed 31 Oct – 1 Nov 2026) | `744be9d`, `1d1bd5a`, `5328a4c`, `126663b`, `67a4622`, `df73fa5` |
-| 14 | 1 Nov 2026 documentation pass, before sign-off: verbatim interview record; hand input vs body-tracking wording; neutral "What head-worn AR contributes" heading; product name **Coach's Eye** and "reference" terminology adopted in the docs; Snap button guidance verified and the layout audited; evidence-readiness audit (Snap wording vs our interpretation, far-field read as Z depth, layout re-derived, screenshot calibration measured by pixel); documentation closeout (`UI_LAYOUT_AUDIT.md` with a reproduction script, remaining docs reviewed, revised proposed intro sentence recorded); documentation only, no Lens change | **In the working tree, not committed**; awaiting the owner's review | — |
+| 14 | 1 Nov 2026 documentation pass, before sign-off: verbatim interview record; hand input vs body-tracking wording; neutral "What head-worn AR contributes" heading; product name **Coach's Eye** and "reference" terminology adopted in the docs; Snap button guidance verified and the layout audited; evidence-readiness audit (Snap wording vs our interpretation, far-field read as Z depth, layout re-derived, screenshot calibration measured by pixel); documentation closeout (`UI_LAYOUT_AUDIT.md` with a reproduction script, remaining docs reviewed, revised proposed intro sentence recorded); documentation only, no Lens change | Done | `65912d8` |
+| 15 | Master build and polish (1 Nov 2026), authorized by the owner: Amendment 1 approved as product direction; approved copy, intro sentence and neutral view labels implemented in code and saved scene; intro card fit fixed by a wider card; button layout chosen from four options and implemented (5.8 cm targets, 2.9 cm gaps, per-side panel heights, "PLAYBACK" caption removed); Heels red legs fade; Chest drops the hip marker; test H extended; LEAF a–h pass individually; all 15 screenshots recaptured (old set archived); docs updated; evidence folders for the external gates | Done on `feature/coach-eye` (same Lens Studio session; fresh-open not yet repeated) | `83e71bc`, `f41cae1` + docs |
 
-## Pending (not started; each needs the owner's decision or approval)
-- **Sign-off** of Amendment 1.
-- **Approved in principle, not implemented:**
-  - product name "Coach's Eye";
-  - descriptor "A spatial squat comparison experience";
-  - intro label "SPATIAL SQUAT COMPARISON";
-  - intro title "Coach's Eye";
-  - the three "White (reference): …" card lines;
-  - the principle that the white figure is called the reference.
-
-  Implementing it later needs the owner's go-ahead. The saved scene value of `introTitle` overrides the TypeScript default, so both must change. After that: recapture the screenshots, update test H's expected string, and re-run all 8 LEAF scenarios.
-- **Proposed, awaiting the owner's approval:** the exact intro sentence "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." (estimated to need more room than today's intro row; see `UI_LAYOUT_AUDIT.md`).
-- **Undecided:**
-  - view labels: neutral `VIEW: FRONT` / `VIEW: SIDE` or explanatory labels (options in the design brief);
-  - whether to implement the proposed button layout and sizing. The current controls are about 1.2° tall with 0.25° gaps, so they do **not** meet the 2° size and 1° spacing we use as a conservative reading of Snap's guidance. The proposal is not approved or validated; see `UI_LAYOUT_AUDIT.md`.
-- **Process:** fresh-open test on the branch; user test (3–5 people); live review (5 Nov); demo video; merge decision.
+## Pending (external gates; each needs the owner or other people)
+Nothing in the build is waiting on a decision. What remains needs people, hardware or the owner:
+- **Fresh-open check** of `feature/coach-eye`: the owner quits Lens Studio normally; then reopen and re-run LEAF (`docs/evidence/fresh-open/`).
+- **User test (3–5 people)** with `USER_TEST_OBSERVATION_SHEET.md`, including the **Heels rule** (2+ misreadings → owner decides before the video) and the 60% thresholds (`docs/evidence/user-test/`).
+- **SPECS device test** if a device is available (`DEVICE_VALIDATION.md`, `docs/evidence/device/`).
+- **Live review** on 5 Nov (`LIVE_REVIEW_PACKAGE.md`, `docs/evidence/live-review/`).
+- **Rules confirmation** by the owner (automated access returns HTTP 403; `docs/evidence/rules/`).
+- **Demo video** recording, then the **owner's** merge decision, upload and Devpost submission (`docs/evidence/recording/`, `docs/evidence/submission/`).
 
 ## Fresh-open test: passed on the `main` build (31 Oct 2026; not yet repeated on `feature/coach-eye`)
 - **Before:** the owner quit Lens Studio 5.24.1 by hand (saving when prompted). `Scene.scene` and all assets were unchanged against `48a24bb` (only the known `.agents` housekeeping deletion).
@@ -71,17 +64,26 @@ A resumable log of the implementation. A feature counts as complete only after i
   - No device or coach review.
   - Fresh-open test not repeated on the branch.
 
+## Milestone 15 summary (1 Nov 2026)
+- **Copy:** "SPATIAL SQUAT COMPARISON" / "Coach's Eye" / the approved sentence; "White (reference)"; `VIEW: FRONT` (Knees), `VIEW: SIDE` (Heels, Chest). Set in `SquatPhases.ts` and `SquatTutorUI.ts` defaults and in the saved scene (`introTitle`).
+- **Intro fit:** the sentence wrapped to five lines on the 21 cm card (captured); the card is now 26.4 cm and it fits in four. Text was not shrunk.
+- **Layout:** see `UI_LAYOUT_AUDIT.md` sections 4–5. Every button at least 2.04° in both axes, gaps at least 1.055°, Z 147.7–151.0 cm; red Chest hands 0.77° above the control panel.
+- **Heels:** red thighs, knees and shins fade to about 0.16 opacity during Heels; pose and wording unchanged. Chest no longer shows the hip marker (it pointed at a body part the Chest card doesn't discuss).
+- **Evidence:** compile clean; 0 Lens runtime errors; LEAF a–h pass; screenshots `01`–`15` from this build.
+- **Open:** fresh-open on the branch; user test; device; live review; video; rules; submission.
+
 ## Known issues and notes
 - Avoid `QueryRuntimeSceneTool`, `PreviewInteractTool`, and `CaptureRuntimeViewTool`. They reinstall `AiPreviewAgentInspect`, which is incompatible with this project.
 - Lens Studio's Agents-Docs plugin deletes `Lens/.agents/` on save. Restore it with `git checkout -- Lens/.agents` before committing.
 - Run LEAF scenarios one at a time.
-- `SquatTutorController.startPhase` / `startAngle` / `startFault` is a capture hook. Keep it at `-1` / empty / empty for normal launch.
+- `SquatTutorController.startPhase` / `startAngle` / `startFault` is a capture hook. Keep it at `-1` / empty / empty for normal launch (verified in the saved scene after the 1 Nov captures).
+- `.mcp.json`, `ls-live-instance.json`, `leaf_plugin_settings.json`, `.claude/settings.local.json`, `spk_debug_key.pem` and `.virtual-scene.json` are local files; never commit them.
 
 ## Next task
 See *Pending* above. In order, owner first:
-1. Review the uncommitted documentation pass (row 14) and sign off *Amendment 1* (yes/no).
-2. Approve or revise the proposed intro sentence; decide the view-label wording and the button layout (both undecided); decide whether to implement the approved copy before the user test.
-3. Quit Lens Studio on the branch, so the fresh-open test can be repeated.
-4. Run the 3–5 person user test (`USER_TEST_OBSERVATION_SHEET.md`).
-5. Post for the 5 Nov live review (`LIVE_REVIEW_PACKAGE.md`).
-6. Merge decision; record with `FINAL_DEMO_RECORDING_GUIDE.md`; upload and submit only after explicit approval.
+1. Review commits `83e71bc` (build), `f41cae1` (screenshots) and the docs commit.
+2. Quit Lens Studio normally (save if prompted) so the fresh-open check can run on the branch.
+3. Run the 3–5 person user test; apply the thresholds and the Heels rule.
+4. Post for the 5 Nov live review.
+5. Confirm the official rules by hand; record the video with `FINAL_DEMO_RECORDING_GUIDE.md`.
+6. Merge, upload and submit only after the owner's explicit approval.

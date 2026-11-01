@@ -1,16 +1,16 @@
 ---
-status: draft
+status: approved
 original_brief_status: approved (Squat Tutor, 30 Oct 2026, commit bc5faf6)
-amendment_1_status: draft, plan-lens interview complete (1 Nov 2026), awaiting learner sign-off
+amendment_1_status: approved as product direction by the learner (1 Nov 2026, master build brief); implemented on feature/coach-eye at 83e71bc. Not user-tested, not device-validated, no expert review, not submitted.
 ---
 
 # Design brief: Squat Tutor
 
 > **How to read this file.**
-> - **Current product specification:** *Amendment 1: Coach's Eye*, at the end. Status: **draft**, awaiting learner sign-off.
+> - **Current product specification:** *Amendment 1: Coach's Eye*, at the end. Status: **approved as product direction** (1 Nov 2026) and implemented. That approval does not mean user testing, device validation, expert review or final submission approval have happened.
 > - **Product name:** **Coach's Eye**, *a spatial squat comparison experience* (learner decision, 1 Nov 2026). **Squat Tutor** is the original project's name; it stays in this planning history and in code identifiers.
 > - **Planning history:** everything from "The one spatial moment" to "After the build" is the **original Squat Tutor brief**, marked approved on 30 Oct 2026 (commit `bc5faf6`). Its words are kept. Where it no longer matches what was built, or was imprecise, a visible **[Correction (date)]** note follows the original text.
-> - **Front matter:** `status` was changed from `approved` to `draft` on 31 Oct 2026, because the file now contains an unapproved amendment. The original brief's approval is recorded in `original_brief_status`.
+> - **Front matter:** `status` was changed from `approved` to `draft` on 31 Oct 2026, while the amendment was unapproved, and back to `approved` on 1 Nov 2026, when the learner approved Amendment 1 as product direction. The original brief's approval is recorded in `original_brief_status`.
 
 <!-- Filled in by plan-lens from the learner's interview. Use the learner's words. Mark any value they didn't choose as (default). -->
 
@@ -51,6 +51,7 @@ A scale mannequin, about 60 cm tall, stands on a stand about 1.7 m in front of y
   **[Correction 31 Oct 2026]** The middle button is labelled **35°** in the build, matching the 35° angle; "45°" was a labelling error in this brief.
 - Targets are big (at least about 6 cm (default)) and highlight when aimed at. Eight buttons on the panel, in three rows: Previous, Play/Pause, Next / Slow, Replay / Front, 45°, Side. The selected angle and Slow show an active state, and Previous/Next dim at the ends.
   **[Correction 31 Oct 2026; widths corrected 1 Nov 2026]** The built buttons are **3.4 cm tall** and 5.40 cm (thirds) or 8.45 cm (halves) wide; the cue card's pattern buttons are 5.47 cm wide. Only Start is larger (16.8 × 5.0 cm). That is below the "about 6 cm" default above. The middle angle button reads "35°". Amendment 1 adds three more buttons on the cue card at the same 3.4 cm height.
+  **[Correction 1 Nov 2026, polish stage]** The button layout was changed with the learner's authorization: every button is now **5.8 cm tall**, with 2.9 cm gaps (Prev/Play/Next, Front/35°/Side and Knees/Heels/Chest 5.80 cm wide, Slow/Replay 10.15 cm, Start 22.4 cm). See Amendment 1, *Deferred decisions*, and `docs/UI_LAYOUT_AUDIT.md`.
 - Voice: none.
 
 ## When things show
@@ -139,7 +140,7 @@ This part is for you, after CLAD finishes.
 
 ## Amendment 1: Coach's Eye (current product specification)
 
-**Status: draft.** The `plan-lens` interview is complete (31 Oct – 1 Nov 2026). This specification awaits the learner's final yes/no sign-off. It describes the bodyweight-squat Lens built on branch `feature/coach-eye`, with code as of commit `1d1bd5a`.
+**Status: approved as product direction** by the learner on 1 Nov 2026 (master build brief), after the `plan-lens` interview (31 Oct – 1 Nov 2026). It describes the bodyweight-squat Lens built on branch `feature/coach-eye`, with code as of commit `83e71bc`. This approval is **not** evidence of user testing, physical-device validation, expert review or final submission approval; none of those has happened.
 
 **How decisions are labelled here.**
 - *(learner)*: the learner's own answer.
@@ -160,12 +161,20 @@ This part is for you, after CLAD finishes.
 - **1 Nov 2026, pre-sign-off review.** The learner decided:
   - the product naming (Coach's Eye, a spatial squat comparison experience);
   - "reference" terminology for the white figure;
-  - the approved UI copy listed under *Approved UI copy*. It is approved as copy but **not yet implemented**.
+  - the approved UI copy now listed under *UI copy*. At that point it was approved as copy but not yet implemented.
 
-  The exact intro-body sentence is a proposal still awaiting the learner's approval.
+  At that point the exact intro-body sentence was still a proposal (approved later the same day, below).
 
   The learner also asked for a button-size and spacing audit, recorded under *Deferred decisions*.
-- **Now:** draft, awaiting the learner's sign-off.
+- **1 Nov 2026, master build brief.** The learner approved Amendment 1 as product direction and authorized:
+  - the name and descriptor, the intro label and title, the "White (reference)" card lines and the exact intro sentence;
+  - neutral view labels "VIEW: FRONT" (Knees) and "VIEW: SIDE" (Heels, Chest);
+  - keeping Knees, Heels and Chest, and the validation criteria and thresholds unchanged;
+  - the polish stage: intro card fit, button layout, and Heels visibility without new biomechanical claims.
+
+  The learner stated that this authorization does not mean user testing, physical-device validation, expert review or final submission approval have occurred.
+- **1 Nov 2026, build `83e71bc`.** Copy, layout and Heels fade implemented; compile clean; LEAF a–h each passed in the preview; screenshots recaptured.
+- **Now:** approved as product direction and implemented. Open external gates: fresh-open check, the 3–5 person user test (including the Heels rule), device testing, the live review, the demo video, rules confirmation and the owner's submission.
 
 ### Planning interview record (plan-lens, Coach's Eye)
 Each answer below is the learner's own text, quoted in full. Only process instructions to the agent are omitted (for example "record these" or "do not modify the build"), and each such omission is marked "[process instruction omitted]". The label after each question records how the decision arose.
@@ -381,8 +390,9 @@ Each answer below is the learner's own text, quoted in full. Only process instru
 - **Stage:** about 170 cm ahead, top about 42 cm below eye height, starting at 35°.
 - **Figure:** 1:3 scale, about 60 cm tall.
 - **Red comparison figure:** on the same stage, overlaid on the white figure, same rig and proportions. Hidden except while comparing.
-- **Cue card:** left of the figure (33 cm left, 26 cm below eye level, 155 cm away, 21 cm wide). It also holds the "COMPARE COMMON PATTERNS" row with Knees, Heels and Chest.
-- **Control panel:** right of the figure, mirroring the cue card (20 cm wide): Prev / Play-Pause / Next, Slow / Replay, Front / 35° / Side.
+- **Cue card:** left of the figure (29 cm left, 22 cm below eye level, 150 cm away, 26.4 cm wide). It also holds the "COMPARE COMMON PATTERNS" row with Knees, Heels and Chest. The intro card uses the same slot.
+- **Control panel:** right of the figure (29 cm right, 31 cm below eye level, 150 cm away, 25.6 cm wide): Prev / Play-Pause / Next, Slow / Replay, then "VIEW ANGLE" Front / 35° / Side. It sits lower than the cue card so the red Chest pattern's hands stay above it in the side view. The Start panel uses the same slot.
+- *(Positions changed in the 1 Nov 2026 polish stage; before that both panels were 33 cm to the side, 26 cm below eye level and 155 cm away, with a 21 cm card and a 20 cm panel.)*
 
 ### Hands and input
 *(established; implemented)*
@@ -395,14 +405,14 @@ Each answer below is the learner's own text, quoted in full. Only process instru
 - **Closing a comparison:** pinch the same button again, or Play, Prev, Next or Replay. Start is not shown while comparing.
 - **Keeps a comparison open:** Slow and the angle buttons, so the learner can turn the stage while comparing.
 - **Switching:** pinching a different pattern button switches straight to it.
-- **Button size:** all buttons except Start are **3.4 cm tall** and 5.40–8.45 cm wide. The panels sit in a plane 155 cm ahead (about 159–161 cm from the eye), so the buttons are about 1.2° tall. That is below the original brief's "about 6 cm" default, and below the 2° we take as a conservative design target from Snap's guidance (applied to both width and height). See *Deferred decisions*.
+- **Button size (implemented 1 Nov 2026):** every button is **5.8 cm tall**; widths are 5.80 cm (Prev, Play/Pause, Next, Front, 35°, Side, Knees, Heels, Chest), 10.15 cm (Slow, Replay) and 22.4 cm (Start), with 2.9 cm gaps. At 147.7–151.0 cm Z depth the colliders are about 2.04–2.15° tall and 2.10–3.72° wide (Start 8.20°), with 1.06–1.08° edge-to-edge gaps. That meets the 2° size and 1° spacing we use as a conservative reading of Snap's guidance. It is derived from the code and saved scene, checked against preview captures, and **not** tested with real hand targeting on SPECS. See *Deferred decisions* and `docs/UI_LAYOUT_AUDIT.md`.
 - **Voice:** none.
 
 ### When things show
-*(implemented; the quoted strings are the **current** on-screen text. Approved replacements are listed under *Approved UI copy* and are not yet implemented.)*
+*(implemented; the quoted strings are the on-screen text of build `83e71bc`)*
 - **Intro (before Start):**
-  - label "BODYWEIGHT SQUAT", title "Squat Tutor" *(current; approved replacement: "SPATIAL SQUAT COMPARISON" / "Coach's Eye")*;
-  - body: "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows." *(current; to refer to "the reference")*;
+  - label "SPATIAL SQUAT COMPARISON", title "Coach's Eye";
+  - body: "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." (four lines on the 26.4 cm card);
   - the disclaimer;
   - on the right, "Pinch Start to watch the full squat" and **Start**.
 - **Demonstration:** the five phases with one cue and one body highlight each, as in the original brief.
@@ -410,7 +420,7 @@ Each answer below is the learner's own text, quoted in full. Only process instru
   1. the view label;
   2. the pattern title;
   3. "Red: …";
-  4. "White (target): …" *(current; approved replacement: "White (reference): …")*;
+  4. "White (reference): …";
   5. the progress dots;
   6. "PINCH AGAIN TO RETURN", with only the active toggle lit;
   7. "Exaggerated for clarity. This Lens does not assess your form.", in place of the disclaimer.
@@ -426,14 +436,17 @@ Each answer below is the learner's own text, quoted in full. Only process instru
 
 | Pattern | Automatic view | Card label | What the red figure illustrates | Primary parameter |
 |---|---|---|---|---|
-| Knees ("Knees caving in") | Front (0°) | "BEST SEEN FROM THE FRONT" | knees drift inside the line of the feet | knee bend direction turned 18° inward |
-| Chest ("Chest dropping") | Side (90°) | "BEST SEEN FROM THE SIDE" | torso tips further forward | 18° extra torso lean |
-| Heels ("Heels lifting") | Side (90°) | "SEEN FROM THE SIDE OR REAR" | heels leave the floor | heel raised with the foot pitched |
+| Knees ("Knees caving in") | Front (0°) | "VIEW: FRONT" | knees drift inside the line of the feet | knee bend direction turned 18° inward |
+| Chest ("Chest dropping") | Side (90°) | "VIEW: SIDE" | torso tips further forward | 18° extra torso lean |
+| Heels ("Heels lifting") | Side (90°) | "VIEW: SIDE" | heels leave the floor | heel raised with the foot pitched |
+
+The view labels are neutral: they name the view the Lens chose, without claiming it is the only or best one (learner decision, 1 Nov 2026). Before 1 Nov 2026 they read "BEST SEEN FROM THE FRONT/SIDE" and "SEEN FROM THE SIDE OR REAR".
 
 How the figures are built:
 - **The white figure** is the visual reference this demonstration uses. It is not a universally ideal squat.
 - **The red figure** is an exaggerated, illustrative movement pattern.
 - **Each pattern** is posed by one primary parameter, but other joints and geometry can move as a result. For Heels, the legs re-solve, so the red thigh and shin also move.
+- **Presentation aids (1 Nov 2026 polish; no new biomechanical claim):** during Heels the red thighs, knees and shins fade (opacity about 0.16), so the raised red heel beside the flat white foot is the clearest red shape. The pose itself is unchanged. Body cues: Knees shows the knee markers, Heels the foot outlines, Chest none (the hip marker no longer appears during Chest).
 - **For Heels**, the Lens turns to the side only. A rear view is another possible way to inspect it, but the Lens does not switch to it; the learner can walk behind the stage.
 - **Heels is conditional** on the user-test rule under *Evidence of understanding*.
 
@@ -447,24 +460,25 @@ How the figures are built:
 3. **Why the viewpoint changes:** different differences are easier to inspect from different perspectives, and changing the viewing angle brings the relevant detail into focus.
 
 ### Done criteria
-*(Q9 Part A)* Keep exactly seven. Criteria 1–6 are as in the original brief, read with its visible corrections. Criterion 7 is below. All seven pass in LEAF in the Lens Studio preview: a–g on 31 Oct 2026 at `2201d21`, and the extended `h-mistake-compare` on 31 Oct 2026 at `1d1bd5a`. No new criteria at this stage.
+*(Q9 Part A)* Keep exactly seven. Criteria 1–6 are as in the original brief, read with its visible corrections. Criterion 7 is below. All seven pass in LEAF in the Lens Studio preview: a–h each run individually on 1 Nov 2026 at `83e71bc` (earlier: a–g at `2201d21`, extended h at `1d1bd5a`, 31 Oct). No new criteria at this stage. Passing LEAF establishes preview behaviour only; it is not a user test or device test.
 
 7. **Pattern comparison.**
    [LEAF] `h-mistake-compare` checks, for **each** of Knees, Heels and Chest, that the button:
    - shows the red figure;
    - pauses at the Bottom Position;
    - turns the stage to that pattern's view (0° or 90°, ± 2°), starting from a different angle each time (knees from 35°, heels from 35°, chest from Front);
-   - shows exactly that pattern's view label, title and `Red: … / White (target): …` lines. That is the current on-screen string; the expected string changes to `White (reference)` when the approved copy is implemented;
+   - shows exactly that pattern's view label, title and `Red: … / White (reference): …` lines;
    - shows "PINCH AGAIN TO RETURN" and the exaggeration note;
    - highlights only that toggle;
-   - poses the red figure so it differs from the white figure in the intended direction: knees closer to the midline, ankle higher, head further forward.
+   - poses the red figure so it differs from the white figure in the intended direction: knees closer to the midline, ankle higher, head further forward;
+   - shows only that pattern's body cue (knee markers, foot outlines, or none for Chest), and fades the red legs only for Heels *(checks added 1 Nov 2026 with the polish stage; presentation only)*.
 
    It also checks that Slow and the angle buttons keep the comparison open. Each of the five exits (same button, Play, Prev, Next, Replay) must:
    - hide the red figure and restore the row label, disclaimer and phase label;
    - turn all toggles off;
    - leave the player in the expected state: still at the Bottom Position and paused (same button), playing (Play), one phase back (Prev), one phase forward (Next), or playing from phase 1 (Replay).
 
-   [Manual] In each comparison, the named difference is visible from the start position. **Open:** Heels reads weakly in preview captures.
+   [Manual] In each comparison, the named difference is visible from the start position. **Status (1 Nov 2026):** in the final captures `13`–`15` the agent can see each difference from the start position. Heels was the weakest; with the leg fade the raised red heel is now the clearest red shape in `14`, but it remains small. Whether first-time learners read it correctly is for the user test (Heels rule).
 
 ### Evidence of understanding (user test)
 *(Q9 Part B)* These thresholds were set before testing, using `docs/USER_TEST_OBSERVATION_SHEET.md`. They are **formative prototype decision criteria**, not statistical validation or proof of learning effectiveness.
@@ -478,38 +492,25 @@ How the figures are built:
 - **Heels rule (unchanged):** if 2 or more participants in a 3–5 person test misinterpret Heels, the results go back to the learner for a design decision before the video is recorded. The options are to improve its visual clarity, or remove it and deliver two stronger comparisons. Heels is not changed before that evidence exists.
 - **Reporting:** record raw counts and actual observations, including unsuccessful responses. The results are never described as evidence that the product improves learning.
 
-### Approved UI copy (learner decision, 1 Nov 2026; approved in principle, not implemented)
-Approved in principle as the copy to use. It is **not implemented yet**: the Lens still shows the current text quoted under *When things show*.
+### UI copy (learner decision, 1 Nov 2026; approved and implemented in `83e71bc`)
+Approved in principle on 1 Nov 2026 (pre-sign-off review); the exact intro sentence and the view labels were approved in the master build brief the same day. All of it is implemented in both the TypeScript defaults and the saved scene, and confirmed by preview capture (`docs/screenshots/01`, `13`–`15`).
 
-| Where | Current | Approved |
+| Where | Before 1 Nov 2026 | Now (implemented) |
 |---|---|---|
-| Intro label (`SquatTutorUI.ts`, `IntroLabel`) | BODYWEIGHT SQUAT | **SPATIAL SQUAT COMPARISON** |
+| Intro label (`SquatPhases.ts`, `INTRO_LABEL`) | BODYWEIGHT SQUAT | **SPATIAL SQUAT COMPARISON** |
 | Intro title (`introTitle`: saved scene value **and** TypeScript default) | Squat Tutor | **Coach's Eye** |
+| Intro body (`INTRO_BODY`) | "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows." | **"Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference."** |
 | Comparison card, Knees | White (target): knees track over the toes. | **White (reference): knees track over the toes.** |
 | Comparison card, Heels | White (target): whole foot stays planted. | **White (reference): whole foot stays planted.** |
 | Comparison card, Chest | White (target): chest up, torso controlled. | **White (reference): chest up, torso controlled.** |
-| Intro body | "…compare three common patterns with the target, each from the angle where it shows." | **Approved principle:** the intro refers to the white figure as the reference, not the target. **Exact sentence: proposed, awaiting the learner's approval (not approved word for word):** "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." Estimated fit risk: about 5 lines on today's card, overflowing the 6.6 cm row; see [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md) section 4B. |
+| View label, Knees | BEST SEEN FROM THE FRONT | **VIEW: FRONT** |
+| View label, Heels | SEEN FROM THE SIDE OR REAR | **VIEW: SIDE** |
+| View label, Chest | BEST SEEN FROM THE SIDE | **VIEW: SIDE** |
 | Completion card | COMPLETE / Squat complete / Try Knees, Heels or Chest… | No change (no product name) |
 
-**Implementation notes, for later:**
-- The saved scene value of `introTitle` overrides the TypeScript default, so both must be updated.
-- Internal code names (`target` field, `SquatTutorUI`) don't change.
-- The copy must be checked to fit by preview capture: "SPATIAL SQUAT COMPARISON" is 24 capitals, at the edge of the card's width.
-- Test H's expected string changes to `White (reference)`.
-- Screenshots `01` and `13`–`15` must be recaptured, and all 8 LEAF scenarios re-run.
+**Fit, checked by capture:** on the 26.4 cm card the label fits on one line and the intro sentence wraps to four lines inside its 6.6 cm row, with space above the disclaimer. On the old 21 cm card it wrapped to five lines and nearly touched the disclaimer (evidence image `docs/evidence/ui-fit/intro-old-21cm-card.jpg`). The fix was a wider card, not smaller text.
 
-**Status of copy and layout decisions:**
-- **Approved in principle, not implemented:**
-  - product name "Coach's Eye";
-  - descriptor "A spatial squat comparison experience";
-  - intro label "SPATIAL SQUAT COMPARISON";
-  - intro title "Coach's Eye";
-  - the three "White (reference): …" card lines;
-  - the principle that the white figure is called the reference.
-- **Proposed, awaiting the learner's approval:** the exact intro-body sentence "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference."
-- **Undecided:**
-  - view-label wording. Options are under review: "VIEW: FRONT" / "VIEW: SIDE", or "FRONT VIEW: KNEES & FEET" / "SIDE VIEW: TORSO LEAN" / "SIDE VIEW: HEEL CONTACT". The current labels are "BEST SEEN FROM THE FRONT/SIDE" and "SEEN FROM THE SIDE OR REAR".
-  - whether to implement the proposed button layout and sizing changes (see *Deferred decisions* and [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md)).
+**Unchanged by design:** internal code names (`target` field, `SquatTutorUI`, `SquatTutor` objects), the "COMPARE COMMON PATTERNS" and "PINCH AGAIN TO RETURN" labels, the disclaimer, and the exaggeration note "Exaggerated for clarity. This Lens does not assess your form."
 
 ### Out of scope
 *(Q7 Part A, learner's list, word for word)*
@@ -547,11 +548,13 @@ The underlying comparison approach could potentially be explored for other movem
 - Phone AR can also place 3D figures in a physical environment. Our glasses-specific value proposition is hands-free, eyes-up inspection, and this remains a hypothesis until tested on the actual device.
 - Distinguish clearly between what is implemented, what is intended for the glasses experience, and what remains unvalidated.
 
+**[Status note, 1 Nov 2026; the list above is kept word for word]** Two items above describe the build before the polish stage. The buttons are now 5.8 cm tall at about 1.5 m (about 2.0–2.2°); hand-tracking pinch on glasses is still untested. During Heels the red thigh and shin are now faded so the heel is the clearest red shape; whether learners read it correctly is still untested, and Heels stays conditional on the user-test rule.
+
 Submission-process tasks are tracked in `docs/SUBMISSION_CHECKLIST.md`, not here: fresh-open validation of the branch, manual verification of the competition rules, the demo video, and this amendment's sign-off.
 
 ### Deferred decisions
 *(Q9 Part C)*
-- **Button size.** This is deferred to the polish stage, with no change now; any proposed change comes to the learner for approval first. The guidance was verified on 1 Nov 2026:
+- **Button size: decided and implemented on 1 Nov 2026.** Deferred in Q9 Part C to the polish stage; the master build brief then asked for "the best practical button layout", balancing targetability, stage visibility, text readability, composition and reliability, verified against the actual colliders. The full method, numbers and reproduction script are in [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md).
   - **Snap's wording, re-verified 1 Nov 2026** ([Positioning & Sizing Content](https://developers.snap.com/spectacles/best-practices/design-for-spectacles/positioning-sizing-content)):
     - "Targetable elements should be at least 2 degrees in angular size."
     - "Targetable elements should be spaced at least 1 degree apart in angular size."
@@ -561,51 +564,20 @@ Submission-process tasks are tracked in `docs/SUBMISSION_CHECKLIST.md`, not here
     - Under "Z Axis: Near-Field or Far-Field": "Far-Field (60cm - 160cm): Uses indirect interactions".
     - Its "Button Sizing & Spacing" table is indexed by "Position Z": minimum 4.0 cm at Z = 110 cm and 5.5 cm at Z = 160 cm; "Best" 6.0 cm and 8.5 cm.
   - **What Snap does not say:** whether 2° applies to width, height or the smaller dimension, and whether 1° spacing is measured edge to edge or centre to centre.
-  - **Our interpretation (a design choice, not Snap's wording):**
-    - We use **2° in both dimensions** as a conservative design target: an element that meets 2° on its narrower axis meets it on every axis.
-    - We measure the 1° spacing **edge to edge** between colliders, the stricter reading.
-    - The 60–160 cm range is stated along the **Z axis**. We report both Z depth and straight-line distance.
-  - **Current build** (derived from the saved scene and the layout code; not measured at runtime):
-    - **Saved values:** camera at (0,0,0); `SquatTutor` and `SquatTutorUI` at identity; `sideOffset 33`, `panelHeight −26`, `panelDistance 155`, `cardWidth 21`, `panelWidth 20`.
-    - **Colliders:** UIKit `Element.ts` (`colliderFitElement = true`) builds a box equal to the button's `size` at rest. SnapOS2 `ButtonParameters.ts` moves the visual +1 cm in z when hovered and +0.5 cm when pressed, at scale 1, so only the collider's depth changes during pinch, hover or press. The visible capsule has the same outer size, with rounded corners.
-    - **Sizes:**
-      - Prev / Play-Pause / Next and Front / 35° / Side: 5.40 × 3.40 cm = 1.91–1.94° × 1.18–1.21°.
-      - Slow and Replay: 8.45 × 3.40 cm = 3.02° × 1.20°.
-      - Knees / Heels / Chest: 5.47 × 3.40 cm = 1.94° × 1.18°.
-      - Start: 16.80 × 5.00 cm = 5.98° × 1.76°.
-    - **Distances:** 153.1–155.7 cm in Z depth, which is inside Snap's 60–160 cm Z range. Straight-line distance is 159.3–161.3 cm.
-    - **Spacing:**
-      - Horizontal gaps are 0.70 cm (about 0.25°) everywhere; centre to centre they are 2.17–3.28°.
-      - Vertical: Prev→Slow 0.90 cm (0.32°); Slow→Front 3.40 cm (1.19°).
-    - **Summary:** the controls are about 1.2° tall and the gaps about 0.25° edge to edge. By our conservative reading of Snap's guidance, every control is too small in height, the 5.4–5.5 cm buttons are slightly narrow, and the gaps are too tight.
-  - **Agent's layout proposal (not approved, not implemented, not preview-validated):**
-    - **Settings:**
-      - `panelDistance` 150, `sideOffset` 29;
-      - right panels lowered from −26 to −32 cm, left panels raised to −25 cm (separate per-side heights are a code change);
-      - buttons 5.8 cm in both dimensions; column gap 2.9 cm; a 1.6 cm spacer between the first two control rows (the panel's single `rowGap` stays 0.7 cm);
-      - control panel 25.6 × 28.5 cm; cue card and intro card 26.4 cm wide (cue card 30.2 cm tall); Start 22.4 × 5.8 cm.
-    - **A. Derived from code and geometry.** The method, sources, intermediate values and a reproduction script are in [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md).
-      - every row's buttons and gaps sum exactly to the inner width, so flex shrinking leaves the sizes alone;
-      - colliders 2.09–3.71° wide and 2.02–2.15° tall (Start 8.19° × 2.08°);
-      - gaps 1.05–1.08° horizontally, 1.09° (Prev→Slow, 3.0 cm) and 1.13° (Slow→Front, 3.2 cm) vertically;
-      - Z depth 147.7–151.0 cm; straight-line distance 154.1–158.1 cm;
-      - card edges at −15.88° to −6.00° azimuth; control panel at +6.15° to +15.73° azimuth and −16.79° to −6.60° elevation;
-      - the panels' lower inner corners cover the sides of the turntable ring (radius 19.5 cm) by about 0.4–0.5°, of the stand top (22 cm) by about 1.2–1.4°, and of the completion ring (23.6 cm, more when pulsing) by about 1.8–1.9°. Today's panels already touch the completion ring at its pulse peak.
-    - **B. Estimated from screenshot calibration:** a pinhole fit to automatically measured panel edges in `10-view-side.jpg` (fx 2402, fy 2395 px; residuals of 1.6 px or less). Features were found by colour thresholds, so allow about ±0.2°.
-      - the preview view is about ±16.2° wide and −18.3° to +18.4° tall, so the outer-edge margins are about 0.37° (card) and 0.50° (control panel), and the bottom margin is about 1.5°;
-      - the red chest-pattern figure's lowest point sits about **0.68°** above the control panel's top edge, and the white figure's 1.95–2.12°;
-      - the hip-marker ring sits about 0.42° outside the card's inner edge;
-      - no figure or red-figure pixels fall inside the proposed panels in screenshots 09, 10 and 12–15;
-      - "SPATIAL SQUAT COMPARISON" is estimated at 16.6–19.7 cm wide, from measured captions of 0.65–0.82 cm per character. It fits the proposed card; whether it fits the current 21 cm card is uncertain.
-    - **C. Not established:**
-      - that the runtime layout matches this code model;
-      - that `Component.Canvas` on each slot applies no scaling;
-      - how much tolerance SIK's hand-ray targeting adds;
-      - figure poses and views not in the screenshots (for example Chest at 35°);
-      - real SPECS optics and eye position;
-      - glyph widths for new copy;
-      - whether Snap intends our per-axis and edge-to-edge reading.
-    - **Tightest points:** red arm 0.68°, card outer edge 0.37°, hip-marker ring 0.42°, and the label and intro-sentence fit. These are what a preview check must confirm before the proposal is approved. The preview-validation plan is in [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md), section 5.
+  - **Our interpretation (a design choice, not Snap's wording):** 2° in both collider dimensions; 1° edge to edge between colliders; the 60–160 cm range read as Z depth.
+  - **Before (build `2201d21`, historical):** buttons 3.4 cm tall (about 1.2°), 5.40–8.45 cm wide, 0.70 cm gaps (about 0.25°); panels at `sideOffset 33`, `panelHeight −26`, `panelDistance 155`, card 21 cm, panel 20 cm. Below our conservative target on height and spacing.
+  - **Options considered:**
+    1. *Keep the pre-build layout*: rejected; about 1.2° tall with 0.25° gaps.
+    2. *The audit proposal* (both sides at new heights, left −25 cm, right −32 cm, "PLAYBACK" caption kept): implemented first and captured. The control panel and card sat low over the stage plate and ring sides, and the bottom button row was about 15° below eye level.
+    3. *Implemented refinement*: the "PLAYBACK" caption removed (the five playback buttons label themselves; control panel 26.0 cm tall instead of 28.5 cm), left panels raised to −22 cm and right panels to −31 cm. The control panel top stays below the side-view hands; the card bottom stays above the ring sides.
+    4. *Smaller targets (for example 5.2 cm, exactly 2° at 150 cm)*: not chosen; no margin for off-axis foreshortening, which already brings the angle row to 2.04°.
+  - **Implemented values:** `panelDistance` 150, `sideOffset` 29, `panelHeight` −22 (left), `rightPanelHeight` −31 (right), card 26.4 cm, panel 25.6 cm; buttons 5.8 cm tall, gaps 2.9 cm, a 1.6 cm spacer between the first two control rows.
+  - **A. Derived from code and saved scene (audit script):** colliders 2.10–3.72° wide and 2.04–2.15° tall (Start 8.20° × 2.08°); horizontal gaps 1.055–1.080°; vertical gaps 1.095° (Prev→Slow) and 1.142° (Slow→Front); Z depth 147.7–151.0 cm, straight-line 153.8–157.5 cm.
+  - **B. Measured in the final preview captures** (pinhole model from the 31 Oct calibration; predicted panel edges match the captures within 2 px, except the control panel's right edge, 8 px):
+    - the red Chest pattern's lowest point is about **0.77°** above the control panel top; the white figure about 2.0–2.2°;
+    - the hip-marker ring clears the card's inner edge by about 0.42° (side view) and 1.15° (35° view);
+    - the card bottom (el −13.60°) sits just above the ring sides (about −13.7°); the control panel still covers the right edge of the turntable ring by about 0.4°, and the stand-top and completion-ring edges by about 1.2° and 1.8°. In the captures this hides a small part of the plate rim, never the figures.
+  - **C. Not established:** real hand-ray targeting tolerance on SPECS; SPECS optics and eye position; comfort over a session. These need the device test.
 - **Follow-along.** Nothing is built for it in this submission. It stays documented as an intended possibility for glasses use and an unvalidated device-testing question, and it must not be presented in the demo as an implemented feature.
 
 ### What counts as validated
@@ -623,7 +595,7 @@ Submission-process tasks are tracked in `docs/SUBMISSION_CHECKLIST.md`, not here
 ### Build notes for CLAD
 *(established)* These are the original brief's build notes, which still apply, plus:
 - Preserve the working build; `main` (`d1d0473`) is the fallback.
-- Any change to the build needs the learner's approval first, including the deferred button-size change and any Heels decision.
+- Any change to the build needs the learner's approval first, including any Heels decision after the user test. (The button-size change was authorized and made on 1 Nov 2026.)
 - Re-run all eight LEAF scenarios, one at a time, after any change.
 
 ### Change log for Amendment 1
@@ -674,3 +646,11 @@ Submission-process tasks are tracked in `docs/SUBMISSION_CHECKLIST.md`, not here
   - screenshot-derived figures aligned with that script (red figure 0.68°, hip ring 0.42°, card margin 0.37°);
   - the proposed intro sentence updated to the learner's revised wording, still awaiting approval, with an estimated fit risk noted;
   - "approved" copy relabelled "approved in principle, not implemented".
+- **1 Nov 2026, master build and polish:**
+  - Amendment 1 approved as product direction by the learner; front matter set to `approved`, with the learner's statement that this is not user testing, device validation, expert review or submission approval;
+  - approved copy, intro sentence and neutral view labels implemented (`83e71bc`), with the *UI copy* table rewritten from "approved, not implemented" to "implemented";
+  - intro card fit fixed by widening the card to 26.4 cm (four lines, checked by capture);
+  - button layout chosen from four options and implemented (5.8 cm targets, 2.9 cm gaps, per-side panel heights, "PLAYBACK" caption removed), with measured evidence;
+  - Heels: red legs fade during the comparison; Chest no longer shows the hip marker; no pose or wording change;
+  - criterion 7 checks extended (cue and fade); LEAF a–h passed individually; screenshots recaptured;
+  - status notes added after the word-for-word *Risks* list instead of editing it.
