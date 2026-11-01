@@ -53,6 +53,11 @@ export class SquatTutorController extends BaseScriptComponent {
 
   private angle: ViewAngle = "angled"
   private fault: SquatFault | null = null
+  /** Red-figure leg meshes, faded during Heels so the heel difference is the clearest red shape. */
+  private legVisuals: RenderMeshVisual[] = []
+  private legMaterial: Material | null = null
+  private legFaintMaterial: Material | null = null
+  private legsFaded = false
 
   onAwake(): void {
     if (!this.player || !this.ui || !this.turntable || !this.cues || !this.ghostRig || !this.ghostRoot) {
@@ -60,6 +65,7 @@ export class SquatTutorController extends BaseScriptComponent {
       return
     }
     this.ghostRoot.enabled = false
+    this.collectGhostLegs(this.ghostRoot)
     // Any playback control leaves comparison mode first.
     this.ui.onStart.add(() => { this.clearFault(); this.player.start() })
     this.ui.onPlayPause.add(() => { this.clearFault(); this.player.togglePlay() })
@@ -77,6 +83,9 @@ export class SquatTutorController extends BaseScriptComponent {
       this.applyStartPhase()
     })
   }
+
+  /** True while the red figure's thighs, knees and shins are faded (Heels comparison only). */
+  get heelsLegsFaded(): boolean { return this.legsFaded }
 
   /** Current viewing-angle preset. */
   get viewAngle(): ViewAngle { return this.angle }
@@ -98,6 +107,7 @@ export class SquatTutorController extends BaseScriptComponent {
     if (!f) return
     this.fault = f
     this.ghostRig.applyPose(faultPose(f))
+    this.fadeGhostLegs(f.id === "heels")
     this.ghostRoot.enabled = true
     this.player.goTo(FAULT_PHASE_INDEX)
     this.setAngle(f.view === "front" ? "front" : "side")
@@ -107,6 +117,7 @@ export class SquatTutorController extends BaseScriptComponent {
   private clearFault(): void {
     if (!this.fault) return
     this.fault = null
+    this.fadeGhostLegs(false)
     this.ghostRoot.enabled = false
     this.ui.showFault(null)
   }
@@ -140,8 +151,32 @@ export class SquatTutorController extends BaseScriptComponent {
     this.ui.setSlow(s.slow)
     this.ui.setStepBounds(s.phaseIndex > 0, s.phaseIndex < PHASE_COUNT - 1)
     // Before Start the figure waits in its stance; the cue appears once the demo runs.
-    // In comparison mode, highlight the body part the mistake is about.
-    const faultCue = this.fault ? (this.fault.id === "knees" ? "knees" : this.fault.id === "heels" ? "feet" : "hip") : null
-    this.cues.show(faultCue ?? (s.started ? phase.indicator : null))
+    // In comparison mode, highlight the body part the pattern is about: knee arrows for Knees,
+    // foot outlines for Heels. Chest has no matching cue, so none is shown (rather than the hips).
+    if (this.fault) this.cues.show(this.fault.id === "knees" ? "knees" : this.fault.id === "heels" ? "feet" : null)
+    else this.cues.show(s.started ? phase.indicator : null)
+  }
+
+  /** Finds the red figure's thigh, knee-ball and shin meshes and prepares a fainter copy of their material. */
+  private collectGhostLegs(root: SceneObject): void {
+    const visit = (so: SceneObject) => {
+      if (/^Ghost(Thigh|KneeBall|Shin)[LR]$/.test(so.name)) {
+        const rmv = so.getComponent("Component.RenderMeshVisual") as RenderMeshVisual
+        if (rmv) this.legVisuals.push(rmv)
+      }
+      for (let i = 0; i < so.getChildrenCount(); i++) visit(so.getChild(i))
+    }
+    visit(root)
+    if (this.legVisuals.length === 0) return
+    this.legMaterial = this.legVisuals[0].mainMaterial
+    this.legFaintMaterial = this.legMaterial.clone()
+    const c = this.legMaterial.mainPass.baseColor as vec4
+    this.legFaintMaterial.mainPass.baseColor = new vec4(c.x, c.y, c.z, 0.16)
+  }
+
+  private fadeGhostLegs(fade: boolean): void {
+    if (!this.legMaterial || !this.legFaintMaterial || this.legsFaded === fade) return
+    for (const rmv of this.legVisuals) rmv.mainMaterial = fade ? this.legFaintMaterial : this.legMaterial
+    this.legsFaded = fade
   }
 }

@@ -33,7 +33,7 @@ export interface SquatFault {
   title: string
   /** The checkpoint view a coach uses for this fault; the turntable turns to it. */
   view: FaultView
-  /** Card label naming the view (and, where sources agree, that it is the clearest one). */
+  /** Neutral card label naming the automatically selected view. */
   viewLabel: string
   /** What the translucent "mistake" figure shows. */
   mistake: string
@@ -99,7 +99,7 @@ export const SQUAT_FAULTS: SquatFault[] = [
     button: "Knees",
     title: "Knees caving in",
     view: "front",
-    viewLabel: "BEST SEEN FROM THE FRONT",
+    viewLabel: "VIEW: FRONT",
     mistake: "knees drift inside the toes.",
     target: "knees track over the toes.",
     delta: {kneeInDeg: 18}
@@ -109,8 +109,8 @@ export const SQUAT_FAULTS: SquatFault[] = [
     button: "Heels",
     title: "Heels lifting",
     view: "side",
-    // Trainer checklists differ: some check heel rise from behind, others from the side.
-    viewLabel: "SEEN FROM THE SIDE OR REAR",
+    // The Lens turns to the side; a learner may also walk behind the stage to look from the rear.
+    viewLabel: "VIEW: SIDE",
     mistake: "heels lift off the floor.",
     target: "whole foot stays planted.",
     delta: {heelLiftCm: 4.0}
@@ -120,7 +120,7 @@ export const SQUAT_FAULTS: SquatFault[] = [
     button: "Chest",
     title: "Chest dropping",
     view: "side",
-    viewLabel: "BEST SEEN FROM THE SIDE",
+    viewLabel: "VIEW: SIDE",
     mistake: "chest tips far forward.",
     target: "chest up, torso controlled.",
     delta: {extraLeanDeg: 18}
@@ -147,7 +147,10 @@ export const TRANSITION_SECONDS = 1.2
 export const STEP_SECONDS = 0.6
 export const SLOW_SPEED = 0.5
 
-export const INTRO_BODY = "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows."
+export const INTRO_BODY = "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference."
+/** Intro card label and title (approved product identity). */
+export const INTRO_LABEL = "SPATIAL SQUAT COMPARISON"
+export const PRODUCT_NAME = "Coach's Eye"
 export const COMPLETE_TITLE = "Squat complete"
 export const COMPLETE_MESSAGE = "Try Knees, Heels or Chest below to compare a common pattern, or Replay."
 /** Comparison row label: idle, and while a comparison is showing. */

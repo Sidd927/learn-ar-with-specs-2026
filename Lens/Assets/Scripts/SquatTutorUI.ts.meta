@@ -34,6 +34,7 @@
     panelDistance: false
     panelHeight: false
     panelWidth: false
+    rightPanelHeight: false
     sideOffset: false
     subtleColor: false
     textColor: false
@@ -48,6 +49,7 @@
   DefaultScriptInputs:
     - sideOffset: !<float> 34.000000
       panelHeight: !<float> -26.000000
+      rightPanelHeight: !<float> -32.000000
       panelDistance: !<float> 0.000000
       cardWidth: !<float> 28.000000
       panelWidth: !<float> 25.000000
@@ -62,14 +64,15 @@
     - '// @ui {"widget":"label", "label":"Squat Tutor UI — cue card and controls (UIKit)"}'
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"Layout"}'
-    - '// @input float sideOffset = 33 {"hint":"Card / panel centre offset to each side of the mannequin (cm)"}'
-    - '// @input float panelHeight = -26 {"hint":"Height of the card / panel centres relative to eye level at start (cm)"}'
-    - "// @input float panelDistance = 155 {\"hint\":\"Distance of the cards / panels from the user's start position (cm)\"}"
-    - '// @input float cardWidth = 21 {"hint":"Cue card width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
-    - '// @input float panelWidth = 20 {"hint":"Control panel width (cm)", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float sideOffset = 29 {"hint":"Card / panel centre offset to each side of the mannequin (cm)"}'
+    - '// @input float panelHeight = -22 {"hint":"Height of the left panels (intro card, cue card) relative to eye level at start (cm)"}'
+    - '// @input float rightPanelHeight = -31 {"hint":"Height of the right panels (Start, controls) relative to eye level at start (cm). Lower than the left so the side-view hands stay clear."}'
+    - "// @input float panelDistance = 150 {\"hint\":\"Distance of the cards / panels from the user's start position (cm)\"}"
+    - '// @input float cardWidth = 26.4 {"hint":"Cue card width (cm); fits three 5.8 cm pattern buttons with 2.9 cm gaps", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float panelWidth = 25.6 {"hint":"Control panel width (cm); fits three 5.8 cm buttons with 2.9 cm gaps", "widget":"slider", "min":20, "max":40, "step":0.5}'
     - '// @ui {"widget":"group_end"}'
     - '// @ui {"widget":"group_start", "label":"Text"}'
-    - '// @input string introTitle = "Squat Tutor" {"hint":"Intro title"}'
+    - "// @input string introTitle = \"Coach's Eye\" {\"hint\":\"Intro title\"}"
     - '// @input vec4 accentColor = {1,0.78,0.38,1} {"hint":"Accent colour for phase labels", "widget":"color"}'
     - '// @input vec4 textColor = {1,1,1,1} {"hint":"Primary text colour", "widget":"color"}'
     - '// @input vec4 subtleColor = {1,1,1,0.6} {"hint":"Secondary text colour", "widget":"color"}'

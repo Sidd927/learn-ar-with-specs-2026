@@ -3585,8 +3585,6 @@
   Enabled: true
   ScriptAsset: !<reference> 92fbd86e-bd6e-4496-9a89-c050b84c1d34
   ScriptInputsDefault:
-    panelHeight: true
-    introTitle: true
     accentColor: true
     textColor: true
     subtleColor: true
@@ -3594,12 +3592,13 @@
     {}
   ScriptInputs:
     "":
-      sideOffset: !<float> 33.000000
-      panelHeight: !<float> -26.000000
-      panelDistance: !<float> 155.000000
-      cardWidth: !<float> 21.000000
-      panelWidth: !<float> 20.000000
-      introTitle: Squat Tutor
+      sideOffset: !<float> 29.000000
+      panelHeight: !<float> -22.000000
+      rightPanelHeight: !<float> -31.000000
+      panelDistance: !<float> 150.000000
+      cardWidth: 26.400000
+      panelWidth: 25.600000
+      introTitle: "Coach's Eye"
       accentColor: !<Vec4> {x: 1.000000, y: 0.780000, z: 0.380000, w: 1.000000}
       textColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
       subtleColor: !<Vec4> {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.600000}

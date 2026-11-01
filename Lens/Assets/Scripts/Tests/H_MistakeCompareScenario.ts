@@ -38,12 +38,16 @@ export class H_MistakeCompareScenario extends Scenario {
       expect(yawNear(VIEW_ANGLES[f.view]), p + `turned to ${f.view} view`).toBe(true)
       expect(kit.phaseLabel(), p + "view label").toBe(f.viewLabel)
       expect(kit.phaseTitle(), p + "title").toBe(f.title)
-      expect(kit.cueText(), p + "red and target lines").toBe(`Red: ${f.mistake}\nWhite (target): ${f.target}`)
+      expect(kit.cueText(), p + "red and reference lines").toBe(`Red: ${f.mistake}\nWhite (reference): ${f.target}`)
       expect(kit.text("MistakesLabel"), p + "return hint").toBe(COMPARE_ACTIVE_LABEL)
       expect(kit.text("Disclaimer"), p + "exaggeration note").toBe(COMPARE_NOTE)
       for (const g of SQUAT_FAULTS) {
         expect(kit.ui.getButton("Fault_" + g.id).isOn, p + `toggle ${g.id}`).toBe(g.id === f.id)
       }
+      // Body cue matches the pattern (no hip marker for Chest); only Heels fades the red legs.
+      const cue = f.id === "knees" ? "Cue_KneeArrows" : f.id === "heels" ? "Cue_FootOutlines" : ""
+      expect(kit.cues.activeName, p + "body cue").toBe(cue)
+      expect(controller.heelsLegsFaded, p + "red legs faded only for heels").toBe(f.id === "heels")
     }
 
     const expectClosed = (via: string) => {
@@ -53,6 +57,7 @@ export class H_MistakeCompareScenario extends Scenario {
       expect(kit.text("MistakesLabel"), p + "row label restored").toBe(COMPARE_LABEL)
       expect(kit.text("Disclaimer"), p + "disclaimer restored").toBe(DISCLAIMER)
       expect(kit.phaseLabel().startsWith("PHASE "), p + "phase label restored").toBe(true)
+      expect(controller.heelsLegsFaded, p + "red legs restored").toBe(false)
       for (const g of SQUAT_FAULTS) {
         expect(kit.ui.getButton("Fault_" + g.id).isOn, p + `toggle ${g.id} off`).toBe(false)
       }

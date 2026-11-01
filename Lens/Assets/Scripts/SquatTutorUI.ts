@@ -8,7 +8,7 @@ import {
 } from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex/FlexTypes"
 import {
   COMPARE_ACTIVE_LABEL, COMPARE_LABEL, COMPARE_NOTE, COMPLETE_MESSAGE, COMPLETE_TITLE, DISCLAIMER,
-  INTRO_BODY, PHASE_COUNT, SQUAT_FAULTS, SquatFault, VIEW_ANGLES
+  INTRO_BODY, INTRO_LABEL, PHASE_COUNT, PRODUCT_NAME, SQUAT_FAULTS, SquatFault, VIEW_ANGLES
 } from "./SquatPhases"
 
 // ── Typography: the single source of truth for text size + weight ────────────
@@ -45,6 +45,14 @@ const LAYOUT_Z_LIFT = 0.02
 const BUTTON_LABEL_Z = 0.08
 const CONTENT_Z = 0.6
 
+// Interactive targets (see docs/UI_LAYOUT_AUDIT.md). Snap's guidance: targetable elements at least
+// 2 degrees, spaced at least 1 degree apart. Our conservative reading applies 2 degrees to both
+// collider dimensions and 1 degree edge to edge: about 5.6 cm and 2.8 cm at the panels' distance.
+const BUTTON_H = 5.8
+const BUTTON_GAP = 2.9
+/** Extra space between the two playback rows (the panel's single rowGap is 0.7). */
+const ROW_SPACER = 1.6
+
 const DOT_MESH = requireAsset("../Meshes/MannequinSphere.mesh") as RenderMesh
 const DOT_ON_MAT = requireAsset("../Materials/CueHighlight.mat") as Material
 const DOT_OFF_MAT = requireAsset("../Materials/StandColumnMaterial.mat") as Material
@@ -63,31 +71,35 @@ export class SquatTutorUI extends BaseScriptComponent {
   @ui.group_start("Layout")
   @input
   @hint("Card / panel centre offset to each side of the mannequin (cm)")
-  sideOffset: number = 33
+  sideOffset: number = 29
 
   @input
-  @hint("Height of the card / panel centres relative to eye level at start (cm)")
-  panelHeight: number = -26
+  @hint("Height of the left panels (intro card, cue card) relative to eye level at start (cm)")
+  panelHeight: number = -22
+
+  @input
+  @hint("Height of the right panels (Start, controls) relative to eye level at start (cm). Lower than the left so the side-view hands stay clear.")
+  rightPanelHeight: number = -31
 
   @input
   @hint("Distance of the cards / panels from the user's start position (cm)")
-  panelDistance: number = 155
+  panelDistance: number = 150
 
   @input
-  @hint("Cue card width (cm)")
+  @hint("Cue card width (cm); fits three 5.8 cm pattern buttons with 2.9 cm gaps")
   @widget(new SliderWidget(20, 40, 0.5))
-  cardWidth: number = 21
+  cardWidth: number = 26.4
 
   @input
-  @hint("Control panel width (cm)")
+  @hint("Control panel width (cm); fits three 5.8 cm buttons with 2.9 cm gaps")
   @widget(new SliderWidget(20, 40, 0.5))
-  panelWidth: number = 20
+  panelWidth: number = 25.6
   @ui.group_end
 
   @ui.group_start("Text")
   @input
   @hint("Intro title")
-  introTitle: string = "Squat Tutor"
+  introTitle: string = "Coach's Eye"
 
 
   @input
@@ -187,7 +199,7 @@ export class SquatTutorUI extends BaseScriptComponent {
     if (!fault) return
     this.phaseLabel.text = fault.viewLabel
     this.titleText.text = fault.title
-    this.cueText.text = `Red: ${fault.mistake}\nWhite (target): ${fault.target}`
+    this.cueText.text = `Red: ${fault.mistake}\nWhite (reference): ${fault.target}`
   }
 
   setComplete(): void {
@@ -220,7 +232,8 @@ export class SquatTutorUI extends BaseScriptComponent {
   // ---- Panels --------------------------------------------------------------
 
   private slot(name: string, side: number): SceneObject {
-    const so = this.obj(this.sceneObject, name, new vec3(side * this.sideOffset, this.panelHeight, -this.panelDistance))
+    const height = side < 0 ? this.panelHeight : this.rightPanelHeight
+    const so = this.obj(this.sceneObject, name, new vec3(side * this.sideOffset, height, -this.panelDistance))
     // Turn each panel to face the user's start position.
     const yaw = Math.atan2(this.sideOffset, this.panelDistance) * -side
     so.getTransform().setLocalRotation(quat.angleAxis(yaw, vec3.up()))
@@ -251,8 +264,8 @@ export class SquatTutorUI extends BaseScriptComponent {
 
   private buildIntroCard(parent: SceneObject): SceneObject {
     const {root, column} = this.panel(parent, "IntroCard", this.cardWidth, 0.8, 1.6)
-    this.textRow(column, "IntroLabel", "BODYWEIGHT SQUAT", "Caption", 2.0, this.accentColor)
-    this.textRow(column, "IntroTitle", this.introTitle, "Headline1", 3.4, this.textColor)
+    this.textRow(column, "IntroLabel", INTRO_LABEL, "Caption", 2.0, this.accentColor)
+    this.textRow(column, "IntroTitle", this.introTitle || PRODUCT_NAME, "Headline1", 3.4, this.textColor)
     this.textRow(column, "IntroBody", INTRO_BODY, "Body", 6.6, this.subtleColor, true)
     this.textRow(column, "IntroDisclaimer", DISCLAIMER, "Caption", 3.6, this.subtleColor, true)
     return root
@@ -261,8 +274,8 @@ export class SquatTutorUI extends BaseScriptComponent {
   private buildStartPanel(parent: SceneObject): SceneObject {
     const {root, column} = this.panel(parent, "StartPanel", this.panelWidth, 0.8, 1.6)
     this.textRow(column, "StartHint", "Pinch Start to watch the full squat", "Caption", 2.4, this.subtleColor, true)
-    const row = this.row(column, 5.6)
-    this.addButton(row, "Start", "Start", this.panelWidth - 3.2, 5.0, "Primary", () => this._onStart.invoke())
+    const row = this.row(column, BUTTON_H)
+    this.addButton(row, "Start", "Start", this.panelWidth - 3.2, BUTTON_H, "Primary", () => this._onStart.invoke())
     return root
   }
 
@@ -273,10 +286,10 @@ export class SquatTutorUI extends BaseScriptComponent {
     this.cueText = this.textRow(column, "PhaseCue", "", "Body", 5.8, this.textColor, true)
     this.buildDots(column)
     this.compareLabel = this.textRow(column, "MistakesLabel", COMPARE_LABEL, "Caption", 1.8, this.subtleColor)
-    const faults = this.row(column, 3.6)
-    const third = (this.cardWidth - 3.2 - 2 * 0.7) / 3
+    const faults = this.row(column, BUTTON_H)
+    const third = (this.cardWidth - 3.2 - 2 * BUTTON_GAP) / 3
     for (const f of SQUAT_FAULTS) {
-      this.addButton(faults, "Fault_" + f.id, f.button, third, 3.4, "PrimaryNeutral", () => this._onFault.invoke(f.id), true)
+      this.addButton(faults, "Fault_" + f.id, f.button, third, BUTTON_H, "PrimaryNeutral", () => this._onFault.invoke(f.id), true)
     }
     this.disclaimerText = this.textRow(column, "Disclaimer", DISCLAIMER, "Caption", 3.4, this.subtleColor, true)
     return root
@@ -308,24 +321,26 @@ export class SquatTutorUI extends BaseScriptComponent {
   private buildControlPanel(parent: SceneObject): SceneObject {
     const {root, column} = this.panel(parent, "ControlPanel", this.panelWidth, 0.7, 1.2)
     const inner = this.panelWidth - 2.4
-    const third = (inner - 2 * 0.7) / 3
-    const half = (inner - 0.7) / 2
+    const third = (inner - 2 * BUTTON_GAP) / 3
+    const half = (inner - BUTTON_GAP) / 2
 
-    this.textRow(column, "PlaybackLabel", "PLAYBACK", "Caption", 1.8, this.subtleColor)
-    const r1 = this.row(column, 3.6)
-    this.addButton(r1, "Previous", "< Prev", third, 3.4, "PrimaryNeutral", () => this._onPrevious.invoke())
-    this.playLabel = this.addButton(r1, "PlayPause", "Pause", third, 3.4, "Primary", () => this._onPlayPause.invoke())
-    this.addButton(r1, "Next", "Next >", third, 3.4, "PrimaryNeutral", () => this._onNext.invoke())
+    // No "PLAYBACK" caption: the five playback buttons are self-labelled, and the saved height
+    // lets the panel sit higher, clear of the stage, while its top stays below the side-view hands.
+    const r1 = this.row(column, BUTTON_H)
+    this.addButton(r1, "Previous", "< Prev", third, BUTTON_H, "PrimaryNeutral", () => this._onPrevious.invoke())
+    this.playLabel = this.addButton(r1, "PlayPause", "Pause", third, BUTTON_H, "Primary", () => this._onPlayPause.invoke())
+    this.addButton(r1, "Next", "Next >", third, BUTTON_H, "PrimaryNeutral", () => this._onNext.invoke())
 
-    const r2 = this.row(column, 3.6)
-    this.slowLabel = this.addButton(r2, "Slow", "Slow 0.5x", half, 3.4, "PrimaryNeutral", () => this._onSlow.invoke(), true)
-    this.addButton(r2, "Replay", "Replay", half, 3.4, "PrimaryNeutral", () => this._onReplay.invoke())
+    this.spacer(column, "PlaybackSpacer", ROW_SPACER)
+    const r2 = this.row(column, BUTTON_H)
+    this.slowLabel = this.addButton(r2, "Slow", "Slow 0.5x", half, BUTTON_H, "PrimaryNeutral", () => this._onSlow.invoke(), true)
+    this.addButton(r2, "Replay", "Replay", half, BUTTON_H, "PrimaryNeutral", () => this._onReplay.invoke())
 
     this.textRow(column, "ViewLabel", "VIEW ANGLE", "Caption", 1.8, this.subtleColor)
-    const r3 = this.row(column, 3.6)
-    this.addButton(r3, "Front", "Front", third, 3.4, "PrimaryNeutral", () => this._onAngle.invoke("front"), true)
-    this.addButton(r3, "Angled", `${VIEW_ANGLES.angled}°`, third, 3.4, "PrimaryNeutral", () => this._onAngle.invoke("angled"), true)
-    this.addButton(r3, "Side", "Side", third, 3.4, "PrimaryNeutral", () => this._onAngle.invoke("side"), true)
+    const r3 = this.row(column, BUTTON_H)
+    this.addButton(r3, "Front", "Front", third, BUTTON_H, "PrimaryNeutral", () => this._onAngle.invoke("front"), true)
+    this.addButton(r3, "Angled", `${VIEW_ANGLES.angled}°`, third, BUTTON_H, "PrimaryNeutral", () => this._onAngle.invoke("angled"), true)
+    this.addButton(r3, "Side", "Side", third, BUTTON_H, "PrimaryNeutral", () => this._onAngle.invoke("side"), true)
     return root
   }
 
@@ -375,10 +390,18 @@ export class SquatTutorUI extends BaseScriptComponent {
     flex.direction = FlexDirection.Row
     flex.justifyContent = FlexJustify.SpaceBetween
     flex.alignItems = FlexAlign.Center
-    flex.columnGap = 0.7
+    flex.columnGap = BUTTON_GAP
     flex.height = height
     flex.width = -1
     return so
+  }
+
+  /** Empty fixed-height row that adds vertical space between two button rows. */
+  private spacer(column: SceneObject, name: string, height: number): void {
+    const so = this.obj(column, name)
+    const item = so.createComponent(FlexItem.getTypeName()) as FlexItem
+    item.overrideHeight = height
+    item.overrideWidth = 1
   }
 
   /** UIKit Button with a width-budgeted raw Text label. Returns the label. */
