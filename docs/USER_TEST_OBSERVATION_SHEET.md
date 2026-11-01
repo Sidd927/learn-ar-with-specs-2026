@@ -62,4 +62,15 @@ Use **Partly** for an answer about the right body area with the wrong change (fo
 | Viewpoint reason (Yes) | | | | | | __ / __ |
 | Returned alone | | | | | | __ / __ |
 
-**Decision rule, agreed before testing.** If 2 or more people answer Partly or No on **Heels**, treat the heels depiction as not working. Then choose between a clearer depiction and removing it. Report counts, not percentages, and include the negative findings.
+**Thresholds, agreed with the learner before testing (design brief, Amendment 1, Q9).** For each of the five outcomes below, at least 60% of participants, rounded up (2 of 3, 3 of 4, 3 of 5):
+1. state the purpose without explanation;
+2. identify the Knees difference;
+3. identify the Chest difference;
+4. explain why the viewpoint changes;
+5. return to the demonstration on their own.
+
+These are formative prototype decision criteria, not statistical validation or proof of learning. If any threshold is missed, bring the results to the learner before recording the video.
+
+**Heels rule, agreed before testing.** If 2 or more people answer Partly or No on **Heels**, bring the results to the learner for a design decision (improve its clarity, or remove it) before recording the video. Don't change Heels before then.
+
+Report raw counts and actual observations, including the unsuccessful ones. Never describe the results as evidence that the product improves learning.

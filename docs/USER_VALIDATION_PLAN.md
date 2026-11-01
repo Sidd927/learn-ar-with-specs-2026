@@ -70,6 +70,16 @@ Suggested change: ____________________________________________
 ```
 
 ## How to report
+**Thresholds, agreed with the learner before testing (design brief, Amendment 1, Q9).** For each of the five outcomes below, at least 60% of participants, rounded up (2 of 3, 3 of 4, 3 of 5):
+1. state the purpose without explanation;
+2. identify the Knees difference;
+3. identify the Chest difference;
+4. explain why the viewpoint changes;
+5. return to the demonstration on their own.
+
+These are formative prototype decision criteria, not statistical validation or proof of learning. If any threshold is missed, bring the results to the learner before recording the video.
+
+Also:
 - Raw counts only (for example "3 of 5 identified the heel difference"). No percentages or significance claims with n ≈ 5.
 - Quote at least one negative finding if there is one.
 - If sessions don't happen before submission, the Devpost text keeps saying "not yet validated with users".

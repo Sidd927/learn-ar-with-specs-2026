@@ -29,7 +29,7 @@ Phone apps already rotate 3D exercise models and list "common mistakes". What th
 
 ## Why SPECS
 Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
-- **Head-worn and hands-free.** You look at the figures from where you stand, step to the side or walk behind the stage, and keep your hands free, for example to try the movement beside the figure.
+- **Head-worn and hands-free.** You look at the figures from where you stand, step to the side or walk behind the stage, and keep your hands free; you could even try the movement beside the figure. This is the intended glasses experience: no follow-along feature is built, and it is untested on a device.
 - **The view matters.** Each pattern shows most clearly from a particular side, so the Lens turns the stage to face you with that view.
 
 We haven't tested whether this helps people learn better than a phone or a video.
@@ -59,7 +59,7 @@ We haven't tested whether this helps people learn better than a phone or a video
 - **Validation:** not yet tested with users. A five-person understanding test is ready to run (`docs/USER_VALIDATION_PLAN.md`), and the learning benefit is a hypothesis.
 - **Preview only:** comfort, hand tracking and red-on-additive-display legibility are untested on SPECS hardware.
 - **Not coach-reviewed:** the depictions are simplified and exaggerated. The heels comparison is the least clear and is our first candidate for improvement.
-- **Next:** user sessions, coach review, a clearer heel depiction, then more movements.
+- **Next:** user sessions, coach review, and an evidence-based decision on the heels comparison. Applying the same comparison approach to other movements is only a future possibility; nothing beyond the squat is built or committed.
 
 ## Links
 - Repo: https://github.com/Sidd927/learn-ar-with-specs-2026

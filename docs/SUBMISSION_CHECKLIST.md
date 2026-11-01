@@ -16,7 +16,7 @@ Nothing has been submitted. Work through this list yourself before pressing Subm
 | # | Requirement | Current evidence | Status | Manual action required |
 |---|---|---|---|---|
 | 1 | New SPECS AR Lens created during the official submission period | Repo created 28 Oct 2026 (`7b18e08`); all Lens work 30–31 Oct 2026 (`git log`) | Evidence ready; **period start date not on record** | Confirm the submission-period dates on the live rules page |
-| 2 | Planning uses the Devpost Learn skill pack | `Lens/devpost/design-brief.md` (plan-lens template, `status: approved`), plus *Amendment 1: Coach's Eye* with a traceability log; skill installed under `Lens/.claude/skills/plan-lens` | Evidence ready for `main`. **Coach's Eye: Amendment 1 is a draft**; the `plan-lens` interview is in progress (31 Oct) | Finish the interview, review the revised Amendment 1, then sign off yes/no |
+| 2 | Planning uses the Devpost Learn skill pack | `Lens/devpost/design-brief.md`: original brief (approved 30 Oct, `bc5faf6`) plus *Amendment 1: Coach's Eye*, written from a learner-led `plan-lens` interview (Q1–Q9, completed 1 Nov 2026) with the answers recorded in the learner's words. Front matter `status: draft`. Skill installed under `Lens/.claude/skills/plan-lens` | Evidence ready for `main`. **Coach's Eye: awaiting your sign-off of Amendment 1** | Read Amendment 1; sign off yes/no (then set `status: approved`) |
 | 3 | Built with CLAD, Lens Studio, and the Lens Studio MCP | Lens Studio 5.24.1; CLAD skills; MCP VirtualScene / compile / logs / preview capture / LEAF. Documented in README and `IMPLEMENTATION_NOTES.md` | Evidence ready | None |
 | 4 | Lens installs and runs consistently in its intended Lens Studio preview | `main`: 7/7 LEAF incl. quit-and-reopen. `feature/coach-eye` final build `2201d21`: 8/8 LEAF, 0 script errors (`TEST_RESULTS.md`). Quit-and-reopen **not yet repeated on the branch** | Verified (branch fresh-open pending) | Quit and reopen Lens Studio on the branch, then re-run the 8 scenarios |
 | 5 | Functionality matches the video and written description | Draft lists only verified features; recording guide uses only existing controls | Ready; depends on the video | Record exactly per `DEMO_RECORDING_GUIDE.md`; re-read the draft against the video |
@@ -61,6 +61,13 @@ These aren't in the verified rules record. Check each one, because the Devpost f
 - [x] Coach's Eye: model measurements (3.1/7.7 cm and so on) are kept out of the README, Devpost draft and narration; they appear only in `TEST_RESULTS.md` and `BIOMECHANICAL_VALIDATION.md`, labelled as model geometry.
 - [x] Coach's Eye: no injury, diagnosis, weakness or "correct for everyone" claims; patterns are called common patterns, exaggerated for clarity.
 - [x] User validation is marked NOT CONDUCTED.
+
+## Coach's Eye process tasks (open)
+These belong here rather than in the design brief, by the learner's decision on 1 Nov 2026.
+- [ ] Sign off Amendment 1 in the design brief.
+- [ ] Fresh-open validation on `feature/coach-eye`: you quit Lens Studio, then I reopen it and run all 8 LEAF scenarios one at a time.
+- [ ] Manually verify the official rules and resources pages (automated access returns HTTP 403).
+- [ ] Record the demo video (`FINAL_DEMO_RECORDING_GUIDE.md`), after the user test and any heels decision.
 
 ## Final steps (yours)
 1. Open the live rules and resources pages; tick off the assumptions table above.

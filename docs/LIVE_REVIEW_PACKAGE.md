@@ -29,7 +29,7 @@ We haven't tested whether this helps people learn.
 ## What makes it different
 Phone apps already rotate 3D exercise models and list common mistakes. Coach's Eye combines three things in one moment, in your space:
 - the pattern overlaid directly on the target, with only the difference drawn in red;
-- an automatic turn to the revealing viewpoint;
+- an automatic turn to a viewpoint selected for that difference;
 - a card naming the pattern, the difference and the view.
 
 ## Implemented (Lens Studio 5.24.1 preview)
@@ -42,7 +42,7 @@ Phone apps already rotate 3D exercise models and list common mistakes. Coach's E
 - **No user testing yet.** A five-person protocol is ready (`USER_VALIDATION_PLAN.md`), results NOT CONDUCTED.
 - **Not run on SPECS hardware.** Comfort, hand tracking, and red-on-additive-display legibility are unverified.
 - **No coach or expert review** of the three depictions.
-- The design brief's Coach's Eye amendment is a **draft**, and the learner-led `plan-lens` interview is in progress.
+- The design brief's Coach's Eye amendment is a **draft**: the learner-led `plan-lens` interview is complete and sign-off is pending.
 - The **heels** comparison may read as "legs move" more than "heel lifts" (seen in our own captures).
 - The learning benefit is a hypothesis.
 

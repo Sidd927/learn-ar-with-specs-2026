@@ -18,7 +18,7 @@ Built for the [Learn AR with SPECS](https://learn-specs.devpost.com) hackathon w
 - **Who it's for:** beginners learning the bodyweight squat at home who want to know *what to look for* and *where to look*.
 - **The problem:** most people learn from a video filmed from one angle. Coaches don't watch from one angle: trainer screening checks the knees from the front and torso lean from the side. A single view can hide exactly the difference a beginner needs to see.
 - **What already exists:** phone apps rotate 3D exercise models and list common mistakes (see the [strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md)).
-- **What's different here:** the pattern and the target are overlaid in your space, and the stage turns to the revealing view for you.
+- **What's different here:** an exaggerated pattern and the reference figure are overlaid in your space, and the stage turns for you to a view selected for that difference.
 
 > **Hypothesis, not yet validated.** No user testing has been done yet. A ready-to-run five-person protocol is in [`docs/USER_VALIDATION_PLAN.md`](docs/USER_VALIDATION_PLAN.md).
 
@@ -26,10 +26,9 @@ Built for the [Learn AR with SPECS](https://learn-specs.devpost.com) hackathon w
 Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
 - **Head-worn, hands-free viewing.** The figures stay on the stage while you look from where you stand, step to the side or walk behind it, without holding a phone in your line of sight.
 - **The view matters.** Each pattern shows most clearly from a particular side (knees from the front, torso lean from the side), so the Lens turns the stage to face you with that view.
-
-Whether this helps people learn better than a phone or a video hasn't been tested.
-- **Hands and body free.** On glasses you can stand beside the figure and try the movement without holding a phone.
 - **Sized for the glasses' view.** The SPECS preview shows about 32° x 36°. A 1:3-scale figure at 1.7 m keeps head, feet, cue card and controls in view together; a life-size figure would need about 3.7 m.
+
+**On glasses, as intended (untested):** look around the comparison hands-free, and perhaps try the movement beside the figure. No follow-along feature is built. Comfort, usability and any learning benefit haven't been tested on a device or with users.
 
 ## The experience
 
@@ -128,10 +127,10 @@ tools/                     Scene generators for the mannequin and the overlay fi
 - **Not coach-reviewed.** The three depictions are general, simplified, 1:3-scale and deliberately exaggerated. The heels comparison is the least clear.
 - **Small buttons.** Buttons are 3.4 cm tall at about 1.55 m, smaller than the brief's default; comfort with real hand tracking is untested.
 - **No tracking or assessment.** By design, the Lens never looks at the user. It doesn't diagnose, correct, or claim to prevent injury.
-- **One movement, three patterns.**
+- **One movement, three patterns.** The bodyweight squat only; the three patterns are illustrative choices for this prototype, not an exhaustive or validated list. Applying the approach to other movements is only a future possibility; nothing beyond the squat is built.
 
 ## Project status
-- **Branch `feature/coach-eye`:** Coach's Eye, the candidate for submission. The design-brief amendment is a draft, and the learner-led `plan-lens` interview is in progress. Not merged; the merge waits for the owner's approval.
+- **Branch `feature/coach-eye`:** Coach's Eye, the candidate for submission. The learner-led `plan-lens` interview is complete (1 Nov 2026), and the revised design-brief amendment awaits the learner's sign-off. Not merged; the merge waits for the owner's approval.
 - **Branch `main` (`d1d0473`):** the verified fallback, without comparisons.
 - **Next:** five-person understanding test, live review on 5 Nov, then the demo video.
 

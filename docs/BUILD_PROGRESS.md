@@ -22,7 +22,7 @@ A resumable log of the implementation. A feature counts as complete only after i
 | 10 | Submission package: recording guide, corrected demo timing, submission checklist and compliance table | Done | `d1d0473` |
 | 11 | Strategic reassessment + Coach's Eye prototype (mistake comparison), 8/8 LEAF | Done on branch `feature/coach-eye` | `6c4e379`, `725b6a2` |
 | 12 | Coach's Eye direction approved by the owner (31 Oct). Comprehension pass, internal model-geometry check and fixes, validation plan, live review package, docs. Final build 8/8 LEAF | Done on `feature/coach-eye` | `0029122`, `643a8bb`, `78381e9`, `2201d21` + docs |
-| 13 | Pre-merge review: brief corrected (Amendment 1 rewritten as a draft, visible corrections in the original), test H extended to every pattern and exit (pass), wording aligned; learner-led `plan-lens` interview started | **In progress**; merge and fresh-open test wait for the learner's sign-off | `1d1bd5a` + docs |
+| 13 | Pre-merge review: brief corrected (Amendment 1 rewritten as a draft, visible corrections in the original), test H extended to every pattern and exit (pass), wording aligned; learner-led `plan-lens` interview (Q1–Q9) completed 1 Nov 2026 and recorded in Amendment 1 | **Awaiting the learner's sign-off of Amendment 1**; merge and fresh-open test wait for it | `1d1bd5a` + docs |
 
 ## Fresh-open test: passed (31 Oct 2026)
 - **Before:** the owner quit Lens Studio 5.24.1 by hand (saving when prompted). `Scene.scene` and all assets were unchanged against `48a24bb` (only the known `.agents` housekeeping deletion).
