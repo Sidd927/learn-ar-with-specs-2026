@@ -1,6 +1,6 @@
-# Submission checklist: Squat Tutor (applies to either version)
+# Submission checklist: Coach's Eye (`feature/coach-eye`) or Squat Tutor (`main` fallback)
 
-> **Which version are you submitting?** `main` = Squat Tutor (`DEVPOST_SUBMISSION.md`, `DEMO_RECORDING_GUIDE.md`). `feature/coach-eye` = Squat Tutor: Coach's Eye (`FINAL_DEVPOST_SUBMISSION.md`, `FINAL_DEMO_SCRIPT.md`, `FINAL_DEMO_RECORDING_GUIDE.md`). You approved the Coach's Eye **direction** on 31 Oct. Before submitting it, read *Amendment 1* in the brief and give the yes/no sign-off (the planning workflow is a Stage 1 requirement), then decide on the merge.
+> **Which version are you submitting?** `main` = Squat Tutor (`DEVPOST_SUBMISSION.md`, `DEMO_RECORDING_GUIDE.md`). `feature/coach-eye` = Coach's Eye, a spatial squat comparison experience (`FINAL_DEVPOST_SUBMISSION.md`, `FINAL_DEMO_SCRIPT.md`, `FINAL_DEMO_RECORDING_GUIDE.md`). You approved the Coach's Eye **direction** on 31 Oct. Before submitting it, read *Amendment 1* in the brief and give the yes/no sign-off (the planning workflow is a Stage 1 requirement), then decide on the merge.
 > **Live review prep:** `LIVE_REVIEW_PACKAGE.md`.
 > **Live judging review:** Thu 5 Nov, 12:00 p.m. ET. Post in Discord `#devpost-learn-feedback` tagged "Learn AR with SPECS" and "Will It Ship" (from the public hackathon page).
 
@@ -43,7 +43,7 @@ These aren't in the verified rules record. Check each one, because the Devpost f
 ## Devpost form fields: what to paste
 | Field (typical) | Source |
 |---|---|
-| Project name | "Squat Tutor" |
+| Project name | Coach's Eye version: "Coach's Eye" (descriptor: "A spatial squat comparison experience"). `main` version: "Squat Tutor" |
 | Tagline | `DEVPOST_SUBMISSION.md` → Tagline |
 | About / story (inspiration, what it does, how we built it, challenges, what's next) | `DEVPOST_SUBMISSION.md` sections of the same names |
 | Built with | `DEVPOST_SUBMISSION.md` → Built with |
@@ -67,6 +67,10 @@ These belong here rather than in the design brief, by the learner's decision on 
 - [ ] Sign off Amendment 1 in the design brief.
 - [ ] Fresh-open validation on `feature/coach-eye`: you quit Lens Studio, then I reopen it and run all 8 LEAF scenarios one at a time.
 - [ ] Manually verify the official rules and resources pages (automated access returns HTTP 403).
+- [ ] Approve or revise the proposed exact intro sentence: "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." (estimated fit risk on today's card; see `UI_LAYOUT_AUDIT.md`).
+- [ ] Decide whether to implement the copy approved in principle (intro "SPATIAL SQUAT COMPARISON / Coach's Eye", the "White (reference)" lines, and the intro sentence once approved) before the user test, so participants see the copy we intend to ship. It needs your approval to implement, then a screenshot recapture and all 8 LEAF scenarios re-run.
+- [ ] Decide on the view labels (undecided): neutral `VIEW: FRONT` / `VIEW: SIDE` or explanatory labels; options in the design brief.
+- [ ] Decide on a button size and spacing change (undecided). The current controls are about 1.2° tall with 0.25° gaps, against the 2° size and 1° spacing we use as a conservative reading of Snap's guidance; see `UI_LAYOUT_AUDIT.md` and the design brief's *Deferred decisions*.
 - [ ] Record the demo video (`FINAL_DEMO_RECORDING_GUIDE.md`), after the user test and any heels decision.
 
 ## Final steps (yours)

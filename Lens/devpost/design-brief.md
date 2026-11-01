@@ -8,7 +8,8 @@ amendment_1_status: draft, plan-lens interview complete (1 Nov 2026), awaiting l
 
 > **How to read this file.**
 > - **Current product specification:** *Amendment 1: Coach's Eye*, at the end. Status: **draft**, awaiting learner sign-off.
-> - **Planning history:** everything from "The one spatial moment" to "After the build" is the **original Squat Tutor brief**, marked approved on 30 Oct 2026 (commit `bc5faf6`). Its words are kept. Where it no longer matches what was built, a visible **[Correction 31 Oct 2026]** note follows the original text.
+> - **Product name:** **Coach's Eye**, *a spatial squat comparison experience* (learner decision, 1 Nov 2026). **Squat Tutor** is the original project's name; it stays in this planning history and in code identifiers.
+> - **Planning history:** everything from "The one spatial moment" to "After the build" is the **original Squat Tutor brief**, marked approved on 30 Oct 2026 (commit `bc5faf6`). Its words are kept. Where it no longer matches what was built, or was imprecise, a visible **[Correction (date)]** note follows the original text.
 > - **Front matter:** `status` was changed from `approved` to `draft` on 31 Oct 2026, because the file now contains an unapproved amendment. The original brief's approval is recorded in `original_brief_status`.
 
 <!-- Filled in by plan-lens from the learner's interview. Use the learner's words. Mark any value they didn't choose as (default). -->
@@ -25,6 +26,7 @@ A scale mannequin, about 60 cm tall, stands on a stand about 1.7 m in front of y
 ## Product or overlay
 - Type: product. The virtual demonstration is the experience.
 - What the real version would sense: nothing. The Lens never tracks, counts, or assesses the user's own body.
+  **[Correction 1 Nov 2026]** More precisely: the Lens uses hand input (standard Spectacles Interaction Kit / UI Kit pinch) to operate its buttons. It uses no camera-based body tracking or pose estimation, and it never tracks, counts or assesses the user's squat or movement.
 - Stand-in for the preview: none needed.
 
 ## Where things live
@@ -48,7 +50,7 @@ A scale mannequin, about 60 cm tall, stands on a stand about 1.7 m in front of y
 - Angle buttons: Front, 45°, Side. Each turns the turntable so the mannequin faces 0°, 35°, or 90° relative to the user's start position (default angles), without moving the stand. Walking around the stand in the preview also works. The buttons are the reliable fallback.
   **[Correction 31 Oct 2026]** The middle button is labelled **35°** in the build, matching the 35° angle; "45°" was a labelling error in this brief.
 - Targets are big (at least about 6 cm (default)) and highlight when aimed at. Eight buttons on the panel, in three rows: Previous, Play/Pause, Next / Slow, Replay / Front, 45°, Side. The selected angle and Slow show an active state, and Previous/Next dim at the ends.
-  **[Correction 31 Oct 2026]** The built buttons are **3.4 cm tall** (about 5.1–8.1 cm wide); only Start is larger (16.8 × 5.0 cm). That is below the "about 6 cm" default above. The middle angle button reads "35°". Amendment 1 adds three more buttons on the cue card at the same 3.4 cm height.
+  **[Correction 31 Oct 2026; widths corrected 1 Nov 2026]** The built buttons are **3.4 cm tall** and 5.40 cm (thirds) or 8.45 cm (halves) wide; the cue card's pattern buttons are 5.47 cm wide. Only Start is larger (16.8 × 5.0 cm). That is below the "about 6 cm" default above. The middle angle button reads "35°". Amendment 1 adds three more buttons on the cue card at the same 3.4 cm height.
 - Voice: none.
 
 ## When things show
@@ -155,44 +157,196 @@ This part is for you, after CLAD finishes.
 - **31 Oct 2026.** The learner approved the product direction. In their words: "I have reviewed the strategic reassessment and approve Coach's Eye as the direction for our Learn AR with SPECS project. We are evolving Squat Tutor into Coach's Eye rather than pursuing a completely unrelated pivot." They said this was not approval to merge.
 - **31 Oct 2026, pre-merge review.** The learner did not sign off the first wording of this amendment, and asked for corrections and a `plan-lens` interview.
 - **31 Oct – 1 Nov 2026.** The `plan-lens` interview: nine questions, recorded below.
+- **1 Nov 2026, pre-sign-off review.** The learner decided:
+  - the product naming (Coach's Eye, a spatial squat comparison experience);
+  - "reference" terminology for the white figure;
+  - the approved UI copy listed under *Approved UI copy*. It is approved as copy but **not yet implemented**.
+
+  The exact intro-body sentence is a proposal still awaiting the learner's approval.
+
+  The learner also asked for a button-size and spacing audit, recorded under *Deferred decisions*.
 - **Now:** draft, awaiting the learner's sign-off.
 
 ### Planning interview record (plan-lens, Coach's Eye)
-The learner's answers, in their words. Instructions to the agent about process are left out.
+Each answer below is the learner's own text, quoted in full. Only process instructions to the agent are omitted (for example "record these" or "do not modify the build"), and each such omission is marked "[process instruction omitted]". The label after each question records how the decision arose.
 
 **Q1. What problem should Coach's Eye solve?** *(learner)*
-> I want Coach's Eye to help beginners better understand common movement patterns in exercises such as squats. People can watch exercise demonstrations, but simply watching a movement does not always make it easy to understand how different movement patterns look, or what changes when someone performs the movement differently. Coach's Eye aims to make these differences easier to observe by placing a reference movement and exaggerated comparison in the user's physical space. The learner can inspect the comparison from relevant viewpoints using hands-free, head-worn AR. The purpose is visual understanding and education. It is not intended to assess the user's actual body movements, diagnose incorrect form, provide personalised coaching, or make medical or injury-prevention claims.
+> I want Coach's Eye to help beginners better understand common movement patterns in exercises such as squats.
+>
+> People can watch exercise demonstrations, but simply watching a movement does not always make it easy to understand how different movement patterns look, or what changes when someone performs the movement differently.
+>
+> Coach's Eye aims to make these differences easier to observe by placing a reference movement and exaggerated comparison in the user's physical space. The learner can inspect the comparison from relevant viewpoints using hands-free, head-worn AR.
+>
+> The purpose is visual understanding and education. It is not intended to assess the user's actual body movements, diagnose incorrect form, provide personalised coaching, or make medical or injury-prevention claims.
 
 **Q2. Who is the intended learner?** *(agent proposal, confirmed by learner with refinement)*
-> The intended learner is a beginner who is learning the bodyweight squat, typically through online videos or demonstrations, and wants to understand what to observe during the movement and how common movement patterns differ. They may be learning independently and have enough physical space to view and interact with the spatial demonstration. Coach's Eye is not primarily designed for professional athletes refining advanced technique, experienced coaches, or people seeking personalised assessment of their own form. Keep the initial product scope focused on the bodyweight squat. […] The priority is making the first-time learner understand the demonstration and comparisons clearly.
+> I confirm the proposed learner description, with a small refinement:
+>
+> The intended learner is a beginner who is learning the bodyweight squat, typically through online videos or demonstrations, and wants to understand what to observe during the movement and how common movement patterns differ.
+>
+> They may be learning independently and have enough physical space to view and interact with the spatial demonstration.
+>
+> Coach's Eye is not primarily designed for professional athletes refining advanced technique, experienced coaches, or people seeking personalised assessment of their own form.
+>
+> Keep the initial product scope focused on the bodyweight squat. We can discuss whether the long-term concept could extend to other exercises when we reach Question 7, but do not present those extensions as existing capabilities.
+>
+> The priority is making the first-time learner understand the demonstration and comparisons clearly.
 
 **Q3. Why compare movement patterns, rather than only watch the reference?** *(agent proposal, confirmed by learner)*
-> A reference movement on its own demonstrates what the movement looks like, but it does not necessarily teach a beginner what specific details to observe. Coach's Eye makes those details easier to notice by placing one exaggerated movement pattern over the reference mannequin, holding both in the same squat position, and presenting the comparison from a viewpoint selected for that particular difference. Showing one comparison at a time helps the learner focus on a specific body region and observe how the illustrated movement differs from the reference. The important part is not simply having two 3D mannequins. It is combining a visual contrast with a relevant viewing angle so that the learner knows what to look at. Keep the language educational and neutral. These are illustrative movement patterns, not diagnoses or definitive classifications of incorrect form.
+> I confirm your recommended reasoning.
+>
+> A reference movement on its own demonstrates what the movement looks like, but it does not necessarily teach a beginner what specific details to observe.
+>
+> Coach's Eye makes those details easier to notice by placing one exaggerated movement pattern over the reference mannequin, holding both in the same squat position, and presenting the comparison from a viewpoint selected for that particular difference.
+>
+> Showing one comparison at a time helps the learner focus on a specific body region and observe how the illustrated movement differs from the reference.
+>
+> The important part is not simply having two 3D mannequins. It is combining a visual contrast with a relevant viewing angle so that the learner knows what to look at.
+>
+> Keep the language educational and neutral. These are illustrative movement patterns, not diagnoses or definitive classifications of incorrect form.
 
-The learner chose not to cite any research association for this reasoning.
+*Agent summary of a further decision in the same answer:* the learner chose not to include the research reference the agent had offered. A learning benefit has not been established, and the innovation story should stand on the actual experience.
 
 **Q4. The spatial moment, and why head-worn glasses?** *(agent proposal, confirmed by learner with clarification)*
-> A learner stands in their own space, watches the squat demonstration, selects Knees, Heels or Chest, and sees the stage automatically turn to present the relevant comparison. They can inspect the figures by moving their head or body, and potentially follow along physically beside the demonstration. The reason for using SPECS glasses is the hands-free, eyes-up interaction. The learner can look at the spatial comparison while keeping their hands free, rather than holding a phone and continuously aiming its screen at the content. I agree that phone AR can also place 3D figures in a physical environment. We should never claim that this experience is impossible on a phone. The strongest distinction is that head-worn AR allows the learner to inspect the spatial content while naturally looking around it, without holding a device. The possibility of observing the figure while trying the movement alongside it is also an interesting part of the concept. […] We have not yet validated the actual glasses experience, so do not claim proven comfort, usability or learning benefits.
+> I confirm the proposed moment and rationale, with the following clarification.
+>
+> The experience I want is:
+>
+> A learner stands in their own space, watches the squat demonstration, selects Knees, Heels or Chest, and sees the stage automatically turn to present the relevant comparison. They can inspect the figures by moving their head or body, and potentially follow along physically beside the demonstration.
+>
+> The reason for using SPECS glasses is the hands-free, eyes-up interaction. The learner can look at the spatial comparison while keeping their hands free, rather than holding a phone and continuously aiming its screen at the content.
+>
+> I agree that phone AR can also place 3D figures in a physical environment. We should never claim that this experience is impossible on a phone.
+>
+> The strongest distinction is that head-worn AR allows the learner to inspect the spatial content while naturally looking around it, without holding a device. The possibility of observing the figure while trying the movement alongside it is also an interesting part of the concept.
+>
+> However, distinguish carefully between:
+> - What is implemented and visible in Lens Studio Preview.
+> - What is intended to be experienced on SPECS glasses.
+> - What still requires physical device testing.
+>
+> We have not yet validated the actual glasses experience, so do not claim proven comfort, usability or learning benefits.
+>
+> Keep the current product scope intact. We can revisit whether the follow-along aspect needs stronger implementation when we reach the success criteria and scope questions. Do not add features prematurely.
 
-**Q5. Why Knees, Heels and Chest?** *(agent proposal, confirmed by learner)*
-> Keep Knees, Heels and Chest in the current scope for now. The reasons for retaining these three are: 1. They represent distinct movement patterns that a beginner can observe in a squat demonstration. 2. They allow us to demonstrate the purpose of selecting a relevant viewpoint: front for Knees and side for Heels and Chest. 3. They can be implemented using the existing mannequin rig without introducing unnecessary technical complexity. […] The comparisons should be evaluated on how clearly a first-time learner can identify the intended visual difference, not simply whether the code works. Heels is conditional. […] Do not present these three patterns as an exhaustive list of squat mistakes, universally agreed coaching checkpoints, or medically validated indicators. They are the three illustrative patterns selected for this prototype. Keep any external biomechanics or trainer-reference claims out of the brief unless their sources have been properly verified.
+**Q5. Why Knees, Heels and Chest?** *(agent proposal, confirmed by learner with clarification)*
+> I confirm the recommendation.
+>
+> Keep Knees, Heels and Chest in the current scope for now.
+>
+> The reasons for retaining these three are:
+> 1. They represent distinct movement patterns that a beginner can observe in a squat demonstration.
+> 2. They allow us to demonstrate the purpose of selecting a relevant viewpoint: front for Knees and side for Heels and Chest.
+> 3. They can be implemented using the existing mannequin rig without introducing unnecessary technical complexity.
+>
+> I agree that the comparisons should be evaluated on how clearly a first-time learner can identify the intended visual difference, not simply whether the code works.
+>
+> Heels is conditional. Use the existing observation sheet and its decision rule: if two or more participants in the 3–5 person user test misinterpret the Heels comparison, bring the results back to me. We will decide whether to improve its visual clarity or remove it and deliver two stronger comparisons.
+>
+> Do not change or remove Heels before collecting that evidence.
+>
+> One clarification: do not present these three patterns as an exhaustive list of squat mistakes, universally agreed coaching checkpoints, or medically validated indicators. They are the three illustrative patterns selected for this prototype.
+>
+> Keep any external biomechanics or trainer-reference claims out of the brief unless their sources have been properly verified.
 
 **Q6. What should the learner understand afterwards?** *(agent proposal, confirmed by learner with refinement)*
-> 1. What they experienced: Coach's Eye demonstrates a reference squat alongside exaggerated illustrative movement patterns. It helps them observe differences between the figures; it does not track, evaluate or judge their own movements. 2. What to observe in each comparison: Knees: observe the relationship between the knees and feet from the front. Chest: observe how the torso leans forward from the side. Heels: observe whether the heels remain in contact with the floor from the side. 3. Why the viewpoint changes: Different movement differences are easier to inspect from different perspectives. The learner should understand that changing the viewing angle helps bring the relevant visual detail into focus. These are intended learning outcomes, not proven results.
+> I confirm all three intended takeaways, with a small refinement to emphasise visual observation.
+>
+> After using Coach's Eye, a first-time learner should ideally be able to explain:
+>
+> 1. **What they experienced:** Coach's Eye demonstrates a reference squat alongside exaggerated illustrative movement patterns. It helps them observe differences between the figures; it does not track, evaluate or judge their own movements.
+>
+> 2. **What to observe in each comparison:**
+>    - Knees: observe the relationship between the knees and feet from the front.
+>    - Chest: observe how the torso leans forward from the side.
+>    - Heels: observe whether the heels remain in contact with the floor from the side.
+>
+> 3. **Why the viewpoint changes:** Different movement differences are easier to inspect from different perspectives. The learner should understand that changing the viewing angle helps bring the relevant visual detail into focus.
+>
+> These are intended learning outcomes, not proven results. We should use the observation sheet to find out whether actual participants understand these points after using the Lens.
+>
+> Do not turn these takeaways into prescriptive exercise instructions or claims about correct technique. The purpose remains visual understanding, not personal form assessment or coaching.
 
 **Q7. What does Coach's Eye deliberately not do, and how should other exercises be treated?** *(agent proposal, confirmed by learner)*
-
-The learner's out-of-scope list is reproduced under *Out of scope* below. On other exercises:
-> Include one sentence in a clearly labelled "Future possibilities" section […] This is a future possibility, not a committed roadmap or a claim about existing capabilities. Do not expand this into a multi-exercise product pitch. Keep the actual submission focused entirely on the bodyweight squat.
+> I confirm Part A. All the listed capabilities are deliberately out of scope for this version.
+>
+> To make the boundaries explicit:
+>
+> [The learner's list follows here. It is reproduced word for word under *Out of scope* below.]
+>
+> I also confirm Part B, with a small wording adjustment.
+>
+> Include one sentence in a clearly labelled "Future possibilities" section:
+>
+> [The learner's sentence follows here. It is reproduced word for word under *Future possibilities* below.]
+>
+> This is a future possibility, not a committed roadmap or a claim about existing capabilities.
+>
+> Do not expand this into a multi-exercise product pitch. Keep the actual submission focused entirely on the bodyweight squat.
+>
+> Make sure the README, Devpost submission and demo script do not imply that other exercises are currently supported.
+>
+> Preserve the distinction between implemented functionality, intended use and future possibilities throughout the documentation.
 
 **Q8. What limitations and uncertainties remain?** *(agent proposal, confirmed by learner)*
-
-The learner's list is reproduced under *Risks and open questions* below.
+> I confirm the proposed limitations and the split between the design brief and submission checklist.
+>
+> [The learner's three-part list follows here. It is reproduced word for word under *Risks and open questions* below.]
+>
 > Please avoid describing untested risks as confirmed failures. Equally, do not present intended benefits as proven outcomes.
+>
+> Keep the following submission-process tasks in `SUBMISSION_CHECKLIST.md`, not in the product design brief:
+> - Fresh-open validation of the feature branch.
+> - Manual verification of the official competition rules and requirements, since automated access to the relevant pages returns HTTP 403.
+> - Recording the final demo video.
+> - Final Amendment 1 sign-off.
+>
+> Do not enlarge the buttons or make other product changes yet. Record the button-size concern for the success-criteria discussion and subsequent evidence-led polish stage.
 
 **Q9. What does success look like?** *(agent proposal, confirmed by learner with clarifications)*
+> I confirm Parts A, B and C, with the following clarifications.
+>
+> **Part A — Done criteria**
+>
+> Agreed. Keep exactly the seven established criteria, including the visible corrections to the original brief and criterion 7 for Coach's Eye comparisons. All seven have passed LEAF. Do not add new preview-checkable criteria at this stage.
+>
+> **Part B — Evidence of understanding**
+>
+> I agree with setting thresholds before testing. Use a minimum of 60% of participants, rounded up:
+> - 2 of 3
+> - 3 of 4
+> - 3 of 5
+>
+> Apply this independently to each of the five outcomes:
+> 1. State the purpose of the comparison without explanation.
+> 2. Identify the intended Knees difference.
+> 3. Identify the intended Chest difference.
+> 4. Explain why the viewpoint changes.
+> 5. Return to the demonstration independently.
+>
+> Keep the existing Heels rule unchanged: if 2 or more participants in a 3–5 person test misinterpret the Heels comparison, bring the results back to me for a design decision before recording the video.
+>
+> Record raw counts and actual observations, including unsuccessful responses. These thresholds are formative prototype decision criteria, not statistical validation or proof of learning effectiveness. Do not describe the results as evidence that the product improves learning.
+>
+> **Part C — Button size and follow-along**
+>
+> I agree with deferring button enlargement until the polish stage. The current 3.4 cm buttons are below the approximate 5.6 cm guidance Claude identified for the interaction distance. Before making changes, verify the relevant Snap/CLAD UI guidance and confirm the proposed dimensions against the actual scene layout. Bring the proposed change to me for approval first. No changes now.
+>
+> I agree that we should build nothing for follow-along in this submission. Keep it documented as an intended possibility for glasses use and an unvalidated device-testing question. It must not be presented in the demo as an implemented feature.
+>
+> **Overall project success**
+>
+> Agreed:
+> - Submission requirements are met and supported by evidence.
+> - The demo video clearly communicates the comparison experience and follows the official duration and submission requirements.
+> - Every public claim accurately reflects what is implemented and tested.
+> - The 5 November live review produces specific feedback, which we evaluate and act on where appropriate.
+>
+> One important distinction: passing the seven LEAF criteria establishes that the preview implementation meets its defined requirements. User-test observations establish whether people understand the experience. Physical glasses testing and expert review remain separate, uncompleted validation activities.
+>
+> [process instruction omitted]
 
-The decisions are reproduced under *Done criteria*, *Evidence of understanding*, *Deferred decisions* and *What counts as validated* below.
+*Also confirmed in Q9:* the agent's Part B proposal said that if a threshold is missed, the results come back to the learner for a design decision before the video is recorded. The learner confirmed Part B as a whole ("I confirm Parts A, B and C").
 
 ### The one spatial moment
 *(Q4, learner's words)* A learner stands in their own space, watches the squat demonstration, selects Knees, Heels or Chest, and sees the stage automatically turn to present the relevant comparison. They can inspect the figures by moving their head or body, and potentially follow along physically beside the demonstration.
@@ -203,7 +357,7 @@ The decisions are reproduced under *Done criteria*, *Evidence of understanding*,
 
 ### Why it belongs on glasses
 - **Uses:** draws in the world, leaves your body free.
-- **Why it's better than the phone or laptop version** *(Q4)*:
+- **What head-worn AR contributes** *(Q4)*. This replaces the plan-lens template's label "Why it's better than the phone or laptop version", which the learner judged too strong:
   - The value is **hands-free, eyes-up inspection**. The learner looks at the spatial comparison and naturally looks around it with their head and body, without holding a phone and continually aiming its screen.
   - Phone AR can also place 3D figures in a room. **We never claim this experience is impossible on a phone.**
   - Watching the figure while trying the movement beside it is part of the concept, but it is not a built feature.
@@ -215,9 +369,10 @@ The decisions are reproduced under *Done criteria*, *Evidence of understanding*,
 | Comfort, usability and any learning benefit of the glasses experience | **Not yet validated** (no device testing, no user testing) |
 
 ### Product or overlay
-*(established, unchanged)*
+*(established; sensing wording made precise on 1 Nov 2026)*
 - **Type:** product. The virtual demonstration and comparison are the experience.
-- **What the real version would sense:** nothing. The Lens never tracks, counts or assesses the learner.
+- **What the real version would sense:** hand input only, used to operate the interface: standard Spectacles Interaction Kit / UI Kit pinch on buttons. This is hand tracking on glasses and a mouse click in the preview.
+- **What it does not sense:** there is no camera-based body tracking or pose estimation. It never tracks, counts, evaluates or assesses the learner's squat or physical movement.
 - **Stand-in for the preview:** none needed.
 
 ### Where things live
@@ -240,14 +395,14 @@ The decisions are reproduced under *Done criteria*, *Evidence of understanding*,
 - **Closing a comparison:** pinch the same button again, or Play, Prev, Next or Replay. Start is not shown while comparing.
 - **Keeps a comparison open:** Slow and the angle buttons, so the learner can turn the stage while comparing.
 - **Switching:** pinching a different pattern button switches straight to it.
-- **Button size:** all buttons except Start are **3.4 cm tall** (about 5.1–8.1 cm wide) at about 155 cm. That is below the original brief's "about 6 cm" default. See *Deferred decisions*.
+- **Button size:** all buttons except Start are **3.4 cm tall** and 5.40–8.45 cm wide. The panels sit in a plane 155 cm ahead (about 159–161 cm from the eye), so the buttons are about 1.2° tall. That is below the original brief's "about 6 cm" default, and below the 2° we take as a conservative design target from Snap's guidance (applied to both width and height). See *Deferred decisions*.
 - **Voice:** none.
 
 ### When things show
-*(implemented)*
+*(implemented; the quoted strings are the **current** on-screen text. Approved replacements are listed under *Approved UI copy* and are not yet implemented.)*
 - **Intro (before Start):**
-  - label "BODYWEIGHT SQUAT", title "Squat Tutor";
-  - body: "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows.";
+  - label "BODYWEIGHT SQUAT", title "Squat Tutor" *(current; approved replacement: "SPATIAL SQUAT COMPARISON" / "Coach's Eye")*;
+  - body: "Watch a squat in five phases. Then compare three common patterns with the target, each from the angle where it shows." *(current; to refer to "the reference")*;
   - the disclaimer;
   - on the right, "Pinch Start to watch the full squat" and **Start**.
 - **Demonstration:** the five phases with one cue and one body highlight each, as in the original brief.
@@ -255,7 +410,7 @@ The decisions are reproduced under *Done criteria*, *Evidence of understanding*,
   1. the view label;
   2. the pattern title;
   3. "Red: …";
-  4. "White (target): …";
+  4. "White (target): …" *(current; approved replacement: "White (reference): …")*;
   5. the progress dots;
   6. "PINCH AGAIN TO RETURN", with only the active toggle lit;
   7. "Exaggerated for clarity. This Lens does not assess your form.", in place of the disclaimer.
@@ -299,7 +454,7 @@ How the figures are built:
    - shows the red figure;
    - pauses at the Bottom Position;
    - turns the stage to that pattern's view (0° or 90°, ± 2°), starting from a different angle each time (knees from 35°, heels from 35°, chest from Front);
-   - shows exactly that pattern's view label, title and `Red: … / White (target): …` lines;
+   - shows exactly that pattern's view label, title and `Red: … / White (target): …` lines. That is the current on-screen string; the expected string changes to `White (reference)` when the approved copy is implemented;
    - shows "PINCH AGAIN TO RETURN" and the exaggeration note;
    - highlights only that toggle;
    - poses the red figure so it differs from the white figure in the intended direction: knees closer to the midline, ankle higher, head further forward.
@@ -319,18 +474,52 @@ How the figures are built:
   3. identifies the intended Chest difference;
   4. explains why the viewpoint changes;
   5. returns to the demonstration independently.
+- **If a threshold is missed:** the results come back to the learner for a design decision before the video is recorded *(agent proposal in Q9 Part B, confirmed)*.
 - **Heels rule (unchanged):** if 2 or more participants in a 3–5 person test misinterpret Heels, the results go back to the learner for a design decision before the video is recorded. The options are to improve its visual clarity, or remove it and deliver two stronger comparisons. Heels is not changed before that evidence exists.
 - **Reporting:** record raw counts and actual observations, including unsuccessful responses. The results are never described as evidence that the product improves learning.
 
+### Approved UI copy (learner decision, 1 Nov 2026; approved in principle, not implemented)
+Approved in principle as the copy to use. It is **not implemented yet**: the Lens still shows the current text quoted under *When things show*.
+
+| Where | Current | Approved |
+|---|---|---|
+| Intro label (`SquatTutorUI.ts`, `IntroLabel`) | BODYWEIGHT SQUAT | **SPATIAL SQUAT COMPARISON** |
+| Intro title (`introTitle`: saved scene value **and** TypeScript default) | Squat Tutor | **Coach's Eye** |
+| Comparison card, Knees | White (target): knees track over the toes. | **White (reference): knees track over the toes.** |
+| Comparison card, Heels | White (target): whole foot stays planted. | **White (reference): whole foot stays planted.** |
+| Comparison card, Chest | White (target): chest up, torso controlled. | **White (reference): chest up, torso controlled.** |
+| Intro body | "…compare three common patterns with the target, each from the angle where it shows." | **Approved principle:** the intro refers to the white figure as the reference, not the target. **Exact sentence: proposed, awaiting the learner's approval (not approved word for word):** "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference." Estimated fit risk: about 5 lines on today's card, overflowing the 6.6 cm row; see [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md) section 4B. |
+| Completion card | COMPLETE / Squat complete / Try Knees, Heels or Chest… | No change (no product name) |
+
+**Implementation notes, for later:**
+- The saved scene value of `introTitle` overrides the TypeScript default, so both must be updated.
+- Internal code names (`target` field, `SquatTutorUI`) don't change.
+- The copy must be checked to fit by preview capture: "SPATIAL SQUAT COMPARISON" is 24 capitals, at the edge of the card's width.
+- Test H's expected string changes to `White (reference)`.
+- Screenshots `01` and `13`–`15` must be recaptured, and all 8 LEAF scenarios re-run.
+
+**Status of copy and layout decisions:**
+- **Approved in principle, not implemented:**
+  - product name "Coach's Eye";
+  - descriptor "A spatial squat comparison experience";
+  - intro label "SPATIAL SQUAT COMPARISON";
+  - intro title "Coach's Eye";
+  - the three "White (reference): …" card lines;
+  - the principle that the white figure is called the reference.
+- **Proposed, awaiting the learner's approval:** the exact intro-body sentence "Watch a squat in five phases. Then compare three illustrative patterns with the reference, each from a view chosen to show its difference."
+- **Undecided:**
+  - view-label wording. Options are under review: "VIEW: FRONT" / "VIEW: SIDE", or "FRONT VIEW: KNEES & FEET" / "SIDE VIEW: TORSO LEAN" / "SIDE VIEW: HEEL CONTACT". The current labels are "BEST SEEN FROM THE FRONT/SIDE" and "SEEN FROM THE SIDE OR REAR".
+  - whether to implement the proposed button layout and sizing changes (see *Deferred decisions* and [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md)).
+
 ### Out of scope
-*(Q7 Part A, learner's list)*
+*(Q7 Part A, learner's list, word for word)*
 - No camera-based body tracking or pose estimation.
 - No rep counting or feedback on the learner's own movement, even if they follow along.
 - No personal assessment, scoring, diagnosis or personalised coaching.
 - No medical, clinical, safety or injury-prevention claims.
 - No claim that the white mannequin represents a universally ideal squat.
 - No claim that the three patterns are exhaustive or medically validated.
-- No rear-view button, or automatic switching between multiple viewpoints for one pattern.
+- No rear-view button or automatic switching between multiple viewpoints for one pattern.
 - No exercises beyond the bodyweight squat in this submission.
 - No voice interaction, AI-generated answers, saved learner progress or shared multi-user sessions.
 
@@ -339,7 +528,7 @@ How the figures are built:
 The underlying comparison approach could potentially be explored for other movements in the future, using a reference figure, one illustrative pattern at a time and a viewpoint selected to make the difference easier to observe. No other exercises are implemented in this submission.
 
 ### Risks and open questions
-*(Q8, learner's list)* These are untested risks, not confirmed failures. Intended benefits are not proven outcomes.
+*(Q8, learner's list, word for word)* These are untested risks, not confirmed failures. Intended benefits are not proven outcomes.
 
 **1. Not yet validated**
 - No user testing has been conducted. Whether first-time learners understand the three intended takeaways remains unknown. The observation sheet is prepared.
@@ -348,7 +537,7 @@ The underlying comparison approach could potentially be explored for other movem
 - The current evidence comes from Lens Studio Preview, not a physical glasses demonstration.
 
 **2. Known design weaknesses and usability risks**
-- Heels is visually weaker than Knees and Chest in the current preview captures. The red thigh and shin attract more attention than the heel gap. It stays conditional on the existing user-testing decision rule.
+- Heels is visually weaker than Knees and Chest in the current preview captures. The red thigh and shin attract more attention than the heel gap. Keep it conditional on the existing user-testing decision rule.
 - Most buttons are 3.4 cm tall at approximately 1.55 m, below the original brief's approximately 6 cm default. This may affect pinch interaction on actual glasses.
 - The 1:3 mannequin scale fits the current presentation but may make the figure feel less like a person standing beside the learner.
 - Physical follow-along is possible in concept, but no dedicated follow-along functionality has been implemented or validated.
@@ -362,10 +551,61 @@ Submission-process tasks are tracked in `docs/SUBMISSION_CHECKLIST.md`, not here
 
 ### Deferred decisions
 *(Q9 Part C)*
-- **Button size.** This is deferred to the polish stage.
-  - The 3.4 cm buttons are below the approximately 5.6 cm figure the agent derived: the "about 4 cm at 110 cm" minimum in the CLAD UI skill's reference, scaled to about 155 cm.
-  - Before any change, the relevant Snap and CLAD UI guidance is to be verified, and the proposed dimensions checked against the actual scene layout. The change then comes to the learner for approval.
-  - No change now.
+- **Button size.** This is deferred to the polish stage, with no change now; any proposed change comes to the learner for approval first. The guidance was verified on 1 Nov 2026:
+  - **Snap's wording, re-verified 1 Nov 2026** ([Positioning & Sizing Content](https://developers.snap.com/spectacles/best-practices/design-for-spectacles/positioning-sizing-content)):
+    - "Targetable elements should be at least 2 degrees in angular size."
+    - "Targetable elements should be spaced at least 1 degree apart in angular size."
+    - "The recommended size refers to the interactive collider on an element."
+    - "Visual meshes can be smaller, provided the collider meets the minimum standards for comfortable interactions."
+    - "Spacing may also need to accommodate the size of any targeting feedback."
+    - Under "Z Axis: Near-Field or Far-Field": "Far-Field (60cm - 160cm): Uses indirect interactions".
+    - Its "Button Sizing & Spacing" table is indexed by "Position Z": minimum 4.0 cm at Z = 110 cm and 5.5 cm at Z = 160 cm; "Best" 6.0 cm and 8.5 cm.
+  - **What Snap does not say:** whether 2° applies to width, height or the smaller dimension, and whether 1° spacing is measured edge to edge or centre to centre.
+  - **Our interpretation (a design choice, not Snap's wording):**
+    - We use **2° in both dimensions** as a conservative design target: an element that meets 2° on its narrower axis meets it on every axis.
+    - We measure the 1° spacing **edge to edge** between colliders, the stricter reading.
+    - The 60–160 cm range is stated along the **Z axis**. We report both Z depth and straight-line distance.
+  - **Current build** (derived from the saved scene and the layout code; not measured at runtime):
+    - **Saved values:** camera at (0,0,0); `SquatTutor` and `SquatTutorUI` at identity; `sideOffset 33`, `panelHeight −26`, `panelDistance 155`, `cardWidth 21`, `panelWidth 20`.
+    - **Colliders:** UIKit `Element.ts` (`colliderFitElement = true`) builds a box equal to the button's `size` at rest. SnapOS2 `ButtonParameters.ts` moves the visual +1 cm in z when hovered and +0.5 cm when pressed, at scale 1, so only the collider's depth changes during pinch, hover or press. The visible capsule has the same outer size, with rounded corners.
+    - **Sizes:**
+      - Prev / Play-Pause / Next and Front / 35° / Side: 5.40 × 3.40 cm = 1.91–1.94° × 1.18–1.21°.
+      - Slow and Replay: 8.45 × 3.40 cm = 3.02° × 1.20°.
+      - Knees / Heels / Chest: 5.47 × 3.40 cm = 1.94° × 1.18°.
+      - Start: 16.80 × 5.00 cm = 5.98° × 1.76°.
+    - **Distances:** 153.1–155.7 cm in Z depth, which is inside Snap's 60–160 cm Z range. Straight-line distance is 159.3–161.3 cm.
+    - **Spacing:**
+      - Horizontal gaps are 0.70 cm (about 0.25°) everywhere; centre to centre they are 2.17–3.28°.
+      - Vertical: Prev→Slow 0.90 cm (0.32°); Slow→Front 3.40 cm (1.19°).
+    - **Summary:** the controls are about 1.2° tall and the gaps about 0.25° edge to edge. By our conservative reading of Snap's guidance, every control is too small in height, the 5.4–5.5 cm buttons are slightly narrow, and the gaps are too tight.
+  - **Agent's layout proposal (not approved, not implemented, not preview-validated):**
+    - **Settings:**
+      - `panelDistance` 150, `sideOffset` 29;
+      - right panels lowered from −26 to −32 cm, left panels raised to −25 cm (separate per-side heights are a code change);
+      - buttons 5.8 cm in both dimensions; column gap 2.9 cm; a 1.6 cm spacer between the first two control rows (the panel's single `rowGap` stays 0.7 cm);
+      - control panel 25.6 × 28.5 cm; cue card and intro card 26.4 cm wide (cue card 30.2 cm tall); Start 22.4 × 5.8 cm.
+    - **A. Derived from code and geometry.** The method, sources, intermediate values and a reproduction script are in [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md).
+      - every row's buttons and gaps sum exactly to the inner width, so flex shrinking leaves the sizes alone;
+      - colliders 2.09–3.71° wide and 2.02–2.15° tall (Start 8.19° × 2.08°);
+      - gaps 1.05–1.08° horizontally, 1.09° (Prev→Slow, 3.0 cm) and 1.13° (Slow→Front, 3.2 cm) vertically;
+      - Z depth 147.7–151.0 cm; straight-line distance 154.1–158.1 cm;
+      - card edges at −15.88° to −6.00° azimuth; control panel at +6.15° to +15.73° azimuth and −16.79° to −6.60° elevation;
+      - the panels' lower inner corners cover the sides of the turntable ring (radius 19.5 cm) by about 0.4–0.5°, of the stand top (22 cm) by about 1.2–1.4°, and of the completion ring (23.6 cm, more when pulsing) by about 1.8–1.9°. Today's panels already touch the completion ring at its pulse peak.
+    - **B. Estimated from screenshot calibration:** a pinhole fit to automatically measured panel edges in `10-view-side.jpg` (fx 2402, fy 2395 px; residuals of 1.6 px or less). Features were found by colour thresholds, so allow about ±0.2°.
+      - the preview view is about ±16.2° wide and −18.3° to +18.4° tall, so the outer-edge margins are about 0.37° (card) and 0.50° (control panel), and the bottom margin is about 1.5°;
+      - the red chest-pattern figure's lowest point sits about **0.68°** above the control panel's top edge, and the white figure's 1.95–2.12°;
+      - the hip-marker ring sits about 0.42° outside the card's inner edge;
+      - no figure or red-figure pixels fall inside the proposed panels in screenshots 09, 10 and 12–15;
+      - "SPATIAL SQUAT COMPARISON" is estimated at 16.6–19.7 cm wide, from measured captions of 0.65–0.82 cm per character. It fits the proposed card; whether it fits the current 21 cm card is uncertain.
+    - **C. Not established:**
+      - that the runtime layout matches this code model;
+      - that `Component.Canvas` on each slot applies no scaling;
+      - how much tolerance SIK's hand-ray targeting adds;
+      - figure poses and views not in the screenshots (for example Chest at 35°);
+      - real SPECS optics and eye position;
+      - glyph widths for new copy;
+      - whether Snap intends our per-axis and edge-to-edge reading.
+    - **Tightest points:** red arm 0.68°, card outer edge 0.37°, hip-marker ring 0.42°, and the label and intro-sentence fit. These are what a preview check must confirm before the proposal is approved. The preview-validation plan is in [`docs/UI_LAYOUT_AUDIT.md`](../../docs/UI_LAYOUT_AUDIT.md), section 5.
 - **Follow-along.** Nothing is built for it in this submission. It stays documented as an intended possibility for glasses use and an unvalidated device-testing question, and it must not be presented in the demo as an implemented feature.
 
 ### What counts as validated
@@ -406,3 +646,31 @@ Submission-process tasks are tracked in `docs/SUBMISSION_CHECKLIST.md`, not here
   - user-test thresholds (60%, rounded up);
   - deferred decisions;
   - the validation distinctions.
+- **1 Nov 2026, accuracy pass before sign-off:**
+  - The interview record now quotes each answer in full in the learner's words, restoring omitted qualifications (Q2 extensions, Q4 implemented/intended/untested and "do not add features prematurely", Q5 Heels rule, Q6 non-prescriptive note, Q7 documentation rules, Q8 process split, Q9 in full).
+  - The *Out of scope* and *Risks* lists are restored word for word.
+  - The sensing statement now separates hand input from body tracking, here and as a visible correction in the original brief.
+  - The template label "Why it's better than the phone or laptop version" is replaced by "What head-worn AR contributes".
+  - The button-size guidance is verified against Snap's documentation, and the button distance corrected to about 160 cm from the eye.
+  - The confirmed "threshold missed → learner decides before the video" rule is added.
+- **1 Nov 2026, pre-sign-off review:**
+  - product name, descriptor and "reference" terminology recorded (learner decision);
+  - approved UI copy recorded as not yet implemented, with current on-screen strings marked as current;
+  - button widths corrected (5.40, 5.47 and 8.45 cm, not "5.1–8.1 cm"), in the earlier correction note and in *Hands and input*;
+  - the button and spacing audit and the agent's layout proposal recorded (proposal not approved).
+- **1 Nov 2026, final pre-sign-off corrections:**
+  - the intro-body sentence marked as proposed and awaiting approval (the other copy is approved);
+  - view-label proposal updated ("VIEW: SIDE" for Heels, no rear wording);
+  - button audit completed (both axes, collider states, Snap's far-field range verified, per-control distances);
+  - layout proposal corrected for the single `rowGap`, the side-view hands and the 160 cm limit.
+- **1 Nov 2026, evidence-readiness audit:**
+  - Snap wording re-verified; per-axis and edge-to-edge rules marked as our interpretation, with 2° in both dimensions stated as a conservative target;
+  - the far-field range corrected to Z depth: current controls are inside it by Z, and the earlier "beyond 160 cm" was straight-line distance;
+  - the proposed layout re-derived independently and separated into derived, estimated and unknown values;
+  - the screenshot calibration redone by pixel measurement. The red-arm clearance is now about 0.67°, not "about 1.2°"; the bottom margin about 1.5°, not 0.9°; ring overlaps given per ring;
+  - approved, proposed and undecided copy separated.
+- **1 Nov 2026, documentation closeout:**
+  - the layout audit made durable in `docs/UI_LAYOUT_AUDIT.md`, with a reproduction script; the brief now points to it instead of a conversation-only report;
+  - screenshot-derived figures aligned with that script (red figure 0.68°, hip ring 0.42°, card margin 0.37°);
+  - the proposed intro sentence updated to the learner's revised wording, still awaiting approval, with an estimated fit risk noted;
+  - "approved" copy relabelled "approved in principle, not implemented".

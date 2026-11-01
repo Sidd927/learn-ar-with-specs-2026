@@ -1,6 +1,8 @@
-# Recommended product architecture: Squat Tutor: Coach's Eye
+# Recommended product architecture: Coach's Eye
 
-Branch: `feature/coach-eye` (final build `2201d21`, 8/8 LEAF pass). Product direction approved by the owner on 31 Oct 2026; not merged. Fallback: `main` (`d1d0473`). Platform: Lens Studio 5.24.1, SPECS preview, SpectaclesInteractionKit 2.0, SpectaclesUIKit 2.0, LEAF 2.0.2.
+*A spatial squat comparison experience. It developed from the original Squat Tutor project; internal code names keep the original name.*
+
+Branch: `feature/coach-eye` (product code `2201d21`; extended test H at `1d1bd5a`; 8/8 LEAF pass). Product direction approved by the owner on 31 Oct 2026; design-brief Amendment 1 awaits sign-off; not merged. Fallback: `main` (`d1d0473`). Platform: Lens Studio 5.24.1, SPECS preview, SpectaclesInteractionKit 2.0, SpectaclesUIKit 2.0, LEAF 2.0.2.
 
 ## Scene hierarchy
 ```
@@ -9,7 +11,7 @@ SquatTutor
 │   ├── Stand: column + plate
 │   └── Turntable (yaw 0 / 35 / 90°) [Turntable]
 │       ├── TurntableRing [RingMesh], TurntableFrontMark
-│       ├── Mannequin [MannequinRig]            solid "target" figure + Cues
+│       ├── Mannequin [MannequinRig]            solid white reference figure + Cues
 │       └── GhostMannequin                       translucent red "pattern" figure (hidden by default)
 │           └── GhostPelvis > … (same joints, meshes inset 4%, GhostMistakeMaterial)
 ├── SquatTutorUI [SquatTutorUI]                  cue card (left) + control panel (right), built at runtime
@@ -20,13 +22,13 @@ LeafIndex [LeafIndex]                            8 LEAF scenarios
 ## Components and responsibilities
 | Component | Role | Status |
 |---|---|---|
-| `SquatPhases.ts` | Phase data, timing and all user-facing copy (intro, completion, compare labels, exaggeration note); **`SQUAT_FAULTS`** (id, button, title, view, `viewLabel`, red and target lines, one pose delta); `faultPose()` | Implemented |
+| `SquatPhases.ts` | Phase data, timing and all user-facing copy (intro, completion, compare labels, exaggeration note); **`SQUAT_FAULTS`** (id, button, title, view, `viewLabel`, red line, white-reference line (data field `target`), one pose delta); `faultPose()` | Implemented |
 | `MannequinRig.ts` | Two-bone leg IK with planted feet; **knee-in bend direction**, **heel lift with foot pitch**; optional knee arrows | Implemented |
 | `SquatPlayer.ts` | Deterministic timeline; **`goTo(phase)`** for comparisons | Implemented |
 | `Turntable.ts` | Eased yaw presets | Implemented (unchanged) |
 | `CueIndicators.ts` | One pulsing body cue at a time | Implemented (unchanged) |
 | `RingMesh.ts` | Thin runtime torus for the ring cues | Implemented (unchanged) |
-| `SquatTutorUI.ts` | UIKit panels; **"Compare common patterns" row**; `showFault()` card mode (view label, title, Red / White (target) lines, "Pinch again to return", exaggeration note), restored on exit | Implemented |
+| `SquatTutorUI.ts` | UIKit panels; **"Compare common patterns" row**; `showFault()` card mode (view label, title, red and white-reference lines; the on-screen text is currently "White (target)", with the approved "White (reference)" not yet implemented; "Pinch again to return", exaggeration note), restored on exit | Implemented |
 | `SquatTutorController.ts` | Wiring; **fault toggle** (shows the ghost, goes to the Bottom Position, turns to the checkpoint view, highlights the relevant body cue); any playback control exits the comparison | Implemented |
 
 ## Data flow
@@ -37,7 +39,7 @@ flowchart LR
   C -- goTo(Bottom) / play / step --> P[SquatPlayer]
   C -- setAngle(front/side) --> T[Turntable]
   C -- applyPose(faultPose) --> G[Ghost MannequinRig]
-  P -- pose per frame --> R[Target MannequinRig]
+  P -- pose per frame --> R[White reference MannequinRig]
   P -- state --> C
   C -- showFault / setPhase --> UI
   C -- show(cue) --> Q[CueIndicators]
@@ -53,8 +55,8 @@ flowchart LR
 - Slow and the angle buttons don't exit a comparison. The user may rotate freely while comparing.
 
 ## Rendering approach for the overlay
-- The ghost uses Unlit, `blendMode: Normal`, alpha 0.55, and `depthWrite: false`, and draws after the opaque target.
-- **Ghost meshes are scaled to 96%**, so wherever the two poses coincide the ghost sits inside the target and fails the depth test. Only the *difference* is visible: red knees inside the white knees, red heels raised (with the legs re-solved, so the thigh and shin also show), red torso tipped forward. This was found and fixed through preview captures (the first version tinted the whole figure).
+- The ghost uses Unlit, `blendMode: Normal`, alpha 0.55, and `depthWrite: false`, and draws after the opaque white reference figure.
+- **Ghost meshes are scaled to 96%**, so wherever the two poses coincide the ghost sits inside the white reference figure and fails the depth test. Only the *difference* is visible: red knees inside the white knees, red heels raised (with the legs re-solved, so the thigh and shin also show), red torso tipped forward. This was found and fixed through preview captures (the first version tinted the whole figure).
 
 ## Capability status
 | Capability | Status |
@@ -74,7 +76,7 @@ flowchart LR
   - that the red joints differ from the white in the intended direction (internal model geometry on a 1:3 figure; caveats in `BIOMECHANICAL_VALIDATION.md`).
 
   It also checks that Slow and the angle buttons keep a comparison open, and all five exits (same button, Play, Prev, Next, Replay).
-- Preview captures for each mistake (`docs/screenshots/13–15`).
+- Preview captures for each pattern comparison (`docs/screenshots/13–15`).
 
 ## Technical risks
 | Risk | Mitigation |

@@ -1,50 +1,53 @@
-# Final Devpost submission draft: Squat Tutor: Coach's Eye
+# Final Devpost submission draft: Coach's Eye
 
 > Draft. **Nothing has been submitted.** It applies to `feature/coach-eye` (final build `2201d21` or later); if the owner keeps `main`, use `DEVPOST_SUBMISSION.md`. Check the requirements in `SUBMISSION_CHECKLIST.md` against the live rules page first. Update the "Validation" paragraph if user sessions happen before submission.
 
 ## Project title
-**Squat Tutor: Coach's Eye**
+**Coach's Eye**
+
+*Descriptor:* A spatial squat comparison experience
 
 ## Tagline
-See a common squat pattern next to the target, from the angle where the difference shows, in your own space, on SPECS.
+A spatial squat comparison experience: see a common squat pattern next to a reference, from the angle where the difference shows, in your own space, on SPECS.
 
 ## The problem
-Most people learn a squat from a video filmed from one angle. Coaches don't watch from one angle. Trainer screening, such as the NASM overhead squat assessment, checks the knees from the **front** and torso lean from the **side**. A single fixed view can hide exactly the difference a beginner needs to see.
+People can watch exercise demonstrations, but watching a movement doesn't always make it easy to understand how different movement patterns look, or what changes when someone performs the movement differently. A reference movement on its own shows what to do, but not necessarily which details to observe.
 
-Phone apps already rotate 3D exercise models and list "common mistakes". What they don't do is put the pattern and the target on top of each other in your space and turn you to the view where the difference shows.
+Coach's Eye brings an exaggerated illustrative pattern and a reference figure together in the same spatial view, holds both in the same squat position, and turns the stage to a viewpoint selected for that difference.
 
-**Who it's for:** beginners learning the bodyweight squat at home who want to understand *what to look for* and *where to look*.
+**Who it's for:** a beginner learning the bodyweight squat, typically through online videos or demonstrations, who wants to understand what to observe and how common movement patterns differ.
 
 ## What it does
 - **A five-phase demonstration.** A jointed figure on a small stage about 1.7 m away squats through Starting Stance, Controlled Descent, Bottom Position, Rising Up and Standing Finish, with one short cue and one body highlight per phase.
-- **Compare common patterns.** Press **Knees**, **Heels** or **Chest**. The figure pauses at the bottom, and a translucent red figure appears over the white reference figure showing an exaggerated, illustrative version of that pattern. The stage turns to a view chosen for it: front for knees, side for chest and heels. Heel rise is also commonly checked from behind; the Lens doesn't turn to the rear, but you can walk behind the stage. The card shows:
-  - the view, e.g. "Best seen from the front";
+- **Compare common patterns.** Press **Knees**, **Heels** or **Chest**. The figure pauses at the bottom, and a translucent red figure appears over the white reference figure showing an exaggerated, illustrative version of that pattern. The stage turns to a view chosen for it: front for knees, side for chest and heels. You can also walk behind the stage to look at the heels from the rear; the Lens doesn't turn there. The card shows:
+  - a view label;
   - the pattern name;
   - what the red figure does;
   - what the white reference does.
 
   Only the difference is drawn in red, and it is exaggerated for clarity. Pinch the button again to return.
 - **Your pace, your view.** Play/Pause, Prev/Next, Slow 0.5x, Replay, and Front / 35° / Side, or walk around the figure.
-- **Demonstration only.** No camera, body tracking, counting or scoring. The Lens never assesses the user and makes no diagnostic, clinical or injury-prevention claims. The white figure is this demonstration's reference, not everyone's ideal squat.
+- **Demonstration only.** Hand input is used only to pinch buttons. There is no camera-based body or pose tracking, and no counting or scoring of the learner's movement. The Lens never assesses the user and makes no diagnostic, clinical or injury-prevention claims. The white figure is this demonstration's reference, not everyone's ideal squat.
 
-## Why SPECS
+## What head-worn AR contributes
 Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
 - **Head-worn and hands-free.** You look at the figures from where you stand, step to the side or walk behind the stage, and keep your hands free; you could even try the movement beside the figure. This is the intended glasses experience: no follow-along feature is built, and it is untested on a device.
-- **The view matters.** Each pattern shows most clearly from a particular side, so the Lens turns the stage to face you with that view.
+- **The view matters.** In this model, each illustrated difference lies mainly in one direction (the knees move sideways; the torso tips forward), so the Lens turns the stage to present that direction to you.
+- **Designed for the glasses' view.** We measured the SPECS preview's field of view (about 32° x 36°) and chose a 1:3-scale figure at 1.7 m, so the whole body, the card and the controls fit in the preview from where you stand.
 
 We haven't tested whether this helps people learn better than a phone or a video.
-- **Designed for the glasses' view.** We measured the SPECS preview's field of view (about 32° x 36°) and chose a 1:3-scale figure at 1.7 m so the whole body, the card and the controls fit from where you stand.
 
 ## How we built it
+- **Origin.** Coach's Eye developed from our original project, Squat Tutor, a five-phase squat demonstration.
 - **Planning.** Devpost Learn `plan-lens` brief. The move to Coach's Eye is recorded as a traceable amendment in `Lens/devpost/design-brief.md`.
 - **Build.** Claude Code with CLAD skills through the Lens Studio MCP: VirtualScene scene construction, TypeScript compile, logs, preview capture and LEAF.
 - **Mannequin.** Jointed primitives with analytic two-bone leg IK, so the feet stay planted. Each pattern is posed by one primary parameter: knee bend direction, heel lift with foot pitch, or extra torso lean. Other joints can move as a result.
-- **Overlay.** A second rig with identical proportions in a translucent material, inset 4% inside the target, so only the differences render.
+- **Overlay.** A second rig with identical proportions in a translucent material, inset 4% inside the white reference figure, so only the differences render.
 - **UI.** Spectacles UI Kit on the Interaction Kit. Thin ring cues are generated with `MeshBuilder`.
 
 ## Testing and honesty
 - **Eight LEAF scenarios pass in the Lens Studio preview.** They pinch the real buttons and check the scene: placement, the full demo, stepping, pause/slow/replay, view angles, cues, edge cases, and each comparison. The comparison test covers the right view, paused state, exact card text, return hint, exaggeration note, red figure differing in the intended direction, and all five ways back.
-- **An internal model-geometry check** (`docs/BIOMECHANICAL_VALIDATION.md`) confirms the two figures share one coordinate frame and differ only as intended. It is not an expert biomechanical assessment. It led us to fix two things:
+- **An internal model-geometry check** (`docs/BIOMECHANICAL_VALIDATION.md`) confirms the two figures share one coordinate frame and differ in the intended direction (for Heels, the legs also re-solve). It is not an expert biomechanical assessment. It led us to fix two things:
   - the chest comparison no longer adds an unrelated arm change;
   - the heels card no longer claims the side is the single best view.
 

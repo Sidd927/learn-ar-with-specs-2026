@@ -1,4 +1,4 @@
-# Final demo recording guide: Squat Tutor: Coach's Eye
+# Final demo recording guide: Coach's Eye
 
 Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and narration. Target: **2:45**, limit under 3:00. Applies to `feature/coach-eye` (final build `2201d21` or later), whether recorded from the branch or after a merge; for `main`, use `DEMO_RECORDING_GUIDE.md`.
 
@@ -16,7 +16,7 @@ Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and na
 6. Do one silent dry run, then **Reset** again.
 
 ## 3. Opening screen
-The figure on a round stage turned about 35° with a thin teal ring. On the left, the intro card ("BODYWEIGHT SQUAT / Squat Tutor", "Watch a squat in five phases. Then compare three common patterns…", and the disclaimer). On the right, "Pinch Start to watch the full squat" and **Start**. It should match `docs/screenshots/01-hero-intro.jpg`.
+The figure on a round stage turned about 35° with a thin teal ring. On the left, the intro card (currently "BODYWEIGHT SQUAT / Squat Tutor", "Watch a squat in five phases. Then compare three common patterns…", and the disclaimer; if the approved copy "SPATIAL SQUAT COMPARISON / Coach's Eye" has been implemented by then, expect that instead). On the right, "Pinch Start to watch the full squat" and **Start**. It should match `docs/screenshots/01-hero-intro.jpg`.
 
 ## 4–6. Actions, narration, timing
 Follow the table in `FINAL_DEMO_SCRIPT.md` row by row. Button locations:

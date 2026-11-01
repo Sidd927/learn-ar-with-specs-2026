@@ -1,5 +1,7 @@
 # Internal model-geometry validation: Coach's Eye
 
+*An internal check of our own simplified mannequin's geometry. It is not a biomechanical validation, and no expert, coach or clinician has reviewed the squat or the patterns.*
+
 > **What this document is:** an internal engineering check by the development agent of our own simplified mannequin. It covers coordinate and landmark consistency between the white and red figures, and the size of each illustrative pose difference.
 >
 > **What it is not:** an expert biomechanical assessment, or a review by a coach or clinician. The values below **do not establish biomechanical correctness, a correct or ideal squat for anyone, or that any pattern is harmful.** The file name is kept for link stability.
@@ -17,7 +19,7 @@ They are **not** measurements of people, not thresholds for good or bad form, an
 **Decision:** the numbers stay here and in `TEST_RESULTS.md` as software test evidence. They are kept out of all public-facing text (README, Devpost draft, demo narration, live review package), where they could be read as biomechanical findings.
 
 ## Coordinate and landmark consistency
-- **Two rigs, one frame.** The white target (`Mannequin`) and the red pattern figure (`GhostMannequin`) are siblings under `Turntable`, both with an identity transform.
+- **Two rigs, one frame.** The white reference figure (`Mannequin`) and the red pattern figure (`GhostMannequin`) are siblings under `Turntable`, both with an identity transform.
   - Their `MannequinRig` parameters are identical: thigh 15.5, shin 15.5, ankle height 2.6, ankle half-width 6.5, hip offset (4.5, −1.5, 0), toe-out 12°, heel-to-ball 5.5 cm.
   - The 96% inset that hides overlapping geometry scales only the visible meshes, never the joint pivots.
 - **Reference pose.** Both figures use the Bottom Position (pelvis height 17.2, pelvis z −6.4, torso lean 42°, arm reach 85°). The red figure adds one pattern delta (`faultPose()`).
@@ -37,9 +39,9 @@ They are **not** measurements of people, not thresholds for good or bad form, an
 | **Intended visual difference** | From the front, the red knees sit inside the line of the feet; the white knees sit over the feet. |
 | **How it is posed** | `kneeInDeg: 18` turns the plane in which each knee bends from 12° toe-out to 6° toe-in. Hips, ankles and feet are unchanged. |
 | **Landmark** | `KneeL` / `GhostKneeL` pivot, distance from the midline (\|x\|, turntable space). |
-| **Illustrative difference (model cm)** | Target 7.7 cm, pattern 3.1 cm from the midline (knee-to-knee 15.5 vs 6.2 cm). The ankles are 6.5 cm from the midline (13.0 cm apart). |
+| **Illustrative difference (model cm)** | White reference 7.7 cm, red pattern 3.1 cm from the midline (knee-to-knee 15.5 vs 6.2 cm). The ankles are 6.5 cm from the midline (13.0 cm apart). |
 | **What the learner should observe** | Red knees closer together than the feet; white knees over the feet. |
-| **View** | Front. Front-view knee checks are standard in trainer screening (e.g. the NASM overhead squat assessment lists "knees move inward" under the anterior view; see Sources). |
+| **View** | Front. A secondary summary of the NASM overhead squat assessment lists "knees move inward" under the anterior view (see Sources; the primary text was not read). We don't claim this is universal practice. |
 | **Notes (non-expert)** | Knees inside the ankle line at the bottom of a squat is a recognisable inward-knee pattern. The 18° is deliberately large so it reads at 1.7 m. |
 | **Limitations** | Hips don't rotate and feet don't roll in, so it is simplified. How far knees should travel varies between people and stance widths. The white figure is this demonstration's visual reference, not a universal ideal. |
 
@@ -52,7 +54,7 @@ They are **not** measurements of people, not thresholds for good or bad form, an
 | **Landmark** | `AnkleL` / `GhostAnkleL` pivot height (y). |
 | **Illustrative difference (model cm)** | Pattern ankle +4.0 cm (equal to the input; this confirms the code, nothing more). Side effect: the red knee rises about 4.4 cm and moves about 0.4 cm back, and the shin is about 2° more upright. |
 | **What the learner should observe** | A gap under the red heel; the red foot is tilted. |
-| **View** | **Automatic view: side.** Another potentially useful inspection view is the **rear**: NASM-style assessments list "heels rise" under the posterior view, and other guides check it from the side. The card says "Seen from the side or rear". The Lens does not turn to the rear; a learner can walk behind the stage. Neither view is presented as the only correct one. |
+| **View** | **Automatic view: side.** Another potentially useful inspection view is the **rear**: secondary summaries of NASM-style assessments list "heels rise" under the posterior view, and another guide checks it from the side (see Sources). The card says "Seen from the side or rear". The Lens does not turn to the rear; a learner can walk behind the stage. Neither view is presented as the only correct one. |
 | **Notes (non-expert)** | 4 cm at 1:3 scale is about 12 cm on a person, close to standing on the toes. This is **strongly exaggerated** and disclosed on the card ("Exaggerated for clarity"). |
 | **Limitations** | **This is the weakest comparison.** Preview captures show the most visible red is the raised thigh and shin, not the heel gap, which is small at this scale. The earlier demo line "the knees shoot forward" was **wrong** (the knee moves 0.4 cm back) and has been removed. Needs user testing and possibly a clearer depiction (see `USER_VALIDATION_PLAN.md`). |
 
@@ -65,13 +67,13 @@ They are **not** measurements of people, not thresholds for good or bad form, an
 | **Landmark** | `Head` / `GhostHead` pivot, forward distance (z). |
 | **Illustrative difference (model cm)** | Pattern head 3.8 cm further forward and about 4.1 cm lower (recomputed). |
 | **What the learner should observe** | The red chest and head ahead of and below the white ones. |
-| **View** | Side. "Excessive forward lean" is a lateral-view checkpoint in the NASM overhead squat assessment. |
+| **View** | Side. A secondary summary of the NASM overhead squat assessment lists "excessive forward lean" under the lateral view (see Sources; the primary text was not read). |
 | **Notes (non-expert)** | 18° extra lean is clearly visible. How much lean is appropriate depends on body proportions and depth; more lean is not always wrong. |
 | **Correction made during this check** | The red figure used to lower its arms by 30°. That is a separate checkpoint ("arms fall forward") the card doesn't teach. It's now removed (`78381e9`): the red arms keep the target's arm angle and move only because the torso tips. |
 | **Limitations** | The spine is a single rigid segment, so rounding versus hinging is not shown. |
 
 ## Responsible wording (applied in the Lens and the docs)
-- "Common pattern" and "compare", not "wrong" or "bad form". The title names the pattern; the card says what differs and what the white target (this demonstration's reference) shows.
+- "Common pattern" and "compare", not "wrong" or "bad form". The title names the pattern; the card says what differs and what the white reference figure shows.
 - The red figure is an exaggerated, illustrative movement pattern.
 - On the card while comparing: "Exaggerated for clarity. This Lens does not assess your form."
 - **We don't say:**

@@ -1,5 +1,7 @@
 # Implementation notes
 
+Current build: Coach's Eye on `feature/coach-eye`, which developed from the original Squat Tutor. Internal names such as `SquatTutor` and `SquatTutorUI` keep the original project name.
+
 ## Scene structure (`Lens/Assets/Scene.scene`)
 
 ```
@@ -9,15 +11,17 @@ SquatTutor
 ├── Stage (0, −42, −170)   [cue rings use RingMesh]
 │   ├── Stand: StandColumn, StandTop
 │   └── Turntable (yaw 35°): TurntableRing, TurntableFrontMark
-│       └── Mannequin [MannequinRig]
-│           ├── Pelvis: PelvisMesh, Cue_HipMarker (ring + arrow)
-│           │   ├── Spine: AbdomenMesh, ChestMesh
-│           │   │   ├── Neck: NeckMesh, Head
-│           │   │   └── ShoulderL/R: ball, UpperArm, Elbow: ball, Forearm, Hand
-│           │   └── HipL/R: ball, Thigh, Knee: ball, Shin, Ankle: ball, Foot
-│           └── Cues: Cue_FootOutlines, Cue_KneeArrows, Cue_CompletionRing
+│       ├── Mannequin [MannequinRig]   (white reference figure)
+│       │   ├── Pelvis: PelvisMesh, Cue_HipMarker (ring + arrow)
+│       │   │   ├── Spine: AbdomenMesh, ChestMesh
+│       │   │   │   ├── Neck: NeckMesh, Head
+│       │   │   │   └── ShoulderL/R: ball, UpperArm, Elbow: ball, Forearm, Hand
+│       │   │   └── HipL/R: ball, Thigh, Knee: ball, Shin, Ankle: ball, Foot
+│       │   └── Cues: Cue_FootOutlines, Cue_KneeArrows, Cue_CompletionRing
+│       └── GhostMannequin   (red pattern figure, hidden except while comparing)
+│           └── GhostPelvis > …   (same joints, meshes inset to 96%, GhostMistakeMaterial)
 ├── SquatTutorUI [SquatTutorUI]   (builds LeftSlot and RightSlot at runtime)
-└── Systems [SquatPlayer, Turntable, CueIndicators, SquatTutorController]
+└── Systems [SquatPlayer, Turntable, CueIndicators, SquatTutorController, MannequinRig (red figure)]
 ```
 
 All units are cm. The mannequin faces +Z in its own space. The figure is about 60 cm tall, with 15.5 cm thigh and shin bones. Every body part is a rounded primitive (capsule or sphere) under a joint pivot. `tools/generate_mannequin_scene.py` regenerates the hierarchy as VirtualScene instructions.
@@ -26,15 +30,15 @@ All units are cm. The mannequin faces +Z in its own space. The figure is about 6
 
 | File | Responsibility |
 |---|---|
-| `SquatPhases.ts` | Single source of truth: five phases (title, cue, cue indicator, pose), timing constants, view angles, easing, pose interpolation. |
-| `MannequinRig.ts` | Applies a pose. Each leg uses analytic two-bone IK from the hip to a fixed ankle, bending toward the toe direction, so feet never slide. Torso lean, neck counter-tilt, and arm reach are joint angles. Positions the knee arrows. Exposes the knee flexion (solver and measured) for tests. |
-| `SquatPlayer.ts` | Deterministic timeline: five 1.5 s holds and four 1.2 s transitions (12.3 s at 1x). Phase k becomes active when the movement into it begins. Covers pause and resume, 0.5x, eased 0.6 s Next/Previous steps that leave playback paused, Replay, completion without auto-restart, and wall-clock timing of uninterrupted runs. |
+| `SquatPhases.ts` | Single source of truth: five phases (title, cue, cue indicator, pose), timing constants, view angles, easing, pose interpolation. Also the three illustrative patterns (`SQUAT_FAULTS`: title, automatic view, view label, red and white-reference lines, one primary pose parameter; `faultPose()`) and all user-facing copy (intro, completion, comparison labels, exaggeration note). |
+| `MannequinRig.ts` | Applies a pose. Each leg uses analytic two-bone IK from the hip to a fixed ankle, bending toward the toe direction, so feet never slide. Torso lean, neck counter-tilt, and arm reach are joint angles. Supports the pattern parameters `kneeInDeg` (knee bend direction) and `heelLiftCm` (heel raise with foot pitch). Positions the knee arrows. Exposes the knee flexion (solver and measured) for tests. |
+| `SquatPlayer.ts` | Deterministic timeline: five 1.5 s holds and four 1.2 s transitions (12.3 s at 1x). Phase k becomes active when the movement into it begins. Covers `goTo(phase)` (used by the comparisons), pause and resume, 0.5x, eased 0.6 s Next/Previous steps that leave playback paused, Replay, completion without auto-restart, and wall-clock timing of uninterrupted runs. |
 | `Turntable.ts` | Eased 0.6 s yaw to 0° / 35° / 90°. Rotates only the turntable, so the joint animation is untouched. |
 | `RingMesh.ts` | Builds a thin torus at runtime with `MeshBuilder` (independent major and tube radius, CCW winding verified) and swaps it onto the object's existing renderer. Used for the foot outlines, hip ring, turntable ring, and completion ring. |
 | `CueIndicators.ts` | Shows exactly one cue group per phase, with a gentle per-child pulse. |
-| `SquatTutorUI.ts` | UIKit UI: intro card and Start (before start), then the cue card and control panel. BackPlate + FlexLayout + Button, text sized by the Specs type scale at 155 cm. Main → UI uses `set*` methods; UI → main uses events. |
+| `SquatTutorUI.ts` | UIKit UI: intro card and Start (before start), then the cue card and control panel. BackPlate + FlexLayout + Button, text sized by the Specs type scale at 155 cm. The cue card has a "COMPARE COMMON PATTERNS" row (Knees / Heels / Chest) and a comparison card mode. Button sizes and spacing are audited in `UI_LAYOUT_AUDIT.md`. Main → UI uses `set*` methods; UI → main uses events. |
 | `SquatTutorController.ts` | Wires UI events to the player and turntable, and renders player state into the UI and cues. Toggles the pattern comparison (red overlay rig, Bottom Position, view turn, card). Has an optional capture hook (`startPhase`, `startAngle`, `startFault`), off by default. |
-| `Tests/*` | LEAF scenarios A–G (six done criteria plus edge cases), `SquatTestKit` helpers, `LeafIndex` registry. |
+| `Tests/*` | LEAF scenarios A–H (done criteria 1–6, edge cases, and H for the pattern comparison, criterion 7), `SquatTestKit` helpers, `LeafIndex` registry. |
 
 ## Data flow
 
@@ -43,11 +47,12 @@ flowchart LR
   UI[SquatTutorUI<br/>UIKit buttons] -- events --> C[SquatTutorController]
   C -- start/pause/next/prev/replay/slow --> P[SquatPlayer<br/>timeline]
   C -- setAngle --> T[Turntable]
-  P -- pose per frame --> R[MannequinRig<br/>leg IK + joints]
+  C -- applyPose(pattern) --> G[Red MannequinRig]
+  P -- pose per frame --> R[White reference MannequinRig<br/>leg IK + joints]
   P -- onStateChanged --> C
   C -- setPhase/setPlaying/... --> UI
   C -- show(indicator) --> Q[CueIndicators]
-  D[(SquatPhases<br/>phases, poses, timing)] --> P
+  D[(SquatPhases<br/>phases, patterns, timing, copy)] --> P
   D --> UI
   D --> C
 ```

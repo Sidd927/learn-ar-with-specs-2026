@@ -1,6 +1,10 @@
-# Squat Tutor: Coach's Eye
+# Coach's Eye
 
-**See what a common squat pattern looks like next to the target, from the angle where the difference shows. In your own space, on SPECS.**
+*A spatial squat comparison experience for SPECS.*
+
+**See what a common squat pattern looks like next to a reference, from the angle where the difference shows. In your own space, on SPECS.**
+
+Coach's Eye developed from our original Learn AR with SPECS project, **Squat Tutor** (a five-phase squat demonstration, kept on `main` as the verified fallback). Internal code names such as `SquatTutorUI` keep the original name.
 
 A jointed 3D figure demonstrates a bodyweight squat on a small stage in front of you. Press **Knees**, **Heels** or **Chest**, and a translucent red figure shows an exaggerated version of that common movement pattern over the white reference figure. The stage turns to a view chosen to show the difference, and a short card names the pattern, says what differs, and says what the white reference does.
 
@@ -10,22 +14,22 @@ Built for the [Learn AR with SPECS](https://learn-specs.devpost.com) hackathon w
 |---|---|---|
 | ![Knees comparison](docs/screenshots/13-mistake-knees-front.jpg) | ![Heels comparison](docs/screenshots/14-mistake-heels-side.jpg) | ![Chest comparison](docs/screenshots/15-mistake-chest-side.jpg) |
 
-*Red = an exaggerated, illustrative version of a common movement pattern. White = the visual target this demonstration uses as its reference, not a universal ideal. Only the difference is drawn in red.*
+*Red = an exaggerated, illustrative version of a common movement pattern. White = the reference figure this demonstration uses, not a universal ideal. Only the difference is drawn in red.*
 
-> **Demonstration only.** The Lens does not track, count or assess your body. It makes no diagnostic, clinical or injury-prevention claims, and it is not fitness or medical advice.
+> **Demonstration only.** Hand input is used only to pinch the Lens's buttons. There is no camera-based body tracking or pose estimation, and the Lens never counts, evaluates or assesses your squat or movement. It makes no diagnostic, clinical or injury-prevention claims, and it is not fitness or medical advice.
 
 ## The learning problem
-- **Who it's for:** beginners learning the bodyweight squat at home who want to know *what to look for* and *where to look*.
-- **The problem:** most people learn from a video filmed from one angle. Coaches don't watch from one angle: trainer screening checks the knees from the front and torso lean from the side. A single view can hide exactly the difference a beginner needs to see.
-- **What already exists:** phone apps rotate 3D exercise models and list common mistakes (see the [strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md)).
-- **What's different here:** an exaggerated pattern and the reference figure are overlaid in your space, and the stage turns for you to a view selected for that difference.
+- **Who it's for:** a beginner learning the bodyweight squat, typically through online videos or demonstrations, who wants to understand what to observe and how common movement patterns differ.
+- **The problem:** watching a demonstration doesn't always make it easy to see how different movement patterns look, or what changes when the movement is performed differently.
+- **Related tools:** some phone apps already show rotatable 3D exercise models and list common mistakes (examples in the [strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md)). We don't claim no other product does what Coach's Eye does.
+- **What Coach's Eye does:** it brings an exaggerated illustrative pattern and a reference figure together in the same spatial view, holds both in the same squat position, and turns the stage to a viewpoint selected for that difference.
 
 > **Hypothesis, not yet validated.** No user testing has been done yet. A ready-to-run five-person protocol is in [`docs/USER_VALIDATION_PLAN.md`](docs/USER_VALIDATION_PLAN.md).
 
-## Why spatial
+## What head-worn AR contributes
 Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
 - **Head-worn, hands-free viewing.** The figures stay on the stage while you look from where you stand, step to the side or walk behind it, without holding a phone in your line of sight.
-- **The view matters.** Each pattern shows most clearly from a particular side (knees from the front, torso lean from the side), so the Lens turns the stage to face you with that view.
+- **The view matters.** In this model, each illustrated difference lies mainly in one direction (the knees move sideways; the torso tips forward), so the Lens turns the stage to present that direction to you.
 - **Sized for the glasses' view.** The SPECS preview shows about 32° x 36°. A 1:3-scale figure at 1.7 m keeps head, feet, cue card and controls in view together; a life-size figure would need about 3.7 m.
 
 **On glasses, as intended (untested):** look around the comparison hands-free, and perhaps try the movement beside the figure. No follow-along feature is built. Comfort, usability and any learning benefit haven't been tested on a device or with users.
@@ -37,7 +41,7 @@ Phone AR can also place 3D figures in a room. What glasses change is how you ins
 | ![Intro](docs/screenshots/01-hero-intro.jpg) | ![Bottom position](docs/screenshots/04-phase3-bottom-position.jpg) |
 | **1. Open.** The intro says what you'll do: watch a squat in five phases, then compare three common patterns, each from the angle where it shows. Press **Start**. | **2. Watch.** About 12 s through five phases, each with one short cue and one body highlight (feet, knees, hips, knees, finish ring). |
 | ![Knees comparison](docs/screenshots/13-mistake-knees-front.jpg) | ![Completion](docs/screenshots/11-completion.jpg) |
-| **3. Compare.** **Knees**, **Heels** or **Chest** pauses at the bottom, shows the red pattern, and turns the stage. The card reads, top to bottom: the view (e.g. "Best seen from the front"), the pattern name, "Red: …", "White (target): …", then "Pinch again to return". | **4. Finish.** The demo stops on "Squat complete. Try Knees, Heels or Chest below to compare a common pattern, or Replay." It doesn't restart on its own. |
+| **3. Compare.** **Knees**, **Heels** or **Chest** pauses at the bottom, shows the red pattern, and turns the stage. The card reads, top to bottom: the view label, the pattern name, a "Red: …" line, a line saying what the white reference figure shows, then "Pinch again to return". | **4. Finish.** The demo stops on "Squat complete. Try Knees, Heels or Chest below to compare a common pattern, or Replay." It doesn't restart on its own. |
 
 **Controls** (UIKit buttons, pinched with a hand or clicked in the preview):
 - **Playback:** Start, Play/Pause, Prev, Next, Slow 0.5x, Replay. Prev and Next dim at the ends.
@@ -57,8 +61,8 @@ Phone AR can also place 3D figures in a room. What glasses change is how you ins
 ## The three patterns
 | Pattern | View the Lens turns to | What you should see | Notes |
 |---|---|---|---|
-| Knees caving in | Front | Red knees closer together than the feet; white knees over the feet | Front-view knee checks are standard in trainer screening |
-| Heels lifting | Side, automatically. Rear is another useful view; the Lens doesn't turn to it, but you can walk behind the stage. The card says "Seen from the side or rear" | A gap under the red heel; the red foot tilts | The legs also re-solve, so the red thigh and shin move too. Our own captures show this is the least clear comparison |
+| Knees caving in | Front | Red knees closer together than the feet; white knees over the feet | The difference is sideways, so it faces you in the front view |
+| Heels lifting | Side, automatically. You can also walk behind the stage to look from the rear; the Lens doesn't turn there. The card currently says "Seen from the side or rear" | A gap under the red heel; the red foot tilts | The legs also re-solve, so the red thigh and shin move too. Our own captures show this is the least clear comparison |
 | Chest dropping | Side | Red torso and head tipped further forward | More lean isn't always wrong; it depends on body proportions and depth |
 
 How each pattern is posed is documented in [`docs/BIOMECHANICAL_VALIDATION.md`](docs/BIOMECHANICAL_VALIDATION.md). That is an internal model-geometry check of our own mannequin, not an expert biomechanical assessment, and its values don't establish a correct or ideal squat.
@@ -82,7 +86,7 @@ flowchart LR
 
 - **Mannequin.** A scene hierarchy of rounded primitives under joint pivots, generated through the Lens Studio MCP (`VirtualScene`) from [`tools/generate_mannequin_scene.py`](tools/generate_mannequin_scene.py). The red overlay figure comes from [`tools/generate_fault_ghost.py`](tools/generate_fault_ghost.py).
 - **Animation.** Analytic two-bone leg IK to fixed ankles keeps the feet planted at every frame. Torso, neck and arms are joint angles. Phases blend with an ease-in-out curve: 12.3 s at 1x.
-- **Pattern overlay.** A second rig with identical proportions under the same turntable, in a translucent unlit material. Its meshes are inset 4% inside the target, so only the differences render. Each pattern is posed by one primary parameter on the Bottom Position: knee bend direction, heel lift with foot pitch, or extra torso lean. Other joints can move as a result; for heels, the legs re-solve.
+- **Pattern overlay.** A second rig with identical proportions under the same turntable, in a translucent unlit material. Its meshes are inset 4% inside the white reference figure, so only the differences render. Each pattern is posed by one primary parameter on the Bottom Position: knee bend direction, heel lift with foot pitch, or extra torso lean. Other joints can move as a result; for heels, the legs re-solve.
 - **Cues.** Thin rings are torus meshes generated at runtime with `MeshBuilder`.
 - **UI.** Spectacles UI Kit (`BackPlate`, `FlexLayout`, `Button`) on the Spectacles Interaction Kit.
 - **Workflow.** Planning used the Devpost Learn `plan-lens` skill, with the Coach's Eye change recorded as an amendment in [`Lens/devpost/design-brief.md`](Lens/devpost/design-brief.md). The build used Claude Code with CLAD skills through the Lens Studio MCP: VirtualScene, TypeScript compile, logs, preview capture and LEAF.
@@ -96,7 +100,7 @@ Lens Studio 5.24.1 · SPECS (SPECS 27 preview) · TypeScript · Spectacles Inter
 Eight LEAF scenarios run in the Lens Studio preview. They pinch the real buttons and read scene state. **All eight pass on the final build** (31 Oct 2026): placement, the full five-phase demo, stepping, pause/slow/replay, viewing angles, one cue per phase, interaction edge cases, and the pattern comparison. The last one checks, for each pattern:
 - the red figure appears at the bottom position, paused;
 - the stage turns to that pattern's view, starting from a different angle each time;
-- the card shows the exact view label, title, red and target lines, return hint and exaggeration note, with only that toggle on;
+- the card shows the exact view label, title, red and reference lines, return hint and exaggeration note, with only that toggle on;
 - the red figure differs from the white in the intended direction.
 
 It also checks that Slow and the angle buttons keep a comparison open, and that each of the five exits (same button, Play, Prev, Next, Replay) restores the normal card.
@@ -125,16 +129,20 @@ tools/                     Scene generators for the mannequin and the overlay fi
 - **Preview only.** Comfort, hand tracking and the legibility of red on an additive display are unverified on SPECS hardware ([device checklist](docs/DEVICE_VALIDATION.md)).
 - **Not user-tested yet.** The learning benefit is a hypothesis.
 - **Not coach-reviewed.** The three depictions are general, simplified, 1:3-scale and deliberately exaggerated. The heels comparison is the least clear.
-- **Small buttons.** Buttons are 3.4 cm tall at about 1.55 m, smaller than the brief's default; comfort with real hand tracking is untested.
-- **No tracking or assessment.** By design, the Lens never looks at the user. It doesn't diagnose, correct, or claim to prevent injury.
+- **Small buttons.** Our current controls are approximately 1.2° tall (3.4 cm at about 1.6 m). Snap's guidance specifies a 2° angular size for targetable elements and at least 1° spacing, but doesn't define the size for each axis separately or say how spacing is measured. We therefore use 2° in both dimensions and 1° edge to edge as a conservative design target; the current gaps are about 0.25° edge to edge. Enlarging them is a deferred decision (see the [UI layout audit](docs/UI_LAYOUT_AUDIT.md)), and comfort with real hand tracking is untested.
+- **No body tracking or assessment.** By design, the Lens uses hand input only to press its buttons. It has no camera-based body or pose tracking, and it never counts, evaluates or assesses the learner's movement. It doesn't diagnose, correct, or claim to prevent injury.
 - **One movement, three patterns.** The bodyweight squat only; the three patterns are illustrative choices for this prototype, not an exhaustive or validated list. Applying the approach to other movements is only a future possibility; nothing beyond the squat is built.
 
 ## Project status
+- **On-screen copy:** the Lens intro still reads "BODYWEIGHT SQUAT / Squat Tutor", and the comparison card says "White (target)".
+  - **Approved in principle, not implemented:** "SPATIAL SQUAT COMPARISON / Coach's Eye" and "White (reference)"; screenshots show the current Lens.
+  - **Proposed, awaiting approval:** a new intro sentence.
+  - **Undecided:** the view labels, and whether to implement the proposed button layout ([UI layout audit](docs/UI_LAYOUT_AUDIT.md)). The current buttons do not meet our conservative 2°/1° target.
 - **Branch `feature/coach-eye`:** Coach's Eye, the candidate for submission. The learner-led `plan-lens` interview is complete (1 Nov 2026), and the revised design-brief amendment awaits the learner's sign-off. Not merged; the merge waits for the owner's approval.
 - **Branch `main` (`d1d0473`):** the verified fallback, without comparisons.
 - **Next:** five-person understanding test, live review on 5 Nov, then the demo video.
 
 ## Documents
-- **Product and validation:** [Model-geometry validation](docs/BIOMECHANICAL_VALIDATION.md) · [User validation plan](docs/USER_VALIDATION_PLAN.md) · [Live review package](docs/LIVE_REVIEW_PACKAGE.md) · [Strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md) · [Architecture](docs/RECOMMENDED_PRODUCT_ARCHITECTURE.md)
+- **Product and validation:** [Model-geometry validation](docs/BIOMECHANICAL_VALIDATION.md) · [UI layout audit](docs/UI_LAYOUT_AUDIT.md) · [User validation plan](docs/USER_VALIDATION_PLAN.md) · [Live review package](docs/LIVE_REVIEW_PACKAGE.md) · [Strategic analysis](docs/STRATEGIC_HACKATHON_ANALYSIS.md) · [Architecture](docs/RECOMMENDED_PRODUCT_ARCHITECTURE.md)
 - **Submission:** [Final demo script](docs/FINAL_DEMO_SCRIPT.md) · [Recording guide](docs/FINAL_DEMO_RECORDING_GUIDE.md) · [Devpost draft](docs/FINAL_DEVPOST_SUBMISSION.md) · [Submission checklist](docs/SUBMISSION_CHECKLIST.md)
 - **Engineering:** [Test results](docs/TEST_RESULTS.md) · [Implementation notes](docs/IMPLEMENTATION_NOTES.md) · [Research and decisions](docs/RESEARCH_AND_DECISIONS.md) · [Build log](docs/BUILD_PROGRESS.md) · [Device checklist](docs/DEVICE_VALIDATION.md)

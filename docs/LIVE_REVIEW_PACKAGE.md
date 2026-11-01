@@ -6,15 +6,15 @@ For the Learn AR with SPECS live judging review (Discord `#devpost-learn-feedbac
 Coach's Eye puts a squatting figure on a small stage in your room. Press Knees, Heels or Chest, and an exaggerated red version of a common movement pattern appears over the white reference figure, while the stage turns to a view chosen to show the difference.
 
 ## The problem
-Most people learn a squat from a video shot from one angle. Coaches don't watch from one angle: knees are checked from the front, torso lean from the side. A single fixed view can hide exactly the difference a beginner needs to see.
+Watching an exercise demonstration doesn't always make it easy to see how different movement patterns look, or what changes when the movement is performed differently. A reference movement on its own shows what to do, but not necessarily which details to observe.
 
 ## Intended user
 A beginner learning the bodyweight squat at home, who wants to know what to look for and where to look. Not athletes, and not anyone looking for a medical or injury assessment.
 
-## Why AR glasses
+## What head-worn AR contributes
 Phone AR can also place 3D figures in a room. What glasses change is how you inspect the comparison:
 - **Head-worn and hands-free.** You look from where you stand, step to the side or walk behind the stage, without holding a phone in your line of sight.
-- **The view matters.** Each pattern shows most clearly from a particular side, so the Lens turns the stage to face you with that view.
+- **The view matters.** In this model, each illustrated difference lies mainly in one direction, so the Lens turns the stage to present that direction to you.
 
 We haven't tested whether this helps people learn.
 - **Fits the glasses' view.** We measured the SPECS preview's field of view (about 32° x 36°) and scaled the figure to 1:3 so the whole body, cue card and controls fit from where you stand.
@@ -27,8 +27,8 @@ We haven't tested whether this helps people learn.
 5. Steps, slows to 0.5x, pauses, or switches Front / 35° / Side at any time.
 
 ## What makes it different
-Phone apps already rotate 3D exercise models and list common mistakes. Coach's Eye combines three things in one moment, in your space:
-- the pattern overlaid directly on the target, with only the difference drawn in red;
+Some phone apps already show rotatable 3D exercise models and list common mistakes; we don't claim no other product does this. Coach's Eye's own design combines three things in one moment, in your space:
+- the pattern overlaid directly on a reference figure, with only the difference drawn in red;
 - an automatic turn to a viewpoint selected for that difference;
 - a card naming the pattern, the difference and the view.
 
@@ -60,4 +60,4 @@ Phone apps already rotate 3D exercise models and list common mistakes. Coach's E
 6. Press it again to return; finish on the completion card (`11-completion.jpg`).
 
 ## Suggested post (edit before posting; not posted)
-> **Squat Tutor: Coach's Eye** (Learn AR with SPECS, Will It Ship): a squatting figure on a stage in your room. Press Knees, Heels or Chest to overlay a common pattern in red on the white target, and the stage turns to the angle where it shows. Preview-only so far, no user testing yet. Three questions: [paste the three questions]. Repo: https://github.com/Sidd927/learn-ar-with-specs-2026 (branch `feature/coach-eye`)
+> **Coach's Eye**, a spatial squat comparison experience (Learn AR with SPECS, Will It Ship): a squatting figure on a stage in your room. Press Knees, Heels or Chest to overlay an exaggerated common pattern in red on the white reference figure, and the stage turns to the angle where it shows. Preview-only so far, no user testing yet. Three questions: [paste the three questions]. Repo: https://github.com/Sidd927/learn-ar-with-specs-2026 (branch `feature/coach-eye`)

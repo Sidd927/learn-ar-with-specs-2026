@@ -2,6 +2,8 @@
 
 **Status: not run.** No SPECS glasses were available. Everything verified so far was in the Lens Studio 5.24.1 preview (SPECS 27 device, Interactive input). See `TEST_RESULTS.md`.
 
+Items 1–12 were written for the original Squat Tutor demonstration and still apply to Coach's Eye. Items 13–17 cover the Coach's Eye comparison.
+
 Use this checklist the first time the Lens runs on real glasses. Mark each item Pass, Fail, or Note, and add a sentence.
 
 ## Setup
@@ -16,7 +18,7 @@ Use this checklist the first time the Lens runs on real glasses. Mark each item 
 | 2 | Vertical comfort | Is the figure's head near or just above eye level and the feet visible with a slight downward glance? Any neck strain? | |
 | 3 | Mannequin readability | Can you tell the phases apart at this distance, against a real room background? | |
 | 4 | Cue card readability | Is the phase title, cue, and disclaimer readable without leaning in? Any text washed out on the additive display? | |
-| 5 | Control reach and targeting | Can you pinch each button reliably by ray-casting from a relaxed arm? Any mis-hits between neighbouring buttons? | |
+| 5 | Control reach and targeting | Can you pinch each button reliably by ray-casting from a relaxed arm? Any mis-hits between neighbouring buttons? (The current buttons are about 1.2° tall with about 0.25° gaps, below our conservative 2°/1° target; see `UI_LAYOUT_AUDIT.md`.) | |
 | 6 | Button feedback | Does each pinch feel acknowledged (visual state, sound)? Do Prev and Next look disabled at the ends? | |
 | 7 | Walking around | Walk a half-circle around the stand. Does the figure stay anchored? Do the panels stay readable from the side? | |
 | 8 | Front, 35°, and Side | Do the angle buttons give a clearer view than walking? Any disorientation when the turntable turns? | |
@@ -24,6 +26,11 @@ Use this checklist the first time the Lens runs on real glasses. Mark each item 
 | 10 | Visual comfort during playback | Watch three full demos (one at 0.5x). Any eye strain, flicker, or vergence discomfort? | |
 | 11 | Follow-along usability | Try squatting alongside the demo. Can you keep the figure in view while moving? Is 0.5x usable for following? | |
 | 12 | Real surroundings | Does the stand clash with real furniture? Is the content legible against bright and dark backgrounds? | |
+| 13 | Red vs white visibility | In each comparison, can you clearly tell the 55%-opacity red figure from the white reference figure on the see-through display? | |
+| 14 | Comparison card readability | Are the view label, pattern title, red and reference lines, return hint and exaggeration note readable from the start position? | |
+| 15 | Named difference visible | From the automatically selected view (Knees: front; Chest and Heels: side), can you see the difference the card names? Heels is the known weak case. | |
+| 16 | Optional rear look (Heels) | Walk behind the stage while Heels is open. Is the heel gap easier to see? (The Lens never turns to a rear view automatically.) | |
+| 17 | Pattern buttons and return | Can you pinch Knees, Heels and Chest, and pinch again to return, without mis-hits? | |
 
 ## Not verifiable in the simulator
 - Comfort over time, vergence, and readability on the see-through display.

@@ -1,4 +1,4 @@
-# User validation plan: Squat Tutor: Coach's Eye
+# User validation plan: Coach's Eye
 
 ## Status: NOT CONDUCTED
 No participant has used the Lens yet, and no results are reported anywhere in this repository. Until sessions happen, every claim about understanding or learning is a **hypothesis**. When sessions are run, record them in the results table at the bottom, including negative findings.

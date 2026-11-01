@@ -4,6 +4,12 @@ Date: 31 Oct 2026 · Stable baseline: `d1d0473` (main) · Deadline: 9 Nov 2026, 
 
 This document challenges the product rather than its implementation. Facts are cited, our own judgements are labelled, and hypotheses are marked as hypotheses.
 
+> **Historical document (agent analysis, 31 Oct 2026).** It is kept as written to show how the product decision was reached. It is **not** the current specification; Amendment 1 in `Lens/devpost/design-brief.md` is.
+> - **Terminology since replaced:** "mistake" is now "illustrative pattern"; "target" is now "reference"; "checkpoint view" is now "a view chosen to show the difference".
+> - **Sources:** the NASM and trainer statements rely on secondary summaries; the primary text was not read.
+> - **Overstatements:** a few claims below go further than their sources and are marked **[Note 1 Nov 2026]**.
+> - **Process and schedule:** the decision items (sections 6–8) are historical. Current status: `BUILD_PROGRESS.md`.
+
 ---
 
 ## 1. What this competition actually rewards
@@ -40,7 +46,7 @@ This document challenges the product rather than its implementation. Facts are c
 ### Who benefits, and from what?
 - **Claimed user:** a beginner learning the bodyweight squat.
 - **Claimed difficulty:** a fixed-angle video doesn't show the hips and knees from the angle that matters.
-- **Evidence for the difficulty:** **none collected by us.** Coaching practice does treat squat form as angle-dependent: NASM's overhead squat assessment explicitly checks the **front** view (feet turn out, knees move inward) and the **side** view (excessive forward lean, low back arches, arms fall forward) ([PT Pioneer summary of the NASM OHSA](https://www.ptpioneer.com/personal-training/certifications/study/nasm-overhead-squat-assessment/)). That supports "angle matters". It doesn't show that beginners struggle because of video angle.
+- **Evidence for the difficulty:** **none collected by us.** Coaching practice does treat squat form as angle-dependent: NASM's overhead squat assessment explicitly checks **[Note 1 Nov 2026: per a secondary summary; primary text not read]** the **front** view (feet turn out, knees move inward) and the **side** view (excessive forward lean, low back arches, arms fall forward) ([PT Pioneer summary of the NASM OHSA](https://www.ptpioneer.com/personal-training/certifications/study/nasm-overhead-squat-assessment/)). That supports "angle matters". It doesn't show that beginners struggle because of video angle.
 - **Frequency and severity:** squat learning is common, but low-stakes. Excellent free videos exist, and most beginners learn adequately from them or from a coach. This is not a high-severity problem.
 
 ### Existing alternatives (what already exists)
@@ -89,10 +95,10 @@ Ordinary. The best of it is interaction polish (turntable presets, phase steppin
 ## 3. Alternative directions considered
 
 Evidence used across concepts:
-- **AR procedural guidance reduces errors.** Tang et al. (2003) found 3D overlaid instructions cut assembly errors by 82% versus printed instructions; other studies report fewer errors but often slower completion ([summary with sources](https://pmc.ncbi.nlm.nih.gov/articles/PMC12222328/); [Springer HCII 2018](https://link.springer.com/chapter/10.1007/978-3-319-91581-4_35)). These are established findings.
+- **AR procedural guidance reduces errors.** Tang et al. (2003) found 3D overlaid instructions cut assembly errors by 82% versus printed instructions; other studies report fewer errors but often slower completion ([summary with sources](https://pmc.ncbi.nlm.nih.gov/articles/PMC12222328/); [Springer HCII 2018](https://link.springer.com/chapter/10.1007/978-3-319-91581-4_35)). These are established findings. **[Note 1 Nov 2026]** Overstated: we cited a review summary and one conference paper, not a systematic assessment.
 - **First-person-perspective demonstrations are imitated faster and with fewer errors than mirror-facing ones** in short imitation tasks (Jackson, Meltzoff & Decety 2006 ([NeuroImage](https://www.sciencedirect.com/science/article/abs/pii/S1053811905024754)); [PMC4868846](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4868846/)). Long-term learning effects are not established.
 - **Immersive or AR training for motor competence: evidence is inconsistent** ([meta-analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC13172324/)). HMDs are often non-inferior rather than superior ([JMIR 2021 review](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8299342/)). **We must not claim learning gains.**
-- **Squat checkpoints are view-specific** (front versus side) in a widely used trainer assessment ([NASM OHSA summary](https://www.ptpioneer.com/personal-training/certifications/study/nasm-overhead-squat-assessment/)).
+- **Squat checkpoints are view-specific** (front versus side) in a widely used trainer assessment **[Note 1 Nov 2026: "widely used" is not supported by the cited summary]** ([NASM OHSA summary](https://www.ptpioneer.com/personal-training/certifications/study/nasm-overhead-squat-assessment/)).
 
 Each concept is assessed for preview-demonstrability, because Stage 1 requires it and no SPECS hardware is available.
 
@@ -100,7 +106,7 @@ Each concept is assessed for preview-demonstrability, because Stage 1 requires i
 |---|---|---|---|---|---|---|
 | 1 | **Squat Tutor: Coach's Eye** (transform) | Beginners can't tell *what wrong looks like* or *where to look*. Coaches check knees from the front and lean or heels from the side. | Mistake-vs-target overlay you inspect from the exact checkpoint angle, in space, hands free | **Yes**, fully | High: reuses the rig, adds fault poses, a ghost overlay, and auto-angle | Must not imply it assesses the user; content must stay general |
 | 2 | **Movement Library** (transform: lunge, hinge, push-up) | Same as Squat Tutor, more moves | Same as today | Yes | Medium (new poses per move) | Breadth without a new insight; Innovation stays low |
-| 3 | **Behind-View Follow-Along** (transform/unconventional) | Mirror-facing videos force left/right mental flipping for asymmetric moves (lunges, dance, tai chi) | Stand behind the model (first-person-like), proven faster imitation in lab tasks | Yes (figure plus camera) | Medium (new asymmetric animations) | The squat is symmetric, so it needs new content; gains unproven for skill learning |
+| 3 | **Behind-View Follow-Along** (transform/unconventional) | Mirror-facing videos force left/right mental flipping for asymmetric moves (lunges, dance, tai chi) | Stand behind the model (first-person-like), proven faster imitation in lab tasks **[Note 1 Nov 2026: "proven" overstates short lab studies]** | Yes (figure plus camera) | Medium (new asymmetric animations) | The squat is symmetric, so it needs new content; gains unproven for skill learning |
 | 4 | **Repair-step coach** (outside: e.g. replace a bike inner tube) | People abandon simple repairs; diagrams are hard to map onto the real object | 3D step overlays on the object (strongest evidence base: assembly errors) | **Partly.** No object recognition, so a stand-in virtual bike wheel is needed | Low–medium (new models and many steps) | Content-heavy; a stand-in weakens the "on your object" story; a SolderCoach-like space already in this hackathon |
 | 5 | **CPR rhythm & hand-placement primer** (outside, healthcare-adjacent) | Bystanders hesitate; rate and depth are hard to recall | Hands-free metronome and a placement overlay on a manikin | **Weak.** Compressions are a custom gesture and can't be shown in the preview | Medium | High responsibility risk (implying certification or medical efficacy) |
 | 6 | **First-person fingerspelling** (outside, unconventional) | Learners copy mirrored hand shapes from videos | Hand shapes shown where *your* hands are, from your eyes (1PP evidence) | Yes (animated hands) | **Low.** Needs 26 accurate hand poses | Accuracy and cultural risk without Deaf community involvement; can't responsibly ship in 9 days |
@@ -193,9 +199,9 @@ The prototype is built on `feature/coach-eye` (`6c4e379`): 8/8 LEAF pass, 0 runt
 
 | Dimension (weight) | Squat Tutor (main) | Coach's Eye (branch) | What changed, with evidence |
 |---|---:|---:|---|
-| Problem significance (20) | 4 | 5 | It now teaches *what wrong looks like and where to look*, which is how trainers check a squat (front versus side) |
+| Problem significance (20) | 4 | 5 | It now teaches *what wrong looks like and where to look*, which is how trainers check a squat (front versus side) **[Note 1 Nov 2026: a generalisation from one secondary summary]** |
 | Innovation (15) | 3 | 6 | Phone apps rotate a 3D model and *list* mistakes. Here the mistake is overlaid on the target and the stage turns to the view that reveals it. We found no example of that combination (not an exhaustive search) |
-| Spatial essential (15) | 4 | 6 | Each mistake is only visible from one direction, so turning the in-space figure, or walking to that side, is the lesson itself. A phone could still do this, which caps the score |
+| Spatial essential (15) | 4 | 6 | Each mistake is only visible from one direction **[Note 1 Nov 2026: overstated; each difference is clearest from one direction in our model]**, so turning the in-space figure, or walking to that side, is the lesson itself. A phone could still do this, which caps the score |
 | UX (15) | 7 | 7 | One extra row; comparison exits on any playback control; tested |
 | Feasibility (10) | 9 | 8 | Built and passing; slightly larger surface |
 | Demo (10) | 6 | 8 | A memorable frame: red knees caving inside white knees |

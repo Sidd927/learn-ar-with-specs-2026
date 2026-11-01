@@ -40,7 +40,7 @@ Use **Partly** for an answer about the right body area with the wrong change (fo
 | **Knees** difference identified | ☐ Yes ☐ Partly ☐ No ☐ Not opened | |
 | **Chest** difference identified | ☐ Yes ☐ Partly ☐ No ☐ Not opened | |
 | **Heels** difference identified | ☐ Yes ☐ Partly ☐ No ☐ Not opened | |
-| Knew which colour was the target (red vs white) | ☐ Yes ☐ Unsure ☐ Wrong | |
+| Knew which colour was the reference (red vs white) | ☐ Yes ☐ Unsure ☐ Wrong | |
 | Understood why the viewpoint changed (Q4) | ☐ Yes ☐ Partly ☐ No | |
 | Returned to the demonstration on their own | ☐ Yes ☐ Prompted ☐ No | |
 | What they remembered (Q6) | | |

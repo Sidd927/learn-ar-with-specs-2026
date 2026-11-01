@@ -1,7 +1,9 @@
 # Test results
 
 ## Extended test H (`1d1bd5a`, 31 Oct 2026, 22:48 IST): 1 run, 1 passed
-Product code is unchanged since `2201d21`; only the test file changed. Test H now checks:
+Product code is unchanged since `2201d21`; only the test file changed.
+
+> **Terminology note (1 Nov 2026).** The documentation now calls the white figure the "reference" and the product "Coach's Eye". The strings below are quoted exactly as the current Lens shows them and as test H asserts them (for example `White (target)` and "…compare three common patterns with the target…"). The approved replacement copy is not implemented. When it is, test H's expected string and these quotes will change, and all 8 scenarios must be re-run. Test H now checks:
 - **Every pattern (Knees, Heels, Chest):**
   - red figure shown, paused at the Bottom Position;
   - turned to its view (± 2°), starting from a different angle each time: knees from 35°, heels from 35°, chest from Front;

@@ -27,7 +27,9 @@ Deadline: 9 Nov 2026, 5:00 p.m. ET (10 Nov 2026, 3:30 a.m. IST).
 - **Innovation/Idea:** How creative and novel is the concept, and does it differ from existing concepts?
 - **Presentation:** Does the video clearly demonstrate the project working end to end? Does the pitch communicate what problem is solved, who it's for, and why it matters? Is the presentation easy to follow?
 
-## Product hypothesis
+## Product hypothesis (original Squat Tutor, 30 Oct 2026; historical)
+
+> The current Coach's Eye problem statement, learner and hypothesis are recorded in the learner's own words in Amendment 1 of `Lens/devpost/design-brief.md`.
 
 People learning a movement such as the bodyweight squat often rely on fixed-angle videos and can't easily see what the hips and knees do from the angle that matters. A scale 3D demonstration in their own space, viewable from any angle and controllable phase by phase, should be easier to understand.
 
@@ -45,8 +47,8 @@ This is a hypothesis. It has not been validated with users, and no user research
 | Viewing | Walk around (WASD) plus Front / 35° / Side buttons on a turntable | Walking around works in the preview but is keyboard-driven. Buttons are reliable and testable. |
 | Cue geometry | Thin torus rings built at runtime with MeshBuilder | The torus primitive's tube is a fixed third of its diameter, so flattened rings read as wide bands. A generated torus keeps the tube thin at any radius. |
 | Distinct mid-poses | Descent: lower, more lean, arms reaching. Rising: higher, more upright, arms lowering | The two mid-poses were within about 1 cm of each other; now each phase reads differently (knee about 80° vs 55°). |
-| Input | SIK pinch on large buttons only | Works with the mouse in Interactive Preview and with LEAF. |
-| Sensing | None. Never tracks, counts, or assesses the user's body | Out of scope, and the preview can't show it. |
+| Input | SIK pinch on large buttons only | Works with the mouse in Interactive Preview and with LEAF. **[Note 1 Nov 2026]** "Large" was the intent; the built buttons are 3.4 cm (about 1.2°), below our conservative 2°/1° reading of Snap's guidance. See `UI_LAYOUT_AUDIT.md`. |
+| Sensing | None. Never tracks, counts, or assesses the user's body | Out of scope, and the preview can't show it. **[Note 1 Nov 2026]** More precisely: hand input (standard pinch) operates the buttons; there is no camera-based body or pose tracking. |
 
 ## Preview assumptions
 - The camera starts at the world origin. y = 0 is eye height at launch, and −Z is forward.
@@ -60,5 +62,7 @@ This is a hypothesis. It has not been validated with users, and no user research
 - **Preview helper package.** `QueryRuntimeSceneTool`, `PreviewInteractTool`, and `CaptureRuntimeViewTool` auto-install `AiPreviewAgentInspect`, which depends on `UIKit`/`InteractionKit` 4.0 and breaks this project's compile. It was moved out of the project (backup kept). Runtime checks use LEAF and preview screenshots instead.
 - **Editor version.** The project file is from Lens Studio 5.24.1. A second, older install (5.23.2) wedged when it opened the project. Use 5.24.1.
 
-## Strategic reassessment (31 Oct 2026)
+## Strategic reassessment (31 Oct 2026; historical summary)
+> **Status at 1 Nov 2026:** the owner approved the Coach's Eye direction, and the learner-led `plan-lens` interview is recorded in Amendment 1, which awaits the owner's sign-off. Not merged. Current wording replaces "mistake", "target" and "checkpoint" with "illustrative pattern", "reference" and "a view chosen to show the difference".
+
 The full analysis is in `STRATEGIC_HACKATHON_ANALYSIS.md`. Summary: Squat Tutor's rotate-and-step 3D viewer duplicates existing phone apps (Innovation is weak). The recommended evolution, **Coach's Eye**, overlays three common mistakes on the target and turns to the trainer's checkpoint view. It's prototyped on `feature/coach-eye` (8/8 LEAF) and **pending the owner's approval of the brief amendment** before merging.
