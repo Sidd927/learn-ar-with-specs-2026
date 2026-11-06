@@ -1,6 +1,6 @@
 # Final demo recording guide: Coach's Eye
 
-Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and narration. Target: **2:45**, limit under 3:00. Applies to `feature/coach-eye` (build `83e71bc` or later), whether recorded from the branch or after a merge; for `main`, use `DEMO_RECORDING_GUIDE.md`.
+Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and narration. Target: **about 2:40** (the script's timing), limit under 3:00. Applies to `feature/coach-eye` (build `83e71bc` or later), whether recorded from the branch or after a merge; for `main`, use `DEMO_RECORDING_GUIDE.md`.
 
 ## 1. Recording setup
 - Recorder: macOS Cmd+Shift+5 (Record Selected Portion) or OBS. **1080p+ at 30 fps+.** Capture the Preview panel only.

@@ -22,7 +22,7 @@ Nothing has been submitted. Work through this list yourself before pressing Subm
 | 5 | Functionality matches the video and written description | Draft lists only verified features; recording guide uses only existing controls | Ready; depends on the video | Record exactly per `FINAL_DEMO_RECORDING_GUIDE.md` (Coach's Eye) or `DEMO_RECORDING_GUIDE.md` (`main`); re-read the draft against the video |
 | 6 | Public code repository with the Lens Studio project files | https://github.com/Sidd927/learn-ar-with-specs-2026, **PUBLIC** (checked with `gh`, 31 Oct); contains `Lens/` (`.esproj`, Assets, Packages) | Verified | Keep it public through judging |
 | 7 | Accurate text description | `FINAL_DEVPOST_SUBMISSION.md` / `DEVPOST_SUBMISSION.md`: no tracking, scoring, user-research, device, injury or numeric biomechanical claims | Ready | Paste into Devpost and proofread |
-| 8 | Demo video: public on YouTube, under 3 minutes, shows the Lens working (preview recording preferred) | Recording guide targets 2:45 in the Lens Studio preview | **Not done** | Record → upload as **Public** → paste the link |
+| 8 | Demo video: public on YouTube, under 3 minutes, shows the Lens working (preview recording preferred) | Demo script targets about 2:40 in the Lens Studio preview | **Not done** | Record → upload as **Public** → paste the link |
 | 9 | Deadline: 9 Nov 2026, 5:00 p.m. ET (10 Nov, 3:30 a.m. IST) | Recorded in decisions log | Noted | Submit with margin |
 
 **Judging (as verified):** Stage One is pass/fail eligibility (tools, workflow, submission requirements, preview compatibility). Stage Two weighs four criteria equally: Design, Technical Implementation, Innovation/Idea, and Presentation.
@@ -38,7 +38,7 @@ These aren't in the verified rules record. Check each one, because the Devpost f
 | Team / entrant details, eligibility (age, region, employer) | Personal eligibility | Fill in your own details |
 | Whether a design brief or `devpost/` folder must be linked or uploaded | The brief is at `Lens/devpost/design-brief.md` | Link it if asked |
 | Third-party content or licensing rules | We use only Snap packages (SIK, UI Kit, LEAF, Bitmoji 3D); no music, fonts, or external art | Confirm nothing else is needed |
-| Thumbnail or image requirements | Screenshots are portrait 1399x1590 JPEG | Use `01-hero-intro.jpg` or crop if a landscape thumbnail is required |
+| Thumbnail or image requirements | Screenshots are portrait 1399x1590 JPEG | Landscape 3:2 crops are ready in `docs/screenshots/devpost/` (lead: `13-mistake-knees-front-3x2.jpg`); check the thumbnail preview on the form |
 
 ## Devpost form fields: what to paste
 | Field (typical) | Source |
@@ -49,7 +49,7 @@ These aren't in the verified rules record. Check each one, because the Devpost f
 | Built with | The same file → Built with |
 | Try it out / repo link | https://github.com/Sidd927/learn-ar-with-specs-2026 |
 | Video demo link | **Your YouTube URL** (after upload) |
-| Image gallery | Coach's Eye: `13-mistake-knees-front.jpg`, `15-mistake-chest-side.jpg`, `14-mistake-heels-side.jpg`, `01-hero-intro.jpg`, `04-phase3-bottom-position.jpg`, `11-completion.jpg`. Main: `01`, `04`, `10`, `08`, `07`, `11` (the `main` versions live on the `main` branch) |
+| Image gallery | Coach's Eye: upload the 3:2 crops in `docs/screenshots/devpost/` first (`13` as the lead/thumbnail, then `15`, `14`, `04`), then the originals `01` and `11`. Portrait originals: `13-mistake-knees-front.jpg`, `15-mistake-chest-side.jpg`, `14-mistake-heels-side.jpg`, `01-hero-intro.jpg`, `04-phase3-bottom-position.jpg`, `11-completion.jpg`. Main: `01`, `04`, `10`, `08`, `07`, `11` (the `main` versions live on the `main` branch) |
 
 ## Claims audit (verified against the code and tests)
 - [x] No body tracking, rep counting, form assessment, or scoring is claimed.

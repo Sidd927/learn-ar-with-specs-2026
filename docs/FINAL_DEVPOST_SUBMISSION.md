@@ -70,7 +70,9 @@ We haven't tested whether this helps people learn better than a phone or a video
 - Video: **[add YouTube link after the owner uploads it]**. A Lens Studio preview recording, not footage through glasses.
 
 ## Screenshots
-`docs/screenshots/13-mistake-knees-front.jpg` (lead image) · `15-mistake-chest-side.jpg` · `14-mistake-heels-side.jpg` · `01-hero-intro.jpg` · `04-phase3-bottom-position.jpg` · `11-completion.jpg`
+For the gallery and thumbnail, upload the 3:2 crops in `docs/screenshots/devpost/` first (`13-mistake-knees-front-3x2.jpg` as the lead image, then `15-…-3x2`, `14-…-3x2`, `04-…-3x2`); they are the originals with the empty top removed. Then add `01-hero-intro.jpg` and `11-completion.jpg` from `docs/screenshots/`.
+
+Originals (portrait): `docs/screenshots/13-mistake-knees-front.jpg` (lead image) · `15-mistake-chest-side.jpg` · `14-mistake-heels-side.jpg` · `01-hero-intro.jpg` · `04-phase3-bottom-position.jpg` · `11-completion.jpg`
 
 ## Built with
 Lens Studio 5.24.1 · SPECS · CLAD · Lens Studio MCP · Spectacles Interaction Kit 2.0 · Spectacles UI Kit 2.0 · LEAF 2.0.2 · TypeScript · Claude Code

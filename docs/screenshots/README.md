@@ -24,4 +24,6 @@ Each shot is taken from the user's start position (preview camera not moved). Ph
 | `14-mistake-heels-side.jpg` | Heels, "VIEW: SIDE": red legs faded, red feet solid with the heel raised beside the flat white foot; foot outlines. |
 | `15-mistake-chest-side.jpg` | Chest, "VIEW: SIDE": red torso and head further forward; no hip marker; the red hands stay above the control panel. |
 
+Landscape 3:2 crops of `13`, `15`, `14` and `04` for the Devpost gallery are in `devpost/` (top removed, nothing else changed).
+
 File names keep the `mistake` prefix for link stability; the Lens itself says "common pattern".
