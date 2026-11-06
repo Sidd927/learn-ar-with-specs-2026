@@ -1,5 +1,7 @@
 # Final Devpost submission draft: Coach's Eye
 
+> **Superseded on 7 Nov 2026 by [`docs/submission/DEVPOST_SUBMISSION_FINAL.md`](submission/DEVPOST_SUBMISSION_FINAL.md)**, which follows the Devpost form field by field. This draft is kept for history.
+
 > Draft, ready to paste. **Nothing has been submitted**, and submitting is the owner's decision. It applies to `feature/coach-eye` (build `83e71bc` or later); if the owner keeps `main`, use `DEVPOST_SUBMISSION.md`. Check the requirements in `SUBMISSION_CHECKLIST.md` against the live rules page first (automated access returns HTTP 403). Before pasting, update *Limitations* with real results if the user test, device test or live review happen first; never add results that didn't happen.
 
 ## Project title
