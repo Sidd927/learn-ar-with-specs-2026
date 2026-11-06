@@ -1,0 +1,74 @@
+# LEAF a–h, fresh-open run, 7 Nov 2026 (IST), Lens Studio 5.24.1.26100516, preview SPECS 27 / Interactive
+# Extracted from LensStudioLog-2026-11-07-01-24-34-848-d0d8c.txt ([SquatTutorTest] lines and LEAF results only)
+
+I 01:26:11.476 I [DefaultLeafScenarioManager] [  0.000s]RUNS: a-placement with args: []
+I 01:26:11.782 [SquatTutorTest] mannequin root {x: 0, y: -42, z: -170} horizontal distance 170.0 cm
+I 01:26:11.783 [SquatTutorTest] turntable yaw 35.0°
+I 01:26:15.116 [SquatTutorTest] root moved 0.000 cm during animation
+I 01:26:15.116 I [DefaultLeafScenarioManager] [  3.641s]PASSED: a-placement
+I 01:26:15.116 I [DefaultLeafScenarioManager] [  3.641s][a-placement] PASSED
+I 01:26:15.117 [LeafPlugin][PluginViewModel] ✅ Scenario a-placement completed successfully.
+
+I 01:26:27.411 I [DefaultLeafScenarioManager] [  0.000s]RUNS: b-full-demo with args: []
+I 01:26:40.171 [SquatTutorTest] phases seen: PHASE 1 OF 5 | PHASE 2 OF 5 | PHASE 3 OF 5 | PHASE 4 OF 5 | PHASE 5 OF 5; completed in 12.16 s
+I 01:26:41.677 I [DefaultLeafScenarioManager] [ 14.267s]PASSED: b-full-demo
+I 01:26:41.677 I [DefaultLeafScenarioManager] [ 14.267s][b-full-demo] PASSED
+I 01:26:41.678 [LeafPlugin][PluginViewModel] ✅ Scenario b-full-demo completed successfully.
+
+I 01:26:48.259 I [DefaultLeafScenarioManager] [  0.000s]RUNS: c-stepping with args: []
+I 01:26:50.419 [SquatTutorTest] phase 2: knee 79.6° (target 79.6°)
+I 01:26:51.637 [SquatTutorTest] phase 3: knee 123.3° (target 123.3°)
+I 01:26:52.859 [SquatTutorTest] phase 4: knee 54.8° (target 54.8°)
+I 01:26:54.061 [SquatTutorTest] phase 5: knee 5.5° (target 5.5°)
+I 01:26:54.971 [SquatTutorTest] phase 5: knee 5.5° (target 5.5°)
+I 01:26:56.192 [SquatTutorTest] phase 4: knee 54.8° (target 54.8°)
+I 01:26:57.434 [SquatTutorTest] phase 3: knee 123.3° (target 123.3°)
+I 01:26:58.654 [SquatTutorTest] phase 2: knee 79.6° (target 79.6°)
+I 01:26:59.861 [SquatTutorTest] phase 1: knee 5.5° (target 5.5°)
+I 01:27:00.771 [SquatTutorTest] phase 1: knee 5.5° (target 5.5°)
+I 01:27:00.771 I [DefaultLeafScenarioManager] [ 12.512s]PASSED: c-stepping
+I 01:27:00.771 I [DefaultLeafScenarioManager] [ 12.512s][c-stepping] PASSED
+I 01:27:00.772 [LeafPlugin][PluginViewModel] ✅ Scenario c-stepping completed successfully.
+
+I 01:27:06.259 I [DefaultLeafScenarioManager] [  0.000s]RUNS: d-playback with args: []
+I 01:27:09.724 [SquatTutorTest] paused knee 75.53° -> 75.53°
+I 01:27:48.100 [SquatTutorTest] 1x 12.29 s, 0.5x 24.60 s, ratio 2.00
+I 01:27:48.103 I [DefaultLeafScenarioManager] [ 41.844s]PASSED: d-playback
+I 01:27:48.103 I [DefaultLeafScenarioManager] [ 41.844s][d-playback] PASSED
+I 01:27:48.103 [LeafPlugin][PluginViewModel] ✅ Scenario d-playback completed successfully.
+
+I 01:27:55.743 I [DefaultLeafScenarioManager] [  0.000s]RUNS: e-angles with args: []
+I 01:27:57.558 [SquatTutorTest] Front: yaw 0.0°, root moved 0.000 cm
+I 01:27:58.786 [SquatTutorTest] Angled: yaw 35.0°, root moved 0.000 cm
+I 01:28:00.009 [SquatTutorTest] Side: yaw 90.0°, root moved 0.000 cm
+I 01:28:01.233 [SquatTutorTest] Front: yaw 0.0°, root moved 0.000 cm
+I 01:28:01.233 I [DefaultLeafScenarioManager] [  5.490s]PASSED: e-angles
+I 01:28:01.233 I [DefaultLeafScenarioManager] [  5.490s][e-angles] PASSED
+I 01:28:01.234 [LeafPlugin][PluginViewModel] ✅ Scenario e-angles completed successfully.
+
+I 01:28:06.550 I [DefaultLeafScenarioManager] [  0.000s]RUNS: f-cues with args: []
+I 01:28:07.765 [SquatTutorTest] phase 1: visible cues Cue_FootOutlines
+I 01:28:08.783 [SquatTutorTest] phase 2: visible cues Cue_KneeArrows
+I 01:28:09.807 [SquatTutorTest] phase 3: visible cues Cue_HipMarker
+I 01:28:10.829 [SquatTutorTest] phase 4: visible cues Cue_KneeArrows
+I 01:28:11.833 [SquatTutorTest] phase 5: visible cues Cue_CompletionRing
+I 01:28:11.833 I [DefaultLeafScenarioManager] [  5.283s]PASSED: f-cues
+I 01:28:11.833 I [DefaultLeafScenarioManager] [  5.283s][f-cues] PASSED
+I 01:28:11.834 [LeafPlugin][PluginViewModel] ✅ Scenario f-cues completed successfully.
+
+I 01:28:17.884 I [DefaultLeafScenarioManager] [  0.000s]RUNS: g-edge-cases with args: []
+I 01:28:20.738 [SquatTutorTest] paused at timeline 2.22 s
+I 01:28:27.737 [SquatTutorTest] replay: timeline 1.45 s -> 0.22 s
+I 01:28:27.737 [SquatTutorTest] edge cases ok
+I 01:28:27.737 I [DefaultLeafScenarioManager] [  9.853s]PASSED: g-edge-cases
+I 01:28:27.737 I [DefaultLeafScenarioManager] [  9.853s][g-edge-cases] PASSED
+I 01:28:27.738 [LeafPlugin][PluginViewModel] ✅ Scenario g-edge-cases completed successfully.
+
+I 01:28:35.932 I [DefaultLeafScenarioManager] [  0.000s]RUNS: h-mistake-compare with args: []
+I 01:28:38.281 [SquatTutorTest] knees: target |x| 7.7 cm, mistake |x| 3.1 cm
+I 01:28:41.971 [SquatTutorTest] heels: mistake ankle 4.0 cm higher
+I 01:28:44.420 [SquatTutorTest] chest: mistake head 3.8 cm further forward
+I 01:28:53.615 [SquatTutorTest] mistake comparison ok (3 patterns, 5 exits, Slow and angle keep it open)
+I 01:28:53.615 I [DefaultLeafScenarioManager] [ 17.683s]PASSED: h-mistake-compare
+I 01:28:53.615 I [DefaultLeafScenarioManager] [ 17.683s][h-mistake-compare] PASSED
+I 01:28:53.615 [LeafPlugin][PluginViewModel] ✅ Scenario h-mistake-compare completed successfully.
