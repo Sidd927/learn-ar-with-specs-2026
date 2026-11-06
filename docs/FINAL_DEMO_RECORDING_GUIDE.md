@@ -1,5 +1,7 @@
 # Final demo recording guide: Coach's Eye
 
+> **7 Nov 2026:** the film was recorded and edited (`docs/evidence/recording/`). Keep this guide for any re-take.
+
 Use this with **`FINAL_DEMO_SCRIPT.md`**, which has the timeline, clicks, and narration. Target: **about 2:40** (the script's timing), limit under 3:00. Applies to `feature/coach-eye` (build `83e71bc` or later), whether recorded from the branch or after a merge; for `main`, use `DEMO_RECORDING_GUIDE.md`.
 
 ## 1. Recording setup

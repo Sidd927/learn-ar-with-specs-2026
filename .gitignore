@@ -5,3 +5,17 @@
 .claude/settings.local.json
 Lens/ls-live-instance.json
 Lens/.virtual-scene.json
+
+# Demo film production (exports/demo_video): only the small, reproducible sources are tracked.
+# Heavy or generated media stays local; the film itself is published on YouTube.
+exports/demo_video/raw/
+exports/demo_video/renders/
+exports/demo_video/.venv-tts/
+exports/demo_video/audio/*
+!exports/demo_video/audio/vo_word_timings.json
+exports/demo_video/project/assets/
+exports/demo_video/project/.hyperframes/
+exports/demo_video/project/node_modules/
+exports/demo_video/project/AGENTS.md
+exports/demo_video/project/CLAUDE.md
+exports/demo_video/final/*.mp4

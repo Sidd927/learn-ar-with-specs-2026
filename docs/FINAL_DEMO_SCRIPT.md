@@ -3,7 +3,7 @@
 **Applies to branch `feature/coach-eye`, build `83e71bc` or later.** If the owner keeps `main` (no comparisons), use `DEMO_SCRIPT.md` instead.
 The footage is a **Lens Studio preview recording** (SPECS 27, Interactive), not footage through glasses. Setup, framing and checklists are in `FINAL_DEMO_RECORDING_GUIDE.md`.
 
-**Status: plan only. Not recorded.** Record only after the user test and any Heels decision (design brief, *Evidence of understanding*). The "under 3 minutes, public on YouTube, preview recording preferred" requirement comes from the rules the owner verified on 30 Oct 2026; automated access to the rules page still returns HTTP 403, so the owner must re-check it on the live page before recording.
+**Status: superseded by the produced film (7 Nov 2026).** The final narration and shot list are in `exports/demo_video/FINAL_SCRIPT_AND_STORYBOARD.md` (local, not committed); this table was the starting point. Original note: Record only after the user test and any Heels decision (design brief, *Evidence of understanding*). The "under 3 minutes, public on YouTube, preview recording preferred" requirement comes from the rules the owner verified on 30 Oct 2026; automated access to the rules page still returns HTTP 403, so the owner must re-check it on the live page before recording.
 
 The video is built around one moment: **the red pattern over the white reference figure, from the view the Lens turns to.**
 

@@ -1,0 +1,95 @@
+[
+ {
+  "id": "L01",
+  "tts": "When you learn a squat from a video, you can watch the movement.",
+  "cap": "When you learn a squat from a video, you can watch the movement."
+ },
+ {
+  "id": "L02",
+  "tts": "What's harder is seeing what changes when it's done differently, and knowing where to look.",
+  "cap": "What's harder is seeing what changes when it's done differently, and knowing where to look."
+ },
+ {
+  "id": "L03",
+  "tts": "This is Coach's Eye: a spatial squat comparison Lens for Specs, recorded here in the Lens Studio preview.",
+  "cap": "This is Coach's Eye: a spatial squat comparison Lens for SPECS, recorded here in the Lens Studio preview."
+ },
+ {
+  "id": "L04",
+  "tts": "A reference mannequin stands on a small stage in front of you. It's a demonstration. It doesn't track your body, and it doesn't assess your form.",
+  "cap": "A reference mannequin stands on a small stage in front of you. It's a demonstration. It doesn't track your body, and it doesn't assess your form.",
+  "parts": [
+   "A reference mannequin stands on a small stage in front of you.",
+   "It's a demonstration. It doesn't track your body, and it doesn't assess your form."
+  ]
+ },
+ {
+  "id": "L05",
+  "tts": "Pinch Start, and the reference squat plays in five phases. One short cue and one highlight at a time.",
+  "cap": "Pinch Start, and the reference squat plays in five phases. One short cue and one highlight at a time.",
+  "parts": [
+   "Pinch Start, and the reference squat plays in five phases.",
+   "One short cue and one highlight at a time."
+  ]
+ },
+ {
+  "id": "L06",
+  "tts": "You can step back through the phases, and stop on the moment you want to study.",
+  "cap": "You can step back through the phases, and stop on the moment you want to study."
+ },
+ {
+  "id": "L07",
+  "tts": "Then comes the core idea. Choose one common pattern, and an exaggerated red version appears over the white reference, seen from the angle where the difference shows.",
+  "cap": "Then comes the core idea. Choose one common pattern, and an exaggerated red version appears over the white reference, seen from the angle where the difference shows."
+ },
+ {
+  "id": "L08",
+  "tts": "Knees. The stage turns to face you, because this difference is sideways. In red, the knees drift inside the toes. In white, the reference: knees track over the toes.",
+  "cap": "Knees. The stage turns to face you, because this difference is sideways. In red, the knees drift inside the toes. In white, the reference: knees track over the toes."
+ },
+ {
+  "id": "L09",
+  "tts": "Pinch it again, and you're back in the demonstration.",
+  "cap": "Pinch it again, and you're back in the demonstration."
+ },
+ {
+  "id": "L10",
+  "tts": "Heels. This time, the stage turns to the side. The red legs fade back, so the heel stands out. In red, the heels lift off the floor, while the white foot stays planted.",
+  "cap": "Heels. This time, the stage turns to the side. The red legs fade back, so the heel stands out. In red, the heels lift off the floor, while the white foot stays planted."
+ },
+ {
+  "id": "L11",
+  "tts": "Chest. Also from the side, where a forward lean is easiest to see. The red torso tips far forward. The white chest stays up.",
+  "cap": "Chest. Also from the side, where a forward lean is easiest to see. The red torso tips far forward. The white chest stays up."
+ },
+ {
+  "id": "L12",
+  "tts": "Every difference is exaggerated for clarity. These are illustrative patterns to compare, not a diagnosis.",
+  "cap": "Every difference is exaggerated for clarity. These are illustrative patterns to compare, not a diagnosis."
+ },
+ {
+  "id": "L13",
+  "tts": "Outside a comparison, you choose the angle yourself, and you can slow the movement to half speed.",
+  "cap": "Outside a comparison, you choose the angle yourself, and you can slow the movement to half speed."
+ },
+ {
+  "id": "L14",
+  "tts": "Pinch Replay, and it starts again from the top. The finish points you back to the comparisons.",
+  "cap": "Pinch Replay, and it starts again from the top. The finish points you back to the comparisons."
+ },
+ {
+  "id": "L15",
+  "tts": "On Specs, the idea is to keep your hands free and your eyes up, while you study the movement in your own space, and walk around it.",
+  "cap": "On SPECS, the idea is to keep your hands free and your eyes up, while you study the movement in your own space, and walk around it."
+ },
+ {
+  "id": "L16",
+  "tts": "Whether it helps people learn, and whether the approach could work for other movements, is what we want to explore next.",
+  "cap": "Whether it helps people learn, and whether the approach could work for other movements, is what we want to explore next."
+ },
+ {
+  "id": "L17",
+  "tts": "Coach's Eye. See the difference. Understand what to observe.",
+  "cap": "Coach's Eye. See the difference. Understand what to observe."
+ }
+]

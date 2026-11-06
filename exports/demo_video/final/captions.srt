@@ -1,0 +1,227 @@
+1
+00:00:00,490 --> 00:00:02,570
+When you learn a squat from a video,
+
+2
+00:00:02,590 --> 00:00:04,320
+you can watch the movement.
+
+3
+00:00:04,340 --> 00:00:05,760
+What's harder is seeing what
+
+4
+00:00:05,780 --> 00:00:07,600
+changes when it's done differently,
+
+5
+00:00:07,620 --> 00:00:09,180
+and knowing where to look.
+
+6
+00:00:10,280 --> 00:00:12,230
+This is Coach's Eye:
+
+7
+00:00:12,250 --> 00:00:14,740
+a spatial squat comparison Lens for SPECS,
+
+8
+00:00:14,760 --> 00:00:17,660
+recorded here in the Lens Studio preview.
+
+9
+00:00:17,680 --> 00:00:19,750
+A reference mannequin stands on a
+
+10
+00:00:19,770 --> 00:00:21,460
+small stage in front of you.
+
+11
+00:00:21,480 --> 00:00:23,220
+It's a demonstration.
+
+12
+00:00:23,240 --> 00:00:24,690
+It doesn't track your body,
+
+13
+00:00:24,710 --> 00:00:27,280
+and it doesn't assess your form.
+
+14
+00:00:28,810 --> 00:00:32,870
+Pinch Start, and the reference squat plays in five phases.
+
+15
+00:00:34,750 --> 00:00:37,370
+One short cue and one highlight at a time.
+
+16
+00:00:43,190 --> 00:00:45,370
+You can step back through the phases,
+
+17
+00:00:45,390 --> 00:00:47,780
+and stop on the moment you want to study.
+
+18
+00:00:51,880 --> 00:00:54,080
+Then comes the core idea.
+
+19
+00:00:54,100 --> 00:00:56,120
+Choose one common pattern,
+
+20
+00:00:56,140 --> 00:00:57,940
+and an exaggerated red version
+
+21
+00:00:57,960 --> 00:01:00,180
+appears over the white reference,
+
+22
+00:01:00,200 --> 00:01:02,870
+seen from the angle where the difference shows.
+
+23
+00:01:02,890 --> 00:01:03,310
+Knees.
+
+24
+00:01:03,330 --> 00:01:05,310
+The stage turns to face you,
+
+25
+00:01:05,330 --> 00:01:07,790
+because this difference is sideways.
+
+26
+00:01:07,810 --> 00:01:10,790
+In red, the knees drift inside the toes.
+
+27
+00:01:10,810 --> 00:01:12,290
+In white, the reference:
+
+28
+00:01:12,310 --> 00:01:14,140
+knees track over the toes.
+
+29
+00:01:14,850 --> 00:01:17,660
+Pinch it again, and you're back in the demonstration.
+
+30
+00:01:18,660 --> 00:01:19,420
+Heels.
+
+31
+00:01:19,440 --> 00:01:22,260
+This time, the stage turns to the side.
+
+32
+00:01:22,280 --> 00:01:23,590
+The red legs fade back,
+
+33
+00:01:23,610 --> 00:01:25,560
+so the heel stands out.
+
+34
+00:01:25,580 --> 00:01:27,920
+In red, the heels lift off the floor,
+
+35
+00:01:27,940 --> 00:01:29,990
+while the white foot stays planted.
+
+36
+00:01:33,290 --> 00:01:33,730
+Chest.
+
+37
+00:01:33,750 --> 00:01:34,780
+Also from the side,
+
+38
+00:01:34,800 --> 00:01:37,690
+where a forward lean is easiest to see.
+
+39
+00:01:37,710 --> 00:01:40,130
+The red torso tips far forward.
+
+40
+00:01:40,150 --> 00:01:42,760
+The white chest stays up.
+
+41
+00:01:42,780 --> 00:01:45,800
+Every difference is exaggerated for clarity.
+
+42
+00:01:45,820 --> 00:01:48,520
+These are illustrative patterns to compare,
+
+43
+00:01:48,540 --> 00:01:50,160
+not a diagnosis.
+
+44
+00:01:52,390 --> 00:01:54,030
+Outside a comparison,
+
+45
+00:01:54,050 --> 00:01:55,970
+you choose the angle yourself,
+
+46
+00:01:55,990 --> 00:01:58,440
+and you can slow the movement to half speed.
+
+47
+00:02:03,240 --> 00:02:06,770
+Pinch Replay, and it starts again from the top.
+
+48
+00:02:06,790 --> 00:02:09,010
+On SPECS, the idea is to keep your
+
+49
+00:02:09,030 --> 00:02:11,140
+hands free and your eyes up,
+
+50
+00:02:11,160 --> 00:02:13,100
+while you study the movement in your own space,
+
+51
+00:02:13,120 --> 00:02:14,460
+and walk around it.
+
+52
+00:02:16,260 --> 00:02:18,970
+The finish points you back to the comparisons.
+
+53
+00:02:18,990 --> 00:02:20,910
+Whether it helps people learn,
+
+54
+00:02:20,930 --> 00:02:22,090
+and whether the approach could
+
+55
+00:02:22,110 --> 00:02:23,730
+work for other movements,
+
+56
+00:02:23,750 --> 00:02:25,680
+is what we want to explore next.
+
+57
+00:02:26,950 --> 00:02:30,900
+Coach's Eye. See the difference. Understand what to observe.
